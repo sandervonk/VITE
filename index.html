@@ -22,6 +22,74 @@
     <div id="flex-parent">
       <div class="flex-element main-container" id="options">
         <div id="options-title">Options</div>
+        <div id="options-container">
+          <div class="options-section">
+            <div class="options-section-title">Display Mode</div>
+            <div class="options-section-title-line"></div>
+            <div class="options-section-content">
+              <div class="select-panel">
+                <button class="select-button" id="mode-MD">
+                  Material Design
+                </button>
+                <button class="select-button" id="mode-QZ">
+                  Quizlet Theme
+                </button>
+                <button class="select-button" id="mode-WS">
+                  VITE! Worksheet
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="options-section">
+            <div class="options-section-title">Quiz Sets</div>
+            <div class="options-section-title-line"></div>
+            <div class="options-section-content">
+              <div class="two-table">
+                <div class="table-left">
+                  <button class="toggle-button active">Je</button>
+                  <button class="toggle-button">Tu</button>
+                  <button class="toggle-button active">Il / Elle / On</button>
+                  <button class="toggle-button">Nous</button>
+                  <button class="toggle-button active">Vous</button>
+                  <button class="toggle-button active">Ils / Elles</button>
+                </div>
+                <div class="table-seperator"></div>
+                <div class="table-right">
+                  <button class="toggle-button active">Venir</button>
+                  <button class="toggle-button">Pouvoir</button>
+                  <button class="toggle-button active">Prendre</button>
+                  <button class="toggle-button">Connaitre</button>
+                  <button class="toggle-button active">Savoir</button>
+                  <div class="toggle-button custom">
+                    <button class="custom-button" id="custom-button">
+                      <div>+</div>
+                    </button>
+                    <div>Custom</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="options-section">
+            <div class="options-section-title">Customization / Theme</div>
+            <div class="options-section-title-line"></div>
+            <div class="options-section-content">
+              <div class="customization-panel">
+                <div class="color-panel">
+                  <div class="color-left">
+                    <input
+                      type="color"
+                      name="Background Color"
+                      id="color-bg"
+                      value="#add8e6"
+                    />
+                  </div>
+                  <div class="label">Background Color</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
       </div>
       <div class="flex-element main-container" id="questions"></div>
     </div>
