@@ -145,7 +145,8 @@ button.toggle-button {
   margin-top: 0.3vh !important;
 }
 button.select-button:first-child,
-button.toggle-button:first-child {
+#table-subjects button.toggle-button:first-child,
+.toggle-button.custom {
   margin-top: 0px !important;
 }
 button.select-button.active,

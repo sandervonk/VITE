@@ -3,7 +3,9 @@
   <head>
     <title>VITE! Practice</title>
     <link rel="stylesheet" href="vite.css" />
-    <script src="vite.js"></script>
+    <script src="src/jquery-3.6.0.min.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/vite.js"></script>
     <meta
       name="description"
       content="VITE! Style Conjugation Practice for French Verbs"
@@ -27,7 +29,7 @@
             <div class="options-section-title">Display Mode</div>
             <div class="options-section-title-line"></div>
             <div class="options-section-content">
-              <div class="select-panel">
+              <div class="select-panel" id="display-modes">
                 <button class="select-button" id="mode-MD">
                   Material Design
                 </button>
@@ -45,21 +47,20 @@
             <div class="options-section-title-line"></div>
             <div class="options-section-content">
               <div class="two-table">
-                <div class="table-left">
-                  <button class="toggle-button active">Je</button>
-                  <button class="toggle-button">Tu</button>
-                  <button class="toggle-button active">Il / Elle / On</button>
-                  <button class="toggle-button">Nous</button>
-                  <button class="toggle-button active">Vous</button>
-                  <button class="toggle-button active">Ils / Elles</button>
+                <div class="table-left" id="table-subjects">
+                  <button class="toggle-button" name="Je">Je</button>
+                  <button class="toggle-button" name="Tu">Tu</button>
+                  <button class="toggle-button" name="Il / Elle / On">
+                    Il / Elle / On
+                  </button>
+                  <button class="toggle-button" name="Nous">Nous</button>
+                  <button class="toggle-button" name="Vous">Vous</button>
+                  <button class="toggle-button" name="Ils / Elles">
+                    Ils / Elles
+                  </button>
                 </div>
                 <div class="table-seperator"></div>
-                <div class="table-right">
-                  <button class="toggle-button active">Venir</button>
-                  <button class="toggle-button">Pouvoir</button>
-                  <button class="toggle-button active">Prendre</button>
-                  <button class="toggle-button">Connaitre</button>
-                  <button class="toggle-button active">Savoir</button>
+                <div class="table-right" id="table-verbs">
                   <div class="toggle-button custom">
                     <button class="custom-button" id="custom-button">
                       <div>+</div>
