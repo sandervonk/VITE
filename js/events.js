@@ -39,9 +39,7 @@ window.addEventListener("load", function () {
         document.body.style.background = bgColor
         try { localStorage["VITE-bg"] = bgColor } catch { }
     })
-    document.getElementById("custom-button").addEventListener("click", function () {
-        window.alert("Sorry, that feature isn't avalible yet :(")
-    })
+
     for (subjectToggle of document.querySelectorAll("#table-subjects button")) {
         subjectToggle.addEventListener("click", event => {
             let element = event.target

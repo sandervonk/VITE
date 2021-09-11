@@ -1,10 +1,14 @@
 //answer handler
+function isVowel(ch) {
+    return (ch === 'a' || ch === 'e' || ch === 'i' || ch === 'o' || ch === 'u')
+}
 var correctAnswer = ""
+var altAnswer = ""
 function showAnswer(input) {
     document.getElementById("question-answer-input").value = ""
     let coverEle = document.getElementById("question-cover")
     console.log("running showAnswer on:", input.toLowerCase())
-    if (input.toLowerCase() === correctAnswer) {
+    if (input.toLowerCase() === correctAnswer || input.toLowerCase() === altAnswer) {
         coverEle.className = "check correct"
         coverEle.style.display = ""
         console.log("correct, set classname")
@@ -36,6 +40,7 @@ function setupVerbs(verbs) {
     for (verbTag of Object.keys(verbs)) {
 
     }
+
     //setup subject hightlighting
     try {
         for (verbTag of localStorage["vite-verbs"].split(",")) {
@@ -43,6 +48,9 @@ function setupVerbs(verbs) {
             verb.className = verb.className += " active"
         }
     } catch { }
+    document.getElementById("custom-button").addEventListener("click", function () {
+        window.alert("Sorry, that feature isn't avalible yet :(")
+    })
 }
 //function to handle answer
 function submitAnswer() {
@@ -63,6 +71,14 @@ function createProblem(verbsIn) {
     let questionData = returnProblem(verbsIn)
     if (questionData != "no-verbs" && questionData != "no-subjects") {
         correctAnswer = questionData.answer
+        if (questionData.subject[questionData.subject.length - 1] === "e" && isVowel(questionData.answer[0])) {
+            questionData.altSubject = questionData.subject.substr(0, questionData.subject.length - 1) + "'"
+            altAnswer = questionData.altSubject + questionData.answer
+        } else {
+            altAnswer = ([questionData.subject, questionData.answer].join(" ")).toLowerCase()
+        }
+        console.log(altAnswer)
+        correctWithSubject = questionData
         questionSubjectElement.innerText = questionData.subject
         questionVerbElement.innerText = questionData.verb
         let questionDataMod = questionData
