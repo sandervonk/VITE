@@ -77,7 +77,6 @@ function createProblem(verbsIn) {
         } else {
             altAnswer = ([questionData.subject, questionData.answer].join(" ")).toLowerCase()
         }
-        console.log(altAnswer)
         correctWithSubject = questionData
         questionSubjectElement.innerText = questionData.subject
         questionVerbElement.innerText = questionData.verb
