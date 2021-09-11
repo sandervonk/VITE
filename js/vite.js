@@ -65,7 +65,9 @@ function createProblem(verbsIn) {
         correctAnswer = questionData.answer
         questionSubjectElement.innerText = questionData.subject
         questionVerbElement.innerText = questionData.verb
-        console.log(questionData)
+        let questionDataMod = questionData
+        questionDataMod.answer = "Haha Nice Try"
+        console.log(questionDataMod)
     } else {
 
     }
@@ -93,12 +95,9 @@ function returnProblem(verbs) {
     let question = {},
         ranS = parseInt(Math.random() * (activeSubjects.length - 1)),
         ranV = parseInt(Math.random() * (activeVerbs.length - 1)),
-        verbParent = verbs[Object.keys(verbs)[ranV]]
-    console.log(ranV)
-    console.log(verbs)
-
+        verbParent = verbs[activeVerbs[ranV]]
     question.subject = activeSubjects[ranS]
-    question.verb = Object.keys(verbs)[ranV]
+    question.verb = activeVerbs[ranV]
     question.answer = verbParent[question.subject]
     return question
 }
@@ -111,6 +110,7 @@ window.addEventListener("load", function () {
             document.getElementById("question-cover").className = "check"
             createProblem()
         }
+
 
     })
     document.addEventListener("keydown", event => { checkKey(event) })
