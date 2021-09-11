@@ -1,4 +1,5 @@
 window.addEventListener("load", function () {
+
     let qMode = localStorage["Display-Mode"]
     if (qMode === "MD" || qMode === "QZ" || qMode === "WS") {
         document.getElementById("mode-" + qMode).className += " active"

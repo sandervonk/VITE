@@ -38,5 +38,29 @@
     "Nous": "savons",
     "Vous": "savez",
     "Ils / Elles": "savent"
+  },
+  "Avoir": {
+    "Je": "ai",
+    "Tu": "as",
+    "Il / Elle / On": "a",
+    "Nous": "avons",
+    "Vous": "avez",
+    "Ils / Elles": "ont"
+  },
+  "Être": {
+    "Je": "suis",
+    "Tu": "es",
+    "Il / Elle / On": "êtes",
+    "Nous": "sommes",
+    "Vous": "savez",
+    "Ils / Elles": "sont"
+  },
+  "Aller": {
+    "Je": "vais",
+    "Tu": "vas",
+    "Il / Elle / On": "va",
+    "Nous": "allons",
+    "Vous": "allez",
+    "Ils / Elles": "vont"
   }
 }
