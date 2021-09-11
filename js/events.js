@@ -1,3 +1,10 @@
+if (localStorage["vite-old-user"] != "true") {
+    localStorage["vite-subjects"] = 'Je,Tu,Il / Elle / On,Nous,Vous,Ils / Elles'
+    localStorage["vite-verbs"] = 'Venir,Pouvoir,Prendre,Connaitre,Savoir,Avoir,Être,Aller'
+    localStorage["Display-Mode"] = "MD"
+    localStorage["VITE-bg"] = "#ADD8E6"
+    localStorage["vite-old-user"] = "true"
+}
 window.addEventListener("load", function () {
 
     let qMode = localStorage["Display-Mode"]
