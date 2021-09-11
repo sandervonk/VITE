@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>VITE! Practice</title>
+    <link rel="stylesheet" href="vite.css" />
+    <script src="src/jquery-3.6.0.min.js"></script>
+    <script src="js/events.js"></script>
+    <script src="js/vite.js"></script>
+    <meta
+      name="description"
+      content="VITE! Style Conjugation Practice for French Verbs"
+    />
+    <meta
+      name="keywords"
+      content="French Français VITE! Practice Conjugation"
+    />
+  </head>
+  <body class="MD">
+    <div id="VITE-title">
+      <span id="title-main">VITE!</span>
+      <div id="title-div"></div>
+      <span id="title-attr">By Sander Vonk</span>
+    </div>
+    <div id="flex-parent">
+      <div class="flex-element main-container" id="options">
+        <div id="options-title">Options</div>
+        <div id="options-container">
+          <div class="options-section">
+            <div class="options-section-title">Display Mode</div>
+            <div class="options-section-title-line"></div>
+            <div class="options-section-content">
+              <div class="select-panel" id="display-modes">
+                <button class="select-button" id="mode-MD">
+                  Material Design
+                </button>
+                <button class="select-button" id="mode-QZ">
+                  Quizlet Theme
+                </button>
+                <button class="select-button" id="mode-WS">
+                  VITE! Worksheet
+                </button>
+              </div>
+            </div>
+          </div>
+          <div class="options-section">
+            <div class="options-section-title">Quiz Sets</div>
+            <div class="options-section-title-line"></div>
+            <div class="options-section-content">
+              <div class="two-table">
+                <div class="table-left" id="table-subjects">
+                  <button class="toggle-button" name="Je">Je</button>
+                  <button class="toggle-button" name="Tu">Tu</button>
+                  <button class="toggle-button" name="Il / Elle / On">
+                    Il / Elle / On
+                  </button>
+                  <button class="toggle-button" name="Nous">Nous</button>
+                  <button class="toggle-button" name="Vous">Vous</button>
+                  <button class="toggle-button" name="Ils / Elles">
+                    Ils / Elles
+                  </button>
+                </div>
+                <div class="table-seperator"></div>
+                <div class="table-right" id="table-verbs">
+                  <div class="toggle-button custom">
+                    <button class="custom-button" id="custom-button">
+                      <div>+</div>
+                    </button>
+                    <div>Custom</div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="options-section">
+            <div class="options-section-title">Customization / Theme</div>
+            <div class="options-section-title-line"></div>
+            <div class="options-section-content">
+              <div class="customization-panel">
+                <div class="color-panel">
+                  <div class="color-left">
+                    <input
+                      type="color"
+                      name="Background Color"
+                      id="color-bg"
+                      value="#add8e6"
+                    />
+                  </div>
+                  <div class="label">Background Color</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="flex-element main-container" id="questions">
+        <div id="question-cover" class="blur"></div>
+        <div id="question-center">
+          <div id="question-subject">
+            <div id="question-subject-span"></div>
+          </div>
+          <div id="question-seperator"></div>
+          <div id="question-bottom">
+            <div id="question-plus-container">
+              <div id="question-plus">+</div>
+            </div>
+            <div id="question-verb"><div id="question-verb-span"></div></div>
+          </div>
+          <div id="question-answer">
+            <input
+              type="text"
+              id="question-answer-input"
+              autocomplete="off"
+              autocorrect="off"
+              autocapitalize="off"
+              spellcheck="false"
+              placeholder="conjugation"
+            />
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>
