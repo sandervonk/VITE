@@ -3,6 +3,7 @@
   <head>
     <title>VITE! Practice</title>
     <link rel="stylesheet" href="vite.css" />
+    <link rel="shortcut icon" href="icon/favicon.png" type="image/x-icon" />
     <script src="src/jquery-3.6.0.min.js"></script>
     <script src="js/events.js"></script>
     <script src="js/vite.js"></script>
@@ -72,7 +73,7 @@
             </div>
           </div>
           <div class="options-section">
-            <div class="options-section-title">Customization / Theme</div>
+            <div class="options-section-title">Customization / Stats</div>
             <div class="options-section-title-line"></div>
             <div class="options-section-content">
               <div class="customization-panel">
@@ -88,6 +89,16 @@
                   <div class="label">Background Color</div>
                 </div>
               </div>
+              <div id="stats-parent">
+                <div id="stats-correct"></div>
+              </div>
+              <div id="stats-label">
+                <div id="stats-correct-label" title="0 Correct">Correct</div>
+                <div id="stats-reset">&#8635;</div>
+                <div id="stats-incorrect-label" title="0 Incorrect">
+                  Incorrect
+                </div>
+              </div>
             </div>
           </div>
         </div>
@@ -95,15 +106,17 @@
       <div class="flex-element main-container" id="questions">
         <div id="question-cover" class="blur"></div>
         <div id="question-center">
-          <div id="question-subject">
-            <div id="question-subject-span"></div>
-          </div>
-          <div id="question-seperator"></div>
-          <div id="question-bottom">
-            <div id="question-plus-container">
-              <div id="question-plus">+</div>
+          <div id="question-context">
+            <div id="question-subject">
+              <div id="question-subject-span"></div>
             </div>
-            <div id="question-verb"><div id="question-verb-span"></div></div>
+            <div id="question-seperator"></div>
+            <div id="question-bottom">
+              <div id="question-plus-container">
+                <div id="question-plus">+</div>
+              </div>
+              <div id="question-verb"><div id="question-verb-span"></div></div>
+            </div>
           </div>
           <div id="question-answer">
             <input
@@ -115,6 +128,7 @@
               spellcheck="false"
               placeholder="conjugation"
             />
+            <div id="QZ-label">Type The Answer</div>
           </div>
         </div>
       </div>

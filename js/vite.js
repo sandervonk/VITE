@@ -1,31 +1,38 @@
 //answer handler
+function resetTrackers() {
+    localStorage["VITE-correct"] = 0
+    localStorage["VITE-incorrect"] = 0
+    document.getElementById("stats-correct").style.width = `50%`
+    document.getElementById("stats-correct-label").title = "0 Correct"
+    document.getElementById("stats-incorrect-label").title = "0 Incorrect"
+}
+function isVowel(ch) {
+    return (ch === 'a' || ch === 'e' || ch === 'i' || ch === 'o' || ch === 'u')
+}
 var correctAnswer = ""
+var altAnswer = ""
+var skipBlank = JSON.parse(localStorage["vite-skip-blank"])
 function showAnswer(input) {
     document.getElementById("question-answer-input").value = ""
     let coverEle = document.getElementById("question-cover")
-    if (input.toLowerCase() === correctAnswer) {
+    console.log("running showAnswer on:", input.toLowerCase())
+    if (input.toLowerCase() === correctAnswer || input.toLowerCase() === altAnswer) {
         coverEle.className = "check correct"
+        localStorage["VITE-correct"] = parseInt(localStorage["VITE-correct"]) + 1
+        coverEle.style.display = ""
+        console.log("correct, set classname")
     } else {
         coverEle.className = "check incorrect"
-        document.getElementById("question-cover").textContent = correctAnswer
+        coverEle.style.display = ""
+        localStorage["VITE-incorrect"] = parseInt(localStorage["VITE-incorrect"]) + 1
+        console.log("incorrect, set classname")
+        document.getElementById("question-cover").textContent = correctAnswer + " or " + altAnswer
     }
+    document.getElementById("stats-correct").style.width = `${100 * parseInt(localStorage["VITE-correct"]) / (parseInt(localStorage["VITE-correct"]) + parseInt(localStorage["VITE-incorrect"]))}%`
+    document.getElementById("stats-correct-label").title = `${parseInt(localStorage["VITE-correct"])} Correct`
+    document.getElementById("stats-incorrect-label").title = `${parseInt(localStorage["VITE-incorrect"])} Incorrect`
     //setup the needed things to make it go away
-    coverEle.style.display = ""
-    coverEle.addEventListener("click", function () {
-        if (document.getElementById("question-cover").className.includes("correct")) {
-            document.getElementById("question-cover").className = "check"
-            document.getElementById("question-cover").textContent = ""
-            document.getElementById("question-cover").style.display = "none"
-        }
 
-    })
-    document.addEventListener("keydown", e => {
-        if (e.keyCode == '13' && document.getElementById("question-cover").className.includes("correct")) {
-            document.getElementById("question-cover").className = "check"
-            document.getElementById("question-cover").textContent = ""
-            document.getElementById("question-cover").style.display = "none"
-        }
-    })
 }
 //setup verb sidebar
 function setupVerbs(verbs) {
@@ -46,6 +53,7 @@ function setupVerbs(verbs) {
     for (verbTag of Object.keys(verbs)) {
 
     }
+
     //setup subject hightlighting
     try {
         for (verbTag of localStorage["vite-verbs"].split(",")) {
@@ -53,15 +61,17 @@ function setupVerbs(verbs) {
             verb.className = verb.className += " active"
         }
     } catch { }
+    document.getElementById("custom-button").addEventListener("click", function () {
+        window.alert("Sorry, that feature isn't avalible yet :(")
+    })
 }
 //function to handle answer
 function submitAnswer() {
     let answerElement = document.getElementById("question-answer-input")
-    if (answerElement.value === "") {
+    if (answerElement.value === "" && skipBlank) {
         createProblem()
     } else {
         showAnswer(answerElement.value)
-        createProblem()
     }
 }
 //function to form a new problem randomly
@@ -74,9 +84,18 @@ function createProblem(verbsIn) {
     let questionData = returnProblem(verbsIn)
     if (questionData != "no-verbs" && questionData != "no-subjects") {
         correctAnswer = questionData.answer
+        if (questionData.subject[questionData.subject.length - 1] === "e" && isVowel(questionData.answer[0])) {
+            questionData.altSubject = questionData.subject.substr(0, questionData.subject.length - 1) + "'"
+            altAnswer = (questionData.altSubject + questionData.answer).toLowerCase()
+        } else {
+            altAnswer = ([questionData.subject, questionData.answer].join(" ")).toLowerCase()
+        }
+        correctWithSubject = questionData
         questionSubjectElement.innerText = questionData.subject
         questionVerbElement.innerText = questionData.verb
-        console.log(questionData)
+        let questionDataMod = questionData
+        questionDataMod.answer = "Haha Nice Try"
+        console.log(questionDataMod)
     } else {
 
     }
@@ -104,22 +123,24 @@ function returnProblem(verbs) {
     let question = {},
         ranS = parseInt(Math.random() * (activeSubjects.length - 1)),
         ranV = parseInt(Math.random() * (activeVerbs.length - 1)),
-        verbParent = verbs[Object.keys(verbs)[ranV]]
-    console.log(ranV)
-    console.log(verbs)
-
+        verbParent = verbs[activeVerbs[ranV]]
     question.subject = activeSubjects[ranS]
-    question.verb = Object.keys(verbs)[ranV]
+    question.verb = activeVerbs[ranV]
     question.answer = verbParent[question.subject]
     return question
 }
 var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
+    document.getElementById("stats-reset").addEventListener("click", resetTrackers)
     document.getElementById("question-cover").addEventListener("click", function () {
-        document.getElementById("question-cover").style.display = "none"
-        document.getElementById("question-cover").className = "check"
-        createProblem()
+        if (!document.getElementById("question-cover").className.includes("correct")) {
+            document.getElementById("question-cover").style.display = "none"
+            document.getElementById("question-cover").className = "check"
+            createProblem()
+        }
+
+
     })
     document.addEventListener("keydown", event => { checkKey(event) })
 
@@ -142,9 +163,11 @@ window.addEventListener("load", function () {
             //createProblem()
         }
         else if (e.keyCode == '13') {
-            // enter key
+            //enter key
             if (document.getElementById("question-cover").style.display != "none") {
+                //PROBLEMS HERE
                 document.getElementById("question-cover").style.display = "none"
+                document.getElementById("question-cover").textContent = ""
                 document.getElementById("question-cover").className = "check"
                 createProblem()
             } else {
