@@ -16,7 +16,7 @@ function showAnswer(input) {
         coverEle.className = "check incorrect"
         coverEle.style.display = ""
         console.log("incorrect, set classname")
-        document.getElementById("question-cover").textContent = correctAnswer
+        document.getElementById("question-cover").textContent = correctAnswer + " / " + altAnswer
     }
     //setup the needed things to make it go away
 
@@ -73,7 +73,7 @@ function createProblem(verbsIn) {
         correctAnswer = questionData.answer
         if (questionData.subject[questionData.subject.length - 1] === "e" && isVowel(questionData.answer[0])) {
             questionData.altSubject = questionData.subject.substr(0, questionData.subject.length - 1) + "'"
-            altAnswer = questionData.altSubject + questionData.answer
+            altAnswer = (questionData.altSubject + questionData.answer).toLowerCase()
         } else {
             altAnswer = ([questionData.subject, questionData.answer].join(" ")).toLowerCase()
         }
