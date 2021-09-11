@@ -6,7 +6,7 @@ body,
 html {
   height: 100%;
   width: 100%;
-  overflow: unset;
+  overflow: hidden;
 }
 body {
   background-color: var(--vite-bg);
@@ -48,15 +48,29 @@ body {
   flex-grow: 1;
   height: 100%;
 }
+#questions,
+#options {
+  overflow: hidden;
+}
 .main-container {
   background: #f2f2f2;
-  border-radius: 5vh;
+  border-radius: 4vh;
   box-shadow: 0 0 5px #000000aa;
 }
 #options {
   flex-basis: 20vw;
   margin-right: 3vh;
   min-width: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+#options-title {
+  border-radius: 4vh;
+  height: fit-content;
+  text-align: center;
+  padding: 10% 0;
+  background: white;
 }
 #questions {
   flex-basis: 80vw;
