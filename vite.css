@@ -246,6 +246,7 @@ div.toggle-button.custom button > div {
   flex-grow: 1;
   align-items: center;
   justify-content: center;
+  max-width: 100%;
 }
 #question-subject {
   width: 70%;
@@ -396,4 +397,9 @@ body:not(.WS) #question-answer {
 }
 #question-cover.check.incorrect {
   background: pink;
+}
+@media (max-width: 150vh) {
+  #options {
+    display: none !important;
+  }
 }

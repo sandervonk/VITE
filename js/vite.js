@@ -3,29 +3,19 @@ var correctAnswer = ""
 function showAnswer(input) {
     document.getElementById("question-answer-input").value = ""
     let coverEle = document.getElementById("question-cover")
+    console.log("running showAnswer on:", input.toLowerCase())
     if (input.toLowerCase() === correctAnswer) {
         coverEle.className = "check correct"
+        coverEle.style.display = ""
+        console.log("correct, set classname")
     } else {
         coverEle.className = "check incorrect"
+        coverEle.style.display = ""
+        console.log("incorrect, set classname")
         document.getElementById("question-cover").textContent = correctAnswer
     }
     //setup the needed things to make it go away
-    coverEle.style.display = ""
-    coverEle.addEventListener("click", function () {
-        if (document.getElementById("question-cover").className.includes("correct")) {
-            document.getElementById("question-cover").className = "check"
-            document.getElementById("question-cover").textContent = ""
-            document.getElementById("question-cover").style.display = "none"
-        }
 
-    })
-    document.addEventListener("keydown", e => {
-        if (e.keyCode == '13' && document.getElementById("question-cover").className.includes("correct")) {
-            document.getElementById("question-cover").className = "check"
-            document.getElementById("question-cover").textContent = ""
-            document.getElementById("question-cover").style.display = "none"
-        }
-    })
 }
 //setup verb sidebar
 function setupVerbs(verbs) {
@@ -61,7 +51,6 @@ function submitAnswer() {
         createProblem()
     } else {
         showAnswer(answerElement.value)
-        createProblem()
     }
 }
 //function to form a new problem randomly
@@ -117,9 +106,12 @@ var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
     document.getElementById("question-cover").addEventListener("click", function () {
-        document.getElementById("question-cover").style.display = "none"
-        document.getElementById("question-cover").className = "check"
-        createProblem()
+        if (!document.getElementById("question-cover").className.includes("correct")) {
+            document.getElementById("question-cover").style.display = "none"
+            document.getElementById("question-cover").className = "check"
+            createProblem()
+        }
+
     })
     document.addEventListener("keydown", event => { checkKey(event) })
 
@@ -142,9 +134,11 @@ window.addEventListener("load", function () {
             //createProblem()
         }
         else if (e.keyCode == '13') {
-            // enter key
+            //enter key
             if (document.getElementById("question-cover").style.display != "none") {
+                //PROBLEMS HERE
                 document.getElementById("question-cover").style.display = "none"
+                document.getElementById("question-cover").textContent = ""
                 document.getElementById("question-cover").className = "check"
                 createProblem()
             } else {
