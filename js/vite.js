@@ -1,3 +1,32 @@
+//answer handler
+var correctAnswer = ""
+function showAnswer(input) {
+    document.getElementById("question-answer-input").value = ""
+    let coverEle = document.getElementById("question-cover")
+    if (input.toLowerCase() === correctAnswer) {
+        coverEle.className = "check correct"
+    } else {
+        coverEle.className = "check incorrect"
+        document.getElementById("question-cover").textContent = correctAnswer
+    }
+    //setup the needed things to make it go away
+    coverEle.style.display = ""
+    coverEle.addEventListener("click", function () {
+        if (document.getElementById("question-cover").className.includes("correct")) {
+            document.getElementById("question-cover").className = "check"
+            document.getElementById("question-cover").textContent = ""
+            document.getElementById("question-cover").style.display = "none"
+        }
+
+    })
+    document.addEventListener("keydown", e => {
+        if (e.keyCode == '13' && document.getElementById("question-cover").className.includes("correct")) {
+            document.getElementById("question-cover").className = "check"
+            document.getElementById("question-cover").textContent = ""
+            document.getElementById("question-cover").style.display = "none"
+        }
+    })
+}
 //setup verb sidebar
 function setupVerbs(verbs) {
     for (verb of Object.keys(verbs)) {
@@ -25,7 +54,16 @@ function setupVerbs(verbs) {
         }
     } catch { }
 }
-
+//function to handle answer
+function submitAnswer() {
+    let answerElement = document.getElementById("question-answer-input")
+    if (answerElement.value === "") {
+        createProblem()
+    } else {
+        showAnswer(answerElement.value)
+        createProblem()
+    }
+}
 //function to form a new problem randomly
 function createProblem(verbsIn) {
     let questionSubjectElement = document.getElementById("question-subject-span"),
@@ -35,7 +73,7 @@ function createProblem(verbsIn) {
     }
     let questionData = returnProblem(verbsIn)
     if (questionData != "no-verbs" && questionData != "no-subjects") {
-        var correctAnswer = questionData.answer
+        correctAnswer = questionData.answer
         questionSubjectElement.innerText = questionData.subject
         questionVerbElement.innerText = questionData.verb
         console.log(questionData)
@@ -78,7 +116,12 @@ function returnProblem(verbs) {
 var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
-    document.onkeydown = checkKey;
+    document.getElementById("question-cover").addEventListener("click", function () {
+        document.getElementById("question-cover").style.display = "none"
+        document.getElementById("question-cover").className = "check"
+        createProblem()
+    })
+    document.addEventListener("keydown", event => { checkKey(event) })
 
     function checkKey(e) {
 
@@ -89,13 +132,25 @@ window.addEventListener("load", function () {
         }
         else if (e.keyCode == '40') {
             // down arrow
+            createProblem()
         }
         else if (e.keyCode == '37') {
             // left arrow
         }
         else if (e.keyCode == '39') {
             // right arrow
-            createProblem()
+            //createProblem()
+        }
+        else if (e.keyCode == '13') {
+            // enter key
+            if (document.getElementById("question-cover").style.display != "none") {
+                document.getElementById("question-cover").style.display = "none"
+                document.getElementById("question-cover").className = "check"
+                createProblem()
+            } else {
+                submitAnswer()
+            }
+
 
         }
 

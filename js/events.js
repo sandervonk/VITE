@@ -6,7 +6,9 @@ window.addEventListener("load", function () {
     } else {
         localStorage["Display-Mode"] = "MD"
         document.getElementById("mode-MD").className += " active"
+        qMode = "MD"
     }
+    document.body.className = qMode
 
     for (qModeSelect of document.querySelectorAll("#display-modes button")) {
         qModeSelect.addEventListener("click", event => {
@@ -15,7 +17,9 @@ window.addEventListener("load", function () {
             for (altOption of document.querySelectorAll("#display-modes button")) {
                 altOption.className = altOption.className.replace(" active", "")
             }
+
             document.getElementById("mode-" + typeID).className += " active"
+            document.body.className = typeID
         })
     }
     //setup background color handlers
