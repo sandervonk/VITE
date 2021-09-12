@@ -632,6 +632,7 @@ body.QZ #question-verb-span {
   background: #37f137;
   width: 50%;
   height: 100%;
+  transition: width ease-in-out 0.5s;
 }
 #stats-label {
   display: flex;
