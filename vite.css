@@ -472,6 +472,7 @@ body.QZ #question-cover.check.incorrect {
   #VITE-title {
     top: 3%;
     transform: scale(0.4) !important;
+    position: relative !important;
   }
   body #flex-parent {
     flex-wrap: wrap-reverse;
@@ -640,6 +641,7 @@ body.QZ #question-verb-span {
   flex-flow: row;
   justify-content: space-between;
   padding: 0.3vh 10%;
+  font-size: 1.7vh;
 }
 #stats-reset {
   user-select: none;
@@ -647,4 +649,39 @@ body.QZ #question-verb-span {
 }
 #stats-label > * {
   user-select: none;
+}
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  body.QZ #question-center,
+  body.MD #question-center {
+    font-size: 3em !important;
+  }
+}
+#tense-modes {
+  flex-flow: row;
+  display: flex;
+  width: 100%;
+  max-width: 100%;
+  flex-grow: 0;
+  margin-top: 0.7vh;
+  flex-wrap: wrap;
+}
+#tense-modes > button {
+  white-space: nowrap;
+  flex-shrink: 0;
+  flex-grow: 1;
+  width: fit-content;
+  padding: 0.3vh;
+  min-width: 40%;
+}
+button#tense-pr.select-button,
+button#tense-re.select-button {
+  margin: 0 !important;
+  margin-top: 0 !important;
+}
+
+button#tense-pc.select-button {
+  margin-top: 0.7vh !important;
+}
+#tense-re {
+  opacity: 0.2;
 }

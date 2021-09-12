@@ -1,5 +1,9 @@
 {
   "Venir": {
+    "PC": {
+      "helping": "Être",
+      "participle": "venu"
+    },
     "Je": "viens",
     "Tu": "viens",
     "Il / Elle / On": "vient",
@@ -8,6 +12,10 @@
     "Ils / Elles": "viennent"
   },
   "Pouvoir": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "pu"
+    },
     "Je": "peux",
     "Tu": "peux",
     "Il / Elle / On": "peut",
@@ -16,6 +24,10 @@
     "Ils / Elles": "peuvent"
   },
   "Prendre": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "pris"
+    },
     "Je": "prends",
     "Tu": "prends",
     "Il / Elle / On": "prend",
@@ -24,6 +36,10 @@
     "Ils / Elles": "prennent"
   },
   "Connaitre": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "connu"
+    },
     "Je": "connais",
     "Tu": "connais",
     "Il / Elle / On": "connait",
@@ -32,6 +48,10 @@
     "Ils / Elles": "connaissent"
   },
   "Savoir": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "su"
+    },
     "Je": "sais",
     "Tu": "sais",
     "Il / Elle / On": "sait",
@@ -40,6 +60,10 @@
     "Ils / Elles": "savent"
   },
   "Avoir": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "eu"
+    },
     "Je": "ai",
     "Tu": "as",
     "Il / Elle / On": "a",
@@ -48,6 +72,10 @@
     "Ils / Elles": "ont"
   },
   "Être": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "été"
+    },
     "Je": "suis",
     "Tu": "es",
     "Il / Elle / On": "est",
@@ -56,6 +84,10 @@
     "Ils / Elles": "sont"
   },
   "Aller": {
+    "PC": {
+      "helping": "Être",
+      "participle": "regular"
+    },
     "Je": "vais",
     "Tu": "vas",
     "Il / Elle / On": "va",
