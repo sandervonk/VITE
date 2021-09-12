@@ -2,7 +2,9 @@
 function resetTrackers() {
     localStorage["VITE-correct"] = 0
     localStorage["VITE-incorrect"] = 0
-    document.getElementById("stats-correct").style.width = `${100 * parseInt(localStorage["VITE-correct"]) / (parseInt(localStorage["VITE-correct"]) + parseInt(localStorage["VITE-incorrect"]))}%`
+    document.getElementById("stats-correct").style.width = `50%`
+    document.getElementById("stats-correct-label").title = "0 Correct"
+    document.getElementById("stats-incorrect-label").title = "0 Incorrect"
 }
 function isVowel(ch) {
     return (ch === 'a' || ch === 'e' || ch === 'i' || ch === 'o' || ch === 'u')
@@ -27,6 +29,8 @@ function showAnswer(input) {
         document.getElementById("question-cover").textContent = correctAnswer + " or " + altAnswer
     }
     document.getElementById("stats-correct").style.width = `${100 * parseInt(localStorage["VITE-correct"]) / (parseInt(localStorage["VITE-correct"]) + parseInt(localStorage["VITE-incorrect"]))}%`
+    document.getElementById("stats-correct-label").title = `${parseInt(localStorage["VITE-correct"])} Correct`
+    document.getElementById("stats-incorrect-label").title = `${parseInt(localStorage["VITE-incorrect"])} Incorrect`
     //setup the needed things to make it go away
 
 }
@@ -128,6 +132,7 @@ function returnProblem(verbs) {
 var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
+    document.getElementById("stats-reset").addEventListener("click", resetTrackers)
     document.getElementById("question-cover").addEventListener("click", function () {
         if (!document.getElementById("question-cover").className.includes("correct")) {
             document.getElementById("question-cover").style.display = "none"

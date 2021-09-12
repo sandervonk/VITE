@@ -1,4 +1,4 @@
-if (localStorage["vite-old-user"] != "true") {
+if (localStorage["vite-old-user"] != "true" || !typeof (localStorage["vite-subjects"]) === "string" || !typeof (localStorage["vite-subjects"]) === "string" || !typeof (localStorage["Display-Mode"]) === "string") {
     localStorage["vite-subjects"] = 'Je,Tu,Il / Elle / On,Nous,Vous,Ils / Elles'
     localStorage["vite-verbs"] = 'Venir,Pouvoir,Prendre,Connaitre,Savoir,Avoir,Être,Aller'
     localStorage["Display-Mode"] = "MD"
@@ -10,6 +10,8 @@ if (localStorage["vite-old-user"] != "true") {
 }
 window.addEventListener("load", function () {
     document.getElementById("stats-correct").style.width = `${100 * parseInt(localStorage["VITE-correct"]) / (parseInt(localStorage["VITE-correct"]) + parseInt(localStorage["VITE-incorrect"]))}%`
+    document.getElementById("stats-correct-label").title = `${parseInt(localStorage["VITE-correct"])} Correct`
+    document.getElementById("stats-incorrect-label").title = `${parseInt(localStorage["VITE-incorrect"])} Incorrect`
     let qMode = localStorage["Display-Mode"]
     if (qMode === "MD" || qMode === "QZ" || qMode === "WS") {
         document.getElementById("mode-" + qMode).className += " active"

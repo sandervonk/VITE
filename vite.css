@@ -641,3 +641,10 @@ body.QZ #question-verb-span {
   justify-content: space-between;
   padding: 0.3vh 10%;
 }
+#stats-reset {
+  user-select: none;
+  cursor: pointer;
+}
+#stats-label > * {
+  user-select: none;
+}
