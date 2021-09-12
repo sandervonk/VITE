@@ -413,7 +413,7 @@ body.WS #question-cover.check.incorrect {
   content: "Incorrect: ";
 }
 body.QZ #question-cover.check {
-  font-size: 0.6em;
+  font-size: 0.5em;
 }
 
 body.QZ #question-cover.check.incorrect::before {
