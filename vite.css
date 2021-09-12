@@ -397,7 +397,7 @@ body:not(.WS) #question-answer {
   content: "Incorrect: ";
 }
 body.QZ #question-cover.check {
-  font-size: 1em;
+  font-size: 1.2em;
 }
 body.QZ #question-cover.check.incorrect::before {
   content: "😕 Study this One! \00a0\00a0";
@@ -541,4 +541,9 @@ body.QZ #question-verb-span {
   flex-flow: column;
 
   align-items: center;
+}
+@media (min-width: 1200px) {
+  body.QZ #question-cover.check {
+    transform: scale(1.5) !important;
+  }
 }
