@@ -343,6 +343,7 @@ div.toggle-button.custom button > div {
 #question-cover.blur {
   border-radius: 10vh;
   backdrop-filter: blur(1vh);
+  margin: 2px !important;
 }
 #question-cover.blur::after {
   content: "Click To Start";
