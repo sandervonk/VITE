@@ -17,7 +17,7 @@ function showAnswer(input) {
         coverEle.className = "check incorrect"
         coverEle.style.display = ""
         console.log("incorrect, set classname")
-        document.getElementById("question-cover").textContent = correctAnswer + " / " + altAnswer
+        document.getElementById("question-cover").textContent = correctAnswer + " or " + altAnswer
     }
     //setup the needed things to make it go away
 
