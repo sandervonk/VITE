@@ -514,11 +514,12 @@ body.QZ #options {
   background: white;
 }
 body.QZ #questions {
-  font-size: 2em;
+  font-size: 4vh;
 }
 body.QZ #question-center {
   width: 100%;
   max-width: 1200px;
+  overflow: unset !important;
 }
 body.QZ #question-subject {
   width: 90%;
