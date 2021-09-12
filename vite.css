@@ -640,6 +640,7 @@ body.QZ #question-verb-span {
   flex-flow: row;
   justify-content: space-between;
   padding: 0.3vh 10%;
+  font-size: 1.7vh;
 }
 #stats-reset {
   user-select: none;
@@ -647,4 +648,10 @@ body.QZ #question-verb-span {
 }
 #stats-label > * {
   user-select: none;
+}
+@media only screen and (max-width: 768px) and (orientation: landscape) {
+  body.QZ #question-center,
+  body.MD #question-center {
+    font-size: 3em !important;
+  }
 }
