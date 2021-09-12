@@ -633,4 +633,9 @@ body.QZ #question-verb-span {
   height: 100%;
 }
 #stats-label {
+  display: flex;
+  width: 80%;
+  flex-flow: row;
+  justify-content: space-between;
+  padding: 0.3vh 10%;
 }
