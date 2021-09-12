@@ -325,6 +325,7 @@ div.toggle-button.custom button > div {
   color: #525252;
   -webkit-animation: pulse infinite alternate 5s;
 }
+#question-answer-input:focus,
 #question-answer-input:active {
   background: white !important;
 }
