@@ -4,9 +4,12 @@ if (localStorage["vite-old-user"] != "true") {
     localStorage["Display-Mode"] = "MD"
     localStorage["VITE-bg"] = "#ADD8E6"
     localStorage["vite-old-user"] = "true"
+    localStorage["VITE-correct"] = 0
+    localStorage["VITE-incorrect"] = 0
+    localStorage["vite-skip-blank"] = false
 }
 window.addEventListener("load", function () {
-
+    document.getElementById("stats-correct").style.width = `${100 * parseInt(localStorage["VITE-correct"]) / (parseInt(localStorage["VITE-correct"]) + parseInt(localStorage["VITE-incorrect"]))}%`
     let qMode = localStorage["Display-Mode"]
     if (qMode === "MD" || qMode === "QZ" || qMode === "WS") {
         document.getElementById("mode-" + qMode).className += " active"

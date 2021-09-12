@@ -1,24 +1,32 @@
 //answer handler
+function resetTrackers() {
+    localStorage["VITE-correct"] = 0
+    localStorage["VITE-incorrect"] = 0
+    document.getElementById("stats-correct").style.width = `${100 * parseInt(localStorage["VITE-correct"]) / (parseInt(localStorage["VITE-correct"]) + parseInt(localStorage["VITE-incorrect"]))}%`
+}
 function isVowel(ch) {
     return (ch === 'a' || ch === 'e' || ch === 'i' || ch === 'o' || ch === 'u')
 }
 var correctAnswer = ""
 var altAnswer = ""
-var skipBlank = false
+var skipBlank = JSON.parse(localStorage["vite-skip-blank"])
 function showAnswer(input) {
     document.getElementById("question-answer-input").value = ""
     let coverEle = document.getElementById("question-cover")
     console.log("running showAnswer on:", input.toLowerCase())
     if (input.toLowerCase() === correctAnswer || input.toLowerCase() === altAnswer) {
         coverEle.className = "check correct"
+        localStorage["VITE-correct"] = parseInt(localStorage["VITE-correct"]) + 1
         coverEle.style.display = ""
         console.log("correct, set classname")
     } else {
         coverEle.className = "check incorrect"
         coverEle.style.display = ""
+        localStorage["VITE-incorrect"] = parseInt(localStorage["VITE-incorrect"]) + 1
         console.log("incorrect, set classname")
         document.getElementById("question-cover").textContent = correctAnswer + " or " + altAnswer
     }
+    document.getElementById("stats-correct").style.width = `${100 * parseInt(localStorage["VITE-correct"]) / (parseInt(localStorage["VITE-correct"]) + parseInt(localStorage["VITE-incorrect"]))}%`
     //setup the needed things to make it go away
 
 }

@@ -619,3 +619,18 @@ body.QZ #question-verb-span {
     transform: scale(1.5) !important;
   }
 }
+#stats-parent {
+  filter: saturate(0.6);
+  background: #ff4e4e;
+  width: 100%;
+  height: 3.5vh;
+  margin-top: 0.8vh;
+  border-radius: 4vh;
+}
+#stats-correct {
+  background: #37f137;
+  width: 50%;
+  height: 100%;
+}
+#stats-label {
+}
