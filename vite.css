@@ -513,6 +513,9 @@ body.QZ #questions,
 body.QZ #options {
   background: white;
 }
+body.QZ #questions {
+  font-size: 2em;
+}
 body.QZ #question-center {
   width: 100%;
   max-width: 1200px;
