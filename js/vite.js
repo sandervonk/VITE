@@ -4,6 +4,7 @@ function isVowel(ch) {
 }
 var correctAnswer = ""
 var altAnswer = ""
+var skipBlank = false
 function showAnswer(input) {
     document.getElementById("question-answer-input").value = ""
     let coverEle = document.getElementById("question-cover")
@@ -55,7 +56,7 @@ function setupVerbs(verbs) {
 //function to handle answer
 function submitAnswer() {
     let answerElement = document.getElementById("question-answer-input")
-    if (answerElement.value === "") {
+    if (answerElement.value === "" && skipBlank) {
         createProblem()
     } else {
         showAnswer(answerElement.value)
