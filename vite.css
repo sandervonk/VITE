@@ -248,6 +248,7 @@ div.toggle-button.custom button > div {
   align-items: center;
   justify-content: center;
   max-width: 100%;
+  overflow: unset !important;
 }
 #question-subject {
   width: 70%;
@@ -391,6 +392,20 @@ body:not(.WS) #question-answer {
 #question-cover.check.correct::before {
   content: "Correct!";
 }
+body.WS #question-cover.check.correct::before {
+  content: "✔️ Correct!";
+}
+body.WS #question-cover.check.incorrect::before {
+  content: "❌ Incorrect: ";
+}
+body.WS #question-cover.check.correct {
+  color: green;
+  background: #f2f2f2;
+}
+body.WS #question-cover.check.incorrect {
+  color: #f03a17;
+  background: #f2f2f2;
+}
 #question-cover.check.correct {
   background: lightgreen;
 }
@@ -398,8 +413,9 @@ body:not(.WS) #question-answer {
   content: "Incorrect: ";
 }
 body.QZ #question-cover.check {
-  font-size: 1.2em;
+  font-size: 0.6em;
 }
+
 body.QZ #question-cover.check.incorrect::before {
   content: "😕 Study this One! \00a0\00a0";
   font-weight: bold;
