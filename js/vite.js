@@ -138,6 +138,7 @@ window.addEventListener("load", function () {
     document.getElementById("question-cover").addEventListener("click", function () {
         if (!document.getElementById("question-cover").className.includes("correct")) {
             document.getElementById("question-cover").style.display = "none"
+            document.getElementById("question-cover").title = ""
             document.getElementById("question-cover").className = "check"
             createProblem()
         }
@@ -170,6 +171,7 @@ window.addEventListener("load", function () {
                 //PROBLEMS HERE
                 document.getElementById("question-cover").style.display = "none"
                 document.getElementById("question-cover").textContent = ""
+                document.getElementById("question-cover").title = ""
                 document.getElementById("question-cover").className = "check"
                 createProblem()
             } else {
