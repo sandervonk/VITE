@@ -195,11 +195,11 @@ window.addEventListener("load", function () {
         success: response => {
             verbs = response
             setupVerbs(verbs)
-            console.log(verbs)
+            //console.log(verbs)
         },
         error: function (err) {
-            console.error("error: could not load projects.json :(")
-            //console.log(err)
+            console.error("error: could not load verbs.json :(")
+            console.log(err)
         }
     });
     //listener
