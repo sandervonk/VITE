@@ -1,7 +1,7 @@
 if (localStorage["vite-old-user"] != "true" || !typeof (localStorage["vite-subjects"]) === "string" || !typeof (localStorage["vite-subjects"]) === "string" || !typeof (localStorage["Display-Mode"]) === "string") {
     localStorage["vite-subjects"] = 'Je,Tu,Il / Elle / On,Nous,Vous,Ils / Elles'
     localStorage["vite-verbs"] = 'Venir,Pouvoir,Prendre,Connaitre,Savoir,Avoir,Être,Aller'
-    localStorage["Display-Mode"] = "MD"
+    localStorage["Display-Mode"] = "QZ"
     localStorage["VITE-bg"] = "#ADD8E6"
     localStorage["vite-old-user"] = "true"
     localStorage["VITE-correct"] = 0
@@ -18,9 +18,9 @@ window.addEventListener("load", function () {
     if (qMode === "MD" || qMode === "QZ" || qMode === "WS") {
         document.getElementById("mode-" + qMode).className += " active"
     } else {
-        localStorage["Display-Mode"] = "MD"
-        document.getElementById("mode-MD").className += " active"
-        qMode = "MD"
+        localStorage["Display-Mode"] = "QZ"
+        document.getElementById("mode-QZ").className += " active"
+        qMode = "QZ"
     }
     document.body.className = qMode
 
