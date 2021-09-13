@@ -39,7 +39,7 @@ function showAnswer(input) {
 //setup verb sidebar
 function setupVerbs(verbs) {
     for (verb of Object.keys(verbs)) {
-        document.getElementById("table-verbs").innerHTML += `<button class="toggle-button" name="${verb}">${verb}</button>`
+        document.getElementById("table-verbs").innerHTML += `<button class="toggle-button" title="Toggle '${verb}' as a verb in problems." name="${verb}">${verb}</button>`
     }
     for (verbToggle of document.querySelectorAll("#table-verbs button")) {
         verbToggle.addEventListener("click", event => {
