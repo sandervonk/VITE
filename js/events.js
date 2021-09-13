@@ -10,6 +10,8 @@ if (localStorage["vite-old-user"] != "true" || !typeof (localStorage["vite-subje
 }
 window.addEventListener("load", function () {
     document.getElementById("stats-correct").style.width = `${100 * parseInt(localStorage["VITE-correct"]) / (parseInt(localStorage["VITE-correct"]) + parseInt(localStorage["VITE-incorrect"]))}%`
+    document.getElementById("stats-correct").title = `${parseInt(localStorage["VITE-correct"])} Correct`
+    document.getElementById("stats-parent").title = `${parseInt(localStorage["VITE-incorrect"])} Incorrect`
     document.getElementById("stats-correct-label").title = `${parseInt(localStorage["VITE-correct"])} Correct`
     document.getElementById("stats-incorrect-label").title = `${parseInt(localStorage["VITE-incorrect"])} Incorrect`
     let qMode = localStorage["Display-Mode"]
