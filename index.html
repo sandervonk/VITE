@@ -31,39 +31,89 @@
             <div class="options-section-title-line"></div>
             <div class="options-section-content">
               <div class="select-panel" id="display-modes">
-                <button class="select-button" id="mode-MD">
+                <button
+                  title="Choose Material Design Theme"
+                  class="select-button"
+                  id="mode-MD"
+                >
                   Material Design
                 </button>
-                <button class="select-button" id="mode-QZ">
+                <button
+                  title="Choose Quizlet Theme"
+                  class="select-button"
+                  id="mode-QZ"
+                >
                   Quizlet Theme
                 </button>
-                <button class="select-button" id="mode-WS">
+                <button
+                  title="Choose VITE! Worksheet Theme"
+                  class="select-button"
+                  id="mode-WS"
+                >
                   VITE! Worksheet
                 </button>
               </div>
             </div>
           </div>
           <div class="options-section">
-            <div class="options-section-title">Quiz Sets</div>
+            <div class="options-section-title" title="Quiz Set Options">
+              Quiz Sets
+            </div>
             <div class="options-section-title-line"></div>
             <div class="options-section-content">
               <div class="two-table">
                 <div class="table-left" id="table-subjects">
-                  <button class="toggle-button" name="Je">Je</button>
-                  <button class="toggle-button" name="Tu">Tu</button>
-                  <button class="toggle-button" name="Il / Elle / On">
+                  <button
+                    title="Toggle 'Je' as a subject in problems."
+                    class="toggle-button"
+                    name="Je"
+                  >
+                    Je
+                  </button>
+                  <button
+                    title="Toggle 'Tu' as a subject in problems."
+                    class="toggle-button"
+                    name="Tu"
+                  >
+                    Tu
+                  </button>
+                  <button
+                    title="Toggle 'Il / Elle / On' as subjects in problems."
+                    class="toggle-button"
+                    name="Il / Elle / On"
+                  >
                     Il / Elle / On
                   </button>
-                  <button class="toggle-button" name="Nous">Nous</button>
-                  <button class="toggle-button" name="Vous">Vous</button>
-                  <button class="toggle-button" name="Ils / Elles">
+                  <button
+                    title="Toggle 'Nous' as a subject in problems."
+                    class="toggle-button"
+                    name="Nous"
+                  >
+                    Nous
+                  </button>
+                  <button
+                    title="Toggle 'Vous' as a subject in problems."
+                    class="toggle-button"
+                    name="Vous"
+                  >
+                    Vous
+                  </button>
+                  <button
+                    title="Toggle 'Ils / Elles' as subjects in problems."
+                    class="toggle-button"
+                    name="Ils / Elles"
+                  >
                     Ils / Elles
                   </button>
                 </div>
                 <div class="table-seperator"></div>
                 <div class="table-right" id="table-verbs">
                   <div class="toggle-button custom">
-                    <button class="custom-button" id="custom-button">
+                    <button
+                      title="Add your own custom verb"
+                      class="custom-button"
+                      id="custom-button"
+                    >
                       <div>+</div>
                     </button>
                     <div>Custom</div>
@@ -73,7 +123,12 @@
             </div>
           </div>
           <div class="options-section">
-            <div class="options-section-title">Customization / Stats</div>
+            <div
+              title="Customization / Statistic Options"
+              class="options-section-title"
+            >
+              Customization / Stats
+            </div>
             <div class="options-section-title-line"></div>
             <div class="options-section-content">
               <div class="customization-panel">
@@ -89,8 +144,8 @@
                   <div class="label">Background Color</div>
                 </div>
               </div>
-              <div id="stats-parent">
-                <div id="stats-correct"></div>
+              <div title="0 Incorrect" id="stats-parent">
+                <div title="0 Correct" id="stats-correct"></div>
               </div>
               <div id="stats-label">
                 <div id="stats-correct-label" title="0 Correct">Correct</div>
@@ -107,7 +162,7 @@
         <div id="question-cover" class="blur"></div>
         <div id="question-center">
           <div id="question-context">
-            <div id="question-subject">
+            <div title="Subject for Conjugation" id="question-subject">
               <div id="question-subject-span"></div>
             </div>
             <div id="question-seperator"></div>
@@ -115,11 +170,14 @@
               <div id="question-plus-container">
                 <div id="question-plus">+</div>
               </div>
-              <div id="question-verb"><div id="question-verb-span"></div></div>
+              <div title="Verb for Conjugation" id="question-verb">
+                <div id="question-verb-span"></div>
+              </div>
             </div>
           </div>
           <div id="question-answer">
             <input
+              title="Input the conjugation here!"
               type="text"
               id="question-answer-input"
               autocomplete="off"
