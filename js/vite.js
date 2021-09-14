@@ -53,7 +53,8 @@ function presentTense(verb, subject) {
 //Reflexive handler
 function reflexiveTense(verb, subject) {
     let answer = ""
-    answer = [subject, compress(reflexive[subject], presentTense(verb, subject))].join(" ")
+    //answer = [subject, compress(compress(reflexive[subject], presentTense("Être", subject)), presentTense(verb, subject))].join(" ")
+    answer = [subject, compress(reflexive[subject], presentTense(verb, subject))].join("")
     return answer
 }
 //PC handler
