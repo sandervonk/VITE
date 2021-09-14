@@ -655,6 +655,9 @@ body.QZ #question-verb-span {
   body.MD #question-center {
     font-size: 3em !important;
   }
+  #VITE-title {
+    display: none;
+  }
 }
 #tense-modes {
   flex-flow: row;
