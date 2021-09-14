@@ -14,7 +14,7 @@ function pickTense() {
         }
     } catch {
         newTense = "ft"
-        console.err("faulty tense")
+        console.error("faulty tense")
     }
     console.log(newTense)
     return newTense
