@@ -348,7 +348,10 @@ div.toggle-button.custom button > div {
   margin: 2px !important;
 }
 #question-cover.blur::after {
-  content: "Click To Start";
+  content: "Click Here or Press Any Key To Start";
+}
+body.QZ #question-cover.blur {
+  font-size: 0.9em;
 }
 @-webkit-keyframes pulse {
   0% {
@@ -654,6 +657,9 @@ body.QZ #question-verb-span {
   body.QZ #question-center,
   body.MD #question-center {
     font-size: 3em !important;
+  }
+  #VITE-title {
+    display: none;
   }
 }
 #tense-modes {

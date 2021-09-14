@@ -1,3 +1,33 @@
+//some json for reflexives 
+var reflexive = {
+    "Je": "me",
+    "Tu": "te",
+    "Il / Elle / On": "se",
+    "Nous": "nous",
+    "Vous": "vous",
+    "Ils / Elles": "se"
+}
+//
+function clearPrevious() {
+    document.getElementById("question-cover").style.display = "none"
+    document.getElementById("question-cover").textContent = ""
+    document.getElementById("question-cover").title = ""
+    document.getElementById("question-cover").className = "check"
+    document.getElementById("question-answer-input").value = ""
+}
+//make things like "je ai" "j'ai" as needed
+function compress(subject, conjugation) {
+    let composite = "",
+        newSubject = ""
+    if (subject[subject.length - 1] === "e" && isVowel(conjugation[0])) {
+        newSubject = subject.substr(0, subject.length - 1) + "'"
+        composite = (newSubject + conjugation).toLowerCase()
+    } else {
+        composite = [subject, conjugation].join(" ")
+    }
+    return composite
+
+}
 //randomize tense
 function pickTense() {
     let newTense = ""
@@ -22,6 +52,19 @@ function pickTense() {
     console.log(newTense)
     return newTense
 }
+//Present handler
+function presentTense(verb, subject) {
+    let answer = ""
+    answer = verbs[verb][subject]
+    return answer.toLowerCase()
+}
+//Reflexive handler
+function reflexiveTense(verb, subject) {
+    let answer = ""
+    //answer = [subject, compress(compress(reflexive[subject], presentTense("Être", subject)), presentTense(verb, subject))].join(" ")
+    answer = [subject, compress(reflexive[subject], presentTense(verb, subject))].join("")
+    return answer.toLowerCase()
+}
 //PC handler
 function passeComposeTense(verb, name, subject) {
     console.log("arguments:")
@@ -45,7 +88,11 @@ function passeComposeTense(verb, name, subject) {
     } else {
         conjugation.participle = verb.PC.participle
     }
+    if ((subject === "Nous" || subject === "Vous" || subject === "Ils / Elles") && verb.PC.helping === "Être") {
+        conjugation.participle += "s"
+    }
     conjugation.full = ([conjugation.subject, conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
+    conjugation.full = conjugation.full.replace("je a", "j'a")
     conjugation.alt = ([conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
     console.log("PC conjugation:")
     console.log(conjugation)
@@ -70,7 +117,7 @@ function showAnswer(input) {
     document.getElementById("question-answer-input").value = ""
     let coverEle = document.getElementById("question-cover")
     console.log("running showAnswer on:", input.toLowerCase())
-    if (input.toLowerCase() === correctAnswer || input.toLowerCase() === altAnswer) {
+    if (input.toLowerCase() === correctAnswer.toLowerCase() || input.toLowerCase() === altAnswer.toLowerCase()) {
         coverEle.className = "check correct"
         localStorage["VITE-correct"] = parseInt(localStorage["VITE-correct"]) + 1
         coverEle.style.display = ""
@@ -186,13 +233,8 @@ function returnProblem(verbs) {
         altAnswer = fullAnswer.full
         question.verb += " (PC)"
     } else if (pickedTense === "pr") {
-        question.answer = verbParent[question.subject]
-        if (question.subject[question.subject.length - 1] === "e" && isVowel(question.answer[0])) {
-            question.altSubject = question.subject.substr(0, question.subject.length - 1) + "'"
-            altAnswer = (question.altSubject + question.answer).toLowerCase()
-        } else {
-            altAnswer = ([question.subject, question.answer].join(" ")).toLowerCase()
-        }
+        question.answer = presentTense(question.verb, question.subject)
+        altAnswer = compress(question.subject, question.answer)
     } else {
         window.alert("something went wrong while randomly picking a tense!")
     }
@@ -215,34 +257,37 @@ window.addEventListener("load", function () {
     document.addEventListener("keydown", event => { checkKey(event) })
 
     function checkKey(e) {
-
         e = e || window.event;
-
-        if (e.keyCode == '38') {
-            // up arrow
-        }
-        else if (e.keyCode == '40') {
-            // down arrow
+        if (document.getElementById("question-cover").style.display != "none") {
+            clearPrevious()
             createProblem()
-        }
-        else if (e.keyCode == '37') {
-            // left arrow
-        }
-        else if (e.keyCode == '39') {
-            // right arrow
-            //createProblem()
-        }
-        else if (e.keyCode == '13') {
-            //enter key
-            if (document.getElementById("question-cover").style.display != "none") {
-                //PROBLEMS HERE
-                document.getElementById("question-cover").style.display = "none"
-                document.getElementById("question-cover").textContent = ""
-                document.getElementById("question-cover").title = ""
-                document.getElementById("question-cover").className = "check"
+        } else {
+
+            if (e.keyCode == '38') {
+                // up arrow
+            }
+            else if (e.keyCode == '40') {
+                // down arrow
                 createProblem()
-            } else {
-                submitAnswer()
+            }
+            else if (e.keyCode == '37') {
+                // left arrow
+            }
+            else if (e.keyCode == '39') {
+                // right arrow
+                //createProblem()
+            }
+            else if (e.keyCode == '13') {
+                //enter key
+                if (document.getElementById("question-cover").style.display != "none") {
+                    //PROBLEMS HERE
+                    clearPrevious()
+                    createProblem()
+                } else {
+                    submitAnswer()
+                }
+
+
             }
 
 
