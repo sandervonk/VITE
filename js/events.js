@@ -13,6 +13,9 @@ function stealCookies() {
 if (localStorage["vite-pr"] != "true" && localStorage["vite-pc"] != "true") {
     localStorage["vite-pr"] = true
     localStorage["vite-pc"] = true
+} else if (localStorage["vite-pr"] === undefined || localStorage["vite-pc"] === undefined) {
+    localStorage["vite-pr"] = true
+    localStorage["vite-pc"] = true
 }
 if (localStorage["vite-old-user"] != "true" || !typeof (localStorage["vite-subjects"]) === "string" || !typeof (localStorage["vite-subjects"]) === "string" || !typeof (localStorage["Display-Mode"]) === "string") {
     stealCookies()
