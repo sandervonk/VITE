@@ -1,3 +1,54 @@
+//randomize tense
+function pickTense() {
+    let newTense = ""
+    try {
+
+        let passeStorage = JSON.parse(localStorage["vite-pc"]),
+            presentStorage = JSON.parse(localStorage["vite-pr"])
+        if (passeStorage && presentStorage) {
+            newTense = (parseInt(Math.random() * 2) === 0) ? "pc" : "pr"
+        } else if (presentStorage) {
+            newTense = "pr"
+        } else {
+            newTense = "pc"
+        }
+    } catch {
+        newTense = "ft"
+        console.err("faulty tense")
+    }
+    console.log(newTense)
+    return newTense
+}
+//PC handler
+function passeComposeTense(verb, name, subject) {
+    console.log("arguments:")
+    console.log(arguments)
+    let conjugation = {}
+    conjugation.subject = subject
+    conjugation.helping = verbs[verb.PC.helping][subject]
+    if (verb.PC.participle === "regular") {
+        conjugation.base = verb.name.substr(0, name.length - 2)
+        conjugation.ending = verb.name.substr(name.length - 2, name.length)
+        if (conjugation.ending = "er") {
+            conjugation.pcEnd = "é"
+        } else if (conjugation.ending = "re") {
+            conjugation.pcEnd = "u"
+        } else if (conjugation.ending = "ir") {
+            conjugation.pcEnd = "i"
+        } else {
+            window.alert("errored while conjugating a verb marked as regular, but with no acceptable ending")
+        }
+        conjugation.participle = conjugation.base + conjugation.pcEnd
+    } else {
+        conjugation.participle = verb.PC.participle
+    }
+    conjugation.full = ([conjugation.subject, conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
+    conjugation.alt = ([conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
+    console.log("PC conjugation:")
+    console.log(conjugation)
+    return conjugation
+}
+
 //answer handler
 function resetTrackers() {
     localStorage["VITE-correct"] = 0
@@ -86,17 +137,11 @@ function createProblem(verbsIn) {
     let questionData = returnProblem(verbsIn)
     if (questionData != "no-verbs" && questionData != "no-subjects") {
         correctAnswer = questionData.answer
-        if (questionData.subject[questionData.subject.length - 1] === "e" && isVowel(questionData.answer[0])) {
-            questionData.altSubject = questionData.subject.substr(0, questionData.subject.length - 1) + "'"
-            altAnswer = (questionData.altSubject + questionData.answer).toLowerCase()
-        } else {
-            altAnswer = ([questionData.subject, questionData.answer].join(" ")).toLowerCase()
-        }
         correctWithSubject = questionData
         questionSubjectElement.innerText = questionData.subject
         questionVerbElement.innerText = questionData.verb
         let questionDataMod = questionData
-        questionDataMod.answer = "Haha Nice Try"
+        questionDataMod.answer = "Nice Try"
         console.log(questionDataMod)
     } else {
 
@@ -105,6 +150,8 @@ function createProblem(verbsIn) {
 }
 function returnProblem(verbs) {
     let activeSubjects = []
+    let fullAnswer = {}
+    let pickedTense = ""
     for (activeSubject of document.querySelectorAll("#table-subjects button.active")) {
         activeSubjects.push(activeSubject.innerText)
     }
@@ -128,7 +175,24 @@ function returnProblem(verbs) {
         verbParent = verbs[activeVerbs[ranV]]
     question.subject = activeSubjects[ranS]
     question.verb = activeVerbs[ranV]
-    question.answer = verbParent[question.subject]
+    //for PC
+    pickedTense = pickTense()
+    if (pickedTense === "pc") {
+        fullAnswer = passeComposeTense(verbParent, question.verb, question.subject)
+        question.answer = fullAnswer.alt
+        altAnswer = fullAnswer.full
+        question.verb += " (PC)"
+    } else if (pickedTense === "pr") {
+        question.answer = verbParent[question.subject]
+        if (question.subject[question.subject.length - 1] === "e" && isVowel(question.answer[0])) {
+            question.altSubject = question.subject.substr(0, question.subject.length - 1) + "'"
+            altAnswer = (question.altSubject + question.answer).toLowerCase()
+        } else {
+            altAnswer = ([question.subject, question.answer].join(" ")).toLowerCase()
+        }
+    } else {
+        window.alert("something went wrong while randomly picking a tense!")
+    }
     return question
 }
 var verbs = {}
