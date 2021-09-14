@@ -1,3 +1,25 @@
+//some json for reflexives 
+var reflexive = {
+    "Je": "me",
+    "Tu": "te",
+    "Il / Elle / On": "se",
+    "Nous": "nous",
+    "Vous": "vous",
+    "Ils / Elles": "se"
+}
+//make things like "je ai" "j'ai" as needed
+function compress(subject, conjugation) {
+    let composite = "",
+        newSubject = ""
+    if (subject[subject.length - 1] === "e" && isVowel(conjugation[0])) {
+        newSubject = subject.substr(0, subject.length - 1) + "'"
+        composite = (newSubject + conjugation).toLowerCase()
+    } else {
+        composite = [subject, conjugation].join(" ")
+    }
+    return composite
+
+}
 //randomize tense
 function pickTense() {
     let newTense = ""
@@ -21,6 +43,19 @@ function pickTense() {
     }
     console.log(newTense)
     return newTense
+}
+//Present handler
+function presentTense(verb, subject) {
+    let answer = ""
+    answer = verbs[verb][subject]
+    return answer
+}
+//Reflexive handler
+function reflexiveTense(verb, subject) {
+    let answer = ""
+    //answer = [subject, compress(compress(reflexive[subject], presentTense("Être", subject)), presentTense(verb, subject))].join(" ")
+    answer = [subject, compress(reflexive[subject], presentTense(verb, subject))].join("")
+    return answer
 }
 //PC handler
 function passeComposeTense(verb, name, subject) {
@@ -46,6 +81,7 @@ function passeComposeTense(verb, name, subject) {
         conjugation.participle = verb.PC.participle
     }
     conjugation.full = ([conjugation.subject, conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
+    conjugation.full = conjugation.full.replace("je a", "j'a")
     conjugation.alt = ([conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
     console.log("PC conjugation:")
     console.log(conjugation)
@@ -186,13 +222,8 @@ function returnProblem(verbs) {
         altAnswer = fullAnswer.full
         question.verb += " (PC)"
     } else if (pickedTense === "pr") {
-        question.answer = verbParent[question.subject]
-        if (question.subject[question.subject.length - 1] === "e" && isVowel(question.answer[0])) {
-            question.altSubject = question.subject.substr(0, question.subject.length - 1) + "'"
-            altAnswer = (question.altSubject + question.answer).toLowerCase()
-        } else {
-            altAnswer = ([question.subject, question.answer].join(" ")).toLowerCase()
-        }
+        question.answer = presentTense(question.verb, question.subject)
+        altAnswer = compress(question.subject, question.answer)
     } else {
         window.alert("something went wrong while randomly picking a tense!")
     }
