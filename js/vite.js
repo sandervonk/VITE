@@ -13,7 +13,10 @@ function pickTense() {
             newTense = "pc"
         }
     } catch {
-        newTense = "ft"
+        localStorage["vite-pc"] = true
+        localStorage["vite-pr"] = true
+        window.location.reload()
+        newTense = "pr"
         console.error("faulty tense")
     }
     console.log(newTense)
