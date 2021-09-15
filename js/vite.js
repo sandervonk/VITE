@@ -1,37 +1,63 @@
 //some json for reflexives 
-var timed = false
-var timedID;
-var reflexive = {
-    "Je": "me",
-    "Tu": "te",
-    "Il / Elle / On": "se",
-    "Nous": "nous",
-    "Vous": "vous",
-    "Ils / Elles": "se"
+var timed = false,
+    timedID,
+    countdown,
+    timerStart,
+    time = 2000,
+    reflexive = {
+        "Je": "me",
+        "Tu": "te",
+        "Il / Elle / On": "se",
+        "Nous": "nous",
+        "Vous": "vous",
+        "Ils / Elles": "se"
+    }
+function twoPlaces(value) {
+    let num = parseInt(value * 100) / 100
+    num = num.toFixed(2)
+    return num
 }
+
 //timed stuff
 function startTimed() {
-    let time = 2000
     if (document.getElementById("timed-time") != null) {
         if (JSON.stringify(parseInt(document.getElementById("timed-time").value)) != "null") {
 
             time = parseInt(document.getElementById("timed-time").value * 1000)
         }
     } else { console.log("could not find input") }
+    timeleft = (time / 1000).toFixed(2)
+    document.getElementById("timer-countdown").textContent = timeleft
     timedID = window.setTimeout(timedFunction, time)
+    timerStart = (new Date()).getTime()
+    document.getElementById("timer-countdown").className = "running"
+    countdown = setInterval(function () {
+        let timerNow = new Date()
+        timerNow = timerNow.getTime()
+        timeDiff = timerNow - timerStart
+        timeDiff = (timeDiff / 1000)
+        document.getElementById("timer-countdown").textContent = ((time / 1000) - timeDiff).toFixed(2)
+        if ((time / 1000) <= timeDiff) {
+            clearTimedFunction()
+        }
+    }, 10)
 }
 function timedFunction() {
     clearTimedFunction()
+
     //force submit
     if (document.getElementById("question-cover").style.display != "none") {
-        clearPrevious()
-        createProblem()
+        //clearPrevious()
+        //createProblem()
+        startTimed()
     } else {
         submitAnswer()
     }
-    startTimed()
 }
 function clearTimedFunction() {
+    document.getElementById("timer-countdown").textContent = (0).toFixed(2)
+    document.getElementById("timer-countdown").className = "stopped"
+    try { window.clearInterval(countdown) } catch (err) { console.error("got err:", err, "when clearing interval for countdown") }
     try { window.clearTimeout(timedID) } catch (err) { console.error("got err:", err, "when clearing timeout") }
 
 }
@@ -95,8 +121,6 @@ function reflexiveTense(verb, subject) {
 }
 //PC handler
 function passeComposeTense(verb, name, subject) {
-    console.log("arguments:")
-    console.log(arguments)
     let conjugation = {}
     conjugation.subject = subject
     conjugation.helping = verbs[verb.PC.helping][subject]
@@ -122,8 +146,6 @@ function passeComposeTense(verb, name, subject) {
     conjugation.full = ([conjugation.subject, conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
     conjugation.full = conjugation.full.replace("je a", "j'a")
     conjugation.alt = ([conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
-    console.log("PC conjugation:")
-    console.log(conjugation)
     return conjugation
 }
 
@@ -220,7 +242,6 @@ function createProblem(verbsIn) {
         questionVerbElement.innerText = questionData.verb
         let questionDataMod = questionData
         questionDataMod.answer = "Nice Try"
-        console.log(questionDataMod)
     } else {
 
     }
@@ -273,12 +294,15 @@ var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
     document.getElementById("stats-reset").addEventListener("click", resetTrackers)
     document.getElementById("timed-time").addEventListener("input", function () {
+        document.getElementById("timer-countdown").textContent = twoPlaces(document.getElementById("timed-time").value)
+        clearPrevious()
+        createProblem()
         clearTimedFunction()
         startTimed()
     })
     document.getElementById("maxwell-mode").addEventListener("click", function () {
         timed = true
-        document.getElementById("maxwell-mode").className = "activated"
+        document.getElementById("timer-parent").className = "activated"
         startTimed()
     })
     document.getElementById("question-cover").addEventListener("click", function () {
@@ -298,6 +322,9 @@ window.addEventListener("load", function () {
         if (document.getElementById("question-cover").style.display != "none") {
             clearPrevious()
             createProblem()
+            if (timed) {
+                startTimed()
+            }
         } else {
 
             if (e.keyCode == '38') {
