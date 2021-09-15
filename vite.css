@@ -703,9 +703,11 @@ button#tense-pc.select-button {
   padding: 1vh;
   text-align: center;
   transform: scale(0.1);
-  transition: opacity ease-in-out 0.25s, box-shadow ease-in-out 0.25s;
+  transition: opacity ease-in-out 0.25s, box-shadow ease-in-out 0.5s,
+    transform ease-in-out 0.25s;
   cursor: pointer;
 }
+#nothing-to-see-here:hover > #maxwell-mode,
 #maxwell-mode:hover,
 #maxwell-mode.activated {
   opacity: 1;
@@ -721,7 +723,7 @@ button#tense-pc.select-button {
   flex-flow: row-reverse;
   position: absolute;
   top: 0;
-  right: 1vh;
+  right: 1.5vh;
   margin: 2vh;
 }
 #timed-time {
