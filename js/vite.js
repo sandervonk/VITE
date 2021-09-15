@@ -80,6 +80,9 @@ function passeComposeTense(verb, name, subject) {
     } else {
         conjugation.participle = verb.PC.participle
     }
+    if ((subject === "Nous" || subject === "Vous" || subject === "Ils / Elles") && verb.PC.helping === "Être") {
+        conjugation.participle += "s"
+    }
     conjugation.full = ([conjugation.subject, conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
     conjugation.full = conjugation.full.replace("je a", "j'a")
     conjugation.alt = ([conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
