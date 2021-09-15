@@ -49,7 +49,7 @@ function timedFunction() {
     if (document.getElementById("question-cover").style.display != "none") {
         //clearPrevious()
         //createProblem()
-        startTimed()
+        //startTimed()
     } else {
         submitAnswer()
     }
@@ -329,7 +329,9 @@ window.addEventListener("load", function () {
                 startTimed()
             }
         } else {
-
+            if (timed) {
+                clearTimedFunction()
+            }
             if (e.keyCode == '38') {
                 // up arrow
             }
