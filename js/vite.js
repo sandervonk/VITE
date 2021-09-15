@@ -256,6 +256,7 @@ window.addEventListener("load", function () {
             document.getElementById("question-cover").textContent = ""
             document.getElementById("question-cover").title = ""
             document.getElementById("question-cover").className = "check"
+            document.getElementById("question-answer-input").value = ""
             createProblem()
         } else {
 
