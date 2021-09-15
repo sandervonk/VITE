@@ -1,4 +1,6 @@
 //some json for reflexives 
+var timed = false
+var timedID;
 var reflexive = {
     "Je": "me",
     "Tu": "te",
@@ -6,6 +8,32 @@ var reflexive = {
     "Nous": "nous",
     "Vous": "vous",
     "Ils / Elles": "se"
+}
+//timed stuff
+function startTimed() {
+    let time = 2000
+    if (document.getElementById("timed-time") != null) {
+        if (JSON.stringify(parseInt(document.getElementById("timed-time").value)) != "null") {
+
+            time = parseInt(document.getElementById("timed-time").value * 1000)
+        }
+    } else { console.log("could not find input") }
+    timedID = window.setTimeout(timedFunction, time)
+}
+function timedFunction() {
+    clearTimedFunction()
+    //force submit
+    if (document.getElementById("question-cover").style.display != "none") {
+        clearPrevious()
+        createProblem()
+    } else {
+        submitAnswer()
+    }
+    startTimed()
+}
+function clearTimedFunction() {
+    try { window.clearTimeout(timedID) } catch (err) { console.error("got err:", err, "when clearing timeout") }
+
 }
 //
 function clearPrevious() {
@@ -244,6 +272,15 @@ var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
     document.getElementById("stats-reset").addEventListener("click", resetTrackers)
+    document.getElementById("timed-time").addEventListener("input", function () {
+        clearTimedFunction()
+        startTimed()
+    })
+    document.getElementById("maxwell-mode").addEventListener("click", function () {
+        timed = true
+        document.getElementById("maxwell-mode").className = "activated"
+        startTimed()
+    })
     document.getElementById("question-cover").addEventListener("click", function () {
         if (!document.getElementById("question-cover").className.includes("correct")) {
             document.getElementById("question-cover").style.display = "none"

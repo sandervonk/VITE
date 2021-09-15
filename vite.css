@@ -691,3 +691,46 @@ button#tense-pc.select-button {
 #tense-re {
   opacity: 0.2;
 }
+#maxwell-mode {
+  color: grey;
+  opacity: 0.1;
+  transform-origin: top right;
+  background: lightgray;
+  font-family: "Comfortaa", cursive;
+  box-shadow: none;
+  border: none;
+  border-radius: 4vh;
+  padding: 1vh;
+  text-align: center;
+  transform: scale(0.1);
+  transition: opacity ease-in-out 0.25s, box-shadow ease-in-out 0.25s;
+  cursor: pointer;
+}
+#maxwell-mode:hover,
+#maxwell-mode.activated {
+  opacity: 1;
+  box-shadow: 0 0 6px #000000aa;
+  transform: scale(1);
+}
+#maxwell-mode.activated {
+  background: darkred;
+  color: white;
+}
+#nothing-to-see-here {
+  display: flex;
+  flex-flow: row-reverse;
+  position: absolute;
+  top: 0;
+  right: 1vh;
+  margin: 2vh;
+}
+#timed-time {
+  display: none;
+  border-radius: 4vh;
+  width: 10vh;
+  text-align: center;
+  font-size: 3.5vh;
+}
+#maxwell-mode.activated + #timed-time {
+  display: block;
+}
