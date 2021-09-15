@@ -48,14 +48,14 @@ function pickTense() {
 function presentTense(verb, subject) {
     let answer = ""
     answer = verbs[verb][subject]
-    return answer
+    return answer.toLowerCase()
 }
 //Reflexive handler
 function reflexiveTense(verb, subject) {
     let answer = ""
     //answer = [subject, compress(compress(reflexive[subject], presentTense("Être", subject)), presentTense(verb, subject))].join(" ")
     answer = [subject, compress(reflexive[subject], presentTense(verb, subject))].join("")
-    return answer
+    return answer.toLowerCase()
 }
 //PC handler
 function passeComposeTense(verb, name, subject) {
@@ -106,7 +106,7 @@ function showAnswer(input) {
     document.getElementById("question-answer-input").value = ""
     let coverEle = document.getElementById("question-cover")
     console.log("running showAnswer on:", input.toLowerCase())
-    if (input.toLowerCase() === correctAnswer || input.toLowerCase() === altAnswer) {
+    if (input.toLowerCase() === correctAnswer.toLowerCase() || input.toLowerCase() === altAnswer.toLowerCase()) {
         coverEle.className = "check correct"
         localStorage["VITE-correct"] = parseInt(localStorage["VITE-correct"]) + 1
         coverEle.style.display = ""
@@ -246,34 +246,44 @@ window.addEventListener("load", function () {
     document.addEventListener("keydown", event => { checkKey(event) })
 
     function checkKey(e) {
-
         e = e || window.event;
-
-        if (e.keyCode == '38') {
-            // up arrow
-        }
-        else if (e.keyCode == '40') {
-            // down arrow
+        if (document.getElementById("question-cover").style.display != "none") {
+            //PROBLEMS HERE
+            document.getElementById("question-cover").style.display = "none"
+            document.getElementById("question-cover").textContent = ""
+            document.getElementById("question-cover").title = ""
+            document.getElementById("question-cover").className = "check"
             createProblem()
-        }
-        else if (e.keyCode == '37') {
-            // left arrow
-        }
-        else if (e.keyCode == '39') {
-            // right arrow
-            //createProblem()
-        }
-        else if (e.keyCode == '13') {
-            //enter key
-            if (document.getElementById("question-cover").style.display != "none") {
-                //PROBLEMS HERE
-                document.getElementById("question-cover").style.display = "none"
-                document.getElementById("question-cover").textContent = ""
-                document.getElementById("question-cover").title = ""
-                document.getElementById("question-cover").className = "check"
+        } else {
+
+            if (e.keyCode == '38') {
+                // up arrow
+            }
+            else if (e.keyCode == '40') {
+                // down arrow
                 createProblem()
-            } else {
-                submitAnswer()
+            }
+            else if (e.keyCode == '37') {
+                // left arrow
+            }
+            else if (e.keyCode == '39') {
+                // right arrow
+                //createProblem()
+            }
+            else if (e.keyCode == '13') {
+                //enter key
+                if (document.getElementById("question-cover").style.display != "none") {
+                    //PROBLEMS HERE
+                    document.getElementById("question-cover").style.display = "none"
+                    document.getElementById("question-cover").textContent = ""
+                    document.getElementById("question-cover").title = ""
+                    document.getElementById("question-cover").className = "check"
+                    createProblem()
+                } else {
+                    submitAnswer()
+                }
+
+
             }
 
 
