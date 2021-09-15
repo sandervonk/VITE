@@ -710,8 +710,12 @@ button#tense-pc.select-button {
 #nothing-to-see-here:hover > #maxwell-mode,
 #maxwell-mode:hover,
 .activated #maxwell-mode {
-  opacity: 1;
-  transform: scale(1);
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+html.MM #maxwell-mode {
+  opacity: 0.9;
+  transform: scale(0.7);
 }
 #nothing-to-see-here {
   filter: drop-shadow(0 0 4px #000000aa);
@@ -768,4 +772,15 @@ button#tense-pc.select-button {
 }
 #timer-countdown.stopped {
   color: red;
+}
+#feedback-parent {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  padding: 2vh;
+  opacity: 0.3;
+  transition: opacity 0.25s ease-in-out;
+}
+#feedback-parent:hover {
+  opacity: 1;
 }
