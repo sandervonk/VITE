@@ -103,7 +103,6 @@ function pickTense() {
         newTense = "pr"
         console.error("faulty tense")
     }
-    console.log(newTense)
     return newTense
 }
 //Present handler
@@ -166,7 +165,6 @@ var skipBlank = JSON.parse(localStorage["vite-skip-blank"])
 function showAnswer(input) {
     document.getElementById("question-answer-input").value = ""
     let coverEle = document.getElementById("question-cover")
-    console.log("running showAnswer on:", input.toLowerCase())
     if (input.toLowerCase() === correctAnswer.toLowerCase() || input.toLowerCase() === altAnswer.toLowerCase()) {
         coverEle.className = "check correct"
         localStorage["VITE-correct"] = parseInt(localStorage["VITE-correct"]) + 1
@@ -176,7 +174,6 @@ function showAnswer(input) {
         coverEle.className = "check incorrect"
         coverEle.style.display = ""
         localStorage["VITE-incorrect"] = parseInt(localStorage["VITE-incorrect"]) + 1
-        console.log("incorrect, set classname")
         document.getElementById("question-cover").textContent = correctAnswer + " or " + altAnswer
     }
     document.getElementById("stats-correct").style.width = `${100 * parseInt(localStorage["VITE-correct"]) / (parseInt(localStorage["VITE-correct"]) + parseInt(localStorage["VITE-incorrect"]))}%`
@@ -229,6 +226,7 @@ function submitAnswer() {
 }
 //function to form a new problem randomly
 function createProblem(verbsIn) {
+    clearTimedFunction()
     let questionSubjectElement = document.getElementById("question-subject-span"),
         questionVerbElement = document.getElementById("question-verb-span")
     if (arguments.length < 1) {
@@ -301,9 +299,14 @@ window.addEventListener("load", function () {
         startTimed()
     })
     document.getElementById("maxwell-mode").addEventListener("click", function () {
-        timed = true
-        document.getElementById("timer-parent").className = "activated"
-        startTimed()
+        if (!(document.getElementById("maxwell-mode").className === "activated")) {
+            timed = true
+            document.getElementById("timer-parent").className = "activated"
+            startTimed()
+        } else {
+            console.log("already activated!")
+        }
+
     })
     document.getElementById("question-cover").addEventListener("click", function () {
         if (!document.getElementById("question-cover").className.includes("correct")) {
