@@ -7,6 +7,14 @@ var reflexive = {
     "Vous": "vous",
     "Ils / Elles": "se"
 }
+//
+function clearPrevious() {
+    document.getElementById("question-cover").style.display = "none"
+    document.getElementById("question-cover").textContent = ""
+    document.getElementById("question-cover").title = ""
+    document.getElementById("question-cover").className = "check"
+    document.getElementById("question-answer-input").value = ""
+}
 //make things like "je ai" "j'ai" as needed
 function compress(subject, conjugation) {
     let composite = "",
@@ -251,12 +259,7 @@ window.addEventListener("load", function () {
     function checkKey(e) {
         e = e || window.event;
         if (document.getElementById("question-cover").style.display != "none") {
-            //PROBLEMS HERE
-            document.getElementById("question-cover").style.display = "none"
-            document.getElementById("question-cover").textContent = ""
-            document.getElementById("question-cover").title = ""
-            document.getElementById("question-cover").className = "check"
-            document.getElementById("question-answer-input").value = ""
+            clearPrevious()
             createProblem()
         } else {
 
@@ -278,10 +281,7 @@ window.addEventListener("load", function () {
                 //enter key
                 if (document.getElementById("question-cover").style.display != "none") {
                     //PROBLEMS HERE
-                    document.getElementById("question-cover").style.display = "none"
-                    document.getElementById("question-cover").textContent = ""
-                    document.getElementById("question-cover").title = ""
-                    document.getElementById("question-cover").className = "check"
+                    clearPrevious()
                     createProblem()
                 } else {
                     submitAnswer()
