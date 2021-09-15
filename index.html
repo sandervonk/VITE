@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="MM">
   <head>
     <title>VITE! Practice</title>
     <link rel="stylesheet" href="vite.css" />
@@ -22,6 +22,24 @@
       <div id="title-div"></div>
       <span id="title-attr">By Sander Vonk</span>
     </div>
+    <div id="feedback-parent">
+      <a href="https://forms.gle/GzwoTGBpLjwTLsym7">Send Feedback</a>
+    </div>
+    <div id="timer-parent">
+      <div id="nothing-to-see-here">
+        <button id="maxwell-mode">Maxwell Mode</button>
+        <input
+          id="timed-time"
+          value="2"
+          type="number"
+          min="0.5"
+          max="60"
+          step="0.5"
+        />
+      </div>
+      <div id="timer-countdown" class="stopped">0.00</div>
+    </div>
+
     <div id="flex-parent">
       <div class="flex-element main-container" id="options">
         <div id="options-title">Options</div>

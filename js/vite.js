@@ -1,11 +1,75 @@
 //some json for reflexives 
-var reflexive = {
-    "Je": "me",
-    "Tu": "te",
-    "Il / Elle / On": "se",
-    "Nous": "nous",
-    "Vous": "vous",
-    "Ils / Elles": "se"
+var timed = false,
+    timedID,
+    countdown,
+    timerStart,
+    time = 2000,
+    problemTime = {
+        "max-perfect": 2, 
+        "allotted": 10, 
+        "max-score": 1000, 
+        "score": 0, 
+        "problems": 0, 
+        "incorrect-deduction": 100
+    },
+    reflexive = {
+        "Je": "me",
+        "Tu": "te",
+        "Il / Elle / On": "se",
+        "Nous": "nous",
+        "Vous": "vous",
+        "Ils / Elles": "se"
+    }
+function twoPlaces(value) {
+    let num = parseInt(value * 100) / 100
+    num = num.toFixed(2)
+    return num
+}
+
+//timed stuff
+function startTimed() {
+    if (document.getElementById("timed-time") != null) {
+        if (JSON.stringify(parseInt(document.getElementById("timed-time").value)) != "null") {
+
+            time = parseInt(document.getElementById("timed-time").value * 1000)
+        }
+    } else { console.log("could not find input") }
+    timeleft = (time / 1000).toFixed(2)
+    document.getElementById("timer-countdown").textContent = timeleft
+    timedID = window.setTimeout(timedFunction, time)
+    timerStart = (new Date()).getTime()
+    document.getElementById("timer-countdown").className = "running"
+    countdown = setInterval(function () {
+        let timerNow = new Date()
+        timerNow = timerNow.getTime()
+        timeDiff = timerNow - timerStart
+        timeDiff = (timeDiff / 1000)
+        document.getElementById("timer-countdown").textContent = ((time / 1000) - timeDiff).toFixed(2)
+        if ((time / 1000) <= timeDiff) {
+            clearTimedFunction()
+        }
+    }, 10)
+}
+function timedFunction() {
+    clearTimedFunction()
+
+    //force submit
+    if (document.getElementById("question-cover").style.display != "none") {
+        //clearPrevious()
+        //createProblem()
+        //startTimed()
+    } else {
+        submitAnswer()
+    }
+}
+function clearTimedFunction() {
+    try{
+        document.getElementById("timer-countdown").textContent = (0).toFixed(2)
+        document.getElementById("timer-countdown").className = "stopped"
+    }catch{console.log("failed setting info for countdown")}
+    try { window.clearInterval(countdown) } catch (err) { console.error("got err:", err, "when clearing interval for countdown") }
+    try { window.clearTimeout(timedID) } catch (err) { console.error("got err:", err, "when clearing timeout") }
+
 }
 //
 function clearPrevious() {
@@ -49,7 +113,6 @@ function pickTense() {
         newTense = "pr"
         console.error("faulty tense")
     }
-    console.log(newTense)
     return newTense
 }
 //Present handler
@@ -67,8 +130,6 @@ function reflexiveTense(verb, subject) {
 }
 //PC handler
 function passeComposeTense(verb, name, subject) {
-    console.log("arguments:")
-    console.log(arguments)
     let conjugation = {}
     conjugation.subject = subject
     conjugation.helping = verbs[verb.PC.helping][subject]
@@ -94,8 +155,6 @@ function passeComposeTense(verb, name, subject) {
     conjugation.full = ([conjugation.subject, conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
     conjugation.full = conjugation.full.replace("je a", "j'a")
     conjugation.alt = ([conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
-    console.log("PC conjugation:")
-    console.log(conjugation)
     return conjugation
 }
 
@@ -106,6 +165,8 @@ function resetTrackers() {
     document.getElementById("stats-correct").style.width = `50%`
     document.getElementById("stats-correct-label").title = "0 Correct"
     document.getElementById("stats-incorrect-label").title = "0 Incorrect"
+    problemTime.problems = 0
+    problemTime.score = 0
 }
 function isVowel(ch) {
     return (ch === 'a' || ch === 'e' || ch === 'i' || ch === 'o' || ch === 'u')
@@ -114,19 +175,31 @@ var correctAnswer = ""
 var altAnswer = ""
 var skipBlank = JSON.parse(localStorage["vite-skip-blank"])
 function showAnswer(input) {
-    document.getElementById("question-answer-input").value = ""
+
     let coverEle = document.getElementById("question-cover")
-    console.log("running showAnswer on:", input.toLowerCase())
     if (input.toLowerCase() === correctAnswer.toLowerCase() || input.toLowerCase() === altAnswer.toLowerCase()) {
         coverEle.className = "check correct"
         localStorage["VITE-correct"] = parseInt(localStorage["VITE-correct"]) + 1
         coverEle.style.display = ""
-        console.log("correct, set classname")
+        let score = 1000
+        problemTime.end = (new Date).getTime()
+        problemTime.duration =( problemTime.end - problemTime.start)/1000
+        score = ((problemTime.allotted - Math.max((problemTime.duration-problemTime["max-perfect"]), 0))/problemTime.allotted)
+        score = parseInt(score*problemTime["max-score"])
+        score = Math.max(score, 0)
+        problemTime.score += score
+        problemTime.problems += 1
+        console.log("score", score)
+        console.log("total-score", problemTime.score)
+        document.getElementById("question-answer-input").value = ""
     } else {
+        problemTime.score -= (problemTime["incorrect-deduction"])
+        problemTime.problems += 1
+        console.log("score -",problemTime["incorrect-deduction"])
+        console.log("total-score", problemTime.score)
         coverEle.className = "check incorrect"
         coverEle.style.display = ""
         localStorage["VITE-incorrect"] = parseInt(localStorage["VITE-incorrect"]) + 1
-        console.log("incorrect, set classname")
         document.getElementById("question-cover").textContent = correctAnswer + " or " + altAnswer
     }
     document.getElementById("stats-correct").style.width = `${100 * parseInt(localStorage["VITE-correct"]) / (parseInt(localStorage["VITE-correct"]) + parseInt(localStorage["VITE-incorrect"]))}%`
@@ -174,11 +247,14 @@ function submitAnswer() {
     if (answerElement.value === "" && skipBlank) {
         createProblem()
     } else {
+
         showAnswer(answerElement.value)
     }
 }
 //function to form a new problem randomly
 function createProblem(verbsIn) {
+    clearTimedFunction()
+    problemTime.start = (new Date).getTime()
     let questionSubjectElement = document.getElementById("question-subject-span"),
         questionVerbElement = document.getElementById("question-verb-span")
     if (arguments.length < 1) {
@@ -192,7 +268,6 @@ function createProblem(verbsIn) {
         questionVerbElement.innerText = questionData.verb
         let questionDataMod = questionData
         questionDataMod.answer = "Nice Try"
-        console.log(questionDataMod)
     } else {
 
     }
@@ -244,6 +319,23 @@ var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
     document.getElementById("stats-reset").addEventListener("click", resetTrackers)
+    document.getElementById("timed-time").addEventListener("input", function () {
+        document.getElementById("timer-countdown").textContent = twoPlaces(document.getElementById("timed-time").value)
+        clearPrevious()
+        createProblem()
+        clearTimedFunction()
+        startTimed()
+    })
+    document.getElementById("maxwell-mode").addEventListener("click", function () {
+        if (!(document.getElementById("maxwell-mode").className === "activated")) {
+            timed = true
+            document.getElementById("timer-parent").className = "activated"
+            startTimed()
+        } else {
+            console.log("already activated!")
+        }
+
+    })
     document.getElementById("question-cover").addEventListener("click", function () {
         if (!document.getElementById("question-cover").className.includes("correct")) {
             document.getElementById("question-cover").style.display = "none"
@@ -261,8 +353,10 @@ window.addEventListener("load", function () {
         if (document.getElementById("question-cover").style.display != "none") {
             clearPrevious()
             createProblem()
+            if (timed) {
+                startTimed()
+            }
         } else {
-
             if (e.keyCode == '38') {
                 // up arrow
             }
@@ -278,6 +372,9 @@ window.addEventListener("load", function () {
                 //createProblem()
             }
             else if (e.keyCode == '13') {
+                if (timed) {
+                    clearTimedFunction()
+                }
                 //enter key
                 if (document.getElementById("question-cover").style.display != "none") {
                     //PROBLEMS HERE

@@ -653,13 +653,16 @@ body.QZ #question-verb-span {
 #stats-label > * {
   user-select: none;
 }
-@media only screen and (max-width: 768px) and (orientation: landscape) {
+@media (max-width: 768px) and (orientation: landscape) {
   body.QZ #question-center,
   body.MD #question-center {
-    font-size: 3em !important;
+    font-size: 6vh !important;
   }
-  #VITE-title {
-    display: none;
+}
+@media (max-width: 768px) {
+  .select-panel button,
+  .label {
+    font-size: 1em !important;
   }
 }
 #tense-modes {
@@ -690,4 +693,102 @@ button#tense-pc.select-button {
 }
 #tense-re {
   opacity: 0.2;
+}
+#maxwell-mode {
+  color: grey;
+  opacity: 0.1;
+  transform-origin: top right;
+  background: lightgray;
+  font-family: "Comfortaa", cursive;
+  box-shadow: none;
+  border: none;
+  border-radius: 4vh;
+  height: 100%;
+  font-size: 1.75vh;
+  padding: 1vh;
+  padding-right: 1.25vh;
+  text-align: center;
+  transform: scale(0.1);
+  transition: opacity ease-in-out 0.25s, box-shadow ease-in-out 0.5s,
+    transform ease-in-out 0.25s;
+  cursor: pointer;
+}
+#nothing-to-see-here:hover > #maxwell-mode,
+#maxwell-mode:hover,
+.activated #maxwell-mode {
+  opacity: 1 !important;
+  transform: scale(1) !important;
+}
+html.MM #maxwell-mode {
+  opacity: 0.9;
+  transform: scale(0.7);
+}
+#nothing-to-see-here {
+  filter: drop-shadow(0 0 4px #000000aa);
+}
+.activated #maxwell-mode {
+  background: darkred;
+  color: white;
+  border-radius: 0 4vh 4vh 0;
+}
+#nothing-to-see-here {
+  display: flex;
+  flex-flow: row-reverse;
+}
+#timer-parent {
+  position: absolute;
+  top: 0;
+  right: 1.5vh;
+  margin: 2vh;
+  display: flex;
+  flex-flow: column;
+  z-index: 1000;
+}
+#timed-time {
+  display: none;
+  text-align: center;
+  font-size: 2.5vh;
+  height: 3.5vh;
+  aspect-ratio: 2 / 1;
+  border: none;
+  border-radius: 4vh 0 0 4vh;
+}
+.activated #timed-time {
+  display: block;
+}
+#timer-countdown {
+  display: block;
+  text-align: center;
+  margin-top: 0.5vh;
+  opacity: 0;
+  transition: opacity 0.25s ease-in-out;
+  width: 100%;
+  flex-grow: 1;
+  text-align: center;
+  font-size: 2vh;
+  font-family: "Monaco", monospace;
+}
+#timer-countdown::after {
+  content: "s";
+}
+.activated #timer-countdown {
+  opacity: 1;
+}
+#timer-countdown.running {
+  color: green;
+}
+#timer-countdown.stopped {
+  color: red;
+}
+#feedback-parent {
+  position: absolute;
+  top: 0%;
+  left: 0%;
+  padding: 2vh;
+  opacity: 0.3;
+  transition: opacity 0.25s ease-in-out;
+  z-index: 1000;
+}
+#feedback-parent:hover {
+  opacity: 1;
 }
