@@ -4,6 +4,7 @@ var timed = false,
     countdown,
     timerStart,
     time = 2000,
+    problemTime = {"max-perfect": 2, "allotted": 10, "max-score": 1000, "score": 0, "problems": 0},
     reflexive = {
         "Je": "me",
         "Tu": "te",
@@ -169,7 +170,6 @@ function showAnswer(input) {
         coverEle.className = "check correct"
         localStorage["VITE-correct"] = parseInt(localStorage["VITE-correct"]) + 1
         coverEle.style.display = ""
-        console.log("correct, set classname")
     } else {
         coverEle.className = "check incorrect"
         coverEle.style.display = ""
@@ -221,12 +221,23 @@ function submitAnswer() {
     if (answerElement.value === "" && skipBlank) {
         createProblem()
     } else {
+        let score = 1000
+        problemTime.end = (new Date).getTime()
+        problemTime.duration =( problemTime.end - problemTime.start)/1000
+        score = ((problemTime.allotted - Math.max((problemTime.duration-problemTime["max-perfect"]), 0))/problemTime.allotted)
+        score = parseInt(score*problemTime["max-score"])
+        score = Math.max(score, 0)
+        problemTime.score += score
+        problemTime.problems += 1
+        console.log("score", score)
+        console.log("total-score", problemTime.score)
         showAnswer(answerElement.value)
     }
 }
 //function to form a new problem randomly
 function createProblem(verbsIn) {
     clearTimedFunction()
+    problemTime.start = (new Date).getTime()
     let questionSubjectElement = document.getElementById("question-subject-span"),
         questionVerbElement = document.getElementById("question-verb-span")
     if (arguments.length < 1) {
