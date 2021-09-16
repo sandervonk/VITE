@@ -700,7 +700,10 @@ button#tense-pc.select-button {
   box-shadow: none;
   border: none;
   border-radius: 4vh;
+  height: 100%;
+  font-size: 1.75vh;
   padding: 1vh;
+  padding-right: 1.25vh;
   text-align: center;
   transform: scale(0.1);
   transition: opacity ease-in-out 0.25s, box-shadow ease-in-out 0.5s,
