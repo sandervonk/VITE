@@ -94,5 +94,17 @@
     "Nous": "allons",
     "Vous": "allez",
     "Ils / Elles": "vont"
+  },
+  "Faire": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "fait"
+    },
+    "Je": "fais",
+    "Tu": "fais",
+    "Il / Elle / On": "fait",
+    "Nous": "faisons",
+    "Vous": "faites",
+    "Ils / Elles": "font"
   }
 }
