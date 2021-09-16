@@ -25,7 +25,9 @@ function twoPlaces(value) {
     num = num.toFixed(2)
     return num
 }
+function checkTouch() {
 
+}
 //timed stuff
 function startTimed() {
     if (document.getElementById("timed-time") != null) {
@@ -167,6 +169,7 @@ function resetTrackers() {
     document.getElementById("stats-incorrect-label").title = "0 Incorrect"
     problemTime.problems = 0
     problemTime.score = 0
+    document.getElementById("score-amount").textContent = 0
 }
 function isVowel(ch) {
     return (ch === 'a' || ch === 'e' || ch === 'i' || ch === 'o' || ch === 'u')
@@ -188,12 +191,15 @@ function showAnswer(input) {
         score = parseInt(score*problemTime["max-score"])
         score = Math.max(score, 0)
         problemTime.score += score
+        document.getElementById("score-amount").textContent = problemTime.score
         problemTime.problems += 1
         console.log("score", score)
         console.log("total-score", problemTime.score)
         document.getElementById("question-answer-input").value = ""
     } else {
         problemTime.score -= (problemTime["incorrect-deduction"])
+        problemTime.score = Math.max(problemTime.score, 0)
+        document.getElementById("score-amount").textContent = problemTime.score
         problemTime.problems += 1
         console.log("score -",problemTime["incorrect-deduction"])
         console.log("total-score", problemTime.score)
@@ -318,6 +324,7 @@ function returnProblem(verbs) {
 var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
+    checkTouch()
     document.getElementById("stats-reset").addEventListener("click", resetTrackers)
     document.getElementById("timed-time").addEventListener("input", function () {
         document.getElementById("timer-countdown").textContent = twoPlaces(document.getElementById("timed-time").value)

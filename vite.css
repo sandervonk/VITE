@@ -8,6 +8,7 @@ html {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  margin: 0px !important;
 }
 body {
   background-color: var(--vite-bg);
@@ -447,6 +448,9 @@ body.QZ #question-cover.check.incorrect {
     display: none !important;
   }
   */
+  #score-container {
+    display: flex !important;
+  }
   #question-cover {
     height: 100% !important;
     line-height: 50vh;
@@ -470,7 +474,7 @@ body.QZ #question-cover.check.incorrect {
   }
   .select-panel button,
   .label {
-    font-size: 0.6em;
+    font-size: 1.3vh;
   }
   #VITE-title {
     top: 3%;
@@ -659,10 +663,13 @@ body.QZ #question-verb-span {
     font-size: 6vh !important;
   }
 }
-@media (max-width: 768px) {
+@media (max-width: 768px) and (max-width: 75vh), (hover: none) {
   .select-panel button,
   .label {
     font-size: 1em !important;
+  }
+  #desktop-cover {
+    display: block !important;
   }
 }
 #tense-modes {
@@ -787,8 +794,72 @@ html.MM #maxwell-mode {
   padding: 2vh;
   opacity: 0.3;
   transition: opacity 0.25s ease-in-out;
-  z-index: 1000;
+  z-index: 10000;
 }
 #feedback-parent:hover {
   opacity: 1;
+}
+#score-container {
+  display: none;
+  height: 3.5vh;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-around;
+  text-shadow: center;
+  background-color: lightgrey;
+  border-radius: 4vh;
+}
+#score-label {
+  border-right: solid grey 2px;
+  padding-right: 1vh;
+  padding-left: 0.75vh;
+  cursor: pointer;
+}
+#score-amount {
+  width: 60%;
+  text-align: center;
+  color: green;
+  padding-right: 0.75vh;
+}
+#desktop-cover {
+  width: 100%;
+  height: 100%;
+  z-index: 9999;
+  position: absolute;
+  backdrop-filter: blur(3vh);
+  display: none;
+}
+#desktop-info {
+  justify-content: center;
+  flex-wrap: wrap;
+  display: flex;
+  max-width: 100%;
+  position: relative;
+  top: 50%;
+  font-size: 5vh;
+  text-align: center;
+  width: 80%;
+  padding: 0 10%;
+  transform: translateY(-50%);
+}
+@media (orientation: portrait) {
+  #desktop-info {
+    font-size: 3vh;
+  }
+  #desktop-info-text:after {
+    content: " and in landscape mode";
+  }
+}
+#desktop-info-text {
+  flex-basis: 700px;
+  flex-shrink: 0;
+  max-width: 100%;
+}
+#desktop-img {
+  flex-basis: 40%;
+  min-width: 300px;
+}
+.toggle-button.custom {
+  display: none !important;
 }
