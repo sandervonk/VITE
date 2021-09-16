@@ -329,9 +329,6 @@ window.addEventListener("load", function () {
                 startTimed()
             }
         } else {
-            if (timed) {
-                clearTimedFunction()
-            }
             if (e.keyCode == '38') {
                 // up arrow
             }
@@ -347,6 +344,9 @@ window.addEventListener("load", function () {
                 //createProblem()
             }
             else if (e.keyCode == '13') {
+                if (timed) {
+                    clearTimedFunction()
+                }
                 //enter key
                 if (document.getElementById("question-cover").style.display != "none") {
                     //PROBLEMS HERE
