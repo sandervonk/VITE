@@ -163,6 +163,8 @@ function resetTrackers() {
     document.getElementById("stats-correct").style.width = `50%`
     document.getElementById("stats-correct-label").title = "0 Correct"
     document.getElementById("stats-incorrect-label").title = "0 Incorrect"
+    problemTime.problems = 0
+    problemTime.score = 0
 }
 function isVowel(ch) {
     return (ch === 'a' || ch === 'e' || ch === 'i' || ch === 'o' || ch === 'u')
@@ -191,6 +193,8 @@ function showAnswer(input) {
     } else {
         problemTime.score -= (problemTime["incorrect-deduction"])
         problemTime.problems += 1
+        console.log("score", "-" + problemTime["incorrect-deduction"])
+        console.log("total-score", problemTime.score)
         coverEle.className = "check incorrect"
         coverEle.style.display = ""
         localStorage["VITE-incorrect"] = parseInt(localStorage["VITE-incorrect"]) + 1
