@@ -195,7 +195,7 @@ function showAnswer(input) {
     } else {
         problemTime.score -= (problemTime["incorrect-deduction"])
         problemTime.problems += 1
-        console.log("score", "-" + problemTime["incorrect-deduction"])
+        console.log("score -",problemTime["incorrect-deduction"])
         console.log("total-score", problemTime.score)
         coverEle.className = "check incorrect"
         coverEle.style.display = ""
