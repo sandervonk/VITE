@@ -63,8 +63,10 @@ function timedFunction() {
     }
 }
 function clearTimedFunction() {
-    document.getElementById("timer-countdown").textContent = (0).toFixed(2)
-    document.getElementById("timer-countdown").className = "stopped"
+    try{
+        document.getElementById("timer-countdown").textContent = (0).toFixed(2)
+        document.getElementById("timer-countdown").className = "stopped"
+    }catch{console.log("failed setting info for countdown")}
     try { window.clearInterval(countdown) } catch (err) { console.error("got err:", err, "when clearing interval for countdown") }
     try { window.clearTimeout(timedID) } catch (err) { console.error("got err:", err, "when clearing timeout") }
 
