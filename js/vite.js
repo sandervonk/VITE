@@ -194,6 +194,7 @@ function showAnswer(input) {
         document.getElementById("question-answer-input").value = ""
     } else {
         problemTime.score -= (problemTime["incorrect-deduction"])
+        problemTime.score = Math.max(problemTime.score, 0)
         problemTime.problems += 1
         console.log("score -",problemTime["incorrect-deduction"])
         console.log("total-score", problemTime.score)
