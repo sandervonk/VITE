@@ -25,6 +25,15 @@ try {
         //setup tense
         if (JSON.parse(localStorage["vite-pc"])) { document.getElementById("tense-pc").className += " active" }
         if (JSON.parse(localStorage["vite-pr"])) { document.getElementById("tense-pr").className += " active" }
+        document.getElementById("score-label").addEventListener("click", function () {
+            window.alert([
+                "change the following in the console to adjust the grade timing:",
+                `problemTime["max-perfect"]\nto change the max time in seconds for a perfect score`,
+                `problemTime.allotted\nto change the max time in seconds for a score > 0`,
+                `problemTime["max-score"]\nto change the max score that can be received for a problem`,
+                `problemTime["incorrect-deduction"]\nto change amount of points deducted for an incorrect answer`
+            ].join(`\n\n`))
+        })
         document.getElementById("tense-pc").addEventListener("click", function () {
             if (!JSON.parse(localStorage["vite-pc"])) {
                 localStorage["vite-pc"] = true

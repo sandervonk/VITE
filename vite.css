@@ -813,6 +813,14 @@ html.MM #maxwell-mode {
 #score-label {
   border-right: solid grey 2px;
   padding-right: 1vh;
+  padding-left: 0.75vh;
+  cursor: pointer;
+}
+#score-amount {
+  width: 60%;
+  text-align: center;
+  color: green;
+  padding-right: 0.75vh;
 }
 #desktop-cover {
   width: 100%;
