@@ -829,15 +829,18 @@ html.MM #maxwell-mode {
   max-width: 100%;
   position: relative;
   top: 50%;
-  font-size: 3vh;
+  font-size: 5vh;
   text-align: center;
   width: 80%;
   padding: 0 10%;
   transform: translateY(-50%);
 }
-@media (orientation: landscape) {
+@media (orientation: portrait) {
   #desktop-info {
-    font-size: 5vh;
+    font-size: 3vh;
+  }
+  #desktop-info-text:after {
+    content: " and in landscape mode";
   }
 }
 #desktop-info-text {
