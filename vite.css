@@ -844,3 +844,6 @@ html.MM #maxwell-mode {
   flex-basis: 40%;
   min-width: 300px;
 }
+.toggle-button.custom {
+  display: none !important;
+}
