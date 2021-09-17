@@ -474,7 +474,7 @@ body.QZ #question-cover.check.incorrect {
   }
   .select-panel button,
   .label {
-    font-size: 0.6em;
+    font-size: 1.3vh;
   }
   #VITE-title {
     top: 3%;
