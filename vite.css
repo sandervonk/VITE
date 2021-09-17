@@ -835,6 +835,11 @@ html.MM #maxwell-mode {
   padding: 0 10%;
   transform: translateY(-50%);
 }
+@media (orientation: landscape) {
+  #desktop-info {
+    font-size: 5vh;
+  }
+}
 #desktop-info-text {
   flex-basis: 700px;
   flex-shrink: 0;
