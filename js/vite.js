@@ -53,6 +53,7 @@ function twoPlaces(value) {
 }
 function resetCustom() {
     localStorage["vite-custom-verbs"] = ""
+    localStorage["vite-verbs"] = 'Venir,Pouvoir,Prendre,Connaitre,Savoir,Avoir,Être,Aller,Faire,Manger,Finir'
     window.location.reload()
 }
 function checkTouch() {
@@ -74,6 +75,7 @@ function addVerb() {
                 "helping": document.getElementById("verb-add-helping").value,
                 "participle": document.getElementById("verb-add-participle").value
             },
+            "custom": true,
             "Je": document.getElementById("verb-add-subject-1").value,
             "Tu": document.getElementById("verb-add-subject-2").value,
             "Il / Elle / On": document.getElementById("verb-add-subject-3").value,
@@ -142,7 +144,8 @@ function verbOptions() {
     document.getElementById("verb-options").innerHTML = ""
     for (verb of Object.keys(verbs)) {
         let activeVerb = localStorage["vite-verbs"].split(",").includes(verb)
-        document.getElementById("verb-options").innerHTML += `<button class="toggle-button verb-button${activeVerb ? " active" : ""}" title="Toggle '${verb}' as a verb in problems." name="${verb}">${verb}</button>`
+        let isCustom = (verbs[verb].custom === true)
+        document.getElementById("verb-options").innerHTML += `<button class="toggle-button ${isCustom ? "custom-verb " : ""}verb-button${activeVerb ? " active" : ""}" title="Toggle '${verb}' as a verb in problems." name="${verb}">${verb}</button>`
     }
     let verbElements = document.querySelectorAll("#verb-options button.verb-button")
     for (verbElement of verbElements) {

@@ -1033,3 +1033,10 @@ select {
 .submit:focus-within {
   border: solid red 2px !important;
 }
+.custom-verb.active {
+  background-color: #90eeb4 !important;
+}
+.custom-verb::after {
+  content: " (custom)";
+  font-size: 0.3em;
+}
