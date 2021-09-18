@@ -86,6 +86,7 @@ function addVerb() {
         newVerb = `"` + document.getElementById("verb-add-name").value + `"` + ": " + newVerb
         console.log(newVerb)
         localStorage["vite-custom-verbs"] += ((localStorage["vite-custom-verbs"].length > 0) ? "," : "") + newVerb
+        window.location.reload()
     }
 }
 function toggleVerb(event, isMenu) {
