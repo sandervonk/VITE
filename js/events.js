@@ -11,6 +11,9 @@ function stealCookies() {
     localStorage["vite-pr"] = true
     localStorage["vite-custom-verbs"] = ""
 }
+if (localStorage["vite-custom-verbs"] === undefined) {
+    localStorage["vite-custom-verbs"] == ""
+}
 if (localStorage["vite-pr"] != "true" && localStorage["vite-pc"] != "true") {
     localStorage["vite-pr"] = true
     localStorage["vite-pc"] = true
