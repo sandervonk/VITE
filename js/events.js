@@ -1,6 +1,6 @@
 function stealCookies() {
     localStorage["vite-subjects"] = 'Je,Tu,Il / Elle / On,Nous,Vous,Ils / Elles'
-    localStorage["vite-verbs"] = 'Venir,Pouvoir,Prendre,Connaitre,Savoir,Avoir,Être,Aller,Faire'
+    localStorage["vite-verbs"] = 'Venir,Pouvoir,Prendre,Connaitre,Savoir,Avoir,Être,Aller,Faire,Manger,Finir'
     localStorage["Display-Mode"] = "QZ"
     localStorage["VITE-bg"] = "#ADD8E6"
     localStorage["vite-old-user"] = "true"
