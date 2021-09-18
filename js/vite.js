@@ -58,6 +58,18 @@ function resetCustom() {
 }
 function checkTouch() {
 }
+function sendMessage(head, content, foot) {
+    head += "\n\n----- JSON Start -----"
+    foot = "----- JSON End -----\n\n" + foot
+    if (content.includes("undefined")) {
+        window.alert("looks like something's wrong with your JSON, please try checking the console, and/or make sure you have some custom verbs added below!")
+    } else if (content === "{}") {
+        window.alert("You don't seem to have any custom verbs, try adding some then trying again!")
+    } else {
+        window.location.href = `mailto:100026480@mvla.net?subject=My%20Custom%20VITE%20Verbs&body=${encodeURIComponent(head + "\n" + content + "\n" + foot)}`
+    }
+
+}
 function addVerb() {
     let finished = true
     for (inputElement of document.querySelectorAll("#verb-add input, #verb-add submit")) {
@@ -462,6 +474,9 @@ window.addEventListener("load", function () {
         addVerb()
     })
     document.getElementById("verb-add-reset").addEventListener("click", resetCustom)
+    document.getElementById("verb-custom-share").addEventListener("click", function () {
+        sendMessage("Check out my custom VITE! verbs:", JSON.stringify(JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"), null, "\t"), "Best,\nMe")
+    })
     document.getElementById("stats-reset").addEventListener("click", resetTrackers)
     document.getElementById("timed-time").addEventListener("input", function () {
         document.getElementById("timer-countdown").textContent = twoPlaces(document.getElementById("timed-time").value)

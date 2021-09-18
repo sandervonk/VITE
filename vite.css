@@ -27,8 +27,6 @@ body {
   line-height: 8vh;
   height: 8vh;
 }
-#title-main {
-}
 #title-attr {
   font-size: 4vh;
   color: #787878;
@@ -962,7 +960,8 @@ html.MM #maxwell-mode {
 }
 
 #verb-add-submit,
-#verb-add-reset {
+#verb-add-reset,
+#verb-custom-share {
   height: 100%;
   flex-basis: 15%;
   white-space: nowrap;
@@ -977,10 +976,14 @@ html.MM #maxwell-mode {
   font-size: 1.2em;
   cursor: pointer;
 }
-#verb-add-reset {
+#verb-add-reset,
+#verb-custom-share {
   border-radius: 4vh;
   margin-left: 0.4em;
   background-color: #f34242;
+}
+#verb-custom-share {
+  background-color: #ac42f3;
 }
 #verb-add-name {
   flex-grow: 1;
