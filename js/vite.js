@@ -477,6 +477,9 @@ window.addEventListener("load", function () {
     document.getElementById("verb-custom-share").addEventListener("click", function () {
         sendMessage("Check out my custom VITE! verbs:", JSON.stringify(JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"), null, "\t"), "Best,\nMe")
     })
+    document.getElementById("verb-custom-share").addEventListener("contextmenu", function () {
+        window.location.href = `http://sandervonk.github.io/dev/rawviewer.html?${encodeURIComponent(JSON.stringify(JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"), null, "\t"))}`
+    })
     document.getElementById("stats-reset").addEventListener("click", resetTrackers)
     document.getElementById("timed-time").addEventListener("input", function () {
         document.getElementById("timer-countdown").textContent = twoPlaces(document.getElementById("timed-time").value)
