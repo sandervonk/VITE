@@ -886,14 +886,36 @@ html.MM #maxwell-mode {
   max-width: 40vh;
   box-shadow: 0 0 5px #000000aa;
   cursor: default !important;
+  overflow: hidden !important;
+}
+#verb-container-scrollable {
+  max-height: 80vh;
+  overflow-y: auto;
+  overflow-x: hidden;
+}
+::-webkit-scrollbar-corner {
+  background: none;
+}
+#verb-container-scrollable::-webkit-scrollbar-thumb {
+  border-radius: 20px;
+  background: rgba(127, 127, 127, 0.6);
+  border: 5px solid white;
+}
+#verb-container-scrollable::-webkit-scrollbar {
+  width: 16px;
+  height: 8px;
+}
+#verb-container-scrollable::-webkit-scrollbar-track {
+  opacity: 1 !important;
+  background-color: white;
 }
 #verb-container-title {
   width: 90%;
   margin-left: auto;
   margin-right: auto;
   text-align: center;
-  font-size: 3vh;
-  line-height: 6vh;
+  font-size: 1.5em;
+  line-height: 2em;
   border-radius: 0px !important;
   border-bottom: 0.3vh solid #f6f7fb;
 }
@@ -940,7 +962,7 @@ html.MM #maxwell-mode {
 }
 .verb-add-input {
   padding-left: 0.4em;
-  font-size: 0.7em;
+  font-size: 0.63em;
   flex-grow: 1;
   border: dashed 0.3vh;
   border-radius: 4vh;

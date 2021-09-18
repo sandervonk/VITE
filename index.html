@@ -20,111 +20,113 @@
     <div id="verb-cover">
       <div id="verb-container">
         <div id="verb-container-title">Verb Options</div>
-        <div id="verb-add">
-          <div id="verb-add-past-container">
-            <div id="verb-add-past-participle">
-              <div id="verb-participle-label">Participle</div>
+        <div id="verb-container-scrollable">
+          <div id="verb-add">
+            <div id="verb-add-past-container">
+              <div id="verb-add-past-participle">
+                <div id="verb-participle-label">Participle</div>
+                <input
+                  type="text"
+                  spellcheck="false"
+                  id="verb-add-participle"
+                  placeholder="été"
+                />
+              </div>
+              <div id="verb-add-past-helping">
+                <div id="verb-helping-label">Helping</div>
+                <select id="verb-add-helping" value="Avoir">
+                  <option value="Avoir">Avoir</option>
+                  <option value="Être">Être</option>
+                </select>
+              </div>
+            </div>
+            <div class="verb-add-pair">
+              <div class="verb-add-label">Je</div>
               <input
-                type="text"
+                id="verb-add-subject-1"
                 spellcheck="false"
-                id="verb-add-participle"
-                placeholder="été"
+                type="text"
+                class="verb-add-input"
+                placeholder="suis"
+                title="Present tense conjugation for subject Je"
               />
             </div>
-            <div id="verb-add-past-helping">
-              <div id="verb-helping-label">Helping</div>
-              <select id="verb-add-helping" value="Avoir">
-                <option value="Avoir">Avoir</option>
-                <option value="Être">Être</option>
-              </select>
+            <div class="verb-add-pair">
+              <div class="verb-add-label">Tu</div>
+              <input
+                id="verb-add-subject-2"
+                spellcheck="false"
+                type="text"
+                class="verb-add-input"
+                placeholder="es"
+                title="Present tense conjugation for subject Tu"
+              />
+            </div>
+            <div class="verb-add-pair">
+              <div class="verb-add-label">Il / Elle / On</div>
+              <input
+                id="verb-add-subject-3"
+                spellcheck="false"
+                type="text"
+                class="verb-add-input"
+                placeholder="est"
+                title="Present tense conjugation for subjects Il / Elle / On"
+              />
+            </div>
+            <div class="verb-add-pair">
+              <div class="verb-add-label">Nous</div>
+              <input
+                id="verb-add-subject-4"
+                spellcheck="false"
+                type="text"
+                class="verb-add-input"
+                placeholder="sommes"
+                title="Present tense conjugation for subject Nous"
+              />
+            </div>
+            <div class="verb-add-pair">
+              <div class="verb-add-label">Vous</div>
+              <input
+                id="verb-add-subject-5"
+                spellcheck="false"
+                type="text"
+                class="verb-add-input"
+                placeholder="êtes"
+                title="Present tense conjugation for subject Vous"
+              />
+            </div>
+            <div class="verb-add-pair last">
+              <div class="verb-add-label">Ils / Elles</div>
+              <input
+                id="verb-add-subject-6"
+                spellcheck="false"
+                type="text"
+                class="verb-add-input"
+                placeholder="sont"
+                title="Present tense conjugation for subjects Ils / Elles"
+              />
+            </div>
+            <div id="verb-add-submit-container">
+              <button title="Add Custom Verb From Above" id="verb-add-submit">
+                Add Verb
+              </button>
+              <input
+                id="verb-add-name"
+                spellcheck="false"
+                type="text"
+                placeholder="Être"
+                title="Name of the verb"
+              />
+              <button title="Remove All Custom Verbs" id="verb-add-reset">
+                Reset
+              </button>
+              <button title="Share your custom verbs" id="verb-custom-share">
+                Share
+              </button>
             </div>
           </div>
-          <div class="verb-add-pair">
-            <div class="verb-add-label">Je</div>
-            <input
-              id="verb-add-subject-1"
-              spellcheck="false"
-              type="text"
-              class="verb-add-input"
-              placeholder="suis"
-              title="Present tense conjugation for subject Je"
-            />
-          </div>
-          <div class="verb-add-pair">
-            <div class="verb-add-label">Tu</div>
-            <input
-              id="verb-add-subject-2"
-              spellcheck="false"
-              type="text"
-              class="verb-add-input"
-              placeholder="es"
-              title="Present tense conjugation for subject Tu"
-            />
-          </div>
-          <div class="verb-add-pair">
-            <div class="verb-add-label">Il / Elle / On</div>
-            <input
-              id="verb-add-subject-3"
-              spellcheck="false"
-              type="text"
-              class="verb-add-input"
-              placeholder="est"
-              title="Present tense conjugation for subjects Il / Elle / On"
-            />
-          </div>
-          <div class="verb-add-pair">
-            <div class="verb-add-label">Nous</div>
-            <input
-              id="verb-add-subject-4"
-              spellcheck="false"
-              type="text"
-              class="verb-add-input"
-              placeholder="sommes"
-              title="Present tense conjugation for subject Nous"
-            />
-          </div>
-          <div class="verb-add-pair">
-            <div class="verb-add-label">Vous</div>
-            <input
-              id="verb-add-subject-5"
-              spellcheck="false"
-              type="text"
-              class="verb-add-input"
-              placeholder="êtes"
-              title="Present tense conjugation for subject Vous"
-            />
-          </div>
-          <div class="verb-add-pair last">
-            <div class="verb-add-label">Ils / Elles</div>
-            <input
-              id="verb-add-subject-6"
-              spellcheck="false"
-              type="text"
-              class="verb-add-input"
-              placeholder="sont"
-              title="Present tense conjugation for subjects Ils / Elles"
-            />
-          </div>
-          <div id="verb-add-submit-container">
-            <button title="Add Custom Verb From Above" id="verb-add-submit">
-              Add Verb
-            </button>
-            <input
-              id="verb-add-name"
-              spellcheck="false"
-              type="text"
-              placeholder="Être"
-              title="Name of the verb"
-            />
-            <button title="Remove All Custom Verbs" id="verb-add-reset">
-              Reset
-            </button>
-            <button title="Share your custom verbs" id="verb-custom-share">
-              Share
-            </button>
-          </div>
+          <div id="verb-options"></div>
         </div>
-        <div id="verb-options"></div>
       </div>
     </div>
     <div id="desktop-cover">

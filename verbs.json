@@ -191,11 +191,6 @@
       "helping": "Avoir",
       "participle": "regular"
     },
-    "Je": "regular",
-    "Tu": "regular",
-    "Il / Elle / On": "regular",
-    "Nous": "regular",
-    "Vous": "regular",
-    "Ils / Elles": "regular"
+    "All": "regular"
   }
 }
