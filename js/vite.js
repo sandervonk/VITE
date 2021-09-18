@@ -66,7 +66,12 @@ function sendMessage(head, content, foot) {
     } else if (content === "{}") {
         window.alert("You don't seem to have any custom verbs, try adding some then trying again!")
     } else {
-        window.location.href = `mailto:100026480@mvla.net?subject=My%20Custom%20VITE%20Verbs&body=${encodeURIComponent(head + "\n" + content + "\n" + foot)}`
+        let link = `mailto:100026480@mvla.net?subject=My%20Custom%20VITE%20Verbs&body=${encodeURIComponent(head + "\n" + content + "\n" + foot)}`
+        if (link.length >= 2000) {
+            window.alert("sorry, the MAILTO: function only supports messages of up to 2000 characters, so this link will probably not work. Try right-clicking the Share button and copying the JSON on the next page instead!")
+            window.open(`http://sandervonk.github.io/dev/rawviewer.html?${encodeURIComponent(JSON.stringify(JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"), null, "\t"))}`, "_blank")
+        }
+        window.location.href = link
     }
 
 }
@@ -285,11 +290,11 @@ function passeComposeTense(verb, name, subject) {
     if (verb.PC.participle === "regular") {
         conjugation.base = name.substr(0, name.length - 2)
         conjugation.ending = name.substr(name.length - 2, name.length)
-        if (conjugation.ending = "er") {
+        if (conjugation.ending === "er") {
             conjugation.pcEnd = "é"
-        } else if (conjugation.ending = "re") {
+        } else if (conjugation.ending === "re") {
             conjugation.pcEnd = "u"
-        } else if (conjugation.ending = "ir") {
+        } else if (conjugation.ending === "ir") {
             conjugation.pcEnd = "i"
         } else {
             window.alert("errored while conjugating a verb marked as regular, but with no acceptable ending")
@@ -478,7 +483,7 @@ window.addEventListener("load", function () {
         sendMessage("Check out my custom VITE! verbs:", JSON.stringify(JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"), null, "\t"), "Best,\nMe")
     })
     document.getElementById("verb-custom-share").addEventListener("contextmenu", function () {
-        window.location.href = `http://sandervonk.github.io/dev/rawviewer.html?${encodeURIComponent(JSON.stringify(JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"), null, "\t"))}`
+        window.open(`http://sandervonk.github.io/dev/rawviewer.html?${encodeURIComponent(JSON.stringify(JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"), null, "\t"))}`, "_blank")
     })
     document.getElementById("stats-reset").addEventListener("click", resetTrackers)
     document.getElementById("timed-time").addEventListener("input", function () {

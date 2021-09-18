@@ -13,6 +13,7 @@ function stealCookies() {
 }
 if (localStorage["vite-custom-verbs"] === undefined) {
     localStorage["vite-custom-verbs"] = ""
+    window.location.reload()
 }
 if (localStorage["vite-pr"] != "true" && localStorage["vite-pc"] != "true") {
     localStorage["vite-pr"] = true

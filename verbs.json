@@ -125,5 +125,77 @@
       "participle": "regular"
     },
     "All": "regular"
+  },
+  "Vouloir": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "voulu"
+    },
+    "Je": "veux",
+    "Tu": "veux",
+    "Il / Elle / On": "veut",
+    "Nous": "voulons",
+    "Vous": "voulez",
+    "Ils / Elles": "veulent"
+  },
+  "Dormir": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "dormi"
+    },
+    "Je": "dors",
+    "Tu": "dors",
+    "Il / Elle / On": "dort",
+    "Nous": "dormons",
+    "Vous": "dormez",
+    "Ils / Elles": "dorment"
+  },
+  "Devoir": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "dû"
+    },
+    "Je": "dois",
+    "Tu": "dois",
+    "Il / Elle / On": "doit",
+    "Nous": "devons",
+    "Vous": "devez",
+    "Ils / Elles": "doivent"
+  },
+  "Suivre": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "suivi"
+    },
+    "Je": "suis",
+    "Tu": "suis",
+    "Il / Elle / On": "suit",
+    "Nous": "suivons",
+    "Vous": "suivez",
+    "Ils / Elles": "suivent"
+  },
+  "Voir": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "vu"
+    },
+    "Je": "vois",
+    "Tu": "vois",
+    "Il / Elle / On": "voit",
+    "Nous": "voyons",
+    "Vous": "voyez",
+    "Ils / Elles": "voient"
+  },
+  "Rendre": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "regular"
+    },
+    "Je": "regular",
+    "Tu": "regular",
+    "Il / Elle / On": "regular",
+    "Nous": "regular",
+    "Vous": "regular",
+    "Ils / Elles": "regular"
   }
 }
