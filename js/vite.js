@@ -5,11 +5,11 @@ var timed = false,
     timerStart,
     time = 2000,
     problemTime = {
-        "max-perfect": 2, 
-        "allotted": 10, 
-        "max-score": 1000, 
-        "score": 0, 
-        "problems": 0, 
+        "max-perfect": 2,
+        "allotted": 10,
+        "max-score": 1000,
+        "score": 0,
+        "problems": 0,
         "incorrect-deduction": 100
     },
     reflexive = {
@@ -19,14 +19,137 @@ var timed = false,
         "Nous": "nous",
         "Vous": "vous",
         "Ils / Elles": "se"
+    },
+    regularEnd = {
+        "ir": {
+            "Je": "is",
+            "Tu": "is",
+            "Il / Elle / On": "it",
+            "Nous": "issons",
+            "Vous": "issez",
+            "Ils / Elles": "issent"
+        },
+        "re": {
+            "Je": "s",
+            "Tu": "s",
+            "Il / Elle / On": "",
+            "Nous": "ons",
+            "Vous": "ez",
+            "Ils / Elles": "ent"
+        },
+        "er": {
+            "Je": "e",
+            "Tu": "es",
+            "Il / Elle / On": "e",
+            "Nous": "ons",
+            "Vous": "ez",
+            "Ils / Elles": "ent"
+        }
     }
 function twoPlaces(value) {
     let num = parseInt(value * 100) / 100
     num = num.toFixed(2)
     return num
 }
+function resetCustom() {
+    localStorage["vite-custom-verbs"] = ""
+    window.location.reload()
+}
 function checkTouch() {
-
+}
+function addVerb() {
+    let finished = true
+    for (inputElement of document.querySelectorAll("#verb-add input, #verb-add submit")) {
+        inputElement.className = inputElement.className.replace(" attention", "")
+        if (inputElement.value === "") {
+            finished = false
+            inputElement.className += " attention"
+        }
+    }
+    if (!finished) {
+        window.alert("Looks like some fields still need to be filled out. Try doing so and submitting it again!")
+    } else {
+        let newVerb = {
+            "PC": {
+                "helping": document.getElementById("verb-add-helping").value,
+                "participle": document.getElementById("verb-add-participle").value
+            },
+            "Je": document.getElementById("verb-add-subject-1").value,
+            "Tu": document.getElementById("verb-add-subject-2").value,
+            "Il / Elle / On": document.getElementById("verb-add-subject-3").value,
+            "Nous": document.getElementById("verb-add-subject-4").value,
+            "Vous": document.getElementById("verb-add-subject-5").value,
+            "Ils / Elles": document.getElementById("verb-add-subject-6").value,
+        }
+        console.log(newVerb)
+        newVerb = JSON.stringify(newVerb)
+        newVerb = `"` + document.getElementById("verb-add-name").value + `"` + ": " + newVerb
+        console.log(newVerb)
+        localStorage["vite-custom-verbs"] += ((localStorage["vite-custom-verbs"].length > 0) ? "," : "") + newVerb
+        window.location.reload()
+    }
+}
+function toggleVerb(event, isMenu) {
+    if (arguments.length != 2) {
+        console.log("1 argument")
+        isMenu = false
+    } else {
+        isMenu = true
+    }
+    let element = event.target
+    let verbStorage = localStorage["vite-verbs"]
+    if (verbStorage[0] === ",") {
+        verbStorage = verbStorage.substr(1, verbStorage.length - 1)
+    }
+    if (verbStorage[verbStorage.length - 1] === ",") {
+        verbStorage = verbStorage.substr(0, verbStorage.length - 1)
+    }
+    verbStorage = verbStorage.split(",")
+    if (isMenu === true) {
+        try {
+            document.querySelector(`.menu-verb[name='${element.name}']`).className = document.querySelector(`.menu-verb[name='${element.name}']`).className.replace(" active", "")
+        } catch { }
+    }
+    if (element.className.includes(" active")) {
+        element.className = element.className.replace(" active", "")
+        delete verbStorage[verbStorage.indexOf(element.textContent)]
+    } else {
+        element.className += " active"
+        try {
+            document.querySelector(`.menu-verb[name='${element.name}']`).className += " active"
+        } catch { }
+        if (!verbStorage.includes(element.textContent)) {
+            verbStorage.push(element.textContent)
+        }
+    }
+    verbStorage = (verbStorage.join(",")).replace(",,", ",")
+    if (verbStorage[0] === ",") {
+        verbStorage = verbStorage.substr(1, verbStorage.length - 1)
+    }
+    if (verbStorage[verbStorage.length - 1] === ",") {
+        verbStorage = verbStorage.substr(0, verbStorage.length - 1)
+    }
+    localStorage["vite-verbs"] = verbStorage
+    createProblem(verbs)
+}
+function verbOptions() {
+    document.getElementById("verb-cover").style.display = "block"
+    document.getElementById("verb-cover").addEventListener("click", event => {
+        if (event.target.id === "verb-cover") {
+            document.getElementById("verb-cover").style.display = ""
+        }
+    })
+    document.getElementById("verb-options").innerHTML = ""
+    for (verb of Object.keys(verbs)) {
+        let activeVerb = localStorage["vite-verbs"].split(",").includes(verb)
+        document.getElementById("verb-options").innerHTML += `<button class="toggle-button verb-button${activeVerb ? " active" : ""}" title="Toggle '${verb}' as a verb in problems." name="${verb}">${verb}</button>`
+    }
+    let verbElements = document.querySelectorAll("#verb-options button.verb-button")
+    for (verbElement of verbElements) {
+        verbElement.addEventListener("click", event => {
+            toggleVerb(event, true)
+        })
+    }
 }
 //timed stuff
 function startTimed() {
@@ -65,10 +188,10 @@ function timedFunction() {
     }
 }
 function clearTimedFunction() {
-    try{
+    try {
         document.getElementById("timer-countdown").textContent = (0).toFixed(2)
         document.getElementById("timer-countdown").className = "stopped"
-    }catch{console.log("failed setting info for countdown")}
+    } catch { console.log("failed setting info for countdown") }
     try { window.clearInterval(countdown) } catch (err) { console.error("got err:", err, "when clearing interval for countdown") }
     try { window.clearTimeout(timedID) } catch (err) { console.error("got err:", err, "when clearing timeout") }
 
@@ -121,6 +244,15 @@ function pickTense() {
 function presentTense(verb, subject) {
     let answer = ""
     answer = verbs[verb][subject]
+    if (answer === "regular" || verbs[verb]["All"] === "regular") {
+        let base = verb.substr(0, verb.length - 2)
+        let ending = verb.substr(verb.length - 2, verb.length - 1)
+        if (Object.keys(regularEnd).includes(ending)) {
+            answer = base + regularEnd[ending][subject]
+        } else {
+            window.alert("ERR: Cannot find regular ending for verb with non-ir/er/re ending marked as regular")
+        }
+    }
     return answer.toLowerCase()
 }
 //Reflexive handler
@@ -136,8 +268,8 @@ function passeComposeTense(verb, name, subject) {
     conjugation.subject = subject
     conjugation.helping = verbs[verb.PC.helping][subject]
     if (verb.PC.participle === "regular") {
-        conjugation.base = verb.name.substr(0, name.length - 2)
-        conjugation.ending = verb.name.substr(name.length - 2, name.length)
+        conjugation.base = name.substr(0, name.length - 2)
+        conjugation.ending = name.substr(name.length - 2, name.length)
         if (conjugation.ending = "er") {
             conjugation.pcEnd = "é"
         } else if (conjugation.ending = "re") {
@@ -186,9 +318,9 @@ function showAnswer(input) {
         coverEle.style.display = ""
         let score = 1000
         problemTime.end = (new Date).getTime()
-        problemTime.duration =( problemTime.end - problemTime.start)/1000
-        score = ((problemTime.allotted - Math.max((problemTime.duration-problemTime["max-perfect"]), 0))/problemTime.allotted)
-        score = parseInt(score*problemTime["max-score"])
+        problemTime.duration = (problemTime.end - problemTime.start) / 1000
+        score = ((problemTime.allotted - Math.max((problemTime.duration - problemTime["max-perfect"]), 0)) / problemTime.allotted)
+        score = parseInt(score * problemTime["max-score"])
         score = Math.max(score, 0)
         problemTime.score += score
         document.getElementById("score-amount").textContent = problemTime.score
@@ -201,12 +333,12 @@ function showAnswer(input) {
         problemTime.score = Math.max(problemTime.score, 0)
         document.getElementById("score-amount").textContent = problemTime.score
         problemTime.problems += 1
-        console.log("score -",problemTime["incorrect-deduction"])
+        console.log("score -", problemTime["incorrect-deduction"])
         console.log("total-score", problemTime.score)
         coverEle.className = "check incorrect"
         coverEle.style.display = ""
         localStorage["VITE-incorrect"] = parseInt(localStorage["VITE-incorrect"]) + 1
-        document.getElementById("question-cover").textContent = correctAnswer + " or " + altAnswer
+        document.getElementById("question-cover").textContent = correctAnswer + " or " + altAnswer.toLowerCase()
     }
     document.getElementById("stats-correct").style.width = `${100 * parseInt(localStorage["VITE-correct"]) / (parseInt(localStorage["VITE-correct"]) + parseInt(localStorage["VITE-incorrect"]))}%`
     document.getElementById("stats-correct").title = `${parseInt(localStorage["VITE-correct"])} Correct`
@@ -218,31 +350,29 @@ function showAnswer(input) {
 }
 //setup verb sidebar
 function setupVerbs(verbs) {
-    for (verb of Object.keys(verbs)) {
-        document.getElementById("table-verbs").innerHTML += `<button class="toggle-button" title="Toggle '${verb}' as a verb in problems." name="${verb}">${verb}</button>`
+    let verbNames = Object.keys(verbs)
+    if (verbNames.length > 6) {
+        for (verb of [verbNames[0], verbNames[1], verbNames[2], verbNames[3], verbNames[4]]) {
+            let activeVerb = localStorage["vite-verbs"].split(",").includes(verb)
+            document.getElementById("table-verbs").innerHTML += `<button class="toggle-button menu-verb verb-button${activeVerb ? " active" : ""}" title="Toggle '${verb}' as a verb in problems." name="${verb}">${verb}</button>`
+        }
+        document.getElementById("table-verbs").innerHTML += `<button id="more-verbs" class="toggle-button" title="Select More Verbs">+ ${verbNames.length - 5} More</button>`
+        document.getElementById("more-verbs").addEventListener("click", verbOptions)
+    } else {
+        for (verb of verbNames) {
+            let activeVerb = localStorage["vite-verbs"].split(",").includes(verb)
+            document.getElementById("table-verbs").innerHTML += `<button class="toggle-button menu-verb verb-button${activeVerb ? " active" : ""}" title="Toggle '${verb}' as a verb in problems." name="${verb}">${verb}</button>`
+        }
     }
-    for (verbToggle of document.querySelectorAll("#table-verbs button")) {
+
+    for (verbToggle of document.querySelectorAll("#table-verbs button.verb-button")) {
         verbToggle.addEventListener("click", event => {
-            let element = event.target
-            if (element.className.includes(" active")) {
-                element.className = element.className.replace(" active", "")
-            } else {
-                element.className += " active"
-            }
-            createProblem(verbs)
+            toggleVerb(event)
         })
     }
-    for (verbTag of Object.keys(verbs)) {
 
-    }
 
-    //setup subject hightlighting
-    try {
-        for (verbTag of localStorage["vite-verbs"].split(",")) {
-            let verb = document.querySelector(`button[name="${verbTag}"]`)
-            verb.className = verb.className += " active"
-        }
-    } catch { }
+
     document.getElementById("custom-button").addEventListener("click", function () {
         window.alert("Sorry, that feature isn't avalible yet :(")
     })
@@ -292,10 +422,10 @@ function returnProblem(verbs) {
         return "no-subjects"
     }
     let activeVerbs = []
-    for (activeVerb of document.querySelectorAll("#table-verbs button.active")) {
-        activeVerbs.push(activeVerb.innerText)
+    for (activeVerb of localStorage["vite-verbs"].split(",")) {
+        activeVerbs.push(activeVerb)
     }
-    localStorage["vite-verbs"] = activeVerbs
+    console.log(activeVerbs)
     if (activeVerbs.length <= 0) {
         window.alert("Make sure you have some verbs enabled!")
         return "no-verbs"
@@ -325,6 +455,10 @@ var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
     checkTouch()
+    document.getElementById("verb-add-submit").addEventListener("click", function () {
+        addVerb()
+    })
+    document.getElementById("verb-add-reset").addEventListener("click", resetCustom)
     document.getElementById("stats-reset").addEventListener("click", resetTrackers)
     document.getElementById("timed-time").addEventListener("input", function () {
         document.getElementById("timer-countdown").textContent = twoPlaces(document.getElementById("timed-time").value)
@@ -410,6 +544,9 @@ window.addEventListener("load", function () {
         dataType: "json",
         success: response => {
             verbs = response
+            if (localStorage["vite-custom-verbs"] != "") {
+                verbs = JSON.parse(JSON.stringify(verbs).substr(0, JSON.stringify(verbs).length - 1) + ", " + localStorage["vite-custom-verbs"] + "}")
+            }
             setupVerbs(verbs)
             //console.log(verbs)
         },

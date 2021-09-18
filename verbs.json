@@ -106,5 +106,24 @@
     "Nous": "faisons",
     "Vous": "faites",
     "Ils / Elles": "font"
+  },
+  "Manger": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "regular"
+    },
+    "Je": "regular",
+    "Tu": "regular",
+    "Il / Elle / On": "regular",
+    "Nous": "mangeons",
+    "Vous": "regular",
+    "Ils / Elles": "regular"
+  },
+  "Finir": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "regular"
+    },
+    "All": "regular"
   }
 }
