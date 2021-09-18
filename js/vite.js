@@ -47,15 +47,7 @@ var timed = false,
         }
     }
 function twoPlaces(value) {
-    let num = parseInt(value * 100) / 100
-    num = num.toFixed(2)
-    return num
-}
-function resetCustom() {
-    localStorage["vite-custom-verbs"] = ""
-    window.location.reload()
-}
-function checkTouch() {
+    return (parseInt(value * 100) / 100).toFixed(2)
 }
 function addVerb() {
     let finished = true
@@ -81,21 +73,11 @@ function addVerb() {
             "Vous": document.getElementById("verb-add-subject-5").value,
             "Ils / Elles": document.getElementById("verb-add-subject-6").value,
         }
-        console.log(newVerb)
-        newVerb = JSON.stringify(newVerb)
-        newVerb = `"` + document.getElementById("verb-add-name").value + `"` + ": " + newVerb
-        console.log(newVerb)
-        localStorage["vite-custom-verbs"] += ((localStorage["vite-custom-verbs"].length > 0) ? "," : "") + newVerb
+        localStorage["vite-custom-verbs"] += ((localStorage["vite-custom-verbs"].length > 0) ? "," : "") + (`"` + document.getElementById("verb-add-name").value + `"` + ": " + JSON.stringify(newVerb))
         window.location.reload()
     }
 }
 function toggleVerb(event, isMenu) {
-    if (arguments.length != 2) {
-        console.log("1 argument")
-        isMenu = false
-    } else {
-        isMenu = true
-    }
     let element = event.target
     let verbStorage = localStorage["vite-verbs"]
     if (verbStorage[0] === ",") {
@@ -179,11 +161,7 @@ function timedFunction() {
     clearTimedFunction()
 
     //force submit
-    if (document.getElementById("question-cover").style.display != "none") {
-        //clearPrevious()
-        //createProblem()
-        //startTimed()
-    } else {
+    if (document.getElementById("question-cover").style.display === "none") {
         submitAnswer()
     }
 }
@@ -198,11 +176,12 @@ function clearTimedFunction() {
 }
 //
 function clearPrevious() {
-    document.getElementById("question-cover").style.display = "none"
-    document.getElementById("question-cover").textContent = ""
-    document.getElementById("question-cover").title = ""
-    document.getElementById("question-cover").className = "check"
-    document.getElementById("question-answer-input").value = ""
+    let coverElement = document.getElementById("question-cover")
+    coverElement.style.display = "none"
+    coverElement.textContent = ""
+    coverElement.title = ""
+    coverElement.className = "check"
+    coverElement.value = ""
 }
 //make things like "je ai" "j'ai" as needed
 function compress(subject, conjugation) {
@@ -311,7 +290,7 @@ var altAnswer = ""
 var skipBlank = JSON.parse(localStorage["vite-skip-blank"])
 function showAnswer(input) {
 
-    let coverEle = document.getElementById("question-cover")
+    let coverElement = document.getElementById("question-cover")
     if (input.toLowerCase() === correctAnswer.toLowerCase() || input.toLowerCase() === altAnswer.toLowerCase()) {
         coverEle.className = "check correct"
         localStorage["VITE-correct"] = parseInt(localStorage["VITE-correct"]) + 1
@@ -319,14 +298,10 @@ function showAnswer(input) {
         let score = 1000
         problemTime.end = (new Date).getTime()
         problemTime.duration = (problemTime.end - problemTime.start) / 1000
-        score = ((problemTime.allotted - Math.max((problemTime.duration - problemTime["max-perfect"]), 0)) / problemTime.allotted)
-        score = parseInt(score * problemTime["max-score"])
-        score = Math.max(score, 0)
+        score = Math.max(parseInt(((problemTime.allotted - Math.max((problemTime.duration - problemTime["max-perfect"]), 0)) / problemTime.allotted) * problemTime["max-score"]), 0)
         problemTime.score += score
         document.getElementById("score-amount").textContent = problemTime.score
         problemTime.problems += 1
-        console.log("score", score)
-        console.log("total-score", problemTime.score)
         document.getElementById("question-answer-input").value = ""
     } else {
         problemTime.score -= (problemTime["incorrect-deduction"])
@@ -454,11 +429,13 @@ function returnProblem(verbs) {
 var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
-    checkTouch()
     document.getElementById("verb-add-submit").addEventListener("click", function () {
         addVerb()
     })
-    document.getElementById("verb-add-reset").addEventListener("click", resetCustom)
+    document.getElementById("verb-add-reset").addEventListener("click", function () {
+        localStorage["vite-custom-verbs"] = ""
+        window.location.reload()
+    })
     document.getElementById("stats-reset").addEventListener("click", resetTrackers)
     document.getElementById("timed-time").addEventListener("input", function () {
         document.getElementById("timer-countdown").textContent = twoPlaces(document.getElementById("timed-time").value)
@@ -478,10 +455,11 @@ window.addEventListener("load", function () {
 
     })
     document.getElementById("question-cover").addEventListener("click", function () {
-        if (!document.getElementById("question-cover").className.includes("correct")) {
-            document.getElementById("question-cover").style.display = "none"
-            document.getElementById("question-cover").title = ""
-            document.getElementById("question-cover").className = "check"
+        let coverElement = document.getElementById("question-cover")
+        if (!coverElement.className.includes("correct")) {
+            coverElement.style.display = "none"
+            coverElement.title = ""
+            coverElement.className = "check"
             createProblem()
         }
 
