@@ -9,6 +9,7 @@ function stealCookies() {
     localStorage["vite-skip-blank"] = false
     localStorage["vite-pc"] = true
     localStorage["vite-pr"] = true
+    localStorage["vite-custom-verbs"] = ""
 }
 if (localStorage["vite-pr"] != "true" && localStorage["vite-pc"] != "true") {
     localStorage["vite-pr"] = true

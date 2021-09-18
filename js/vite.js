@@ -51,8 +51,42 @@ function twoPlaces(value) {
     num = num.toFixed(2)
     return num
 }
+function resetCustom() {
+    localStorage["vite-custom-verbs"] = ""
+    window.location.reload()
+}
 function checkTouch() {
-
+}
+function addVerb() {
+    let finished = true
+    for (inputElement of document.querySelectorAll("#verb-add input, #verb-add submit")) {
+        inputElement.className = inputElement.className.replace(" attention", "")
+        if (inputElement.value === "") {
+            finished = false
+            inputElement.className += " attention"
+        }
+    }
+    if (!finished) {
+        window.alert("Looks like some fields still need to be filled out. Try doing so and submitting it again!")
+    } else {
+        let newVerb = {
+            "PC": {
+                "helping": document.getElementById("verb-add-helping").value,
+                "participle": document.getElementById("verb-add-participle").value
+            },
+            "Je": document.getElementById("verb-add-subject-1").value,
+            "Tu": document.getElementById("verb-add-subject-2").value,
+            "Il / Elle / On": document.getElementById("verb-add-subject-3").value,
+            "Nous": document.getElementById("verb-add-subject-4").value,
+            "Vous": document.getElementById("verb-add-subject-5").value,
+            "Ils / Elles": document.getElementById("verb-add-subject-6").value,
+        }
+        console.log(newVerb)
+        newVerb = JSON.stringify(newVerb)
+        newVerb = `"` + document.getElementById("verb-add-name").value + `"` + ": " + newVerb
+        console.log(newVerb)
+        localStorage["vite-custom-verbs"] += ((localStorage["vite-custom-verbs"].length > 0) ? "," : "") + newVerb
+    }
 }
 function toggleVerb(event, isMenu) {
     if (arguments.length != 2) {
@@ -420,6 +454,10 @@ var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
     checkTouch()
+    document.getElementById("verb-add-submit").addEventListener("click", function () {
+        addVerb()
+    })
+    document.getElementById("verb-add-reset").addEventListener("click", resetCustom)
     document.getElementById("stats-reset").addEventListener("click", resetTrackers)
     document.getElementById("timed-time").addEventListener("input", function () {
         document.getElementById("timer-countdown").textContent = twoPlaces(document.getElementById("timed-time").value)
@@ -505,6 +543,9 @@ window.addEventListener("load", function () {
         dataType: "json",
         success: response => {
             verbs = response
+            if (localStorage["vite-custom-verbs"] != "") {
+                verbs = JSON.parse(JSON.stringify(verbs).substr(0, JSON.stringify(verbs).length - 1) + ", " + localStorage["vite-custom-verbs"] + "}")
+            }
             setupVerbs(verbs)
             //console.log(verbs)
         },

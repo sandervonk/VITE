@@ -21,10 +21,28 @@
       <div id="verb-container">
         <div id="verb-container-title">Verb Options</div>
         <div id="verb-add">
+          <div id="verb-add-past-container">
+            <div id="verb-add-past-participle">
+              <div id="verb-participle-label">Participle</div>
+              <input
+                type="text"
+                spellcheck="false"
+                id="verb-add-participle"
+                placeholder="été"
+              />
+            </div>
+            <div id="verb-add-past-helping">
+              <div id="verb-helping-label">Helping</div>
+              <select id="verb-add-helping" value="Avoir">
+                <option value="Avoir">Avoir</option>
+                <option value="Être">Être</option>
+              </select>
+            </div>
+          </div>
           <div class="verb-add-pair">
             <div class="verb-add-label">Je</div>
             <input
-              id=""
+              id="verb-add-subject-1"
               spellcheck="false"
               type="text"
               class="verb-add-input"
@@ -34,7 +52,7 @@
           <div class="verb-add-pair">
             <div class="verb-add-label">Tu</div>
             <input
-              id=""
+              id="verb-add-subject-2"
               spellcheck="false"
               type="text"
               class="verb-add-input"
@@ -44,7 +62,7 @@
           <div class="verb-add-pair">
             <div class="verb-add-label">Il / Elle / On</div>
             <input
-              id=""
+              id="verb-add-subject-3"
               spellcheck="false"
               type="text"
               class="verb-add-input"
@@ -54,7 +72,7 @@
           <div class="verb-add-pair">
             <div class="verb-add-label">Nous</div>
             <input
-              id=""
+              id="verb-add-subject-4"
               spellcheck="false"
               type="text"
               class="verb-add-input"
@@ -64,7 +82,7 @@
           <div class="verb-add-pair">
             <div class="verb-add-label">Vous</div>
             <input
-              id=""
+              id="verb-add-subject-5"
               spellcheck="false"
               type="text"
               class="verb-add-input"
@@ -74,7 +92,7 @@
           <div class="verb-add-pair last">
             <div class="verb-add-label">Ils / Elles</div>
             <input
-              id=""
+              id="verb-add-subject-6"
               spellcheck="false"
               type="text"
               class="verb-add-input"
@@ -89,6 +107,7 @@
               type="text"
               placeholder="Être"
             />
+            <button id="verb-add-reset">Reset</button>
           </div>
         </div>
         <div id="verb-options"></div>

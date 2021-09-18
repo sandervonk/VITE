@@ -900,7 +900,7 @@ html.MM #maxwell-mode {
   border-bottom: 0.3vh solid #f6f7fb;
 }
 #verb-options {
-  padding: 1vh 5% 5% 5%;
+  padding: 0 5% 5% 5%;
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
@@ -918,8 +918,10 @@ html.MM #maxwell-mode {
   flex-flow: column;
   align-items: left;
   padding: 0 5%;
-  border-bottom: 1px solid #c4c4c4;
+  padding-bottom: 1.2vh;
+  border-bottom: 0.3vh solid #f6f7fb;
   margin-bottom: 1.2vh;
+  margin-top: 1.2vh;
 }
 .verb-add-pair {
   display: flex;
@@ -958,25 +960,76 @@ html.MM #maxwell-mode {
   display: flex;
   justify-content: center;
 }
-#verb-add-submit {
+
+#verb-add-submit,
+#verb-add-reset {
   height: 100%;
+  flex-basis: 15%;
+  white-space: nowrap;
+  min-width: fit-content;
   border-radius: 4vh 0 0 4vh;
-  flex-grow: 0;
+  flex-grow: 1;
   padding: 0 0.35em;
   border: none;
   background-color: #429ef3;
   color: white;
   font-family: "Comfortaa", cursive;
   font-size: 1.2em;
+  cursor: pointer;
+}
+#verb-add-reset {
+  border-radius: 4vh;
+  margin-left: 0.4em;
+  background-color: #f34242;
 }
 #verb-add-name {
   flex-grow: 1;
   border-radius: 0 4vh 4vh 0;
   border: none;
   background-color: lightgray;
-  width: 40%;
-  min-width: 10em;
+  width: 20%;
   padding: 0 0.7em;
   font-family: "Comfortaa", cursive;
   font-size: 1.2em;
+}
+#verb-add-past-container {
+  display: flex;
+  flex-flow: row;
+}
+#verb-add-past-container > div {
+  min-width: 30%;
+  flex-grow: 1;
+  text-align: center;
+  font-size: 1.5em;
+  padding: 0 2.5%;
+  display: flex;
+  flex-flow: column;
+}
+#verb-add-past-container input,
+#verb-add-past-container select {
+  border-radius: 4vh;
+  border: none;
+  background-color: lightgray;
+  line-height: 2em;
+  font-family: "Comfortaa", cursive;
+  font-size: 0.7em;
+  text-align: center;
+  flex-basis: 10%;
+  flex-grow: 1;
+  padding: 0 0.5em;
+}
+#verb-add-past-container > div {
+  width: 50%;
+}
+input,
+select {
+  transition: border 0.25s ease-in-out;
+}
+*.attention,
+.attention:focus-within {
+  border: solid red 2px !important;
+}
+*.submit,
+.submit:focus-within {
+  border: solid red 2px !important;
 }
