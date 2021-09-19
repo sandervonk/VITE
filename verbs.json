@@ -192,5 +192,53 @@
       "participle": "regular"
     },
     "All": "regular"
+  },
+  "Mettre": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "mis"
+    },
+    "Je": "mets",
+    "Tu": "mets",
+    "Il / Elle / On": "met ",
+    "Nous": "regular",
+    "Vous": "regular",
+    "Ils / Elles": "regular"
+  },
+  "Connaître": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "connu"
+    },
+    "Je": "connais",
+    "Tu": "connais",
+    "Il / Elle / On": "connaît",
+    "Nous": "connaissons",
+    "Vous": "connaissez",
+    "Ils / Elles": "connaissent"
+  },
+  "Conduire": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "conduit"
+    },
+    "Je": "conduis",
+    "Tu": "conduis",
+    "Il / Elle / On": "conduit",
+    "Nous": "conduisons",
+    "Vous": "conduisez",
+    "Ils / Elles": "conduisent"
+  },
+  "Dire": {
+    "PC": {
+      "helping": "Avoir",
+      "participle": "dit"
+    },
+    "Je": "regular",
+    "Tu": "regular",
+    "Il / Elle / On": "dit",
+    "Nous": "disons",
+    "Vous": "dites",
+    "Ils / Elles": "disent"
   }
 }
