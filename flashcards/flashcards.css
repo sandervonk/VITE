@@ -5,15 +5,19 @@ html {
   height: 100%;
   width: 100%;
   overflow: hidden;
+  margin: 0 !important;
 }
 #flashcard-container {
-  height: 100%;
+  z-index: 3;
+  top: 50%;
+  left: 50%;
   overflow: visible;
-  position: relative;
+  position: absolute;
   -webkit-perspective: 2000;
 }
 #flashcard-element {
   position: absolute;
+  z-index: 9999;
   top: 50%;
   left: 50%;
   display: block;
@@ -60,10 +64,10 @@ body.intro * {
   background-color: orange;
 }
 #flashcard-element.flipped {
-  -webkit-transform: translate(-50%, -50%) rotateY(180deg);
+  -webkit-transform: translate(-50%, -50%) rotateX(180deg);
 }
 #flashcard-element .back {
-  transform: rotateY(180deg);
+  transform: rotateX(180deg);
 }
 #flashcard-element.next {
   -webkit-animation: changeCard 0.5s ease-in-out reverse;
@@ -80,7 +84,36 @@ body.intro * {
   border: 2px solid blue;
   -webkit-perspective: 500;
 }
-
+#touch-areas {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#touch-areas * {
+  display: block;
+  position: absolute;
+  width: 100%;
+  height: 100%;
+}
+#touch-flip {
+  z-index: 2;
+  cursor: pointer;
+  width: 500px;
+  height: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+}
+#touch-swap {
+  display: inline-block;
+}
+#touch-swap > * {
+  height: 100%;
+  width: 50%;
+  cursor: pointer;
+}
+#touch-swap-right {
+  right: 0;
+}
 @-webkit-keyframes changeCard {
   0% {
     -webkit-transform: translate(-50%, -50%) translate(0, 0) scale(1);

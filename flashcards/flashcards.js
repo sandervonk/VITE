@@ -85,6 +85,7 @@ function finishIntro() {
 }
 //cardControls
 function shiftCard(num) {
+    finishIntro()
     let flash = document.getElementById("flashcard-element")
     //setup element things
     try { window.clearTimeout(timeout) } catch { }
@@ -127,12 +128,10 @@ function flipCard() {
 function checkKey(e) {
     e = e || window.event;
     if (e.keyCode == '37') {
-        finishIntro()
         console.log("left")
         shiftCard(-1)
     }
     else if (e.keyCode == '39') {
-        finishIntro()
         console.log("right")
         shiftCard(1)
     } else if (e.keyCode == '13' || e.keyCode == '38' || e.keyCode == '40') {
@@ -142,5 +141,14 @@ function checkKey(e) {
 }
 window.addEventListener("keydown", e => { checkKey(e) })
 window.addEventListener("load", function () {
+    document.getElementById("touch-flip").addEventListener("click", function () {
+        flipCard()
+    })
+    document.getElementById("touch-swap-left").addEventListener("click", function () {
+        shiftCard(-1)
+    })
+    document.getElementById("touch-swap-right").addEventListener("click", function () {
+        shiftCard(1)
+    })
     loadVerbs()
 })
