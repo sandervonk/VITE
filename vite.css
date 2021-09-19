@@ -661,7 +661,7 @@ body.QZ #question-verb-span {
     font-size: 6vh !important;
   }
 }
-@media (max-width: 768px) and (max-width: 75vh), (hover: none) {
+@media (max-width: 768px) and (max-width: 75vh) {
   .select-panel button,
   .label {
     font-size: 1em !important;

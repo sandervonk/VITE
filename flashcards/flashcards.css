@@ -1,0 +1,101 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@300;400;500;700;800&display=swap");
+body,
+html {
+  background-color: lightblue;
+  height: 100%;
+  width: 100%;
+  overflow: hidden;
+}
+#flashcard-container {
+  height: 100%;
+  overflow: visible;
+  position: relative;
+  -webkit-perspective: 2000;
+}
+#flashcard-element {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  display: block;
+  box-shadow: 0 0 8px #000000dd;
+  width: 500px;
+  aspect-ratio: 2 / 3;
+  background-color: white;
+  border-radius: 4vh;
+  -webkit-transform-style: preserve-3d;
+  -webkit-transform: translate(-50%, -50%);
+  -webkit-transition: transform 0.25s linear;
+  transform-origin: center center;
+}
+#question-answer,
+#question-verb,
+#question-subject,
+#question-seperator,
+#question-tense {
+  font-family: "Comfortaa", cursive;
+}
+#question-tense {
+  margin-top: 2%;
+  font-size: 0.5em;
+}
+
+body.intro * {
+  font-size: 1.1em;
+}
+.flashcard-side {
+  display: flex;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  font-size: 5vh;
+  backface-visibility: hidden;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  flex-flow: column;
+}
+#flashcard-element.new {
+  background-color: orange;
+}
+#flashcard-element.flipped {
+  -webkit-transform: translate(-50%, -50%) rotateY(180deg);
+}
+#flashcard-element .back {
+  transform: rotateY(180deg);
+}
+#flashcard-element.next {
+  -webkit-animation: changeCard 0.5s ease-in-out reverse;
+}
+#flashcard-element.prev {
+  -webkit-animation: changeCard 0.5s ease-in-out;
+}
+
+#container {
+  position: relative;
+  height: 300px;
+  width: 300px;
+  margin: 50px 100px;
+  border: 2px solid blue;
+  -webkit-perspective: 500;
+}
+
+@-webkit-keyframes changeCard {
+  0% {
+    -webkit-transform: translate(-50%, -50%) translate(0, 0) scale(1);
+    display: block;
+  }
+  50% {
+    -webkit-transform: translate(0%, -50%) translate(50vw, 0) scale(0.7);
+    display: none;
+  }
+  51% {
+    -webkit-transform: translate(-100%, -50%) translate(-50vw, 0) scale(0.7);
+    display: block;
+  }
+  100% {
+    -webkit-transform: translate(-50%, -50%) translate(0, 0) scale(1);
+    display: block;
+  }
+}
