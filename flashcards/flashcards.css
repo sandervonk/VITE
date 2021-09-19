@@ -22,7 +22,7 @@ html {
   left: 50%;
   display: block;
   box-shadow: 0 0 8px #000000dd;
-  width: 500px;
+  width: 700px;
   aspect-ratio: 2 / 3;
   background-color: white;
   border-radius: 4vh;
@@ -40,11 +40,11 @@ html {
 }
 #question-tense {
   margin-top: 2%;
-  font-size: 0.5em;
+  font-size: 0.6em;
 }
 
 body.intro * {
-  font-size: 1.1em;
+  font-size: 1.4em;
 }
 .flashcard-side {
   display: flex;
@@ -98,7 +98,7 @@ body.intro * {
 #touch-flip {
   z-index: 2;
   cursor: pointer;
-  width: 500px;
+  width: 700px;
   height: 100%;
   left: 50%;
   transform: translateX(-50%);
@@ -130,5 +130,11 @@ body.intro * {
   100% {
     -webkit-transform: translate(-50%, -50%) translate(0, 0) scale(1);
     display: block;
+  }
+}
+@media (min-width: 1000px) {
+  #flashcard-element,
+  #touch-flip {
+    width: 450px !important;
   }
 }
