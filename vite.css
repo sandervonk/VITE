@@ -1065,3 +1065,8 @@ select {
   content: " (custom)";
   font-size: 0.3em;
 }
+#flashcards {
+  background-color: lightgrey;
+  filter: drop-shadow(0 0 4px #000000aa);
+  border-radius: 4vh;
+}
