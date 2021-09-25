@@ -1,3 +1,115 @@
+var verbs,
+  regularEnds = {
+    ir: {
+      Je: "is",
+      Tu: "is",
+      "Il / Elle / On": "it",
+      Nous: "issons",
+      Vous: "issez",
+      "Ils / Elles": "issent",
+    },
+    re: {
+      Je: "s",
+      Tu: "s",
+      "Il / Elle / On": "",
+      Nous: "ons",
+      Vous: "ez",
+      "Ils / Elles": "ent",
+    },
+    er: {
+      Je: "e",
+      Tu: "es",
+      "Il / Elle / On": "e",
+      Nous: "ons",
+      Vous: "ez",
+      "Ils / Elles": "ent",
+    },
+  },
+  subjects = ["Je", "Tu", "Il / Elle / On", "Nous", "Vous", "Ils / Elles"];
+function random(max) {
+  if (typeof max != "number") {
+    return max[parseInt(Math.random() * max.length)];
+  } else {
+    return parseInt(Math.random() * max);
+  }
+}
+class Conjugate {
+  passeCompose(subject, verb) {
+    let question = {},
+      verbEle = verbs[verb];
+    question.subject = subject.toLowerCase();
+    question.verb = verb.toLowerCase();
+    question.answer = [
+      verbs[verbEle.PC.helping][subject],
+      verbEle.PC.participle,
+    ]
+      .join(" ")
+      .toLowerCase();
+    question.tense = "(passé composé)";
+    if (question.subject == "ils / elles") {
+      question.subject = random(["ils", "elles"]);
+    } else if (question.subject == "il / elle / on") {
+      question.subject = random(["il", "elle", "on"]);
+    }
+    if (
+      question.subject != "ils" &&
+      question.subject != "il" &&
+      question.subject != "on"
+    ) {
+      question.answer += "(e)";
+    }
+    if (question.subject.includes("elle")) {
+      question.answer = question.answer.replace("(e)", "e");
+    }
+    if (
+      question.subject == "ils" ||
+      question.subject == "elles" ||
+      question.subject == "nous"
+    ) {
+      question.answer += "s";
+    } else if (question.subject == "vous") {
+      question.answer += "(s)";
+    }
+    //question.answer = [subject, question.answer].join(" ")
+    return question;
+  }
+  present(subject, verb) {
+    let question = {};
+    question.subject = subject.toLowerCase();
+    question.verb = verb.toLowerCase();
+    question.answer = verbs[verb][subject];
+    question.tense = "(present)";
+    if (verbs[verb]["All"] === "regular" || question.answer === "regular") {
+      let regular = {};
+      regular.ending = verb.substr(verb.length - 2);
+      regular.base = verb.substr(0, verb.length - 2);
+      question.answer = regular.base + regularEnds[regular.ending][subject];
+    }
+    if (question.subject == "ils / elles") {
+      question.subject = random(["ils", "elles"]);
+    } else if (question.subject == "il / elle / on") {
+      question.subject = random(["il", "elle", "on"]);
+    }
+    question.answer = question.answer.toLowerCase();
+    //question.answer = [subject, question.answer].join(" ")
+    return question;
+  }
+}
+conjugator = new Conjugate();
+function loadVerbs() {
+  $.ajax({
+    url: "../verbs.json",
+    dataType: "json",
+    success: (r) => {
+      verbs = r;
+      createQuestions();
+    },
+    error: function (err) {
+      console.error("error: could not load verbs.json :(");
+      console.log(err);
+    },
+  });
+}
 function CreatePDFfromHTML(showAnswers) {
   var HTML_Width = $(".html-content").width();
   var HTML_Height = $(".html-content").height();
@@ -47,7 +159,17 @@ $("#cmd").click(function () {
 $("#full").click(function () {
   CreatePDFfromHTML(true);
 });
-window.addEventListener("load", function () {
+function returnQuestion() {
+  let verb = random(Object.keys(verbs)),
+    subject = random(subjects);
+  /*
+  return parseInt(Math.random() * 2) === 0
+    ? conjugator.passeCompose(subject, verb)
+    : conjugator.present(subject, verb);
+    */
+  return conjugator.passeCompose(subject, verb);
+}
+function createQuestions() {
   for (parent of $(".question-parent")) {
     let parts = {
       subject: parent.querySelector(".question-subject"),
@@ -59,4 +181,7 @@ window.addEventListener("load", function () {
     parts.verb.textContent = question.verb;
     parts.answer.textContent = question.answer;
   }
+}
+window.addEventListener("load", function () {
+  loadVerbs();
 });

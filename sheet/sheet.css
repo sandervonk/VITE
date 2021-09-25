@@ -3,6 +3,7 @@ body {
   background-color: lightblue;
   padding: 0;
   margin: 0;
+  font-size: 0.9em;
 }
 body,
 html {
@@ -112,6 +113,8 @@ html {
   flex-grow: 0;
   text-align: right;
   color: transparent;
+  white-space: nowrap;
+  font-size: 0.7em;
 }
 body.answers .question-answer {
   color: red;
