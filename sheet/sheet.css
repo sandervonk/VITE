@@ -3,7 +3,7 @@ body {
   background-color: lightblue;
   padding: 0;
   margin: 0;
-  font-size: 0.9em;
+  font-size: 1.95vh;
 }
 body,
 html {
@@ -140,4 +140,21 @@ body.answers .question-answer {
 }
 #full {
   margin-top: 0.2em;
+}
+@media print {
+  .noprint {
+    display: none;
+  }
+  button {
+    display: none;
+  }
+  #sheet-container {
+    height: 100% !important;
+    box-shadow: none !important;
+    transform: scale(1.05);
+    position: fixed;
+  }
+  body {
+    font-size: 1.95vh;
+  }
 }
