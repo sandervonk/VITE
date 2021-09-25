@@ -39,10 +39,27 @@ class Conjugate {
       verbEle = verbs[verb];
     question.subject = subject.toLowerCase();
     question.verb = verb.toLowerCase();
-    question.answer = [
-      verbs[verbEle.PC.helping][subject],
-      verbEle.PC.participle,
-    ]
+    question.answer = verbEle.PC.participle;
+    if (verbEle.PC.participle === "regular") {
+      let conjugation = {};
+      conjugation.base = verb.substr(0, verb.length - 2);
+      conjugation.ending = verb.substr(verb.length - 2, verb.length);
+      if (conjugation.ending === "er") {
+        conjugation.pcEnd = "é";
+      } else if (conjugation.ending === "re") {
+        conjugation.pcEnd = "u";
+      } else if (conjugation.ending === "ir") {
+        conjugation.pcEnd = "i";
+      } else {
+        window.alert(
+          "errored while conjugating a verb marked as regular, but with no acceptable ending"
+        );
+      }
+      question.answer = conjugation.base + conjugation.pcEnd;
+    } else {
+      question.answer = verbEle.PC.participle;
+    }
+    question.answer = [verbs[verbEle.PC.helping][subject], question.answer]
       .join(" ")
       .toLowerCase();
     question.tense = "(passé composé)";
@@ -51,25 +68,28 @@ class Conjugate {
     } else if (question.subject == "il / elle / on") {
       question.subject = random(["il", "elle", "on"]);
     }
-    if (
-      question.subject != "ils" &&
-      question.subject != "il" &&
-      question.subject != "on"
-    ) {
-      question.answer += "(e)";
+    if (verbEle.PC.helping != "Avoir") {
+      if (
+        question.subject != "ils" &&
+        question.subject != "il" &&
+        question.subject != "on"
+      ) {
+        question.answer += "(e)";
+      }
+      if (question.subject.includes("elle")) {
+        question.answer = question.answer.replace("(e)", "e");
+      }
+      if (
+        question.subject == "ils" ||
+        question.subject == "elles" ||
+        question.subject == "nous"
+      ) {
+        question.answer += "s";
+      } else if (question.subject == "vous") {
+        question.answer += "(s)";
+      }
     }
-    if (question.subject.includes("elle")) {
-      question.answer = question.answer.replace("(e)", "e");
-    }
-    if (
-      question.subject == "ils" ||
-      question.subject == "elles" ||
-      question.subject == "nous"
-    ) {
-      question.answer += "s";
-    } else if (question.subject == "vous") {
-      question.answer += "(s)";
-    }
+
     //question.answer = [subject, question.answer].join(" ")
     return question;
   }
