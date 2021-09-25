@@ -106,11 +106,15 @@ html {
   text-align: right;
 }
 .question-answer {
-  color: red;
   border-bottom: solid black 0.1em;
   flex-grow: 1;
   flex-basis: 0.7em;
   flex-grow: 0;
+  text-align: right;
+  color: transparent;
+}
+body.answers .question-answer {
+  color: red;
 }
 #sheet-content {
   font-family: "Comfortaa", cursive;
@@ -118,4 +122,17 @@ html {
   display: flex;
   flex-flow: row;
   flex-wrap: wrap;
+}
+#download-options {
+  width: fit-content;
+  height: fit-content;
+  position: absolute;
+  top: 0;
+  left: 0;
+  padding: 2vh;
+  display: flex;
+  flex-flow: column;
+}
+#full {
+  margin-top: 0.2em;
 }
