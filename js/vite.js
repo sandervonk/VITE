@@ -1,4 +1,27 @@
 //some json for reflexives 
+/*
+  "verb": {
+    "definition": "to _",
+    "PC": {
+      "helping": "Être",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "verb": {
+    "definition": "to _",
+    "PC": {
+      "helping": "Être",
+      "participle": "regular"
+    },
+    "Je": "",
+    "Tu": "",
+    "Il / Elle / On": "",
+    "Nous": "",
+    "Vous": "",
+    "Ils / Elles": ""
+  }
+*/
 var timed = false,
     timedID,
     countdown,

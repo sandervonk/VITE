@@ -1,5 +1,6 @@
 {
   "Venir": {
+    "definition": "to come",
     "PC": {
       "helping": "Être",
       "participle": "venu"
@@ -12,6 +13,7 @@
     "Ils / Elles": "viennent"
   },
   "Pouvoir": {
+    "definition": "to be able to",
     "PC": {
       "helping": "Avoir",
       "participle": "pu"
@@ -24,6 +26,7 @@
     "Ils / Elles": "peuvent"
   },
   "Prendre": {
+    "definition": "to take",
     "PC": {
       "helping": "Avoir",
       "participle": "pris"
@@ -36,6 +39,7 @@
     "Ils / Elles": "prennent"
   },
   "Connaitre": {
+    "definition": "to know (of a person)",
     "PC": {
       "helping": "Avoir",
       "participle": "connu"
@@ -48,6 +52,7 @@
     "Ils / Elles": "connaissent"
   },
   "Savoir": {
+    "definition": "to know (of an idea or thing)",
     "PC": {
       "helping": "Avoir",
       "participle": "su"
@@ -60,6 +65,7 @@
     "Ils / Elles": "savent"
   },
   "Avoir": {
+    "definition": "to have",
     "PC": {
       "helping": "Avoir",
       "participle": "eu"
@@ -72,6 +78,7 @@
     "Ils / Elles": "ont"
   },
   "Être": {
+    "definition": "to be",
     "PC": {
       "helping": "Avoir",
       "participle": "été"
@@ -84,6 +91,7 @@
     "Ils / Elles": "sont"
   },
   "Aller": {
+    "definition": "to go",
     "PC": {
       "helping": "Être",
       "participle": "regular"
@@ -96,6 +104,7 @@
     "Ils / Elles": "vont"
   },
   "Faire": {
+    "definition": "to do",
     "PC": {
       "helping": "Avoir",
       "participle": "fait"
@@ -108,6 +117,7 @@
     "Ils / Elles": "font"
   },
   "Manger": {
+    "definition": "to eat",
     "PC": {
       "helping": "Avoir",
       "participle": "regular"
@@ -120,6 +130,7 @@
     "Ils / Elles": "regular"
   },
   "Finir": {
+    "definition": "to finish",
     "PC": {
       "helping": "Avoir",
       "participle": "regular"
@@ -127,6 +138,7 @@
     "All": "regular"
   },
   "Vouloir": {
+    "definition": "to want",
     "PC": {
       "helping": "Avoir",
       "participle": "voulu"
@@ -139,6 +151,7 @@
     "Ils / Elles": "veulent"
   },
   "Dormir": {
+    "definition": "to sleep",
     "PC": {
       "helping": "Avoir",
       "participle": "dormi"
@@ -151,6 +164,7 @@
     "Ils / Elles": "dorment"
   },
   "Devoir": {
+    "definition": "to have to",
     "PC": {
       "helping": "Avoir",
       "participle": "dû"
@@ -163,6 +177,7 @@
     "Ils / Elles": "doivent"
   },
   "Suivre": {
+    "definition": "to follow (ex. of a course)",
     "PC": {
       "helping": "Avoir",
       "participle": "suivi"
@@ -175,6 +190,7 @@
     "Ils / Elles": "suivent"
   },
   "Voir": {
+    "definition": "to see",
     "PC": {
       "helping": "Avoir",
       "participle": "vu"
@@ -187,6 +203,7 @@
     "Ils / Elles": "voient"
   },
   "Rendre": {
+    "definition": "to give",
     "PC": {
       "helping": "Avoir",
       "participle": "regular"
@@ -194,6 +211,7 @@
     "All": "regular"
   },
   "Mettre": {
+    "definition": "to put",
     "PC": {
       "helping": "Avoir",
       "participle": "mis"
@@ -205,19 +223,8 @@
     "Vous": "regular",
     "Ils / Elles": "regular"
   },
-  "Connaître": {
-    "PC": {
-      "helping": "Avoir",
-      "participle": "connu"
-    },
-    "Je": "connais",
-    "Tu": "connais",
-    "Il / Elle / On": "connaît",
-    "Nous": "connaissons",
-    "Vous": "connaissez",
-    "Ils / Elles": "connaissent"
-  },
   "Conduire": {
+    "definition": "to drive",
     "PC": {
       "helping": "Avoir",
       "participle": "conduit"
@@ -230,6 +237,7 @@
     "Ils / Elles": "conduisent"
   },
   "Dire": {
+    "definition": "to say",
     "PC": {
       "helping": "Avoir",
       "participle": "dit"
@@ -240,5 +248,66 @@
     "Nous": "disons",
     "Vous": "dites",
     "Ils / Elles": "disent"
+  },
+  "Descendre": {
+    "definition": "to go down",
+    "PC": {
+      "helping": "Être",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Retourner": {
+    "definition": "to go down",
+    "PC": {
+      "helping": "Être",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Mourir": {
+    "definition": "to die",
+    "PC": {
+      "helping": "Être",
+      "participle": "mort"
+    },
+    "All": "regular"
+  },
+  "Rentre": {
+    "definition": "to go back in",
+    "PC": {
+      "helping": "Être",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Sortir": {
+    "definition": "to go out",
+    "PC": {
+      "helping": "Être",
+      "participle": "sors"
+    },
+    "All": "regular"
+  },
+  "Arriver": {
+    "definition": "to arrive",
+    "PC": {
+      "helping": "Être",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Naître": {
+    "definition": "to be born",
+    "PC": {
+      "helping": "Être",
+      "participle": "né"
+    },
+    "Je": "nais",
+    "Tu": "nais",
+    "Il / Elle / On": "naît",
+    "Nous": "naissons",
+    "Vous": "naissez",
+    "Ils / Elles": "naissent"
   }
 }
