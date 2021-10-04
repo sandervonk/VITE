@@ -22,6 +22,7 @@
     "Ils / Elles": ""
   }
 */
+
 var timed = false,
     timedID,
     countdown,
@@ -43,7 +44,7 @@ var timed = false,
         "Vous": "vous",
         "Ils / Elles": "se"
     },
-    regularEnd = {
+    regularEnds = {
         "ir": {
             "Je": "is",
             "Tu": "is",
@@ -68,7 +69,111 @@ var timed = false,
             "Vous": "ez",
             "Ils / Elles": "ent"
         }
+    },
+    correctAnswer = "",
+    altAnswer = "",
+    skipBlank = JSON.parse(localStorage["vite-skip-blank"])
+function random(max) {
+    if (typeof max != "number") {
+        return max[parseInt(Math.random() * max.length)];
+    } else {
+        return parseInt(Math.random() * max);
     }
+}
+class Conjugate {
+    passeCompose(subject, verb) {
+        console.log(subject, verb)
+        let question = {},
+            verbEle = verbs[verb];
+        console.log("verbEle")
+        console.log(verbEle)
+        question.subject = subject.toLowerCase();
+        question.verb = verb.toLowerCase();
+        question.answer = verbEle.PC.participle;
+        if (verbEle.PC.participle === "regular") {
+            let conjugation = {};
+            conjugation.base = verb.substr(0, verb.length - 2);
+            conjugation.ending = verb.substr(verb.length - 2, verb.length);
+            if (conjugation.ending === "er") {
+                conjugation.pcEnd = "é";
+            } else if (conjugation.ending === "re") {
+                conjugation.pcEnd = "u";
+            } else if (conjugation.ending === "ir") {
+                conjugation.pcEnd = "i";
+            } else {
+                window.alert(
+                    "errored while conjugating a verb marked as regular, but with no acceptable ending"
+                );
+            }
+            question.answer = conjugation.base + conjugation.pcEnd;
+        } else {
+            question.answer = verbEle.PC.participle;
+        }
+        question.answer = [verbs[verbEle.PC.helping][subject], question.answer]
+            .join(" ")
+            .toLowerCase();
+        question.tense = "(passé composé)";
+        if (question.subject == "ils / elles") {
+            question.subject = random(["ils", "elles"]);
+        } else if (question.subject == "il / elle / on") {
+            question.subject = random(["il", "elle", "on"]);
+        }
+        if (verbEle.PC.helping != "Avoir") {
+            if (
+                question.subject != "ils" &&
+                question.subject != "il" &&
+                question.subject != "on"
+            ) {
+                question.answer += "(e)";
+            }
+            if (question.subject.includes("elle")) {
+                question.answer = question.answer.replace("(e)", "e");
+            }
+            if (
+                question.subject == "ils" ||
+                question.subject == "elles" ||
+                question.subject == "nous"
+            ) {
+                question.answer += "s";
+            } else if (question.subject == "vous") {
+                question.answer += "(s)";
+            }
+        }
+
+        //question.answer = [subject, question.answer].join(" ")
+        return question;
+    }
+    present(subject, verb) {
+        console.log(subject, verb)
+        let question = {};
+        question.subject = subject.toLowerCase();
+        question.verb = verb.toLowerCase();
+        question.answer = verbs[verb][subject];
+        question.tense = "(present)";
+        if (verbs[verb]["All"] === "regular" || question.answer === "regular") {
+            let regular = {};
+            regular.ending = verb.substr(verb.length - 2);
+            regular.base = verb.substr(0, verb.length - 2);
+            question.answer = regular.base + regularEnds[regular.ending][subject];
+        }
+        if (question.subject == "ils / elles") {
+            question.subject = random(["ils", "elles"]);
+        } else if (question.subject == "il / elle / on") {
+            question.subject = random(["il", "elle", "on"]);
+        }
+        question.answer = question.answer.toLowerCase();
+        //question.answer = [subject, question.answer].join(" ")
+        return question.answer;
+    }
+    //Reflexive handler
+    reflexive(verb, subject) {
+        let answer = ""
+        //answer = [subject, compress(compress(reflexive[subject], conjugator.present("Être", subject)), conjugator.present(verb, subject))].join(" ")
+        answer = [subject, compress(reflexive[subject], conjugator.present(subject, verb))].join("")
+        return answer.toLowerCase()
+    }
+}
+conjugator = new Conjugate();
 function twoPlaces(value) {
     let num = parseInt(value * 100) / 100
     num = num.toFixed(2)
@@ -283,57 +388,8 @@ function pickTense() {
     }
     return newTense
 }
-//Present handler
-function presentTense(verb, subject) {
-    let answer = ""
-    answer = verbs[verb][subject]
-    if (answer === "regular" || verbs[verb]["All"] === "regular") {
-        let base = verb.substr(0, verb.length - 2)
-        let ending = verb.substr(verb.length - 2, verb.length - 1)
-        if (Object.keys(regularEnd).includes(ending)) {
-            answer = base + regularEnd[ending][subject]
-        } else {
-            window.alert("ERR: Cannot find regular ending for verb with non-ir/er/re ending marked as regular")
-        }
-    }
-    return answer.toLowerCase()
-}
-//Reflexive handler
-function reflexiveTense(verb, subject) {
-    let answer = ""
-    //answer = [subject, compress(compress(reflexive[subject], presentTense("Être", subject)), presentTense(verb, subject))].join(" ")
-    answer = [subject, compress(reflexive[subject], presentTense(verb, subject))].join("")
-    return answer.toLowerCase()
-}
-//PC handler
-function passeComposeTense(verb, name, subject) {
-    let conjugation = {}
-    conjugation.subject = subject
-    conjugation.helping = verbs[verb.PC.helping][subject]
-    if (verb.PC.participle === "regular") {
-        conjugation.base = name.substr(0, name.length - 2)
-        conjugation.ending = name.substr(name.length - 2, name.length)
-        if (conjugation.ending === "er") {
-            conjugation.pcEnd = "é"
-        } else if (conjugation.ending === "re") {
-            conjugation.pcEnd = "u"
-        } else if (conjugation.ending === "ir") {
-            conjugation.pcEnd = "i"
-        } else {
-            window.alert("errored while conjugating a verb marked as regular, but with no acceptable ending")
-        }
-        conjugation.participle = conjugation.base + conjugation.pcEnd
-    } else {
-        conjugation.participle = verb.PC.participle
-    }
-    if ((subject === "Nous" || subject === "Vous" || subject === "Ils / Elles") && verb.PC.helping === "Être") {
-        conjugation.participle += "s"
-    }
-    conjugation.full = ([conjugation.subject, conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
-    conjugation.full = conjugation.full.replace("je a", "j'a")
-    conjugation.alt = ([conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
-    return conjugation
-}
+
+
 
 //answer handler
 function resetTrackers() {
@@ -349,13 +405,13 @@ function resetTrackers() {
 function isVowel(ch) {
     return (ch === 'a' || ch === 'e' || ch === 'i' || ch === 'o' || ch === 'u')
 }
-var correctAnswer = ""
-var altAnswer = ""
-var skipBlank = JSON.parse(localStorage["vite-skip-blank"])
-function showAnswer(input) {
 
+function showAnswer(input) {
     let coverEle = document.getElementById("question-cover")
-    if (input.toLowerCase() === correctAnswer.toLowerCase() || input.toLowerCase() === altAnswer.toLowerCase()) {
+    inputLower = input.toLowerCase()
+    correctLower = correctAnswer.toLowerCase()
+    altLower = altAnswer.toLowerCase()
+    if (inputLower == correctLower || inputLower == altLower) {
         coverEle.className = "check correct"
         localStorage["VITE-correct"] = parseInt(localStorage["VITE-correct"]) + 1
         coverEle.style.display = ""
@@ -423,10 +479,9 @@ function setupVerbs(verbs) {
 //function to handle answer
 function submitAnswer() {
     let answerElement = document.getElementById("question-answer-input")
-    if (answerElement.value === "" && skipBlank) {
+    if (answerElement.value == "" && skipBlank) {
         createProblem()
     } else {
-
         showAnswer(answerElement.value)
     }
 }
@@ -482,12 +537,12 @@ function returnProblem(verbs) {
     //for PC
     pickedTense = pickTense()
     if (pickedTense === "pc") {
-        fullAnswer = passeComposeTense(verbParent, question.verb, question.subject)
+        fullAnswer = conjugator.passeCompose(question.subject, question.verb)
         question.answer = fullAnswer.alt
         altAnswer = fullAnswer.full
         question.verb += " (PC)"
     } else if (pickedTense === "pr") {
-        question.answer = presentTense(question.verb, question.subject)
+        question.answer = conjugator.present(question.subject, question.verb)
         altAnswer = compress(question.subject, question.answer)
     } else {
         window.alert("something went wrong while randomly picking a tense!")
@@ -497,7 +552,22 @@ function returnProblem(verbs) {
 var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
-    checkTouch()
+    $.ajax({
+        url: './verbs.json',
+        dataType: "json",
+        success: response => {
+            verbs = response
+            if (localStorage["vite-custom-verbs"] != "") {
+                verbs = JSON.parse(JSON.stringify(verbs).substr(0, JSON.stringify(verbs).length - 1) + ", " + localStorage["vite-custom-verbs"] + "}")
+            }
+            setupVerbs(verbs)
+            //console.log(verbs)
+        },
+        error: function (err) {
+            console.error("error: could not load verbs.json :(")
+            console.log(err)
+        }
+    });
     document.getElementById("verb-add-submit").addEventListener("click", function () {
         addVerb()
     })
@@ -588,22 +658,7 @@ window.addEventListener("load", function () {
         let subject = document.querySelector(`button[name="${subjectTag}"]`)
         subject.className = subject.className += " active"
     }
-    $.ajax({
-        url: './verbs.json',
-        dataType: "json",
-        success: response => {
-            verbs = response
-            if (localStorage["vite-custom-verbs"] != "") {
-                verbs = JSON.parse(JSON.stringify(verbs).substr(0, JSON.stringify(verbs).length - 1) + ", " + localStorage["vite-custom-verbs"] + "}")
-            }
-            setupVerbs(verbs)
-            //console.log(verbs)
-        },
-        error: function (err) {
-            console.error("error: could not load verbs.json :(")
-            console.log(err)
-        }
-    });
+
     //listener
     for (toggle of document.querySelectorAll("#table-subjects button")) {
         toggle.addEventListener("click", function () {
