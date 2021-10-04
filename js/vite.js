@@ -69,6 +69,13 @@ var timed = false,
             "Ils / Elles": "ent"
         }
     }
+function random(max) {
+    if (typeof max != "number") {
+        return max[parseInt(Math.random() * max.length)];
+    } else {
+        return parseInt(Math.random() * max);
+    }
+}
 function twoPlaces(value) {
     let num = parseInt(value * 100) / 100
     num = num.toFixed(2)
@@ -123,10 +130,8 @@ function addVerb() {
             "Vous": document.getElementById("verb-add-subject-5").value,
             "Ils / Elles": document.getElementById("verb-add-subject-6").value,
         }
-        console.log(newVerb)
         newVerb = JSON.stringify(newVerb)
         newVerb = `"` + document.getElementById("verb-add-name").value + `"` + ": " + newVerb
-        console.log(newVerb)
         localStorage["vite-custom-verbs"] += ((localStorage["vite-custom-verbs"].length > 0) ? "," : "") + newVerb
         window.location.reload()
     }
@@ -305,11 +310,38 @@ function reflexiveTense(verb, subject) {
     answer = [subject, compress(reflexive[subject], presentTense(verb, subject))].join("")
     return answer.toLowerCase()
 }
+function agreement(subject) {
+    let extras = ""
+    subject = subject.toLowerCase()
+    if (subject == "il / elle / on") {
+        subject = random(["il", "elle", "on"]);
+    } else if (subject == "ils / elles") {
+        subject = random(["il", "elles"]);
+    }
+    if (subject == "elles" || subject == "elle") {
+        extras += "e"
+    } else if (subject != "il" && subject != "ils") {
+        extras += "(e)"
+    }
+    if (subject == "nous" || subject == "ils" || subject == "elles") {
+        extras += "s"
+    } else if (subject == "vous") {
+        extras += "(s)"
+    }
+    subject = subject[0].toUpperCase() + subject.substr(1)
+    return {
+        "newSubject": subject,
+        "ending": extras
+    }
+}
 //PC handler
 function passeComposeTense(verb, name, subject) {
+    if (name.includes("Conna")) {
+        verb = verbs["Connaître"]
+    }
     let conjugation = {}
     conjugation.subject = subject
-    conjugation.helping = verbs[verb.PC.helping][subject]
+    conjugation.helping = (verbs[verb.PC.helping])[subject]
     if (verb.PC.participle === "regular") {
         conjugation.base = name.substr(0, name.length - 2)
         conjugation.ending = name.substr(name.length - 2, name.length)
@@ -326,8 +358,12 @@ function passeComposeTense(verb, name, subject) {
     } else {
         conjugation.participle = verb.PC.participle
     }
-    if ((subject === "Nous" || subject === "Vous" || subject === "Ils / Elles") && verb.PC.helping === "Être") {
-        conjugation.participle += "s"
+    let agreementData = agreement(subject)
+    subject = agreementData.newSubject
+    conjugation.subject = agreementData.newSubject
+    if (verb.PC.helping != "Avoir") {
+        conjugation.subject = agreementData.newSubject
+        conjugation.participle = conjugation.participle += agreementData.ending
     }
     conjugation.full = ([conjugation.subject, conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
     conjugation.full = conjugation.full.replace("je a", "j'a")
@@ -355,7 +391,23 @@ var skipBlank = JSON.parse(localStorage["vite-skip-blank"])
 function showAnswer(input) {
 
     let coverEle = document.getElementById("question-cover")
-    if (input.toLowerCase() === correctAnswer.toLowerCase() || input.toLowerCase() === altAnswer.toLowerCase()) {
+    answerVariations = [
+        correctAnswer.replace("(e)", ""),
+        correctAnswer.replace("(s)", ""),
+        correctAnswer.replace("(e)", "").replace("(s)", ""),
+        correctAnswer.replace("(e)", "e"),
+        correctAnswer.replace("(s)", "s"),
+        correctAnswer.replace("(e)", "e").replace("(s)", "s")
+    ]
+    altAnswerVariations = [
+        altAnswer.replace("(e)", ""),
+        altAnswer.replace("(s)", ""),
+        altAnswer.replace("(e)", "").replace("(s)", ""),
+        altAnswer.replace("(e)", "e"),
+        altAnswer.replace("(s)", "s"),
+        altAnswer.replace("(e)", "e").replace("(s)", "s")
+    ]
+    if (altAnswerVariations.includes(input.toLowerCase()) || answerVariations.includes(input.toLowerCase())) {
         coverEle.className = "check correct"
         localStorage["VITE-correct"] = parseInt(localStorage["VITE-correct"]) + 1
         coverEle.style.display = ""
@@ -368,16 +420,12 @@ function showAnswer(input) {
         problemTime.score += score
         document.getElementById("score-amount").textContent = problemTime.score
         problemTime.problems += 1
-        console.log("score", score)
-        console.log("total-score", problemTime.score)
         document.getElementById("question-answer-input").value = ""
     } else {
         problemTime.score -= (problemTime["incorrect-deduction"])
         problemTime.score = Math.max(problemTime.score, 0)
         document.getElementById("score-amount").textContent = problemTime.score
         problemTime.problems += 1
-        console.log("score -", problemTime["incorrect-deduction"])
-        console.log("total-score", problemTime.score)
         coverEle.className = "check incorrect"
         coverEle.style.display = ""
         localStorage["VITE-incorrect"] = parseInt(localStorage["VITE-incorrect"]) + 1
@@ -468,14 +516,13 @@ function returnProblem(verbs) {
     for (activeVerb of localStorage["vite-verbs"].split(",")) {
         activeVerbs.push(activeVerb)
     }
-    console.log(activeVerbs)
     if (activeVerbs.length <= 0) {
         window.alert("Make sure you have some verbs enabled!")
         return "no-verbs"
     }
     let question = {},
-        ranS = parseInt(Math.random() * (activeSubjects.length - 1)),
-        ranV = parseInt(Math.random() * (activeVerbs.length - 1)),
+        ranS = random(activeSubjects.length),
+        ranV = random(activeVerbs.length),
         verbParent = verbs[activeVerbs[ranV]]
     question.subject = activeSubjects[ranS]
     question.verb = activeVerbs[ranV]
@@ -484,6 +531,7 @@ function returnProblem(verbs) {
     if (pickedTense === "pc") {
         fullAnswer = passeComposeTense(verbParent, question.verb, question.subject)
         question.answer = fullAnswer.alt
+        question.subject = fullAnswer.subject
         altAnswer = fullAnswer.full
         question.verb += " (PC)"
     } else if (pickedTense === "pr") {
@@ -493,6 +541,7 @@ function returnProblem(verbs) {
         window.alert("something went wrong while randomly picking a tense!")
     }
     return question
+
 }
 var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
@@ -573,13 +622,8 @@ window.addEventListener("load", function () {
                 } else {
                     submitAnswer()
                 }
-
-
             }
-
-
         }
-
     }
     //load JSON
 
@@ -610,6 +654,4 @@ window.addEventListener("load", function () {
             createProblem(verbs)
         })
     }
-
-
 })
