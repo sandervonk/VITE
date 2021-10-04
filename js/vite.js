@@ -22,6 +22,7 @@
     "Ils / Elles": ""
   }
 */
+
 var timed = false,
     timedID,
     countdown,
@@ -79,8 +80,6 @@ function resetCustom() {
     localStorage["vite-verbs"] = 'Venir,Pouvoir,Prendre,Connaitre,Savoir,Avoir,Être,Aller,Faire,Manger,Finir'
     window.location.reload()
 }
-function checkTouch() {
-}
 function sendMessage(head, content, foot) {
     head += "\n\n----- JSON Start -----"
     foot = "----- JSON End -----\n\n" + foot
@@ -97,6 +96,249 @@ function sendMessage(head, content, foot) {
         window.location.href = link
     }
 
+}
+class activatedUtilities {
+    addVerb() {
+        let finished = true
+        for (inputElement of document.querySelectorAll("#verb-add input, #verb-add submit")) {
+            inputElement.className = inputElement.className.replace(" attention", "")
+            if (inputElement.value === "") {
+                finished = false
+                inputElement.className += " attention"
+            }
+        }
+        if (!finished) {
+            window.alert("Looks like some fields still need to be filled out. Try doing so and submitting it again!")
+        } else {
+            let newVerb = {
+                "PC": {
+                    "helping": document.getElementById("verb-add-helping").value,
+                    "participle": document.getElementById("verb-add-participle").value
+                },
+                "custom": true,
+                "Je": document.getElementById("verb-add-subject-1").value,
+                "Tu": document.getElementById("verb-add-subject-2").value,
+                "Il / Elle / On": document.getElementById("verb-add-subject-3").value,
+                "Nous": document.getElementById("verb-add-subject-4").value,
+                "Vous": document.getElementById("verb-add-subject-5").value,
+                "Ils / Elles": document.getElementById("verb-add-subject-6").value,
+            }
+            console.log(newVerb)
+            newVerb = JSON.stringify(newVerb)
+            newVerb = `"` + document.getElementById("verb-add-name").value + `"` + ": " + newVerb
+            console.log(newVerb)
+            localStorage["vite-custom-verbs"] += ((localStorage["vite-custom-verbs"].length > 0) ? "," : "") + newVerb
+            window.location.reload()
+        }
+    }
+    toggleVerb(event, isMenu) {
+        if (arguments.length != 2) {
+            console.log("1 argument")
+            isMenu = false
+        } else {
+            isMenu = true
+        }
+        let element = event.target
+        let verbStorage = localStorage["vite-verbs"]
+        if (verbStorage[0] === ",") {
+            verbStorage = verbStorage.substr(1, verbStorage.length - 1)
+        }
+        if (verbStorage[verbStorage.length - 1] === ",") {
+            verbStorage = verbStorage.substr(0, verbStorage.length - 1)
+        }
+        verbStorage = verbStorage.split(",")
+        if (isMenu === true) {
+            try {
+                document.querySelector(`.menu-verb[name='${element.name}']`).className = document.querySelector(`.menu-verb[name='${element.name}']`).className.replace(" active", "")
+            } catch { }
+        }
+        if (element.className.includes(" active")) {
+            element.className = element.className.replace(" active", "")
+            delete verbStorage[verbStorage.indexOf(element.textContent)]
+        } else {
+            element.className += " active"
+            try {
+                document.querySelector(`.menu-verb[name='${element.name}']`).className += " active"
+            } catch { }
+            if (!verbStorage.includes(element.textContent)) {
+                verbStorage.push(element.textContent)
+            }
+        }
+        verbStorage = (verbStorage.join(",")).replace(",,", ",")
+        if (verbStorage[0] === ",") {
+            verbStorage = verbStorage.substr(1, verbStorage.length - 1)
+        }
+        if (verbStorage[verbStorage.length - 1] === ",") {
+            verbStorage = verbStorage.substr(0, verbStorage.length - 1)
+        }
+        localStorage["vite-verbs"] = verbStorage
+        createProblem(verbs)
+    }
+}
+class menuUtilities {
+    verbOptions() {
+        document.getElementById("verb-cover").style.display = "block"
+        document.getElementById("verb-cover").addEventListener("click", event => {
+            if (event.target.id === "verb-cover") {
+                document.getElementById("verb-cover").style.display = ""
+            }
+        })
+        document.getElementById("verb-options").innerHTML = ""
+        for (verb of Object.keys(verbs)) {
+            let activeVerb = localStorage["vite-verbs"].split(",").includes(verb)
+            let isCustom = (verbs[verb].custom === true)
+            document.getElementById("verb-options").innerHTML += `<button class="toggle-button ${isCustom ? "custom-verb " : ""}verb-button${activeVerb ? " active" : ""}" title="Toggle '${verb}' as a verb in problems." name="${verb}">${verb}</button>`
+        }
+        let verbElements = document.querySelectorAll("#verb-options button.verb-button")
+        for (verbElement of verbElements) {
+            verbElement.addEventListener("click", event => {
+                toggleVerb(event, true)
+            })
+        }
+    }
+}
+class timerUtilities {
+    startTimed() {
+        if (document.getElementById("timed-time") != null) {
+            if (JSON.stringify(parseInt(document.getElementById("timed-time").value)) != "null") {
+                time = parseInt(document.getElementById("timed-time").value * 1000)
+            }
+        } else { console.log("could not find input") }
+        timeleft = (time / 1000).toFixed(2)
+        document.getElementById("timer-countdown").textContent = timeleft
+        timedID = window.setTimeout(timedFunction, time)
+        timerStart = (new Date()).getTime()
+        document.getElementById("timer-countdown").className = "running"
+        countdown = setInterval(function () {
+            let timerNow = new Date()
+            timerNow = timerNow.getTime()
+            timeDiff = timerNow - timerStart
+            timeDiff = (timeDiff / 1000)
+            document.getElementById("timer-countdown").textContent = ((time / 1000) - timeDiff).toFixed(2)
+            if ((time / 1000) <= timeDiff) {
+                this.clearTimedFunction()
+            }
+        }, 10)
+    }
+    timedFunction() {
+        this.clearTimedFunction()
+
+        //force submit
+        if (document.getElementById("question-cover").style.display != "none") {
+            //clearPrevious()
+            //createProblem()
+            //startTimed()
+        } else {
+            submitAnswer()
+        }
+    }
+    clearTimedFunction() {
+        try {
+            document.getElementById("timer-countdown").textContent = (0).toFixed(2)
+            document.getElementById("timer-countdown").className = "stopped"
+        } catch { console.log("failed setting info for countdown") }
+        try { window.clearInterval(countdown) } catch (err) { console.error("got err:", err, "when clearing interval for countdown") }
+        try { window.clearTimeout(timedID) } catch (err) { console.error("got err:", err, "when clearing timeout") }
+
+    }
+}
+class portalUtilities {
+    clearPrevious() {
+        document.getElementById("question-cover").style.display = "none"
+        document.getElementById("question-cover").textContent = ""
+        document.getElementById("question-cover").title = ""
+        document.getElementById("question-cover").className = "check"
+        document.getElementById("question-answer-input").value = ""
+    }
+    //make things like "je ai" "j'ai" as needed
+}
+class conjugationUtilities {
+    compress(subject, conjugation) {
+        let composite = "",
+            newSubject = ""
+        if (subject[subject.length - 1] === "e" && isVowel(conjugation[0])) {
+            newSubject = subject.substr(0, subject.length - 1) + "'"
+            composite = (newSubject + conjugation).toLowerCase()
+        } else {
+            composite = [subject, conjugation].join(" ")
+        }
+        return composite
+
+    }
+    function pickTense() {
+    let newTense = ""
+    try {
+
+        let passeStorage = JSON.parse(localStorage["vite-pc"]),
+            presentStorage = JSON.parse(localStorage["vite-pr"])
+        if (passeStorage && presentStorage) {
+            newTense = (parseInt(Math.random() * 2) === 0) ? "pc" : "pr"
+        } else if (presentStorage) {
+            newTense = "pr"
+        } else {
+            newTense = "pc"
+        }
+    } catch {
+        localStorage["vite-pc"] = true
+        localStorage["vite-pr"] = true
+        window.location.reload()
+        newTense = "pr"
+        console.error("faulty tense")
+    }
+    return newTense
+}
+//Present handler
+function presentTense(verb, subject) {
+    let answer = ""
+    answer = verbs[verb][subject]
+    if (answer === "regular" || verbs[verb]["All"] === "regular") {
+        let base = verb.substr(0, verb.length - 2)
+        let ending = verb.substr(verb.length - 2, verb.length - 1)
+        if (Object.keys(regularEnd).includes(ending)) {
+            answer = base + regularEnd[ending][subject]
+        } else {
+            window.alert("ERR: Cannot find regular ending for verb with non-ir/er/re ending marked as regular")
+        }
+    }
+    return answer.toLowerCase()
+}
+//Reflexive handler
+reflexiveTense(verb, subject) {
+    let answer = ""
+    //answer = [subject, compress(compress(reflexive[subject], presentTense("Être", subject)), presentTense(verb, subject))].join(" ")
+    answer = [subject, compress(reflexive[subject], presentTense(verb, subject))].join("")
+    return answer.toLowerCase()
+}
+//PC handler
+passeComposeTense(verb, name, subject) {
+    let conjugation = {}
+    conjugation.subject = subject
+    conjugation.helping = verbs[verb.PC.helping][subject]
+    if (verb.PC.participle === "regular") {
+        conjugation.base = name.substr(0, name.length - 2)
+        conjugation.ending = name.substr(name.length - 2, name.length)
+        if (conjugation.ending === "er") {
+            conjugation.pcEnd = "é"
+        } else if (conjugation.ending === "re") {
+            conjugation.pcEnd = "u"
+        } else if (conjugation.ending === "ir") {
+            conjugation.pcEnd = "i"
+        } else {
+            window.alert("errored while conjugating a verb marked as regular, but with no acceptable ending")
+        }
+        conjugation.participle = conjugation.base + conjugation.pcEnd
+    } else {
+        conjugation.participle = verb.PC.participle
+    }
+    if ((subject === "Nous" || subject === "Vous" || subject === "Ils / Elles") && verb.PC.helping === "Être") {
+        conjugation.participle += "s"
+    }
+    conjugation.full = ([conjugation.subject, conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
+    conjugation.full = conjugation.full.replace("je a", "j'a")
+    conjugation.alt = ([conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
+    return conjugation
+}
+    
 }
 function addVerb() {
     let finished = true
@@ -497,7 +739,6 @@ function returnProblem(verbs) {
 var verbs = {}
 var subjects = localStorage["vite-subjects"].split(",")
 window.addEventListener("load", function () {
-    checkTouch()
     document.getElementById("verb-add-submit").addEventListener("click", function () {
         addVerb()
     })
