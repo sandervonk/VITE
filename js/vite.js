@@ -265,80 +265,80 @@ class conjugationUtilities {
         return composite
 
     }
-    function pickTense() {
-    let newTense = ""
-    try {
+    pickTense() {
+        let newTense = ""
+        try {
 
-        let passeStorage = JSON.parse(localStorage["vite-pc"]),
-            presentStorage = JSON.parse(localStorage["vite-pr"])
-        if (passeStorage && presentStorage) {
-            newTense = (parseInt(Math.random() * 2) === 0) ? "pc" : "pr"
-        } else if (presentStorage) {
+            let passeStorage = JSON.parse(localStorage["vite-pc"]),
+                presentStorage = JSON.parse(localStorage["vite-pr"])
+            if (passeStorage && presentStorage) {
+                newTense = (parseInt(Math.random() * 2) === 0) ? "pc" : "pr"
+            } else if (presentStorage) {
+                newTense = "pr"
+            } else {
+                newTense = "pc"
+            }
+        } catch {
+            localStorage["vite-pc"] = true
+            localStorage["vite-pr"] = true
+            window.location.reload()
             newTense = "pr"
-        } else {
-            newTense = "pc"
+            console.error("faulty tense")
         }
-    } catch {
-        localStorage["vite-pc"] = true
-        localStorage["vite-pr"] = true
-        window.location.reload()
-        newTense = "pr"
-        console.error("faulty tense")
+        return newTense
     }
-    return newTense
-}
-//Present handler
-function presentTense(verb, subject) {
-    let answer = ""
-    answer = verbs[verb][subject]
-    if (answer === "regular" || verbs[verb]["All"] === "regular") {
-        let base = verb.substr(0, verb.length - 2)
-        let ending = verb.substr(verb.length - 2, verb.length - 1)
-        if (Object.keys(regularEnd).includes(ending)) {
-            answer = base + regularEnd[ending][subject]
-        } else {
-            window.alert("ERR: Cannot find regular ending for verb with non-ir/er/re ending marked as regular")
+    //Present handler
+    presentTense(verb, subject) {
+        let answer = ""
+        answer = verbs[verb][subject]
+        if (answer === "regular" || verbs[verb]["All"] === "regular") {
+            let base = verb.substr(0, verb.length - 2)
+            let ending = verb.substr(verb.length - 2, verb.length - 1)
+            if (Object.keys(regularEnd).includes(ending)) {
+                answer = base + regularEnd[ending][subject]
+            } else {
+                window.alert("ERR: Cannot find regular ending for verb with non-ir/er/re ending marked as regular")
+            }
         }
+        return answer.toLowerCase()
     }
-    return answer.toLowerCase()
-}
-//Reflexive handler
-reflexiveTense(verb, subject) {
-    let answer = ""
-    //answer = [subject, compress(compress(reflexive[subject], presentTense("Être", subject)), presentTense(verb, subject))].join(" ")
-    answer = [subject, compress(reflexive[subject], presentTense(verb, subject))].join("")
-    return answer.toLowerCase()
-}
-//PC handler
-passeComposeTense(verb, name, subject) {
-    let conjugation = {}
-    conjugation.subject = subject
-    conjugation.helping = verbs[verb.PC.helping][subject]
-    if (verb.PC.participle === "regular") {
-        conjugation.base = name.substr(0, name.length - 2)
-        conjugation.ending = name.substr(name.length - 2, name.length)
-        if (conjugation.ending === "er") {
-            conjugation.pcEnd = "é"
-        } else if (conjugation.ending === "re") {
-            conjugation.pcEnd = "u"
-        } else if (conjugation.ending === "ir") {
-            conjugation.pcEnd = "i"
+    //Reflexive handler
+    reflexiveTense(verb, subject) {
+        let answer = ""
+        //answer = [subject, compress(compress(reflexive[subject], presentTense("Être", subject)), presentTense(verb, subject))].join(" ")
+        answer = [subject, compress(reflexive[subject], presentTense(verb, subject))].join("")
+        return answer.toLowerCase()
+    }
+    //PC handler
+    passeComposeTense(verb, name, subject) {
+        let conjugation = {}
+        conjugation.subject = subject
+        conjugation.helping = verbs[verb.PC.helping][subject]
+        if (verb.PC.participle === "regular") {
+            conjugation.base = name.substr(0, name.length - 2)
+            conjugation.ending = name.substr(name.length - 2, name.length)
+            if (conjugation.ending === "er") {
+                conjugation.pcEnd = "é"
+            } else if (conjugation.ending === "re") {
+                conjugation.pcEnd = "u"
+            } else if (conjugation.ending === "ir") {
+                conjugation.pcEnd = "i"
+            } else {
+                window.alert("errored while conjugating a verb marked as regular, but with no acceptable ending")
+            }
+            conjugation.participle = conjugation.base + conjugation.pcEnd
         } else {
-            window.alert("errored while conjugating a verb marked as regular, but with no acceptable ending")
+            conjugation.participle = verb.PC.participle
         }
-        conjugation.participle = conjugation.base + conjugation.pcEnd
-    } else {
-        conjugation.participle = verb.PC.participle
+        if ((subject === "Nous" || subject === "Vous" || subject === "Ils / Elles") && verb.PC.helping === "Être") {
+            conjugation.participle += "s"
+        }
+        conjugation.full = ([conjugation.subject, conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
+        conjugation.full = conjugation.full.replace("je a", "j'a")
+        conjugation.alt = ([conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
+        return conjugation
     }
-    if ((subject === "Nous" || subject === "Vous" || subject === "Ils / Elles") && verb.PC.helping === "Être") {
-        conjugation.participle += "s"
-    }
-    conjugation.full = ([conjugation.subject, conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
-    conjugation.full = conjugation.full.replace("je a", "j'a")
-    conjugation.alt = ([conjugation.helping, conjugation.participle].join(" ")).toLowerCase()
-    return conjugation
-}
-    
+
 }
 function addVerb() {
     let finished = true
