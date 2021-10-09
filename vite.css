@@ -446,6 +446,9 @@ body.QZ #question-cover.check.incorrect {
     display: none !important;
   }
   */
+  #flex-parent {
+    padding: 5vh 0;
+  }
   #score-container {
     display: flex !important;
   }
@@ -1066,7 +1069,6 @@ select {
   font-size: 0.3em;
 }
 #flashcards {
-  background-color: lightgrey;
-  filter: drop-shadow(0 0 4px #000000aa);
+  box-shadow: none !important;
   border-radius: 4vh;
 }
