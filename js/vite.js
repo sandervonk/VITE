@@ -536,6 +536,11 @@ function showAnswer(input) {
       parseInt(localStorage["VITE-incorrect"]) + 1;
     document.getElementById("question-cover").textContent =
       correctAnswer + " or " + altAnswer.toLowerCase();
+    if (input.toLowerCase().includes("rick")) {
+      document.getElementById("question-cover").className = "check rick";
+      document.getElementById("question-cover").innerHTML =
+        "<iframe width='100%' height='100%' src='https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&amp;autoplay=1' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>";
+    }
   }
   document.getElementById("stats-correct").style.width = `${
     (100 * parseInt(localStorage["VITE-correct"])) /
