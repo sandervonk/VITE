@@ -1,5 +1,6 @@
 {
   "Venir": {
+    "FS": "viendr",
     "definition": "to come",
     "PC": {
       "helping": "Être",
@@ -13,6 +14,7 @@
     "Ils / Elles": "viennent"
   },
   "Pouvoir": {
+    "FS": "pourr",
     "definition": "to be able to",
     "PC": {
       "helping": "Avoir",
@@ -26,6 +28,7 @@
     "Ils / Elles": "peuvent"
   },
   "Prendre": {
+    "FS": "regular",
     "definition": "to take",
     "PC": {
       "helping": "Avoir",
@@ -39,6 +42,7 @@
     "Ils / Elles": "prennent"
   },
   "Connaître": {
+    "FS": "regular",
     "definition": "to know (of a person)",
     "PC": {
       "helping": "Avoir",
@@ -52,6 +56,7 @@
     "Ils / Elles": "connaissent"
   },
   "Savoir": {
+    "FS": "regular",
     "definition": "to know (of an idea or thing)",
     "PC": {
       "helping": "Avoir",
@@ -65,6 +70,7 @@
     "Ils / Elles": "savent"
   },
   "Avoir": {
+    "FS": "aur",
     "definition": "to have",
     "PC": {
       "helping": "Avoir",
@@ -78,6 +84,7 @@
     "Ils / Elles": "ont"
   },
   "Être": {
+    "FS": "ser",
     "definition": "to be",
     "PC": {
       "helping": "Avoir",
@@ -91,6 +98,7 @@
     "Ils / Elles": "sont"
   },
   "Aller": {
+    "FS": "ir",
     "definition": "to go",
     "PC": {
       "helping": "Être",
@@ -104,6 +112,7 @@
     "Ils / Elles": "vont"
   },
   "Faire": {
+    "FS": "fer",
     "definition": "to do",
     "PC": {
       "helping": "Avoir",
@@ -117,6 +126,7 @@
     "Ils / Elles": "font"
   },
   "Manger": {
+    "FS": "regular",
     "definition": "to eat",
     "PC": {
       "helping": "Avoir",
@@ -130,6 +140,7 @@
     "Ils / Elles": "regular"
   },
   "Finir": {
+    "FS": "regular",
     "definition": "to finish",
     "PC": {
       "helping": "Avoir",
@@ -138,6 +149,7 @@
     "All": "regular"
   },
   "Vouloir": {
+    "FS": "voudr",
     "definition": "to want",
     "PC": {
       "helping": "Avoir",
@@ -151,6 +163,7 @@
     "Ils / Elles": "veulent"
   },
   "Dormir": {
+    "FS": "regular",
     "definition": "to sleep",
     "PC": {
       "helping": "Avoir",
@@ -164,6 +177,7 @@
     "Ils / Elles": "dorment"
   },
   "Devoir": {
+    "FS": "devr",
     "definition": "to have to",
     "PC": {
       "helping": "Avoir",
@@ -177,6 +191,7 @@
     "Ils / Elles": "doivent"
   },
   "Suivre": {
+    "FS": "regular",
     "definition": "to follow (ex. of a course)",
     "PC": {
       "helping": "Avoir",
@@ -190,6 +205,7 @@
     "Ils / Elles": "suivent"
   },
   "Voir": {
+    "FS": "verr",
     "definition": "to see",
     "PC": {
       "helping": "Avoir",
@@ -203,6 +219,7 @@
     "Ils / Elles": "voient"
   },
   "Rendre": {
+    "FS": "regular",
     "definition": "to give",
     "PC": {
       "helping": "Avoir",
@@ -211,6 +228,7 @@
     "All": "regular"
   },
   "Mettre": {
+    "FS": "regular",
     "definition": "to put",
     "PC": {
       "helping": "Avoir",
@@ -224,6 +242,7 @@
     "Ils / Elles": "regular"
   },
   "Conduire": {
+    "FS": "regular",
     "definition": "to drive",
     "PC": {
       "helping": "Avoir",
@@ -237,6 +256,7 @@
     "Ils / Elles": "conduisent"
   },
   "Dire": {
+    "FS": "regular",
     "definition": "to say",
     "PC": {
       "helping": "Avoir",
@@ -250,6 +270,7 @@
     "Ils / Elles": "disent"
   },
   "Descendre": {
+    "FS": "regular",
     "definition": "to go down",
     "PC": {
       "helping": "Être",
@@ -258,6 +279,7 @@
     "All": "regular"
   },
   "Retourner": {
+    "FS": "regular",
     "definition": "to go down",
     "PC": {
       "helping": "Être",
@@ -266,6 +288,7 @@
     "All": "regular"
   },
   "Mourir": {
+    "FS": "regular",
     "definition": "to die",
     "PC": {
       "helping": "Être",
@@ -274,6 +297,7 @@
     "All": "regular"
   },
   "Rentre": {
+    "FS": "regular",
     "definition": "to go back in",
     "PC": {
       "helping": "Être",
@@ -282,6 +306,7 @@
     "All": "regular"
   },
   "Sortir": {
+    "FS": "regular",
     "definition": "to go out",
     "PC": {
       "helping": "Être",
@@ -290,6 +315,7 @@
     "All": "regular"
   },
   "Arriver": {
+    "FS": "regular",
     "definition": "to arrive",
     "PC": {
       "helping": "Être",
@@ -298,6 +324,7 @@
     "All": "regular"
   },
   "Naître": {
+    "FS": "regular",
     "definition": "to be born",
     "PC": {
       "helping": "Être",

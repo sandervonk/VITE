@@ -328,30 +328,30 @@ function compress(subject, conjugation) {
 }
 //randomize tense
 function pickTense() {
-  let newTense = "";
+  let newTense = "",
+    tenses = [];
   try {
-    let passeStorage = JSON.parse(localStorage["vite-pc"]),
-      presentStorage = JSON.parse(localStorage["vite-pr"]),
-      imparfaitStorage = JSON.parse(localStorage["vite-im"]);
-    if (passeStorage && presentStorage && imparfaitStorage) {
-      newTense = random(["pc", "pr", "im"]);
-    } else if (passeStorage && presentStorage) {
-      newTense = random(["pc", "pr"]);
-    } else if (passeStorage && imparfaitStorage) {
-      newTense = random(["pc", "im"]);
-    } else if (presentStorage) {
-      newTense = "pr";
-    } else if (passeStorage) {
-      newTense = "pc";
-    } else {
-      newTense = "im";
+    for (tense of ["pr", "pc", "im", "fs", "fa"]) {
+      if (JSON.parse(localStorage["vite-" + tense])) {
+        tenses.push(tense);
+      }
     }
-  } catch {
+    if (!(tenses.length == 0)) {
+      newTense = random(tenses);
+    } else {
+      throw "something went wrong when choosing a tense";
+      console.log(tenses);
+    }
+  } catch (err) {
     localStorage["vite-pc"] = true;
     localStorage["vite-pr"] = true;
+    localStorage["vite-im"] = true;
+    localStorage["vite-fs"] = true;
+    localStorage["vite-fa"] = true;
     window.location.reload();
     newTense = "pr";
     console.error("faulty tense");
+    console.error(err);
   }
   return newTense;
 }
@@ -407,6 +407,9 @@ function agreement(subject) {
 }
 //Imp Handler
 function imparfaitTense(verb, name, subject) {
+  if (name.includes("Conna")) {
+    verb = verbs["Connaître"];
+  }
   let question = {
     subject: subject,
   };
@@ -422,6 +425,46 @@ function imparfaitTense(verb, name, subject) {
   question.alt = question.answer;
   question.full = [question.subject, question.answer].join(" ");
   return question;
+}
+//FA Handler
+function futurAnterieurTense(verb, name, subject) {
+  conjugation = futurSimpleTense(
+    verbs[verb.PC.helping],
+    verb.PC.helping,
+    subject
+  );
+  conjugation.participle = passeComposeTense(verb, name, subject).participle;
+  conjugation.full += (" " + conjugation.participle).toLowerCase();
+  conjugation.alt += (" " + conjugation.participle).toLowerCase();
+  return conjugation;
+}
+//FS handler
+function futurSimpleTense(verb, name, subject) {
+  if (name.includes("Conna")) {
+    verb = verbs["Connaître"];
+  }
+  let fsEnd = {
+    Je: "ai",
+    Tu: "as",
+    "Il / Elle / On": "a",
+    Nous: "ons",
+    Vous: "ez",
+    "Ils / Elles": "ent",
+  };
+  conjugation = {
+    subject: agreement(subject).newSubject,
+    verb: verb,
+    root: verb.FS == "regular" ? name : verb.FS,
+  };
+  //re verb rules
+  if (conjugation.root.substr(conjugation.root.length - 2, 2) == "re") {
+    conjugation.root = conjugation.root.substr(0, conjugation.root.length - 1);
+  }
+  conjugation.alt = [conjugation.root, fsEnd[subject]].join("").toLowerCase();
+  conjugation.full = [conjugation.subject, conjugation.alt]
+    .join(" ")
+    .toLowerCase();
+  return conjugation;
 }
 //PC handler
 function passeComposeTense(verb, name, subject) {
@@ -682,6 +725,22 @@ function returnProblem(verbs) {
     question.subject = fullAnswer.subject;
     altAnswer = fullAnswer.full;
     question.verb += " (Imp)";
+  } else if (pickedTense === "fs") {
+    fullAnswer = futurSimpleTense(verbParent, question.verb, question.subject);
+    question.answer = fullAnswer.alt;
+    question.subject = fullAnswer.subject;
+    altAnswer = fullAnswer.full;
+    question.verb += " (FS)";
+  } else if (pickedTense === "fa") {
+    fullAnswer = futurAnterieurTense(
+      verbParent,
+      question.verb,
+      question.subject
+    );
+    question.answer = fullAnswer.alt;
+    question.subject = fullAnswer.subject;
+    altAnswer = fullAnswer.full;
+    question.verb += " (FA)";
   } else {
     window.alert("something went wrong while randomly picking a tense!");
   }
