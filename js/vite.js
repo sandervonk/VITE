@@ -487,24 +487,20 @@ function isVowel(ch) {
 var correctAnswer = "";
 var altAnswer = "";
 var skipBlank = JSON.parse(localStorage["vite-skip-blank"]);
+function variations(variedAnswer) {
+  return [
+    variedAnswer.replace("(e)", ""),
+    variedAnswer.replace("(s)", ""),
+    variedAnswer.replace("(e)", "").replace("(s)", ""),
+    variedAnswer.replace("(e)", "e"),
+    variedAnswer.replace("(s)", "s"),
+    variedAnswer.replace("(e)", "e").replace("(s)", "s"),
+  ];
+}
 function showAnswer(input) {
   let coverEle = document.getElementById("question-cover");
-  answerVariations = [
-    correctAnswer.replace("(e)", ""),
-    correctAnswer.replace("(s)", ""),
-    correctAnswer.replace("(e)", "").replace("(s)", ""),
-    correctAnswer.replace("(e)", "e"),
-    correctAnswer.replace("(s)", "s"),
-    correctAnswer.replace("(e)", "e").replace("(s)", "s"),
-  ];
-  altAnswerVariations = [
-    altAnswer.replace("(e)", ""),
-    altAnswer.replace("(s)", ""),
-    altAnswer.replace("(e)", "").replace("(s)", ""),
-    altAnswer.replace("(e)", "e"),
-    altAnswer.replace("(s)", "s"),
-    altAnswer.replace("(e)", "e").replace("(s)", "s"),
-  ];
+  answerVariations = variations(correctAnswer);
+  altAnswerVariations = variations(altAnswer);
   if (
     altAnswerVariations.includes(input.toLowerCase()) ||
     answerVariations.includes(input.toLowerCase())

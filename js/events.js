@@ -44,6 +44,34 @@ if (
 }
 try {
   window.addEventListener("load", function () {
+    //setup accents
+    for (accentButton of document.getElementsByClassName("accent-shortcut")) {
+      accentButton.addEventListener("click", (e) => {
+        let target = e.target;
+        while (target.className != "accent-shortcut") {
+          target = target.children[0];
+        }
+        document.getElementById("question-answer-input").value +=
+          target.innerText;
+      });
+    }
+    //capslock
+    document.getElementById("accent-caps").addEventListener("click", (e) => {
+      let capsButton = document.getElementById("accent-caps");
+      for (accentButton of document.getElementsByClassName("accent-shortcut")) {
+        if (capsButton.className == "active") {
+          accentButton.innerText = accentButton.innerText.toLowerCase();
+        } else {
+          accentButton.innerText = accentButton.innerText.toUpperCase();
+        }
+      }
+      if (capsButton.className == "active") {
+        capsButton.className = "";
+      } else {
+        capsButton.className = "active";
+      }
+      console.log("ran onclick");
+    });
     //setup tense
     if (JSON.parse(localStorage["vite-pc"])) {
       document.getElementById("tense-pc").className += " active";

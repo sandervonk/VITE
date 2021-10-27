@@ -585,8 +585,7 @@ body #QZ-label {
   box-shadow: none;
   font-family: "Montserrat", sans-serif;
   font-weight: 600 !important;
-  font-size: 0.75em;
-  margin-top: 2vh !important;
+  font-size: 0.7em;
   letter-spacing: 0.04em;
   color: #939bb4;
 }
@@ -1072,4 +1071,60 @@ select {
 #flashcards {
   box-shadow: none !important;
   border-radius: 4vh;
+}
+/*accent buttons*/
+#QZ-extras {
+  box-shadow: none !important;
+  display: flex;
+  margin-top: 2vh !important;
+  align-items: center;
+  overflow: unset !important;
+}
+#QZ-accents {
+  box-shadow: none !important;
+  background-color: transparent;
+  overflow: unset !important;
+  display: none;
+  align-items: center;
+  flex-grow: 1;
+}
+body.QZ #QZ-accents {
+  display: flex !important;
+}
+#QZ-accents button.accent-shortcut:first-child {
+  margin-left: 2vh;
+}
+#QZ-accents button {
+  padding: 0.7vh !important;
+  line-height: 2vh;
+}
+button.accent-shortcut {
+  font-family: "Comfortaa", cursive;
+  border: none !important;
+  font-size: 2vh;
+  height: 2vh;
+  line-height: 2vh;
+  aspect-ratio: 1 / 1;
+  text-align: center;
+  margin: 0 0.5vh;
+  cursor: pointer;
+  height: 3vh;
+}
+#accent-caps {
+  color: #ffcd1f !important;
+  background-color: white;
+  border: none;
+  border-color: lightgrey !important;
+  height: 3vh;
+  aspect-ratio: 1 / 1;
+}
+#accent-caps:hover {
+  font-weight: 800;
+}
+#accent-caps.active {
+  color: black !important;
+  background-color: #ffcd1f !important;
+}
+.accent-shortcut:hover {
+  background-color: rgb(211, 222, 226);
 }
