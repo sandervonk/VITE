@@ -690,17 +690,14 @@ body.QZ #question-verb-span {
   min-width: 40%;
 }
 button#tense-pr.select-button,
-button#tense-im.select-button {
-  margin: 0 !important;
-  margin-top: 0 !important;
-}
-
+button#tense-im.select-button,
 button#tense-pc.select-button,
 button#tense-re.select-button {
-  margin-top: 0.7vh !important;
+  margin: 0.35vh !important;
 }
 #tense-re {
   opacity: 0.2;
+  cursor: not-allowed;
 }
 #maxwell-mode {
   color: grey;
