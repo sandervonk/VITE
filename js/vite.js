@@ -331,7 +331,7 @@ function pickTense() {
   let newTense = "",
     tenses = [];
   try {
-    for (tense of ["pr", "pc", "im", "fs"]) {
+    for (tense of ["pr", "pc", "im", "fs", "fa"]) {
       if (JSON.parse(localStorage["vite-" + tense])) {
         tenses.push(tense);
       }
@@ -347,6 +347,7 @@ function pickTense() {
     localStorage["vite-pr"] = true;
     localStorage["vite-im"] = true;
     localStorage["vite-fs"] = true;
+    localStorage["vite-fa"] = false;
     window.location.reload();
     newTense = "pr";
     console.error("faulty tense");
@@ -712,7 +713,7 @@ function returnProblem(verbs) {
     question.subject = fullAnswer.subject;
     altAnswer = fullAnswer.full;
     question.verb += " (Imp)";
-  } else if (pickedTense === "fs") {
+  } else if (pickedTense === "fs" || pickedTense === "fa") {
     fullAnswer = futurSimpleTense(verbParent, question.verb, question.subject);
     question.answer = fullAnswer.alt;
     question.subject = fullAnswer.subject;

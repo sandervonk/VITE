@@ -15,6 +15,7 @@ function stealCookies() {
     ["vite-pr", true],
     ["vite-im", true],
     ["vite-fs", true],
+    ["vite-fa", false],
     ["vite-custom-verbs", ""],
   ];
   for (cookie of cookies) {
@@ -25,15 +26,25 @@ if (localStorage["vite-custom-verbs"] === undefined) {
   localStorage["vite-custom-verbs"] = "";
   window.location.reload();
 }
-if (localStorage["vite-pr"] != "true" && localStorage["vite-pc"] != "true") {
-  localStorage["vite-pr"] = true;
-  localStorage["vite-pc"] = true;
-} else if (
+
+if (
+  (localStorage["vite-pr"] != "true" &&
+    localStorage["vite-pc"] != "true" &&
+    localStorage["vite-im"] != "true" &&
+    localStorage["vite-fs"] != "true" &&
+    localStorage["vite-fa"] != "true") ||
   localStorage["vite-pr"] === undefined ||
-  localStorage["vite-pc"] === undefined
+  localStorage["vite-pc"] === undefined ||
+  localStorage["vite-im"] === undefined ||
+  localStorage["vite-fs"] === undefined ||
+  localStorage["vite-fa"] === undefined
 ) {
   localStorage["vite-pr"] = true;
   localStorage["vite-pc"] = true;
+  localStorage["vite-im"] = true;
+  localStorage["vite-fs"] = true;
+  localStorage["vite-fa"] = true;
+  window.location.reload();
 }
 if (
   localStorage["vite-old-user"] != "true" ||
