@@ -289,7 +289,7 @@ function pickTense() {
   let newTense = "",
     tenses = [];
   try {
-    for (tense of ["pr", "pc", "im", "fs", "fa"]) {
+    for (tense of ["pr", "pc", "im", "fs", "fa", "co"]) {
       if (JSON.parse(localStorage["vite-" + tense])) {
         tenses.push(tense);
       }
@@ -306,6 +306,7 @@ function pickTense() {
     localStorage["vite-im"] = true;
     localStorage["vite-fs"] = true;
     localStorage["vite-fa"] = true;
+    localStorage["vite-co"] = true;
     window.location.reload();
     newTense = "pr";
     console.error("faulty tense");
@@ -396,6 +397,29 @@ function agreement(subject) {
     newSubject: subject,
     ending: extras,
   };
+}
+//CO handler
+function conditionnelTense(verb, name, subject) {
+  let imparfaitEnd = {
+    Je: "ais",
+    Tu: "ais",
+    "Il / Elle / On": "ait",
+    Nous: "ions",
+    Vous: "iez",
+    "Ils / Elles": "aient",
+  };
+  conjugation = {
+    subject: agreement(subject).newSubject,
+    root: verb.FS == "regular" ? name : verb.FS,
+  };
+  if (conjugation.root.substr(conjugation.root.length - 2, 2) == "re") {
+    conjugation.root = conjugation.root.substr(0, conjugation.root.length - 1);
+  }
+  conjugation.alt = (conjugation.root + imparfaitEnd[subject]).toLowerCase();
+  conjugation.full = [conjugation.subject, conjugation.alt]
+    .join(" ")
+    .toLowerCase();
+  return conjugation;
 }
 //Imp Handler
 function imparfaitTense(verb, name, subject) {
@@ -741,6 +765,12 @@ function returnProblem(verbs) {
     question.subject = fullAnswer.subject;
     altAnswer = fullAnswer.full;
     question.verb += " (FA)";
+  } else if (pickedTense === "co") {
+    fullAnswer = conditionnelTense(verbParent, question.verb, question.subject);
+    question.answer = fullAnswer.alt;
+    question.subject = fullAnswer.subject;
+    altAnswer = fullAnswer.full;
+    question.verb += " (Co)";
   } else {
     window.alert("something went wrong while randomly picking a tense!");
   }

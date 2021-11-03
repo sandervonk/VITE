@@ -16,6 +16,7 @@ function stealCookies() {
     ["vite-im", true],
     ["vite-fs", true],
     ["vite-fa", true],
+    ["vite-co", true],
     ["vite-custom-verbs", ""],
   ];
   for (cookie of cookies) {
@@ -32,11 +33,13 @@ if (
     localStorage["vite-pc"] != "true" &&
     localStorage["vite-im"] != "true" &&
     localStorage["vite-fs"] != "true" &&
+    localStorage["vite-co"] != "true" &&
     localStorage["vite-fa"] != "true") ||
   localStorage["vite-pr"] === undefined ||
   localStorage["vite-pc"] === undefined ||
   localStorage["vite-im"] === undefined ||
   localStorage["vite-fs"] === undefined ||
+  localStorage["vite-co"] === undefined ||
   localStorage["vite-fa"] === undefined
 ) {
   localStorage["vite-pr"] = true;
@@ -44,6 +47,7 @@ if (
   localStorage["vite-im"] = true;
   localStorage["vite-fs"] = true;
   localStorage["vite-fa"] = true;
+  localStorage["vite-co"] = true;
   window.location.reload();
 }
 if (
@@ -99,6 +103,9 @@ try {
     if (JSON.parse(localStorage["vite-fa"])) {
       document.getElementById("tense-fa").className += " active";
     }
+    if (JSON.parse(localStorage["vite-co"])) {
+      document.getElementById("tense-co").className += " active";
+    }
     document
       .getElementById("score-label")
       .addEventListener("click", function () {
@@ -138,6 +145,7 @@ try {
         (JSON.parse(localStorage["vite-im"]) ||
           JSON.parse(localStorage["vite-pc"]) ||
           JSON.parse(localStorage["vite-fa"]) ||
+          JSON.parse(localStorage["vite-co"]) ||
           JSON.parse(localStorage["vite-fs"])) &&
         JSON.parse(localStorage["vite-pr"])
       ) {
@@ -154,6 +162,7 @@ try {
       } else if (
         (JSON.parse(localStorage["vite-fs"]) ||
           JSON.parse(localStorage["vite-pc"]) ||
+          JSON.parse(localStorage["vite-co"]) ||
           JSON.parse(localStorage["vite-fa"]) ||
           JSON.parse(localStorage["vite-pr"])) &&
         JSON.parse(localStorage["vite-im"])
@@ -171,6 +180,7 @@ try {
       } else if (
         (JSON.parse(localStorage["vite-im"]) ||
           JSON.parse(localStorage["vite-pc"]) ||
+          JSON.parse(localStorage["vite-co"]) ||
           JSON.parse(localStorage["vite-fa"]) ||
           JSON.parse(localStorage["vite-pr"])) &&
         JSON.parse(localStorage["vite-fs"])
@@ -188,12 +198,31 @@ try {
       } else if (
         (JSON.parse(localStorage["vite-im"]) ||
           JSON.parse(localStorage["vite-pc"]) ||
-          JSON.parse(localStorage["vite-fa"]) ||
+          JSON.parse(localStorage["vite-co"]) ||
+          JSON.parse(localStorage["vite-fs"]) ||
           JSON.parse(localStorage["vite-pr"])) &&
         JSON.parse(localStorage["vite-fa"])
       ) {
         localStorage["vite-fa"] = false;
         document.getElementById("tense-fa").className = "select-button";
+      } else {
+        window.alert("sorry, at least one tense needs to be selected!");
+      }
+    });
+    document.getElementById("tense-co").addEventListener("click", function () {
+      if (!JSON.parse(localStorage["vite-co"])) {
+        localStorage["vite-co"] = true;
+        document.getElementById("tense-co").className = "select-button active";
+      } else if (
+        (JSON.parse(localStorage["vite-im"]) ||
+          JSON.parse(localStorage["vite-pc"]) ||
+          JSON.parse(localStorage["vite-fs"]) ||
+          JSON.parse(localStorage["vite-fa"]) ||
+          JSON.parse(localStorage["vite-pr"])) &&
+        JSON.parse(localStorage["vite-co"])
+      ) {
+        localStorage["vite-co"] = false;
+        document.getElementById("tense-co").className = "select-button";
       } else {
         window.alert("sorry, at least one tense needs to be selected!");
       }
