@@ -380,7 +380,7 @@ function agreement(subject) {
   if (subject == "il / elle / on") {
     subject = random(["il", "elle", "on"]);
   } else if (subject == "ils / elles") {
-    subject = random(["il", "elles"]);
+    subject = random(["ils", "elles"]);
   }
   if (subject == "elles" || subject == "elle") {
     extras += "e";
