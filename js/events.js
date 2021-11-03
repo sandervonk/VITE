@@ -14,6 +14,7 @@ function stealCookies() {
     ["vite-pc", true],
     ["vite-pr", true],
     ["vite-im", true],
+    ["vite-fs", true],
     ["vite-custom-verbs", ""],
   ];
   for (cookie of cookies) {
@@ -70,7 +71,6 @@ try {
       } else {
         capsButton.className = "active";
       }
-      console.log("ran onclick");
     });
     //setup tense
     if (JSON.parse(localStorage["vite-pc"])) {
@@ -81,6 +81,9 @@ try {
     }
     if (JSON.parse(localStorage["vite-im"])) {
       document.getElementById("tense-im").className += " active";
+    }
+    if (JSON.parse(localStorage["vite-fs"])) {
+      document.getElementById("tense-fs").className += " active";
     }
     document
       .getElementById("score-label")
@@ -95,15 +98,16 @@ try {
           ].join(`\n\n`)
         );
       });
+    //tense toggles
     document.getElementById("tense-pc").addEventListener("click", function () {
       if (!JSON.parse(localStorage["vite-pc"])) {
         localStorage["vite-pc"] = true;
         document.getElementById("tense-pc").className = "select-button active";
       } else if (
-        (JSON.parse(localStorage["vite-pc"]) &&
-          JSON.parse(localStorage["vite-pr"])) ||
-        (JSON.parse(localStorage["vite-pc"]) &&
-          JSON.parse(localStorage["vite-im"]))
+        (JSON.parse(localStorage["vite-im"]) ||
+          JSON.parse(localStorage["vite-fs"]) ||
+          JSON.parse(localStorage["vite-pr"])) &&
+        JSON.parse(localStorage["vite-pc"])
       ) {
         localStorage["vite-pc"] = false;
         document.getElementById("tense-pc").className = "select-button";
@@ -116,10 +120,10 @@ try {
         localStorage["vite-pr"] = true;
         document.getElementById("tense-pr").className = "select-button active";
       } else if (
-        (JSON.parse(localStorage["vite-pr"]) &&
-          JSON.parse(localStorage["vite-pc"])) ||
-        (JSON.parse(localStorage["vite-pr"]) &&
-          JSON.parse(localStorage["vite-im"]))
+        (JSON.parse(localStorage["vite-im"]) ||
+          JSON.parse(localStorage["vite-pc"]) ||
+          JSON.parse(localStorage["vite-fs"])) &&
+        JSON.parse(localStorage["vite-pr"])
       ) {
         localStorage["vite-pr"] = false;
         document.getElementById("tense-pr").className = "select-button";
@@ -132,13 +136,29 @@ try {
         localStorage["vite-im"] = true;
         document.getElementById("tense-im").className = "select-button active";
       } else if (
-        (JSON.parse(localStorage["vite-im"]) &&
-          JSON.parse(localStorage["vite-pc"])) ||
-        (JSON.parse(localStorage["vite-im"]) &&
-          JSON.parse(localStorage["vite-pr"]))
+        (JSON.parse(localStorage["vite-fs"]) ||
+          JSON.parse(localStorage["vite-pc"]) ||
+          JSON.parse(localStorage["vite-pr"])) &&
+        JSON.parse(localStorage["vite-im"])
       ) {
         localStorage["vite-im"] = false;
         document.getElementById("tense-im").className = "select-button";
+      } else {
+        window.alert("sorry, at least one tense needs to be selected!");
+      }
+    });
+    document.getElementById("tense-fs").addEventListener("click", function () {
+      if (!JSON.parse(localStorage["vite-fs"])) {
+        localStorage["vite-fs"] = true;
+        document.getElementById("tense-fs").className = "select-button active";
+      } else if (
+        (JSON.parse(localStorage["vite-im"]) ||
+          JSON.parse(localStorage["vite-pc"]) ||
+          JSON.parse(localStorage["vite-pr"])) &&
+        JSON.parse(localStorage["vite-fs"])
+      ) {
+        localStorage["vite-fs"] = false;
+        document.getElementById("tense-fs").className = "select-button";
       } else {
         window.alert("sorry, at least one tense needs to be selected!");
       }

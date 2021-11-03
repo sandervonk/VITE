@@ -688,14 +688,11 @@ body.QZ #question-verb-span {
   width: fit-content;
   padding: 0.3vh;
   min-width: 40%;
-}
-button#tense-pr.select-button,
-button#tense-im.select-button,
-button#tense-pc.select-button,
-button#tense-re.select-button {
   margin: 0.35vh !important;
 }
-#tense-re {
+
+#tense-re,
+#tense-fa {
   opacity: 0.2;
   cursor: not-allowed;
 }

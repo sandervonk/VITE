@@ -407,6 +407,9 @@ function agreement(subject) {
 }
 //Imp Handler
 function imparfaitTense(verb, name, subject) {
+  if (name.includes("Conna")) {
+    verb = verbs["Connaître"];
+  }
   let question = {
     subject: subject,
   };
@@ -422,6 +425,30 @@ function imparfaitTense(verb, name, subject) {
   question.alt = question.answer;
   question.full = [question.subject, question.answer].join(" ");
   return question;
+}
+//FS handler
+function futurSimpleTense(verb, name, subject) {
+  if (name.includes("Conna")) {
+    verb = verbs["Connaître"];
+  }
+  let fsEnd = {
+    Je: "ai",
+    Tu: "as",
+    "Il / Elle / On": "a",
+    Nous: "ons",
+    Vous: "ez",
+    "Ils / Elles": "ent",
+  };
+  conjugation = {
+    subject: agreement(subject).newSubject,
+    verb: verb,
+    root: verb.FS == "regular" ? name : verb.FS,
+  };
+  conjugation.alt = [conjugation.root, fsEnd[subject]].join("").toLowerCase();
+  conjugation.full = [conjugation.subject, conjugation.alt]
+    .join(" ")
+    .toLowerCase();
+  return conjugation;
 }
 //PC handler
 function passeComposeTense(verb, name, subject) {
