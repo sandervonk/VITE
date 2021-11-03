@@ -347,7 +347,7 @@ function pickTense() {
     localStorage["vite-pr"] = true;
     localStorage["vite-im"] = true;
     localStorage["vite-fs"] = true;
-    localStorage["vite-fa"] = false;
+    localStorage["vite-fa"] = true;
     window.location.reload();
     newTense = "pr";
     console.error("faulty tense");
@@ -425,6 +425,18 @@ function imparfaitTense(verb, name, subject) {
   question.alt = question.answer;
   question.full = [question.subject, question.answer].join(" ");
   return question;
+}
+//FA Handler
+function futurAnterieurTense(verb, name, subject) {
+  conjugation = futurSimpleTense(
+    verbs[verb.PC.helping],
+    verb.PC.helping,
+    subject
+  );
+  conjugation.participle = passeComposeTense(verb, name, subject).participle;
+  conjugation.full += (" " + conjugation.participle).toLowerCase();
+  conjugation.alt += (" " + conjugation.participle).toLowerCase();
+  return conjugation;
 }
 //FS handler
 function futurSimpleTense(verb, name, subject) {
@@ -713,12 +725,22 @@ function returnProblem(verbs) {
     question.subject = fullAnswer.subject;
     altAnswer = fullAnswer.full;
     question.verb += " (Imp)";
-  } else if (pickedTense === "fs" || pickedTense === "fa") {
+  } else if (pickedTense === "fs") {
     fullAnswer = futurSimpleTense(verbParent, question.verb, question.subject);
     question.answer = fullAnswer.alt;
     question.subject = fullAnswer.subject;
     altAnswer = fullAnswer.full;
     question.verb += " (FS)";
+  } else if (pickedTense === "fa") {
+    fullAnswer = futurAnterieurTense(
+      verbParent,
+      question.verb,
+      question.subject
+    );
+    question.answer = fullAnswer.alt;
+    question.subject = fullAnswer.subject;
+    altAnswer = fullAnswer.full;
+    question.verb += " (FA)";
   } else {
     window.alert("something went wrong while randomly picking a tense!");
   }

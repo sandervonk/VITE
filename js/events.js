@@ -15,7 +15,7 @@ function stealCookies() {
     ["vite-pr", true],
     ["vite-im", true],
     ["vite-fs", true],
-    ["vite-fa", false],
+    ["vite-fa", true],
     ["vite-custom-verbs", ""],
   ];
   for (cookie of cookies) {
@@ -96,6 +96,9 @@ try {
     if (JSON.parse(localStorage["vite-fs"])) {
       document.getElementById("tense-fs").className += " active";
     }
+    if (JSON.parse(localStorage["vite-fa"])) {
+      document.getElementById("tense-fa").className += " active";
+    }
     document
       .getElementById("score-label")
       .addEventListener("click", function () {
@@ -117,6 +120,7 @@ try {
       } else if (
         (JSON.parse(localStorage["vite-im"]) ||
           JSON.parse(localStorage["vite-fs"]) ||
+          JSON.parse(localStorage["vite-fa"]) ||
           JSON.parse(localStorage["vite-pr"])) &&
         JSON.parse(localStorage["vite-pc"])
       ) {
@@ -133,6 +137,7 @@ try {
       } else if (
         (JSON.parse(localStorage["vite-im"]) ||
           JSON.parse(localStorage["vite-pc"]) ||
+          JSON.parse(localStorage["vite-fa"]) ||
           JSON.parse(localStorage["vite-fs"])) &&
         JSON.parse(localStorage["vite-pr"])
       ) {
@@ -149,6 +154,7 @@ try {
       } else if (
         (JSON.parse(localStorage["vite-fs"]) ||
           JSON.parse(localStorage["vite-pc"]) ||
+          JSON.parse(localStorage["vite-fa"]) ||
           JSON.parse(localStorage["vite-pr"])) &&
         JSON.parse(localStorage["vite-im"])
       ) {
@@ -165,11 +171,29 @@ try {
       } else if (
         (JSON.parse(localStorage["vite-im"]) ||
           JSON.parse(localStorage["vite-pc"]) ||
+          JSON.parse(localStorage["vite-fa"]) ||
           JSON.parse(localStorage["vite-pr"])) &&
         JSON.parse(localStorage["vite-fs"])
       ) {
         localStorage["vite-fs"] = false;
         document.getElementById("tense-fs").className = "select-button";
+      } else {
+        window.alert("sorry, at least one tense needs to be selected!");
+      }
+    });
+    document.getElementById("tense-fa").addEventListener("click", function () {
+      if (!JSON.parse(localStorage["vite-fa"])) {
+        localStorage["vite-fa"] = true;
+        document.getElementById("tense-fa").className = "select-button active";
+      } else if (
+        (JSON.parse(localStorage["vite-im"]) ||
+          JSON.parse(localStorage["vite-pc"]) ||
+          JSON.parse(localStorage["vite-fa"]) ||
+          JSON.parse(localStorage["vite-pr"])) &&
+        JSON.parse(localStorage["vite-fa"])
+      ) {
+        localStorage["vite-fa"] = false;
+        document.getElementById("tense-fa").className = "select-button";
       } else {
         window.alert("sorry, at least one tense needs to be selected!");
       }

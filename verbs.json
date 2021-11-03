@@ -70,7 +70,7 @@
     "Ils / Elles": "savent"
   },
   "Avoir": {
-    "FS": "regular",
+    "FS": "aur",
     "definition": "to have",
     "PC": {
       "helping": "Avoir",
