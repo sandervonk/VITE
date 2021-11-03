@@ -79,7 +79,22 @@ body {
   flex-grow: 2;
 }
 /* Options */
-
+#display-modes button {
+  display: flex;
+  text-align: center;
+  width: max-content;
+  flex-grow: 1;
+  flex-shrink: 0;
+  padding-left: 1vh;
+  padding-right: 1vh;
+  justify-content: center;
+  margin: 0.35vh;
+}
+#display-modes.select-panel {
+  flex-flow: row;
+  flex-wrap: wrap;
+  display: flex;
+}
 #options-container {
   display: flex;
   flex-flow: column;
