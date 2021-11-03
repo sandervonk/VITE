@@ -328,30 +328,29 @@ function compress(subject, conjugation) {
 }
 //randomize tense
 function pickTense() {
-  let newTense = "";
+  let newTense = "",
+    tenses = [];
   try {
-    let passeStorage = JSON.parse(localStorage["vite-pc"]),
-      presentStorage = JSON.parse(localStorage["vite-pr"]),
-      imparfaitStorage = JSON.parse(localStorage["vite-im"]);
-    if (passeStorage && presentStorage && imparfaitStorage) {
-      newTense = random(["pc", "pr", "im"]);
-    } else if (passeStorage && presentStorage) {
-      newTense = random(["pc", "pr"]);
-    } else if (passeStorage && imparfaitStorage) {
-      newTense = random(["pc", "im"]);
-    } else if (presentStorage) {
-      newTense = "pr";
-    } else if (passeStorage) {
-      newTense = "pc";
-    } else {
-      newTense = "im";
+    for (tense of ["pr", "pc", "im", "fs"]) {
+      if (JSON.parse(localStorage["vite-" + tense])) {
+        tenses.push(tense);
+      }
     }
-  } catch {
+    if (!(tenses.length == 0)) {
+      newTense = random(tenses);
+    } else {
+      throw "something went wrong when choosing a tense";
+      console.log(tenses);
+    }
+  } catch (err) {
     localStorage["vite-pc"] = true;
     localStorage["vite-pr"] = true;
+    localStorage["vite-im"] = true;
+    localStorage["vite-fs"] = true;
     window.location.reload();
     newTense = "pr";
     console.error("faulty tense");
+    console.error(err);
   }
   return newTense;
 }
@@ -444,6 +443,10 @@ function futurSimpleTense(verb, name, subject) {
     verb: verb,
     root: verb.FS == "regular" ? name : verb.FS,
   };
+  //re verb rules
+  if (root.substr(root.length - 2, 2) == "re") {
+    root = root.substr(0, root.length - 1);
+  }
   conjugation.alt = [conjugation.root, fsEnd[subject]].join("").toLowerCase();
   conjugation.full = [conjugation.subject, conjugation.alt]
     .join(" ")
@@ -709,6 +712,12 @@ function returnProblem(verbs) {
     question.subject = fullAnswer.subject;
     altAnswer = fullAnswer.full;
     question.verb += " (Imp)";
+  } else if (pickedTense === "fs") {
+    fullAnswer = futurSimpleTense(verbParent, question.verb, question.subject);
+    question.answer = fullAnswer.alt;
+    question.subject = fullAnswer.subject;
+    altAnswer = fullAnswer.full;
+    question.verb += " (FS)";
   } else {
     window.alert("something went wrong while randomly picking a tense!");
   }
