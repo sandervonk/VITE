@@ -444,8 +444,8 @@ function futurSimpleTense(verb, name, subject) {
     root: verb.FS == "regular" ? name : verb.FS,
   };
   //re verb rules
-  if (root.substr(root.length - 2, 2) == "re") {
-    root = root.substr(0, root.length - 1);
+  if (conjugation.root.substr(conjugation.root.length - 2, 2) == "re") {
+    conjugation.root = conjugation.root.substr(0, conjugation.root.length - 1);
   }
   conjugation.alt = [conjugation.root, fsEnd[subject]].join("").toLowerCase();
   conjugation.full = [conjugation.subject, conjugation.alt]
