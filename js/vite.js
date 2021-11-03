@@ -1,4 +1,4 @@
-//some json for reflexives
+//some json for verbs
 /*
   "verb": {
     "definition": "to _",
@@ -34,48 +34,6 @@ var timed = false,
     score: 0,
     problems: 0,
     "incorrect-deduction": 100,
-  },
-  reflexive = {
-    Je: "me",
-    Tu: "te",
-    "Il / Elle / On": "se",
-    Nous: "nous",
-    Vous: "vous",
-    "Ils / Elles": "se",
-  },
-  regularEnd = {
-    ir: {
-      Je: "is",
-      Tu: "is",
-      "Il / Elle / On": "it",
-      Nous: "issons",
-      Vous: "issez",
-      "Ils / Elles": "issent",
-    },
-    re: {
-      Je: "s",
-      Tu: "s",
-      "Il / Elle / On": "",
-      Nous: "ons",
-      Vous: "ez",
-      "Ils / Elles": "ent",
-    },
-    er: {
-      Je: "e",
-      Tu: "es",
-      "Il / Elle / On": "e",
-      Nous: "ons",
-      Vous: "ez",
-      "Ils / Elles": "ent",
-    },
-  },
-  imparfaitEnd = {
-    Je: "ais",
-    Tu: "ais",
-    "Il / Elle / On": "ait",
-    Nous: "ions",
-    Vous: "iez",
-    "Ils / Elles": "aient",
   };
 function random(max) {
   if (typeof max != "number") {
@@ -331,7 +289,7 @@ function pickTense() {
   let newTense = "",
     tenses = [];
   try {
-    for (tense of ["pr", "pc", "im", "fs", "fa"]) {
+    for (tense of ["pr", "pc", "im", "fs", "fa", "co"]) {
       if (JSON.parse(localStorage["vite-" + tense])) {
         tenses.push(tense);
       }
@@ -348,6 +306,7 @@ function pickTense() {
     localStorage["vite-im"] = true;
     localStorage["vite-fs"] = true;
     localStorage["vite-fa"] = true;
+    localStorage["vite-co"] = true;
     window.location.reload();
     newTense = "pr";
     console.error("faulty tense");
@@ -357,7 +316,33 @@ function pickTense() {
 }
 //Present handler
 function presentTense(verb, subject) {
-  let answer = "";
+  let regularEnd = {
+      ir: {
+        Je: "is",
+        Tu: "is",
+        "Il / Elle / On": "it",
+        Nous: "issons",
+        Vous: "issez",
+        "Ils / Elles": "issent",
+      },
+      re: {
+        Je: "s",
+        Tu: "s",
+        "Il / Elle / On": "",
+        Nous: "ons",
+        Vous: "ez",
+        "Ils / Elles": "ent",
+      },
+      er: {
+        Je: "e",
+        Tu: "es",
+        "Il / Elle / On": "e",
+        Nous: "ons",
+        Vous: "ez",
+        "Ils / Elles": "ent",
+      },
+    },
+    answer = "";
   answer = verbs[verb][subject];
   if (answer === "regular" || verbs[verb]["All"] === "regular") {
     let base = verb.substr(0, verb.length - 2);
@@ -376,6 +361,14 @@ function presentTense(verb, subject) {
 /*
 function reflexiveTense(verb, subject) {
     let answer = ""
+    reflexive = {
+      Je: "me",
+      Tu: "te",
+      "Il / Elle / On": "se",
+      Nous: "nous",
+      Vous: "vous",
+      "Ils / Elles": "se",
+    }
     //answer = [subject, compress(compress(reflexive[subject], presentTense("Être", subject)), presentTense(verb, subject))].join(" ")
     answer = [subject, compress(reflexive[subject], presentTense(verb, subject))].join("")
     return answer.toLowerCase()
@@ -405,14 +398,45 @@ function agreement(subject) {
     ending: extras,
   };
 }
+//CO handler
+function conditionnelTense(verb, name, subject) {
+  let imparfaitEnd = {
+    Je: "ais",
+    Tu: "ais",
+    "Il / Elle / On": "ait",
+    Nous: "ions",
+    Vous: "iez",
+    "Ils / Elles": "aient",
+  };
+  conjugation = {
+    subject: agreement(subject).newSubject,
+    root: verb.FS == "regular" ? name : verb.FS,
+  };
+  if (conjugation.root.substr(conjugation.root.length - 2, 2) == "re") {
+    conjugation.root = conjugation.root.substr(0, conjugation.root.length - 1);
+  }
+  conjugation.alt = (conjugation.root + imparfaitEnd[subject]).toLowerCase();
+  conjugation.full = [conjugation.subject, conjugation.alt]
+    .join(" ")
+    .toLowerCase();
+  return conjugation;
+}
 //Imp Handler
 function imparfaitTense(verb, name, subject) {
   if (name.includes("Conna")) {
     verb = verbs["Connaître"];
   }
   let question = {
-    subject: subject,
-  };
+      subject: subject,
+    },
+    imparfaitEnd = {
+      Je: "ais",
+      Tu: "ais",
+      "Il / Elle / On": "ait",
+      Nous: "ions",
+      Vous: "iez",
+      "Ils / Elles": "aient",
+    };
   if (name == "Être") {
     question.answer = "ét" + imparfaitEnd[subject];
   } else {
@@ -741,6 +765,12 @@ function returnProblem(verbs) {
     question.subject = fullAnswer.subject;
     altAnswer = fullAnswer.full;
     question.verb += " (FA)";
+  } else if (pickedTense === "co") {
+    fullAnswer = conditionnelTense(verbParent, question.verb, question.subject);
+    question.answer = fullAnswer.alt;
+    question.subject = fullAnswer.subject;
+    altAnswer = fullAnswer.full;
+    question.verb += " (Co)";
   } else {
     window.alert("something went wrong while randomly picking a tense!");
   }
