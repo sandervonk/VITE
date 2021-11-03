@@ -400,6 +400,9 @@ function agreement(subject) {
 }
 //CO handler
 function conditionnelTense(verb, name, subject) {
+  if (name.includes("Conna")) {
+    verb = verbs["Connaître"];
+  }
   let imparfaitEnd = {
     Je: "ais",
     Tu: "ais",
@@ -452,6 +455,9 @@ function imparfaitTense(verb, name, subject) {
 }
 //FA Handler
 function futurAnterieurTense(verb, name, subject) {
+  if (name.includes("Conna")) {
+    verb = verbs["Connaître"];
+  }
   conjugation = futurSimpleTense(
     verbs[verb.PC.helping],
     verb.PC.helping,
