@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="stylesheet" href="mobile.css" />
+    <script src="../src/jquery-3.6.0.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>VITE! Mobile</title>
+  </head>
+  <body>
+    <input type="text" id="answer-input" />
+    <div id="footers">
+      <footer class="bottom-controls">
+        <div id="bottom-fade"></div>
+        <div id="bottom-actions">
+          <div id="action-themes">Themes</div>
+          <div class="bar-seperator"></div>
+          <div id="action-verbs">Verbs</div>
+          <div class="bar-seperator"></div>
+          <div id="action-score">Score</div>
+          <div class="bar-seperator"></div>
+          <div id="action-accents">Accents</div>
+        </div>
+      </footer>
+      <footer class="accent-bar">
+        <button id="accent-back"><img src="icon/Back Arrow.svg" /></button>
+        <div id="accent-buttons">
+          <button class="accent-button">ç</button>
+          <button class="accent-button">é</button>
+          <button class="accent-button">è</button>
+          <button class="accent-button">à</button>
+          <button class="accent-button">ê</button>
+          <button class="accent-button">â</button>
+          <button class="accent-button">î</button>
+          <button class="accent-button">ô</button>
+        </div>
+        <div class="bar-seperator"></div>
+        <button id="accent-caps"><img src="icon/Caps.svg" /></button>
+      </footer>
+      <extended>
+        <options id="themes">themes</options>
+        <options id="verbs">verbs</options>
+        <options id="score">score</options>
+      </extended>
+    </div>
+
+    <script src="mobile.js"></script>
+  </body>
+</html>

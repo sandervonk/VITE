@@ -1,0 +1,242 @@
+@import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Righteous&display=swap");
+html,
+body {
+  height: 100%;
+  width: 100%;
+  background: lightblue;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+button {
+  cursor: pointer;
+  box-shadow: 0 0.3vw 0 #182128;
+}
+footer.bottom-controls {
+  position: fixed;
+  bottom: 0vh;
+  width: 100%;
+  height: 13vw;
+  box-sizing: border-box;
+  font-family: "Righteous", sans-serif;
+  border-radius: 6vw 6vw 0 0;
+  border-bottom: solid #3b464c 2px;
+}
+.bottom-controls #bottom-actions {
+  display: flex;
+  text-align: center;
+  align-items: center;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  width: 100%;
+  height: 100%;
+  color: #9da5a8;
+  font-family: "Righteous", sans-serif;
+  font-size: 3.5vw;
+}
+#bottom-actions * {
+  text-transform: uppercase;
+  height: 100%;
+  line-height: 13vw;
+  flex-grow: 1;
+  transition: width 0.5s ease-in-out, color 0.25s ease-in-out;
+  width: 34%;
+  flex-shrink: 0;
+  cursor: pointer;
+}
+#bottom-actions .active {
+  color: white;
+}
+
+footer {
+  overflow: hidden;
+  background-color: var(--keyboard-bg);
+  pointer-events: all;
+}
+footer.accent-bar {
+  position: fixed;
+  bottom: -13vw;
+  width: 100%;
+  height: 13vw;
+  font-family: "Righteous", sans-serif;
+  border-radius: 6vw 6vw 0 0;
+  border-bottom: solid #3b464c 2px;
+  transition: bottom 0.3s ease-in-out;
+  z-index: 99;
+}
+
+body.keyboard footer.accent-bar {
+  bottom: 0vw !important;
+  font-family: "Righteous", sans-serif;
+}
+body.keyboard footer.accent-bar.hide {
+  bottom: -13vw !important;
+  font-family: "Righteous", sans-serif;
+}
+body.keyboard #bottom-actions * {
+  width: 25%;
+}
+/*accents*/
+.bar-seperator {
+  height: 40% !important;
+  width: 1px !important;
+  flex-shrink: 0;
+  flex-grow: 0 !important;
+  background-color: #3b464c;
+  align-self: center;
+}
+#accent-back {
+  border-radius: 20vw;
+  margin: 2vw;
+  margin-right: 0 !important;
+  aspect-ratio: 1 / 1;
+  border: none;
+  background-color: white;
+  display: flex;
+  padding: 0 !important;
+}
+#accent-back img,
+#accent-caps img {
+  margin: auto;
+  aspect-ratio: 1 / 1;
+  height: 3vw;
+}
+#accent-back img {
+  padding-right: 0.3vw;
+}
+#accent-caps {
+  border-radius: 20vw;
+  margin: 2.5vw;
+  margin-left: 0 !important;
+  aspect-ratio: 1 / 1;
+  border: none;
+  background-color: #6eaca7;
+  display: flex;
+  padding: 0 !important;
+  justify-content: center;
+  align-items: center;
+}
+.accent-bar {
+  line-height: 13vw;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  padding-bottom: 0.5vw;
+  box-sizing: border-box;
+  justify-content: space-between;
+}
+#accent-buttons {
+  width: fit-content;
+  flex-grow: 0;
+  justify-content: center;
+  display: flex;
+  align-items: center;
+}
+#accent-buttons .accent-button {
+  font-family: "Comfortaa", cursive;
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  height: 7vw;
+  background-color: #414a51;
+  border: none;
+  color: #bfc1c4;
+  border-radius: 0.75vw;
+  font-size: 3.5vw;
+
+  margin-right: 2.5vw;
+}
+#accent-buttons *:first-child {
+  margin-left: 2vw;
+}
+#accent-buttons *:last-child {
+  margin-right: 0;
+}
+
+#accents-caps,
+#accents-back {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+}
+#bottom-fade {
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    90deg,
+    --var(--keyboard-bg) 0%,
+    rgba(0, 0, 0, 0) 5%,
+    rgba(0, 0, 0, 0) 95%,
+    --var(--keyboard-bg) 100%
+  );
+  display: block;
+  position: absolute;
+  bottom: 0%;
+  left: 0%;
+  user-select: none;
+  pointer-events: none;
+}
+#answer-input {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%) scale(2);
+  font-family: "Comfortaa", sans-serif;
+  border: solid grey 2px;
+  border-radius: 3vw;
+  padding: 1vw 3vw;
+  width: 20vw;
+  font-size: 2vw;
+}
+#footers {
+  position: fixed;
+  bottom: 0;
+  transform: none;
+  height: 100%;
+  width: 100%;
+  transform: translateY(2px);
+  transition: transform 0.5s ease-in-out;
+  pointer-events: none;
+}
+:root {
+  --menu-height: 50vw;
+  --keyboard-bg: #273238;
+}
+#footers extended {
+  background-color: var(--keyboard-bg);
+  width: 100%;
+  height: calc(var(--menu-height) + 0.5vw);
+  position: fixed;
+  bottom: calc(0vw - var(--menu-height));
+  z-index: 100;
+  border-top: solid #3b464c 2px;
+  pointer-events: all;
+}
+body.menu #footers {
+  transform: translateY(calc(0vw - var(--menu-height)));
+}
+#accent-caps img {
+  transition: transform 0.2s ease-in-out;
+  transform-origin: center center;
+}
+#accent-caps.caps img {
+  transform: scaleY(-1);
+}
+extended > #verbs,
+extended > #themes,
+extended > #score {
+  display: none;
+  width: 100%;
+  height: 100%;
+  font-family: "Comfortaa", sans-serif;
+  justify-content: center;
+  align-items: center;
+  font-size: 5vw;
+  color: white;
+}
+extended.themes > #themes {
+  display: flex;
+}
+extended.verbs > #verbs {
+  display: flex;
+}
+extended.score > #score {
+  display: flex;
+}
