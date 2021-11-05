@@ -5,7 +5,6 @@ $(document.body)
   })
   .on("keydown", function () {
     $(document.body).addClass("keyboard");
-    $(document.body).removeClass("menu");
   })
   .on("blur", "textarea, input", function () {
     //$(document.body).removeClass("keyboard");
@@ -66,7 +65,7 @@ $("#action-themes").click(function () {
     $(document.body).addClass("menu");
     clearActive();
     $("#action-themes").addClass("active");
-    document.getElementsByTagName("extended")[0].className = "themes";
+    $(document.body).attr("menutype", "themes");
   }
 });
 $("#action-verbs").click(function () {
@@ -77,7 +76,7 @@ $("#action-verbs").click(function () {
     $(document.body).addClass("menu");
     clearActive();
     $("#action-verbs").addClass("active");
-    document.getElementsByTagName("extended")[0].className = "verbs";
+    $(document.body).attr("menutype", "verbs");
   }
 });
 $("#action-score").click(function () {
@@ -88,6 +87,6 @@ $("#action-score").click(function () {
     $(document.body).addClass("menu");
     clearActive();
     $("#action-score").addClass("active");
-    document.getElementsByTagName("extended")[0].className = "score";
+    $(document.body).attr("menutype", "score");
   }
 });

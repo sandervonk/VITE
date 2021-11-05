@@ -173,18 +173,6 @@ body.keyboard #bottom-actions * {
   user-select: none;
   pointer-events: none;
 }
-#answer-input {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%) scale(2);
-  font-family: "Comfortaa", sans-serif;
-  border: solid grey 2px;
-  border-radius: 3vw;
-  padding: 1vw 3vw;
-  width: 20vw;
-  font-size: 2vw;
-}
 #footers {
   position: fixed;
   bottom: 0;
@@ -200,14 +188,25 @@ body.keyboard #bottom-actions * {
   --keyboard-bg: #273238;
 }
 #footers extended {
+  display: flex;
+  position: relative;
+  right: -200vw;
+  height: 100%;
+  flex-shrink: 0;
+  flex-flow: row;
+  flex-wrap: nowrap;
   background-color: var(--keyboard-bg);
-  width: 100%;
+  width: 300vw;
   height: calc(var(--menu-height) + 0.5vw);
   position: fixed;
   bottom: calc(0vw - var(--menu-height));
   z-index: 100;
   border-top: solid #3b464c 2px;
+  /*
+  transition: bottom 0.5s, height 0.5s;
+  */
   pointer-events: all;
+  transition: right 0.5s;
 }
 body.menu #footers {
   transform: translateY(calc(0vw - var(--menu-height)));
@@ -222,21 +221,56 @@ body.menu #footers {
 extended > #verbs,
 extended > #themes,
 extended > #score {
-  display: none;
-  width: 100%;
+  display: flex;
+  width: 100vw;
   height: 100%;
+  flex-shrink: 0;
   font-family: "Comfortaa", sans-serif;
   justify-content: center;
   align-items: center;
   font-size: 5vw;
   color: white;
 }
-extended.themes > #themes {
-  display: flex;
+body[menutype="themes"] #footers extended {
+  right: -200vw;
 }
-extended.verbs > #verbs {
-  display: flex;
+body[menutype="verbs"] #footers extended {
+  right: -100vw;
 }
-extended.score > #score {
+body[menutype="score"] #footers extended {
+  right: 0vw;
+}
+body[menutype="verbs"] {
+  --menu-height: 90vw;
+}
+body.menu #content {
+  padding-bottom: calc(var(--menu-height) + 13vw);
+}
+#content {
+  width: 100%;
+  height: 100%;
+  box-sizing: border-box;
+  padding-bottom: 13vw;
   display: flex;
+  justify-content: center;
+  transition: padding-bottom 0.5s ease-in-out;
+}
+
+#answer-input {
+  font-family: "Comfortaa", sans-serif;
+  border: solid grey 4px;
+  border-radius: 6vw;
+  padding: 1vw 3vw;
+  width: 50vw;
+  height: 6vw;
+  font-size: 5vw;
+  align-self: center;
+}
+
+#extended-fill {
+  background: var(--keyboard-bg);
+  width: 100%;
+  height: 200vw;
+  position: fixed;
+  bottom: -200vw;
 }
