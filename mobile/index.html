@@ -41,13 +41,34 @@
         <button id="accent-caps"><img src="icon/Caps.svg" /></button>
       </footer>
       <extended>
-        <options id="themes">themes</options>
+        <options id="themes">
+          <div class="table-half" id="display-modes">
+            <button class="toggle active">Quizlet</button>
+            <button class="toggle">VITE! WS</button>
+            <button class="toggle">Material</button>
+          </div>
+          <div class="table-half">
+            <div id="bg-color"><input type="color" value="#ADD8E6" /></div>
+          </div>
+        </options>
         <options id="verbs">verbs</options>
-        <options id="score">score</options>
+        <options id="score">
+          <div id="score-flex-row">
+            <div id="score-number">####</div>
+            <div id="score-bars">
+              <score-bar class="s-correct" id="score-correct"></score-bar>
+              <score-bar class="s-incorrect" id="score-incorrect"></score-bar>
+            </div>
+            <flex-break></flex-break>
+            <button id="reset-score">Reset</button>
+            <div class="score-num" id="score-num-correct">##</div>
+            <div class="score-num" id="score-num-incorrect">##</div>
+          </div>
+          <flex-break></flex-break>
+        </options>
       </extended>
       <div id="extended-fill"></div>
     </div>
-
     <script src="mobile.js"></script>
   </body>
 </html>

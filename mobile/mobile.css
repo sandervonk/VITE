@@ -1,9 +1,12 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Righteous&display=swap");
+:root {
+  --vite-background: lightblue;
+}
 html,
 body {
   height: 100%;
   width: 100%;
-  background: lightblue;
+  background: var(--vite-background);
   padding: 0 !important;
   margin: 0 !important;
 }
@@ -225,11 +228,14 @@ extended > #score {
   width: 100vw;
   height: 100%;
   flex-shrink: 0;
+  flex-wrap: wrap;
   font-family: "Comfortaa", sans-serif;
   justify-content: center;
   align-items: center;
   font-size: 5vw;
   color: white;
+  padding: 5vw;
+  box-sizing: border-box;
 }
 body[menutype="themes"] #footers extended {
   right: -200vw;
@@ -242,6 +248,9 @@ body[menutype="score"] #footers extended {
 }
 body[menutype="verbs"] {
   --menu-height: 90vw;
+}
+body[menutype="score"] {
+  --menu-height: 33vw;
 }
 body.menu #content {
   padding-bottom: calc(var(--menu-height) + 13vw);
@@ -269,8 +278,131 @@ body.menu #content {
 
 #extended-fill {
   background: var(--keyboard-bg);
-  width: 100%;
+  width: 100vw;
   height: 200vw;
   position: fixed;
   bottom: -200vw;
 }
+flex-break {
+  width: 100%;
+  height: 0 !important;
+  margin: 0 !important;
+}
+/**Menus**/
+/*Score*/
+#score-flex-row {
+  display: flex;
+  width: 100%;
+  flex-flow: row;
+  flex-wrap: wrap;
+  flex-grow: 1;
+  font-size: 5vw;
+  margin: -1vw;
+}
+#score-flex-row > * {
+  margin: 1.5vw;
+  background: #9da5a844;
+  border-radius: 20vw;
+}
+#score-flex-row > button {
+  flex-grow: 2;
+  background: #9da5a844;
+  border: none !important;
+  color: white;
+  font-family: "Comfortaa", sans-serif;
+  padding: 2vw;
+}
+button#reset-score {
+  background: #99240fda;
+  font-size: 4vw;
+}
+#score-number {
+  padding: 2vw;
+  text-align: center;
+  flex-grow: 1;
+  font-size: 5vw;
+  width: fit-content;
+  flex-shrink: 0;
+}
+.score-num {
+  padding: 2.5vw 2vw;
+  font-size: 4vw;
+}
+#score-bars {
+  flex-grow: 10;
+  box-sizing: border-box;
+  padding: 1vw;
+  display: flex;
+  overflow: hidden;
+  flex-flow: row;
+  flex-wrap: nowrap;
+}
+#score-num-correct::before {
+  content: "Correct: ";
+}
+#score-num-incorrect::before {
+  content: "Incorrect: ";
+}
+score-bar {
+  width: 50%;
+  display: flex;
+
+  height: 100%;
+  flex-grow: 1;
+}
+score-bar.s-correct {
+  background: #00800088;
+  border-radius: 5vw 0 0 5vw;
+}
+score-bar.s-incorrect {
+  background: #ff000088;
+  border-radius: 0 5vw 5vw 0;
+}
+/*Themes*/
+#themes {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  height: 50vw !important;
+}
+.table-half {
+  height: 100%;
+  width: 50%;
+  display: flex;
+  flex-shrink: 0;
+}
+#display-modes {
+  flex-direction: column;
+  justify-content: space-between;
+  padding-right: 5vw;
+  box-sizing: border-box;
+}
+.toggle {
+  border-radius: 20vw;
+  border-radius: none;
+  font-size: 4vw;
+  background: #9da5a844;
+  border: none;
+  color: white;
+  padding: 2vw;
+}
+#bg-color {
+  /*background-color: var(--vite-background);*/
+  flex-grow: 1;
+  border-radius: 5vw;
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+#bg-color input {
+  width: 100vw;
+  height: 100vw;
+  transform: scale(2);
+}
+.toggle.active {
+  background-color: #6ab0c9bb;
+}
+/*Verbs*/
