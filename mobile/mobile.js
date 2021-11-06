@@ -1,12 +1,13 @@
 /*
 Set needed localStorage vars
 */
+
 function stealCookies() {
   let cookies = [
     ["vite-subjects", "Je,Tu,Il / Elle / On,Nous,Vous,Ils / Elles"],
     [
       "vite-verbs",
-      "Venir,Pouvoir,Prendre,Connaitre,Savoir,Avoir,Être,Aller,Faire,Manger,Finir,Naître,Arriver,Sortir,Retourner,Mourir,Rentre,Descendre,Dire,Conduire,Voir,Rendre,Mettre,Suivre,Devoir,Dormir,Vouloir,Connaître",
+      "Venir,Pouvoir,Prendre,Connaître,Savoir,Avoir,Être,Aller,Faire,Manger,Finir,Vouloir,Dormir,Devoir,Suivre,Voir,Rendre,Mettre,Conduire,Dire,Descendre,Retourner,Mourir,Rentre,Sortir,Arriver,Naître",
     ],
     ["Display-Mode", "QZ"],
     ["VITE-bg", "#ADD8E6"],
@@ -62,6 +63,39 @@ if (
   stealCookies();
 }
 //end localstorage vars
+function sendMessage(head, content, foot) {
+  head += "\n\n----- JSON Start -----";
+  foot = "----- JSON End -----\n\n" + foot;
+  if (content.includes("undefined")) {
+    window.alert(
+      "looks like something's wrong with your JSON, please try checking the console, and/or make sure you have some custom verbs added below!"
+    );
+  } else if (content === "{}") {
+    window.alert(
+      "You don't seem to have any custom verbs, try adding some then trying again!"
+    );
+  } else {
+    let link = `mailto:100026480@mvla.net?subject=My%20Custom%20VITE%20Verbs&body=${encodeURIComponent(
+      head + "\n" + content + "\n" + foot
+    )}`;
+    if (link.length >= 2000) {
+      window.alert(
+        "sorry, the MAILTO: function only supports messages of up to 2000 characters, so this link will probably not work. Try right-clicking the Share button and copying the JSON on the next page instead!"
+      );
+      window.open(
+        `http://sandervonk.github.io/dev/rawviewer.html?${encodeURIComponent(
+          JSON.stringify(
+            JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"),
+            null,
+            "\t"
+          )
+        )}`,
+        "_blank"
+      );
+    }
+    window.location.href = link;
+  }
+}
 score = {
   number: 0,
   correct: 0,
@@ -226,9 +260,31 @@ function setupVerbs(verbs) {
     $(".verbs-list").append(
       `<button class="verb-button toggle${
         localStorage["vite-verbs"].includes(verb) ? " active" : ""
-      }" title="Toggle '${verb}' as a verb in problems." name="${verb}">${verb}</button>`
+      }${
+        verbs[verb].custom == true ? " custom-verb" : ""
+      }" title="Toggle '${verb}' as a verb in problems." name="${verb}"><span class="verb-name">${verb}</span>${
+        verbs[verb].custom == true
+          ? " <img class='custom-verb-img' src='icon/edit.svg' />"
+          : ""
+      }</button>`
     );
   }
+  //add click handlers
+  $(".verb-button").click((e) => {
+    let array = localStorage["vite-verbs"].split(",");
+    if ($(e.target).hasClass("active")) {
+      let index = array.indexOf(e.target.name);
+      if (index > -1) {
+        array.splice(index, 1);
+      }
+      console.log(array);
+      localStorage["vite-verbs"] = array;
+    } else {
+      array.push(e.target.name);
+      //localStorage["vite-verbs"] = array;
+    }
+    $(e.target).toggleClass("active");
+  });
   //setup subjects
   for (subjectTag of localStorage["vite-subjects"].split(",")) {
     let subject = document.querySelector(`button[name="${subjectTag}"]`);
@@ -244,6 +300,7 @@ $.ajax({
   success: (response) => {
     verbs = response;
     if (localStorage["vite-custom-verbs"] != "") {
+      $("#verb-custom-share").addClass("active");
       verbs = JSON.parse(
         JSON.stringify(verbs).substr(0, JSON.stringify(verbs).length - 1) +
           ", " +
@@ -258,4 +315,76 @@ $.ajax({
     console.error("error: could not load verbs.json :(");
     console.log(err);
   },
+});
+$("#verb-add-reset").on("click", function () {
+  localStorage["vite-custom-verbs"] = "";
+  localStorage["vite-verbs"] =
+    "Venir,Pouvoir,Prendre,Connaître,Savoir,Avoir,Être,Aller,Faire,Manger,Finir,Vouloir,Dormir,Devoir,Suivre,Voir,Rendre,Mettre,Conduire,Dire,Descendre,Retourner,Mourir,Rentre,Sortir,Arriver,Naître";
+  window.location.reload();
+});
+$("#verb-add-submit").click(function () {
+  let finished = true;
+  for (inputElement of document.querySelectorAll(
+    "#verb-add input, #verb-add select"
+  )) {
+    $(inputElement).removeClass("attention");
+    if (inputElement.value === "") {
+      finished = false;
+      $(inputElement).addClass("attention");
+    }
+  }
+  if (!finished) {
+    window.alert(
+      "Looks like some fields still need to be filled out. Try doing so and submitting it again!"
+    );
+  } else {
+    let newVerb = {
+      defintion: $("#verb-add-def").val(),
+      FS: $("#verb-add-stem").val(),
+      PC: {
+        helping: $("#verb-add-helping").val(),
+        participle: $("#verb-add-participle").val(),
+      },
+      custom: true,
+      Je: $("#verb-add-subject-1").val(),
+      Tu: $("#verb-add-subject-2").val(),
+      "Il / Elle / On": $("#verb-add-subject-3").val(),
+      Nous: $("#verb-add-subject-4").val(),
+      Vous: $("#verb-add-subject-5").val(),
+      "Ils / Elles": $("#verb-add-subject-6").val(),
+    };
+    newVerb = JSON.stringify(newVerb);
+    newVerb =
+      `"` +
+      document.getElementById("verb-add-name").value +
+      `"` +
+      ": " +
+      newVerb;
+    localStorage["vite-custom-verbs"] +=
+      (localStorage["vite-custom-verbs"].length > 0 ? "," : "") + newVerb;
+    window.location.reload();
+  }
+});
+$("#verb-custom-share").click(function () {
+  sendMessage(
+    "Check out my custom VITE! verbs:",
+    JSON.stringify(
+      JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"),
+      null,
+      "\t"
+    ),
+    "Best,\nMe"
+  );
+});
+$("#verb-custom-share").on("contextmenu", function () {
+  window.open(
+    `http://sandervonk.github.io/dev/rawviewer.html?${encodeURIComponent(
+      JSON.stringify(
+        JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"),
+        null,
+        "\t"
+      )
+    )}`,
+    "_blank"
+  );
 });

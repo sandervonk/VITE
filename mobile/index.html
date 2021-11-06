@@ -120,8 +120,28 @@
                   <div id="verbs-extended" class="verbs-list"></div>
                   <div class="bar-separator horizontal-bar"></div>
                   <div id="verb-add">
-                    <div id="verb-add-past-container">
-                      <div id="verb-add-past-participle">
+                    <div id="verb-add-definition-container">
+                      <div id="verb-add-def-stem">
+                        <div id="verb-def-label">Definition</div>
+                        <input
+                          type="text"
+                          spellcheck="false"
+                          id="verb-add-def"
+                          placeholder="to be"
+                        />
+                      </div>
+                    </div>
+                    <div id="verb-add-tense-container">
+                      <div id="verb-add-tense-stem">
+                        <div id="verb-stem-label">Stem</div>
+                        <input
+                          type="text"
+                          spellcheck="false"
+                          id="verb-add-stem"
+                          placeholder="ser"
+                        />
+                      </div>
+                      <div id="verb-add-tense-participle">
                         <div id="verb-participle-label">Participle</div>
                         <input
                           type="text"
@@ -130,7 +150,7 @@
                           placeholder="été"
                         />
                       </div>
-                      <div id="verb-add-past-helping">
+                      <div id="verb-add-tense-helping">
                         <div id="verb-helping-label">Helping</div>
                         <select id="verb-add-helping" value="Avoir">
                           <option value="Avoir">Avoir</option>
