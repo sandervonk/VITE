@@ -763,7 +763,7 @@ body[light-theme] .attention {
   border-radius: 0 20vw 20vw 0 !important;
   margin-left: 0;
 }
-.custom-verb * {
+.verb-button * {
   pointer-events: none;
 }
 .custom-verb {
