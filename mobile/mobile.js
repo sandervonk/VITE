@@ -277,12 +277,11 @@ function setupVerbs(verbs) {
       if (index > -1) {
         array.splice(index, 1);
       }
-      console.log(array);
-      localStorage["vite-verbs"] = array;
     } else {
       array.push(e.target.name);
       //localStorage["vite-verbs"] = array;
     }
+    localStorage["vite-verbs"] = array;
     $(e.target).toggleClass("active");
   });
   //setup subjects
