@@ -14,6 +14,7 @@
   --keyboard-reset: #99240fda;
   --keyboard-button: #414a51;
   --keyboard-button-text: #bfc1c4;
+  --keyboard-action: #6d0f99da;
 }
 html,
 body {
@@ -93,12 +94,19 @@ body.keyboard #bottom-actions * {
 }
 /*accents*/
 .bar-separator {
-  height: 40% !important;
-  width: 1px !important;
   flex-shrink: 0;
   flex-grow: 0 !important;
   background-color: var(--keyboard-separator);
   align-self: center;
+}
+.bar-separator.vertical-bar {
+  height: 40% !important;
+  width: 1px !important;
+}
+.bar-separator.horizontal-bar {
+  width: 60% !important;
+  height: 1px !important;
+  margin: 2vw auto;
 }
 #accent-back {
   border-radius: 20vw;
@@ -496,6 +504,7 @@ body[light-theme] {
   --keyboard-button: white;
   --keyboard-button-text: black;
   --theme-color: #ffff0083;
+  --keyboard-action: #c46df7;
 }
 body[light-theme] #theme-switch #switch-bar {
   width: 100%;
@@ -610,6 +619,9 @@ body[light-theme] #switch-ball #theme-dark-img {
   width: 100%;
   overflow-x: hidden;
 }
+#verbs-scroll::-webkit-scrollbar {
+  display: none;
+}
 .scroll-content {
   padding: 5vw 0;
 }
@@ -633,4 +645,81 @@ fade-bar.fade-bottom {
 }
 fade-bar.fade-top {
   background: linear-gradient(0deg, #00000000 0%, var(--keyboard-bg) 100%);
+}
+#verbs-extended {
+  display: flex;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+#verbs-extended .verb-button {
+  flex-grow: 1;
+}
+#verb-add {
+  font-family: "Comfortaa", sans-serif;
+  color: var(--text-color);
+}
+#verb-add * {
+  box-shadow: none;
+}
+#verb-add button,
+#verb-add input,
+#verb-add-helping {
+  border: none;
+  border-radius: 20vw;
+  padding: 2vw;
+  font-size: 3vw !important;
+  font-family: "Comfortaa", sans-serif;
+  color: var(--text-color);
+}
+.verb-add-pair,
+#verb-add-past-participle,
+#verb-add-past-helping {
+  margin: 2vw 1vw;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
+}
+#verb-add-submit-container * {
+  flex-grow: 1;
+  margin: 0 1vw;
+  flex-shrink: 0;
+  flex-basis: max-content;
+}
+#verb-add-submit-container {
+  margin: 2vw 0vw;
+  display: flex;
+  flex-wrap: nowrap;
+}
+#verb-add-name {
+  width: 10vw !important;
+  min-width: unset !important;
+}
+.verb-add-pair input,
+#verb-add-participle,
+#verb-add-helping {
+  flex-grow: 1;
+  margin-left: 3vw;
+}
+.verb-add-pair input,
+#verb-add-participle,
+#verb-add-name,
+#verb-add-helping {
+  background: var(--keyboard-faded-transparent);
+}
+#verb-add input {
+  font-size: 3vw;
+}
+.verb-add-label,
+#verb-participle-label {
+  line-height: 7vw;
+}
+#verb-add button {
+  font-size: 3vw;
+  background: var(--keyboard-faded-transparent);
+}
+#verb-add-reset {
+  background: var(--keyboard-reset) !important;
+}
+#verb-custom-share {
+  background: var(--keyboard-action) !important;
 }

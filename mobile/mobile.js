@@ -1,8 +1,73 @@
+/*
+Set needed localStorage vars
+*/
+function stealCookies() {
+  let cookies = [
+    ["vite-subjects", "Je,Tu,Il / Elle / On,Nous,Vous,Ils / Elles"],
+    [
+      "vite-verbs",
+      "Venir,Pouvoir,Prendre,Connaitre,Savoir,Avoir,Être,Aller,Faire,Manger,Finir,Naître,Arriver,Sortir,Retourner,Mourir,Rentre,Descendre,Dire,Conduire,Voir,Rendre,Mettre,Suivre,Devoir,Dormir,Vouloir,Connaître",
+    ],
+    ["Display-Mode", "QZ"],
+    ["VITE-bg", "#ADD8E6"],
+    ["vite-old-user", "true"],
+    ["VITE-correct", 0],
+    ["VITE-incorrect", 0],
+    ["vite-skip-blank", false],
+    ["vite-pc", true],
+    ["vite-pr", true],
+    ["vite-im", true],
+    ["vite-fs", true],
+    ["vite-fa", true],
+    ["vite-co", true],
+    ["vite-custom-verbs", ""],
+  ];
+  for (cookie of cookies) {
+    localStorage[cookie[0]] = cookie[1];
+  }
+}
+if (localStorage["vite-custom-verbs"] === undefined) {
+  localStorage["vite-custom-verbs"] = "";
+  window.location.reload();
+}
+
+if (
+  (localStorage["vite-pr"] != "true" &&
+    localStorage["vite-pc"] != "true" &&
+    localStorage["vite-im"] != "true" &&
+    localStorage["vite-fs"] != "true" &&
+    localStorage["vite-co"] != "true" &&
+    localStorage["vite-fa"] != "true") ||
+  localStorage["vite-pr"] === undefined ||
+  localStorage["vite-pc"] === undefined ||
+  localStorage["vite-im"] === undefined ||
+  localStorage["vite-fs"] === undefined ||
+  localStorage["vite-co"] === undefined ||
+  localStorage["vite-fa"] === undefined
+) {
+  localStorage["vite-pr"] = true;
+  localStorage["vite-pc"] = true;
+  localStorage["vite-im"] = true;
+  localStorage["vite-fs"] = true;
+  localStorage["vite-fa"] = true;
+  localStorage["vite-co"] = true;
+  window.location.reload();
+}
+if (
+  localStorage["vite-old-user"] != "true" ||
+  !typeof localStorage["vite-subjects"] === "string" ||
+  !typeof localStorage["vite-subjects"] === "string" ||
+  !typeof localStorage["Display-Mode"] === "string"
+) {
+  stealCookies();
+}
+//end localstorage vars
 score = {
   number: 0,
   correct: 0,
   incorrect: 0,
 };
+var verbs = {};
 //*Saved values
 if (localStorage["VITE-bg"] == undefined) {
   localStorage["VITE-bg"] = "#ADD8E6";
@@ -156,6 +221,41 @@ function setScore() {
   );
 }
 //*Verbs
+function setupVerbs(verbs) {
+  for (verb of Object.keys(verbs)) {
+    $(".verbs-list").append(
+      `<button class="verb-button toggle${
+        localStorage["vite-verbs"].includes(verb) ? " active" : ""
+      }" title="Toggle '${verb}' as a verb in problems." name="${verb}">${verb}</button>`
+    );
+  }
+  //setup subjects
+  for (subjectTag of localStorage["vite-subjects"].split(",")) {
+    let subject = document.querySelector(`button[name="${subjectTag}"]`);
+    subject.className = subject.className += " active";
+  }
+}
 $("#more-verbs").on("click", function () {
   $("#verbs").attr("verbs-extended", true);
+});
+$.ajax({
+  url: "../verbs.json",
+  dataType: "json",
+  success: (response) => {
+    verbs = response;
+    if (localStorage["vite-custom-verbs"] != "") {
+      verbs = JSON.parse(
+        JSON.stringify(verbs).substr(0, JSON.stringify(verbs).length - 1) +
+          ", " +
+          localStorage["vite-custom-verbs"] +
+          "}"
+      );
+    }
+    setupVerbs(verbs);
+    //console.log(verbs)
+  },
+  error: function (err) {
+    console.error("error: could not load verbs.json :(");
+    console.log(err);
+  },
 });

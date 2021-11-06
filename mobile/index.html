@@ -18,11 +18,11 @@
         <div id="bottom-fade"></div>
         <div id="bottom-actions">
           <div id="action-themes">Themes</div>
-          <div class="bar-separator"></div>
+          <div class="bar-separator vertical-bar"></div>
           <div id="action-verbs">Verbs</div>
-          <div class="bar-separator"></div>
+          <div class="bar-separator vertical-bar"></div>
           <div id="action-score">Score</div>
-          <div class="bar-separator"></div>
+          <div class="bar-separator vertical-bar"></div>
           <div id="action-accents">Accents</div>
         </div>
       </footer>
@@ -38,7 +38,7 @@
           <button class="accent-button">î</button>
           <button class="accent-button">ô</button>
         </div>
-        <div class="bar-separator"></div>
+        <div class="bar-separator vertical-bar"></div>
         <button id="accent-caps"><img src="icon/Caps.svg" /></button>
       </footer>
       <extended>
@@ -66,69 +66,172 @@
           <div id="verb-grid-row">
             <div id="verbs-1">
               <div id="subjects-list">
-                <button class="subject-button toggle">Je</button>
-                <button class="subject-button toggle">Tu</button>
-                <button class="subject-button toggle">Il / Elle / On</button>
-                <button class="subject-button toggle">Vous</button>
-                <button class="subject-button toggle">Nous</button>
-                <button class="subject-button toggle">Ils / Elles</button>
+                <button
+                  title="Toggle 'Je' as a subject in problems."
+                  class="subject-button toggle"
+                  name="Je"
+                >
+                  Je
+                </button>
+                <button
+                  title="Toggle 'Tu' as a subject in problems."
+                  class="subject-button toggle"
+                  name="Tu"
+                >
+                  Tu
+                </button>
+                <button
+                  title="Toggle 'Il / Elle / On' as subjects in problems."
+                  class="subject-button toggle"
+                  name="Il / Elle / On"
+                >
+                  Il / Elle / On
+                </button>
+                <button
+                  title="Toggle 'Nous' as a subject in problems."
+                  class="subject-button toggle"
+                  name="Nous"
+                >
+                  Nous
+                </button>
+                <button
+                  title="Toggle 'Vous' as a subject in problems."
+                  class="subject-button toggle"
+                  name="Vous"
+                >
+                  Vous
+                </button>
+                <button
+                  title="Toggle 'Ils / Elles' as subjects in problems."
+                  class="subject-button toggle"
+                  name="Ils / Elles"
+                >
+                  Ils / Elles
+                </button>
               </div>
               <div id="verbs-preview">
-                <div id="verbs-grid">
-                  <button class="verb-button toggle">Venir</button>
-                  <button class="verb-button toggle">Pouvoir</button>
-                  <button class="verb-button toggle">Finir</button>
-                  <button class="verb-button toggle">Avoir</button>
-                  <button class="verb-button toggle">Descendre</button>
-                  <button class="verb-button toggle">Suivre</button>
-                  <button class="verb-button toggle">Retourner</button>
-                  <button class="verb-button toggle">Arriver</button>
-                  <button class="verb-button toggle">Finir</button>
-                  <button class="verb-button toggle">Avoir</button>
-                  <button class="verb-button toggle">Descendre</button>
-                  <button class="verb-button toggle">Suivre</button>
-                  <button class="verb-button toggle">Suivre</button>
-                  <button class="verb-button toggle">Retourner</button>
-                  <button class="verb-button toggle">Arriver</button>
-                  <button class="verb-button toggle">Finir</button>
-                  <button class="verb-button toggle">Avoir</button>
-                  <button class="verb-button toggle">Descendre</button>
-                  <button class="verb-button toggle">Suivre</button>
-                  <button class="verb-button toggle">Suivre</button>
-                  <button class="verb-button toggle">Retourner</button>
-                  <button class="verb-button toggle">Arriver</button>
-                  <button class="verb-button toggle">Finir</button>
-                  <button class="verb-button toggle">Avoir</button>
-                  <button class="verb-button toggle">Descendre</button>
-                  <button class="verb-button toggle">Suivre</button>
-                  <button class="verb-button toggle">Suivre</button>
-                  <button class="verb-button toggle">Retourner</button>
-                  <button class="verb-button toggle">Arriver</button>
-                  <button class="verb-button toggle">Finir</button>
-                  <button class="verb-button toggle">Avoir</button>
-                  <button class="verb-button toggle">Descendre</button>
-                  <button class="verb-button toggle">Suivre</button>
-                </div>
+                <div id="verbs-grid" class="verbs-list"></div>
                 <button id="more-verbs">See More</button>
               </div>
             </div>
             <div id="verbs-2">
               <div id="verbs-scroll" class="scroll-container">
                 <div id="verbs-all" class="scroll-content">
-                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
-                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
-                  Mi ipsum faucibus vitae aliquet nec ullamcorper. Ut faucibus
-                  pulvinar elementum integer enim neque volutpat ac tincidunt.
-                  Dapibus ultrices in iaculis nunc sed augue lacus. Quis
-                  hendrerit dolor magna eget est lorem ipsum. In nulla posuere
-                  sollicitudin aliquam. Dolor sit amet consectetur adipiscing
-                  elit ut aliquam purus. Elementum curabitur vitae nunc sed
-                  velit dignissim. Duis at consectetur lorem donec. Etiam sit
-                  amet nisl purus. Ornare aenean euismod elementum nisi quis
-                  eleifend quam adipiscing. Sed sed risus pretium quam vulputate
-                  dignissim suspendisse in. Etiam non quam lacus suspendisse
-                  faucibus interdum posuere lorem. Placerat vestibulum lectus
-                  mauris ultrices eros in cursus turpis massa.
+                  <div id="verbs-extended" class="verbs-list"></div>
+                  <div class="bar-separator horizontal-bar"></div>
+                  <div id="verb-add">
+                    <div id="verb-add-past-container">
+                      <div id="verb-add-past-participle">
+                        <div id="verb-participle-label">Participle</div>
+                        <input
+                          type="text"
+                          spellcheck="false"
+                          id="verb-add-participle"
+                          placeholder="été"
+                        />
+                      </div>
+                      <div id="verb-add-past-helping">
+                        <div id="verb-helping-label">Helping</div>
+                        <select id="verb-add-helping" value="Avoir">
+                          <option value="Avoir">Avoir</option>
+                          <option value="Être">Être</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="verb-add-pair">
+                      <div class="verb-add-label">Je</div>
+                      <input
+                        id="verb-add-subject-1"
+                        spellcheck="false"
+                        type="text"
+                        class="verb-add-input"
+                        placeholder="suis"
+                        title="Present tense conjugation for subject Je"
+                      />
+                    </div>
+                    <div class="verb-add-pair">
+                      <div class="verb-add-label">Tu</div>
+                      <input
+                        id="verb-add-subject-2"
+                        spellcheck="false"
+                        type="text"
+                        class="verb-add-input"
+                        placeholder="es"
+                        title="Present tense conjugation for subject Tu"
+                      />
+                    </div>
+                    <div class="verb-add-pair">
+                      <div class="verb-add-label">Il / Elle / On</div>
+                      <input
+                        id="verb-add-subject-3"
+                        spellcheck="false"
+                        type="text"
+                        class="verb-add-input"
+                        placeholder="est"
+                        title="Present tense conjugation for subjects Il / Elle / On"
+                      />
+                    </div>
+                    <div class="verb-add-pair">
+                      <div class="verb-add-label">Nous</div>
+                      <input
+                        id="verb-add-subject-4"
+                        spellcheck="false"
+                        type="text"
+                        class="verb-add-input"
+                        placeholder="sommes"
+                        title="Present tense conjugation for subject Nous"
+                      />
+                    </div>
+                    <div class="verb-add-pair">
+                      <div class="verb-add-label">Vous</div>
+                      <input
+                        id="verb-add-subject-5"
+                        spellcheck="false"
+                        type="text"
+                        class="verb-add-input"
+                        placeholder="êtes"
+                        title="Present tense conjugation for subject Vous"
+                      />
+                    </div>
+                    <div class="verb-add-pair last">
+                      <div class="verb-add-label">Ils / Elles</div>
+                      <input
+                        id="verb-add-subject-6"
+                        spellcheck="false"
+                        type="text"
+                        class="verb-add-input"
+                        placeholder="sont"
+                        title="Present tense conjugation for subjects Ils / Elles"
+                      />
+                    </div>
+                    <div id="verb-add-submit-container">
+                      <button
+                        title="Add Custom Verb From Above"
+                        id="verb-add-submit"
+                      >
+                        Add Verb
+                      </button>
+                      <input
+                        id="verb-add-name"
+                        spellcheck="false"
+                        type="text"
+                        placeholder="Être"
+                        title="Name of the verb"
+                      />
+                      <button
+                        title="Remove All Custom Verbs"
+                        id="verb-add-reset"
+                      >
+                        Reset
+                      </button>
+                      <button
+                        title="Share your custom verbs"
+                        id="verb-custom-share"
+                      >
+                        Share
+                      </button>
+                    </div>
+                  </div>
                 </div>
               </div>
               <div id="verbs-scroll-fade" class="scroll-fade">
