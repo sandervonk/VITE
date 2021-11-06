@@ -1,0 +1,15 @@
+:root {
+    --vite-bg: lightblue;
+    --text-color: white;
+    --keyboard-bg: #273238;
+    --keyboard-faded: #9da5a8;
+    --keyboard-faded-transparent: #9da5a844;
+    --keyboard-accent:#6eaca7;
+    --button-active: #6ab0c9bb;
+    --keyboard-shadow: #182128;
+    --keyboard-active: white;
+    --keyboard-separator: #3b464c;
+    --keyboard-reset: #99240fda;
+    --keyboard-button: #414a51;
+    --keyboard-button-text: #bfc1c4;
+  }

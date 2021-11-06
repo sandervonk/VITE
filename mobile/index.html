@@ -48,17 +48,108 @@
             <button class="toggle">VITE! WS</button>
             <button class="toggle">Material</button>
           </div>
-          <div class="table-half">
-            <div id="bg-color"><input type="color" id="color-bg" value="#ADD8E6" /></div>
+          <div class="table-half" id="display-colors">
+            <div id="bg-color">
+              <input type="color" id="color-bg" value="#ADD8E6" />
+            </div>
+            <div id="theme-switch">
+              <div id="switch-bar">
+                <div id="switch-ball">
+                  <img src="icon/sun.svg" id="theme-light-img" />
+                  <img src="icon/moon.svg" id="theme-dark-img" />
+                </div>
+              </div>
+            </div>
           </div>
         </options>
-        <options id="verbs">verbs</options>
+        <options id="verbs">
+          <div id="verb-grid-row">
+            <div id="verbs-1">
+              <div id="subjects-list">
+                <button class="subject-button toggle">Je</button>
+                <button class="subject-button toggle">Tu</button>
+                <button class="subject-button toggle">Il / Elle / On</button>
+                <button class="subject-button toggle">Vous</button>
+                <button class="subject-button toggle">Nous</button>
+                <button class="subject-button toggle">Ils / Elles</button>
+              </div>
+              <div id="verbs-preview">
+                <div id="verbs-grid">
+                  <button class="verb-button toggle">Venir</button>
+                  <button class="verb-button toggle">Pouvoir</button>
+                  <button class="verb-button toggle">Finir</button>
+                  <button class="verb-button toggle">Avoir</button>
+                  <button class="verb-button toggle">Descendre</button>
+                  <button class="verb-button toggle">Suivre</button>
+                  <button class="verb-button toggle">Retourner</button>
+                  <button class="verb-button toggle">Arriver</button>
+                  <button class="verb-button toggle">Finir</button>
+                  <button class="verb-button toggle">Avoir</button>
+                  <button class="verb-button toggle">Descendre</button>
+                  <button class="verb-button toggle">Suivre</button>
+                  <button class="verb-button toggle">Suivre</button>
+                  <button class="verb-button toggle">Retourner</button>
+                  <button class="verb-button toggle">Arriver</button>
+                  <button class="verb-button toggle">Finir</button>
+                  <button class="verb-button toggle">Avoir</button>
+                  <button class="verb-button toggle">Descendre</button>
+                  <button class="verb-button toggle">Suivre</button>
+                  <button class="verb-button toggle">Suivre</button>
+                  <button class="verb-button toggle">Retourner</button>
+                  <button class="verb-button toggle">Arriver</button>
+                  <button class="verb-button toggle">Finir</button>
+                  <button class="verb-button toggle">Avoir</button>
+                  <button class="verb-button toggle">Descendre</button>
+                  <button class="verb-button toggle">Suivre</button>
+                  <button class="verb-button toggle">Suivre</button>
+                  <button class="verb-button toggle">Retourner</button>
+                  <button class="verb-button toggle">Arriver</button>
+                  <button class="verb-button toggle">Finir</button>
+                  <button class="verb-button toggle">Avoir</button>
+                  <button class="verb-button toggle">Descendre</button>
+                  <button class="verb-button toggle">Suivre</button>
+                </div>
+                <button id="more-verbs">See More</button>
+              </div>
+            </div>
+            <div id="verbs-2">
+              <div id="verbs-scroll" class="scroll-container">
+                <div id="verbs-all" class="scroll-content">
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                  Mi ipsum faucibus vitae aliquet nec ullamcorper. Ut faucibus
+                  pulvinar elementum integer enim neque volutpat ac tincidunt.
+                  Dapibus ultrices in iaculis nunc sed augue lacus. Quis
+                  hendrerit dolor magna eget est lorem ipsum. In nulla posuere
+                  sollicitudin aliquam. Dolor sit amet consectetur adipiscing
+                  elit ut aliquam purus. Elementum curabitur vitae nunc sed
+                  velit dignissim. Duis at consectetur lorem donec. Etiam sit
+                  amet nisl purus. Ornare aenean euismod elementum nisi quis
+                  eleifend quam adipiscing. Sed sed risus pretium quam vulputate
+                  dignissim suspendisse in. Etiam non quam lacus suspendisse
+                  faucibus interdum posuere lorem. Placerat vestibulum lectus
+                  mauris ultrices eros in cursus turpis massa.
+                </div>
+              </div>
+              <div id="verbs-scroll-fade" class="scroll-fade">
+                <fade-bar class="fade-top"></fade-bar>
+                <fade-bar class="fade-bottom"></fade-bar>
+              </div>
+            </div>
+          </div>
+        </options>
         <options id="score">
           <div id="score-flex-row">
             <div id="score-number">####</div>
             <div id="score-bars">
-              <score-bar class="s-correct" id="score-correct"></score-bar>
-              <score-bar class="s-incorrect" id="score-incorrect"></score-bar>
+              <score-bar
+                class="s-correct score-bar"
+                id="score-correct"
+              ></score-bar>
+              <score-bar
+                class="s-incorrect score-bar"
+                id="score-incorrect"
+              ></score-bar>
             </div>
             <flex-break></flex-break>
             <button id="reset-score">Reset</button>

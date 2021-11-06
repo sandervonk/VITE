@@ -1,34 +1,19 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Righteous&display=swap");
+
 :root {
   --vite-bg: lightblue;
   --text-color: white;
   --keyboard-bg: #273238;
   --keyboard-faded: #9da5a8;
   --keyboard-faded-transparent: #9da5a844;
-  --keyboard-accent:#6eaca7;
+  --keyboard-accent: #6eaca7;
   --button-active: #6ab0c9bb;
   --keyboard-shadow: #182128;
   --keyboard-active: white;
-  --keyboard-separator: var(--keyboard-separator);
+  --keyboard-separator: #3b464c;
   --keyboard-reset: #99240fda;
   --keyboard-button: #414a51;
   --keyboard-button-text: #bfc1c4;
-}
-@media (prefers-color-scheme: light) {
-  :root {
-    --text-color: black;
-    --keyboard-bg: #e8eaed;
-    --keyboard-accent:#1a73e8;
-    --button-active: #1a73e87c;
-    --keyboard-faded: #c4c5c8    ;
-    --keyboard-faded-transparent: #5d5e5f44;
-    --keyboard-shadow: #a9abad;
-    --keyboard-active: #454647;
-    --keyboard-separator: #c4c5c8;
-    --keyboard-reset: #ff3d1bda;
-    --keyboard-button: white;
-    --keyboard-button-text: black;
-  }
 }
 html,
 body {
@@ -216,7 +201,6 @@ body.keyboard #bottom-actions * {
 }
 :root {
   --menu-height: 50vw;
-
 }
 #footers extended {
   display: flex;
@@ -275,7 +259,7 @@ body[menutype="score"] #footers extended {
   right: 0vw;
 }
 body[menutype="verbs"] {
-  --menu-height: 90vw;
+  --menu-height: 80vw;
 }
 body[menutype="score"] {
   --menu-height: 33vw;
@@ -400,12 +384,13 @@ score-bar.s-incorrect {
   flex-shrink: 0;
 }
 #display-modes {
-  flex-direction: column;
+  flex-flow: column;
   justify-content: space-between;
   padding-right: 5vw;
   box-sizing: border-box;
 }
 .toggle {
+  font-family: "Comfortaa", sans-serif;
   border-radius: 20vw;
   border-radius: none;
   font-size: 4vw;
@@ -413,12 +398,18 @@ score-bar.s-incorrect {
   border: none;
   color: var(--text-color);
   padding: 2vw;
+  height: 10vw;
+  box-shadow: none !important;
 }
 #bg-color {
   /*background-color: var(--vite-bg);*/
   flex-grow: 1;
   border-radius: 5vw;
-  height: 100%;
+  height: 25vw;
+  margin-bottom: 5vw;
+  box-sizing: border-box;
+  width: 100%;
+  flex-shrink: 0;
   aspect-ratio: 1 / 1;
   display: flex;
   justify-content: center;
@@ -429,9 +420,217 @@ score-bar.s-incorrect {
   position: relative;
   width: 100%;
   height: 100%;
-  transform: scale(1.1);
+  transform-origin: center center;
+  transform: scale(1.5);
 }
 .toggle.active {
   background-color: var(--button-active);
 }
+
+#theme-switch {
+  background: var(--keyboard-faded-transparent);
+  width: 100%;
+  height: 10vw;
+  border-radius: 20vw;
+  flex-grow: 1;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  padding: 1vw;
+  box-sizing: border-box;
+}
+
+#switch-bar {
+  height: 100%;
+  width: 19%;
+  display: flex;
+  justify-content: flex-end;
+  transition: width 0.5s ease-in-out;
+  border-radius: 20vw;
+  background-color: var(--theme-color);
+  transition: background-color 0.5s ease-in-out, width 0.5s ease-in-out;
+}
+
+#switch-ball {
+  background: var(--keyboard-accent);
+  height: 100%;
+  aspect-ratio: 1 / 1;
+  box-sizing: border-box;
+  border-radius: 20vw;
+  cursor: pointer;
+  transform-origin: center center;
+  transform: scale(0.8);
+  transition: background-color 0.5s ease-in-out;
+}
+#switch-ball #theme-light-img {
+  display: none;
+}
+#switch-ball #theme-dark-img {
+  display: block;
+}
+#switch-ball img {
+  width: 100%;
+  height: 100%;
+  transform: scale(0.75);
+}
+#display-colors {
+  flex-wrap: wrap;
+  height: 100%;
+}
+
+/**Light | Dark Mode**/
+:root {
+  --theme-color: rgba(255, 255, 0, 0.514);
+}
+body[light-theme] {
+  --text-color: black;
+  --keyboard-bg: #e8eaed;
+  --keyboard-accent: #1a73e8;
+  --button-active: #1a73e87c;
+  --keyboard-faded: #c4c5c8;
+  --keyboard-faded-transparent: #5d5e5f44;
+  --keyboard-shadow: #a9abad;
+  --keyboard-active: #454647;
+  --keyboard-separator: #c4c5c8;
+  --keyboard-reset: #ff3d1bda;
+  --keyboard-button: white;
+  --keyboard-button-text: black;
+  --theme-color: #ffff0083;
+}
+body[light-theme] #theme-switch #switch-bar {
+  width: 100%;
+}
+body[light-theme] #switch-ball #theme-light-img {
+  display: block !important;
+}
+body[light-theme] #switch-ball #theme-dark-img {
+  display: none !important;
+}
 /*Verbs*/
+#verbs {
+  justify-self: start;
+  display: flex;
+  justify-content: start;
+  align-items: center;
+  flex-flow: column;
+  overflow: hidden;
+  height: 70vw;
+  flex-shrink: 0;
+}
+#verbs-1,
+#verbs-2 {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-flow: row;
+  flex-wrap: nowrap;
+  overflow: hidden;
+  flex-shrink: 0;
+  height: 100%;
+  width: 100%;
+}
+#verbs-2 {
+  margin-top: 10vw;
+  overflow: unset !important;
+}
+#verbs[verbs-extended] #verb-grid-row {
+  bottom: 81vw;
+}
+#verb-grid-row {
+  width: 90vw;
+  height: 71vw;
+  position: relative;
+  bottom: 0vw;
+  transition: bottom 0.5s ease-in-out;
+}
+#subjects-list {
+  display: flex;
+  justify-content: center;
+  flex-flow: column;
+  height: 100%;
+  margin: -1vw;
+  margin-right: 2vw;
+  flex-basis: 50%;
+  flex-grow: 1;
+  flex-basis: max-content;
+  flex-wrap: nowrap;
+}
+.subject-button {
+  margin: 1vw;
+  padding: 0 2vw;
+  flex-grow: 0;
+  white-space: nowrap;
+}
+#verbs-preview {
+  margin-left: 2vw;
+  flex-basis: 50%;
+  flex-grow: 4;
+  flex-flow: column;
+  height: 100%;
+  display: flex;
+  flex-wrap: nowrap;
+  justify-content: center;
+}
+.verb-button {
+  margin: 1vw;
+  flex-grow: 1;
+}
+#verbs-grid {
+  overflow: hidden;
+  flex-flow: row;
+  flex-wrap: wrap;
+  display: flex;
+  max-height: 64vw;
+  width: 100%;
+
+  flex-grow: 1;
+}
+#verbs-preview > button {
+  flex-grow: 1;
+  margin: 1vw;
+}
+#more-verbs {
+  font-family: "Comfortaa", sans-serif;
+  border-radius: 20vw;
+  border-radius: none;
+  font-size: 4vw;
+  background: #00db006c;
+  border: none;
+  color: var(--text-color);
+  padding: 2vw;
+  height: 10vw;
+  box-shadow: none !important;
+  flex-grow: 0 !important;
+}
+#verbs-scroll,
+.scroll-container {
+  overflow: scroll;
+  height: calc(100% + 10vw);
+  box-sizing: border-box;
+  width: 100%;
+  overflow-x: hidden;
+}
+.scroll-content {
+  padding: 5vw 0;
+}
+#verbs-scroll-fade,
+.scroll-fade {
+  height: calc(100% + 10vw);
+  box-sizing: border-box;
+  width: 100%;
+  pointer-events: none;
+  position: absolute;
+  display: flex;
+  flex-flow: column;
+  justify-content: space-between;
+}
+fade-bar {
+  height: 5vw;
+  width: 100%;
+}
+fade-bar.fade-bottom {
+  background: linear-gradient(180deg, #00000000 0%, var(--keyboard-bg) 100%);
+}
+fade-bar.fade-top {
+  background: linear-gradient(0deg, #00000000 0%, var(--keyboard-bg) 100%);
+}

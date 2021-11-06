@@ -1,37 +1,30 @@
+score = {
+  number: 0,
+  correct: 0,
+  incorrect: 0,
+};
+//*Saved values
 if (localStorage["VITE-bg"] == undefined) {
-  localStorage["VITE-bg"] = "#ADD8E6"
+  localStorage["VITE-bg"] = "#ADD8E6";
 }
+if (localStorage["light-theme"] == undefined) {
+  localStorage["light-theme"] = "false";
+}
+//*Inputs and Keyboard Handling
 $(document.body)
-  /*
-.on("focus", "textarea, input", function () {
-  $(document.body).addClass("keyboard");
-  $(document.body).removeClass("menu");
-})
-*/
   .on("keydown", function () {
     $(document.body).addClass("keyboard");
   })
   .on("blur", "textarea, input", function () {
     //$(document.body).removeClass("keyboard");
   });
-document
-  .getElementById("action-accents")
-  .addEventListener("click", function () {
-    $(document.body).addClass("keyboard");
-    $(document.body).removeClass("menu");
-    clearActive();
-    $(".accent-bar").removeClass("hide");
-    let capsButton = document.getElementById("accent-caps");
-    for (accent of document.getElementsByClassName("accent-button")) {
-      accent.innerText = accent.innerText.toLowerCase();
-    }
-    capsButton.className = "";
-  });
+
 $("#answer-input").on("focus", function () {
   $(document.body).addClass("keyboard");
   $(document.body).removeClass("menu");
   clearActive();
 });
+//*Accents
 document.getElementById("accent-back").addEventListener("click", function () {
   $(".accent-bar").addClass("hide");
   document.getElementById("accent-caps").className = "";
@@ -57,12 +50,26 @@ for (accent of document.getElementsByClassName("accent-button")) {
     input.value += target.innerText;
   });
 }
-//for the menus
+//*Bottom Menus
 function clearActive() {
   for (action of ["themes", "verbs", "score"]) {
     $("#action-" + action).removeClass("active");
   }
+  $("#verbs").removeAttr("verbs-extended");
 }
+document
+  .getElementById("action-accents")
+  .addEventListener("click", function () {
+    $(document.body).addClass("keyboard");
+    $(document.body).removeClass("menu");
+    clearActive();
+    $(".accent-bar").removeClass("hide");
+    let capsButton = document.getElementById("accent-caps");
+    for (accent of document.getElementsByClassName("accent-button")) {
+      accent.innerText = accent.innerText.toLowerCase();
+    }
+    capsButton.className = "";
+  });
 $("#action-themes").click(function () {
   if ($("#action-themes").hasClass("active")) {
     $(document.body).removeClass("menu");
@@ -96,7 +103,7 @@ $("#action-score").click(function () {
     $(document.body).attr("menutype", "score");
   }
 });
-//color changing
+//*Background Color
 try {
   document.getElementById("color-bg").value = localStorage["VITE-bg"];
   document.documentElement.style.setProperty(
@@ -106,12 +113,49 @@ try {
 } catch {}
 document.getElementById("color-bg").addEventListener("input", (event) => {
   let bgColor = event.target.value;
-  document.documentElement.style.setProperty(
-    "--vite-bg",
-    bgColor
-  );
+  document.documentElement.style.setProperty("--vite-bg", bgColor);
   try {
     localStorage["VITE-bg"] = bgColor;
-    
   } catch {}
+});
+//*Color Themes
+if (localStorage["light-theme"] == "true") {
+  document.body.toggleAttribute("light-theme");
+}
+$("#theme-switch").on("click", function () {
+  if (document.body.hasAttribute("light-theme")) {
+    localStorage["light-theme"] = "false";
+  } else {
+    localStorage["light-theme"] = "true";
+  }
+  document.body.toggleAttribute("light-theme");
+});
+//*Score
+$("#reset-score").on("click", function () {
+  score = {
+    number: 0,
+    correct: 0,
+    incorrect: 0,
+  };
+  $("#score-number").text(score.number);
+  $(".score-bar").css("width", "50%");
+  $(".score-num").text(0);
+});
+function setScore() {
+  $("#score-number").text(score.number);
+  $(".score-bar").css("width", "50%");
+  $("#score-num-correct").text(0);
+  $("#score-num-incorrect").text(0);
+  $("#score-correct").css(
+    "width",
+    (100 * score.correct) / (score.correct + score.incorrect) + "%"
+  );
+  $("#score-incorrect").css(
+    "width",
+    (100 * score.incorrect) / (score.correct + score.incorrect) + "%"
+  );
+}
+//*Verbs
+$("#more-verbs").on("click", function () {
+  $("#verbs").attr("verbs-extended", true);
 });
