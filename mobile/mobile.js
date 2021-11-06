@@ -391,7 +391,9 @@ $("#verb-add-submit").click(function () {
       newVerb;
     localStorage["vite-custom-verbs"] +=
       (localStorage["vite-custom-verbs"].length > 0 ? "," : "") + newVerb;
-    window.location.reload();
+    setupVerbs(JSON.parse("{" + newVerb + "}"));
+    $("#verb-add input").val("");
+    $("#verb-add select").val("Avoir");
   }
 });
 $("#verb-custom-share").click(function () {
