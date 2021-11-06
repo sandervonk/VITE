@@ -1,8 +1,13 @@
+if (localStorage["VITE-bg"] == undefined) {
+  localStorage["VITE-bg"] = "#ADD8E6"
+}
 $(document.body)
-  .on("focus", "textarea, input", function () {
-    $(document.body).addClass("keyboard");
-    $(document.body).removeClass("menu");
-  })
+  /*
+.on("focus", "textarea, input", function () {
+  $(document.body).addClass("keyboard");
+  $(document.body).removeClass("menu");
+})
+*/
   .on("keydown", function () {
     $(document.body).addClass("keyboard");
   })
@@ -23,6 +28,7 @@ document
     capsButton.className = "";
   });
 $("#answer-input").on("focus", function () {
+  $(document.body).addClass("keyboard");
   $(document.body).removeClass("menu");
   clearActive();
 });
@@ -89,4 +95,23 @@ $("#action-score").click(function () {
     $("#action-score").addClass("active");
     $(document.body).attr("menutype", "score");
   }
+});
+//color changing
+try {
+  document.getElementById("color-bg").value = localStorage["VITE-bg"];
+  document.documentElement.style.setProperty(
+    "--vite-bg",
+    localStorage["VITE-bg"]
+  );
+} catch {}
+document.getElementById("color-bg").addEventListener("input", (event) => {
+  let bgColor = event.target.value;
+  document.documentElement.style.setProperty(
+    "--vite-bg",
+    bgColor
+  );
+  try {
+    localStorage["VITE-bg"] = bgColor;
+    
+  } catch {}
 });

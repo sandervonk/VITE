@@ -1,18 +1,46 @@
 @import url("https://fonts.googleapis.com/css2?family=Comfortaa:wght@400;700&family=Righteous&display=swap");
 :root {
-  --vite-background: lightblue;
+  --vite-bg: lightblue;
+  --text-color: white;
+  --keyboard-bg: #273238;
+  --keyboard-faded: #9da5a8;
+  --keyboard-faded-transparent: #9da5a844;
+  --keyboard-accent:#6eaca7;
+  --button-active: #6ab0c9bb;
+  --keyboard-shadow: #182128;
+  --keyboard-active: white;
+  --keyboard-separator: var(--keyboard-separator);
+  --keyboard-reset: #99240fda;
+  --keyboard-button: #414a51;
+  --keyboard-button-text: #bfc1c4;
+}
+@media (prefers-color-scheme: light) {
+  :root {
+    --text-color: black;
+    --keyboard-bg: #e8eaed;
+    --keyboard-accent:#1a73e8;
+    --button-active: #1a73e87c;
+    --keyboard-faded: #c4c5c8    ;
+    --keyboard-faded-transparent: #5d5e5f44;
+    --keyboard-shadow: #a9abad;
+    --keyboard-active: #454647;
+    --keyboard-separator: #c4c5c8;
+    --keyboard-reset: #ff3d1bda;
+    --keyboard-button: white;
+    --keyboard-button-text: black;
+  }
 }
 html,
 body {
   height: 100%;
   width: 100%;
-  background: var(--vite-background);
+  background: var(--vite-bg);
   padding: 0 !important;
   margin: 0 !important;
 }
 button {
   cursor: pointer;
-  box-shadow: 0 0.3vw 0 #182128;
+  box-shadow: 0 0.3vw 0 var(--keyboard-shadow);
 }
 footer.bottom-controls {
   position: fixed;
@@ -22,7 +50,7 @@ footer.bottom-controls {
   box-sizing: border-box;
   font-family: "Righteous", sans-serif;
   border-radius: 6vw 6vw 0 0;
-  border-bottom: solid #3b464c 2px;
+  border-bottom: solid var(--keyboard-separator) 2px;
 }
 .bottom-controls #bottom-actions {
   display: flex;
@@ -32,7 +60,7 @@ footer.bottom-controls {
   flex-wrap: nowrap;
   width: 100%;
   height: 100%;
-  color: #9da5a8;
+  color: var(--keyboard-faded);
   font-family: "Righteous", sans-serif;
   font-size: 3.5vw;
 }
@@ -47,7 +75,7 @@ footer.bottom-controls {
   cursor: pointer;
 }
 #bottom-actions .active {
-  color: white;
+  color: var(--keyboard-active);
 }
 
 footer {
@@ -62,7 +90,7 @@ footer.accent-bar {
   height: 13vw;
   font-family: "Righteous", sans-serif;
   border-radius: 6vw 6vw 0 0;
-  border-bottom: solid #3b464c 2px;
+  border-bottom: solid var(--keyboard-separator) 2px;
   transition: bottom 0.3s ease-in-out;
   z-index: 99;
 }
@@ -79,12 +107,12 @@ body.keyboard #bottom-actions * {
   width: 25%;
 }
 /*accents*/
-.bar-seperator {
+.bar-separator {
   height: 40% !important;
   width: 1px !important;
   flex-shrink: 0;
   flex-grow: 0 !important;
-  background-color: #3b464c;
+  background-color: var(--keyboard-separator);
   align-self: center;
 }
 #accent-back {
@@ -112,7 +140,7 @@ body.keyboard #bottom-actions * {
   margin-left: 0 !important;
   aspect-ratio: 1 / 1;
   border: none;
-  background-color: #6eaca7;
+  background-color: var(--keyboard-accent);
   display: flex;
   padding: 0 !important;
   justify-content: center;
@@ -139,9 +167,9 @@ body.keyboard #bottom-actions * {
   aspect-ratio: 1 / 1;
   box-sizing: border-box;
   height: 7vw;
-  background-color: #414a51;
+  background-color: var(--keyboard-button);
   border: none;
-  color: #bfc1c4;
+  color: var(--keyboard-button-text);
   border-radius: 0.75vw;
   font-size: 3.5vw;
 
@@ -188,7 +216,7 @@ body.keyboard #bottom-actions * {
 }
 :root {
   --menu-height: 50vw;
-  --keyboard-bg: #273238;
+
 }
 #footers extended {
   display: flex;
@@ -204,7 +232,7 @@ body.keyboard #bottom-actions * {
   position: fixed;
   bottom: calc(0vw - var(--menu-height));
   z-index: 100;
-  border-top: solid #3b464c 2px;
+  border-top: solid var(--keyboard-separator) 2px;
   /*
   transition: bottom 0.5s, height 0.5s;
   */
@@ -233,7 +261,7 @@ extended > #score {
   justify-content: center;
   align-items: center;
   font-size: 5vw;
-  color: white;
+  color: var(--text-color);
   padding: 5vw;
   box-sizing: border-box;
 }
@@ -301,19 +329,19 @@ flex-break {
 }
 #score-flex-row > * {
   margin: 1.5vw;
-  background: #9da5a844;
+  background: var(--keyboard-faded-transparent);
   border-radius: 20vw;
 }
 #score-flex-row > button {
   flex-grow: 2;
-  background: #9da5a844;
+  background: var(--keyboard-faded-transparent);
   border: none !important;
-  color: white;
+  color: var(--text-color);
   font-family: "Comfortaa", sans-serif;
   padding: 2vw;
 }
 button#reset-score {
-  background: #99240fda;
+  background: var(--keyboard-reset);
   font-size: 4vw;
 }
 #score-number {
@@ -381,13 +409,13 @@ score-bar.s-incorrect {
   border-radius: 20vw;
   border-radius: none;
   font-size: 4vw;
-  background: #9da5a844;
+  background: var(--keyboard-faded-transparent);
   border: none;
-  color: white;
+  color: var(--text-color);
   padding: 2vw;
 }
 #bg-color {
-  /*background-color: var(--vite-background);*/
+  /*background-color: var(--vite-bg);*/
   flex-grow: 1;
   border-radius: 5vw;
   height: 100%;
@@ -395,14 +423,15 @@ score-bar.s-incorrect {
   display: flex;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  overflow: hidden !important;
 }
 #bg-color input {
-  width: 100vw;
-  height: 100vw;
-  transform: scale(2);
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.1);
 }
 .toggle.active {
-  background-color: #6ab0c9bb;
+  background-color: var(--button-active);
 }
 /*Verbs*/
