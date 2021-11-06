@@ -323,6 +323,9 @@ function setupVerbs(verbs) {
 $("#more-verbs").on("click", function () {
   $("#verbs").attr("verbs-extended", true);
 });
+$("#verbs-back").on("click", function () {
+  $("#verbs").attr("verbs-extended", false);
+});
 $.ajax({
   url: "../verbs.json",
   dataType: "json",

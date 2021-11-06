@@ -3,6 +3,7 @@
 :root {
   --vite-bg: lightblue;
   --text-color: white;
+  --accent-text-color: white;
   --keyboard-bg: #273238;
   --keyboard-faded: #9da5a8;
   --keyboard-faded-transparent: #9da5a844;
@@ -544,7 +545,7 @@ body[light-theme] #switch-ball #theme-dark-img {
   margin-top: 10vw;
   overflow: unset !important;
 }
-#verbs[verbs-extended] #verb-grid-row {
+#verbs[verbs-extended="true"] #verb-grid-row {
   bottom: 81vw;
 }
 #verb-grid-row {
@@ -605,9 +606,9 @@ body[light-theme] #switch-ball #theme-dark-img {
   border-radius: 20vw;
   border-radius: none;
   font-size: 4vw;
-  background: #00db006c;
+  background-color: var(--keyboard-accent);
   border: none;
-  color: var(--text-color);
+  color: var(--accent-text-color);
   padding: 2vw;
   height: 10vw;
   box-shadow: none !important;
@@ -790,4 +791,13 @@ body[light-theme] #verb-custom-share {
 }
 body[light-theme] .custom-verb-img {
   filter: invert(1);
+}
+#verbs-back {
+  height: fit-content;
+  flex-grow: 2;
+  margin: 1vw;
+  background: var(--keyboard-accent);
+  color: var(--accent-text-color);
+  cursor: pointer;
+  user-select: none;
 }
