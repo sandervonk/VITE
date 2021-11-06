@@ -283,12 +283,42 @@ function setupVerbs(verbs) {
     }
     localStorage["vite-verbs"] = array;
     $(e.target).toggleClass("active");
+    while (localStorage["vite-verbs"].includes(",,")) {
+      localStorage["vite-verbs"] = localStorage["vite-verbs"].replace(
+        ",,",
+        ","
+      );
+    }
+    while (
+      localStorage["vite-verbs"].substr(
+        localStorage["vite-verbs"].length - 1
+      ) == ","
+    ) {
+      localStorage["vite-verbs"] = localStorage["vite-verbs"].substr(
+        0,
+        localStorage["vite-verbs"].length - 1
+      );
+    }
   });
   //setup subjects
   for (subjectTag of localStorage["vite-subjects"].split(",")) {
     let subject = document.querySelector(`button[name="${subjectTag}"]`);
     subject.className = subject.className += " active";
   }
+  $(".subject-button").click((e) => {
+    let array = localStorage["vite-subjects"].split(",");
+    if ($(e.target).hasClass("active")) {
+      let index = array.indexOf(e.target.name);
+      if (index > -1) {
+        array.splice(index, 1);
+      }
+    } else {
+      array.push(e.target.name);
+    }
+    console.log(array);
+    localStorage["vite-subjects"] = array;
+    $(e.target).toggleClass("active");
+  });
 }
 $("#more-verbs").on("click", function () {
   $("#verbs").attr("verbs-extended", true);
