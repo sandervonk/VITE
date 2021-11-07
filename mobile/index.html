@@ -11,12 +11,16 @@
   </head>
   <body>
     <div id="content">
+      <div id="answer-overlay">
+        <div id="answer-status"></div>
+        <br />
+        <div id="answer-correction"></div>
+      </div>
       <div id="vite-question">
         <div id="question-content">
-          Conjugate&nbsp;<span id="vite-q-verb" class="question-part"
-            >Avoir</span
+          Conjugate&nbsp;<span id="vite-q-verb" class="question-part">Verb</span
           >&nbsp;in the &nbsp;<span id="vite-q-tense" class="question-part"
-            >Passé Composé</span
+            >Subject</span
           >
           &nbsp;with the subject&nbsp;<span
             id="vite-q-subject"
@@ -47,6 +51,10 @@
           <div id="action-score">Score</div>
           <div class="bar-separator vertical-bar"></div>
           <div id="action-accents">Accents</div>
+          <div class="bar-separator vertical-bar"></div>
+          <button id="action-next" style="width: unset !important">
+            <img src="icon/submit.svg" id="action-next-img" />
+          </button>
         </div>
       </footer>
       <footer class="accent-bar">
@@ -159,7 +167,7 @@
                 </button>
                 <button
                   title="Toggle Reflexive Tense Questions"
-                  class="tense-button toggle"
+                  class="tense-button toggle disabled"
                   id="tense-re"
                 >
                   Reflexive

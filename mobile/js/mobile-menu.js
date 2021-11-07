@@ -1,7 +1,15 @@
 /*
 Set needed localStorage vars
 */
-
+function split(storageVar) {
+  let arr = [];
+  for (let item of storageVar.split(",")) {
+    if (item != "") {
+      arr.push(item);
+    }
+  }
+  return arr;
+}
 function stealCookies() {
   let cookies = [
     ["vite-subjects", "Je,Tu,Il / Elle / On,Nous,Vous,Ils / Elles"],
@@ -269,9 +277,11 @@ function setupVerbs(verbs) {
       }</button>`
     );
   }
+  //add other click handlers
+  refreshEvents();
   //add click handlers
   $(".verb-button").click((e) => {
-    let array = localStorage["vite-verbs"].split(",");
+    let array = split(localStorage["vite-verbs"]);
     if ($(e.target).hasClass("active")) {
       let index = array.indexOf(e.target.name);
       if (index > -1) {
@@ -282,7 +292,7 @@ function setupVerbs(verbs) {
       //localStorage["vite-verbs"] = array;
     }
     localStorage["vite-verbs"] = array;
-    $(e.target).toggleClass("active");
+    $(`.verb-button[name="${e.target.name}"]`).toggleClass("active");
     while (localStorage["vite-verbs"].includes(",,")) {
       localStorage["vite-verbs"] = localStorage["vite-verbs"].replace(
         ",,",
@@ -303,7 +313,7 @@ function setupVerbs(verbs) {
   //setup tenses
 
   //setup subjects
-  for (subjectTag of localStorage["vite-subjects"].split(",")) {
+  for (subjectTag of split(localStorage["vite-subjects"])) {
     $(`button[name="${subjectTag}"]`).addClass("active");
   }
   for (tense of ["pr", "pc", "im", "fs", "fa", "co"]) {
@@ -318,7 +328,7 @@ function setupVerbs(verbs) {
     $(e.target).toggleClass("active");
   });
   $(".subject-button").click((e) => {
-    let array = localStorage["vite-subjects"].split(",");
+    let array = split(localStorage["vite-subjects"]);
     if ($(e.target).hasClass("active")) {
       let index = array.indexOf(e.target.name);
       if (index > -1) {
@@ -327,7 +337,6 @@ function setupVerbs(verbs) {
     } else {
       array.push(e.target.name);
     }
-    console.log(array);
     localStorage["vite-subjects"] = array;
     $(e.target).toggleClass("active");
   });
@@ -354,6 +363,7 @@ $.ajax({
       );
     }
     setupVerbs(verbs);
+    showQuestion(new Question());
     //console.log(verbs)
   },
   error: function (err) {
