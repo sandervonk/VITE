@@ -5,6 +5,7 @@
   --text-color: white;
   --text-shadow-color: #000000aa;
   --accent-text-color: white;
+  --accent-text-color-transparent: #ffffff88;
   --keyboard-bg: #273238;
   --keyboard-faded: #9da5a8;
   --keyboard-faded-transparent: #9da5a844;
@@ -288,19 +289,56 @@ body.menu #content {
   transition: padding-bottom 0.5s ease-in-out;
 }
 
-#answer-input {
-  font-family: "Comfortaa", sans-serif;
-  border: solid grey 4px;
+#answer-input-box {
+  background: var(--keyboard-bg);
+  border: solid var(--keyboard-accent) 0.5vw;
+  box-shadow: 0 0 2vw var(--accent-text-color-transparent);
   border-radius: 6vw;
-  padding: 1vw 3vw;
-  width: 55vw;
-  height: 9vw;
-  font-size: 5vw;
+  width: fit-content;
+  height: 8vw;
   align-self: center;
   box-sizing: border-box;
+  display: flex;
+  flex-flow: row;
+  flex-wrap: nowrap;
   z-index: 2;
+  overflow: hidden;
+  box-sizing: content-box;
+  max-width: 100%;
+  justify-content: start;
 }
-
+#answer-input {
+  height: 100%;
+  border: none;
+  flex-grow: 1;
+  flex-basis: 20%;
+  margin: 0;
+  padding: 1vw 3vw;
+  font-size: 5vw;
+  box-sizing: border-box;
+  background: transparent;
+  font-family: "Comfortaa", sans-serif;
+  color: var(--keyboard-button-text);
+}
+#answer-submit {
+  background: var(--keyboard-accent);
+  box-shadow: none !important;
+  border-radius: 20vw;
+  aspect-ratio: 1 / 1;
+  height: 100%;
+  border: none;
+  padding: 0 !important;
+  box-sizing: border-box;
+  transform-origin: center center;
+  transform: scale(0.8);
+  position: relative;
+  right: 0;
+}
+#answer-submit img {
+  pointer-events: none;
+  height: 100%;
+  width: 100%;
+}
 #extended-fill {
   background: var(--keyboard-bg);
   width: 100vw;
@@ -500,7 +538,10 @@ body[light-theme] {
   --text-shadow-color: #ffffffaa;
   --keyboard-bg: #e8eaed;
   --keyboard-accent: #1a73e8;
-  --button-active: #1a73e87c;
+  --button-active: #14b3a57c;
+  /*
+    --button-active: #1a73e87c;
+  */
   --button-active-alt: #32e81a7c;
   --keyboard-faded: #c4c5c8;
   --keyboard-faded-transparent: #5d5e5f44;
@@ -911,4 +952,7 @@ body.menu {
       5.5vw
   );
   transition: height 0.5s ease-in-out;
+}
+.disabled {
+  opacity: 0.2;
 }

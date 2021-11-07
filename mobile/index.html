@@ -29,7 +29,12 @@
         <fade-bar class="fade-bottom"></fade-bar>
         <div class="solid-fade-bottom"></div>
       </div>
-      <input type="text" id="answer-input" />
+      <div id="answer-input-box">
+        <input type="text" id="answer-input" />
+        <button id="answer-submit">
+          <img src="./icon/submit.svg" />
+        </button>
+      </div>
     </div>
     <div id="footers">
       <footer class="bottom-controls">
@@ -63,8 +68,8 @@
         <options id="themes">
           <div class="table-half" id="display-modes">
             <button class="toggle active">Quizlet</button>
-            <button class="toggle">VITE! WS</button>
-            <button class="toggle">Material</button>
+            <button class="toggle disabled">VITE! WS</button>
+            <button class="toggle disabled">Material</button>
           </div>
           <div class="table-half" id="display-colors">
             <div id="bg-color">
