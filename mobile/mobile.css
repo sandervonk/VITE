@@ -269,7 +269,7 @@ body[menutype="score"] #footers extended {
   right: 0vw;
 }
 body[menutype="verbs"] {
-  --menu-height: 80vw;
+  --menu-height: 120vw;
 }
 body[menutype="score"] {
   --menu-height: 33vw;
@@ -545,16 +545,7 @@ body[light-theme] #switch-ball #theme-dark-img {
   margin-top: 10vw;
   overflow: unset !important;
 }
-#verbs[verbs-extended="true"] #verb-grid-row {
-  bottom: 81vw;
-}
-#verb-grid-row {
-  width: 90vw;
-  height: 71vw;
-  position: relative;
-  bottom: 0vw;
-  transition: bottom 0.5s ease-in-out;
-}
+
 #subjects-list {
   display: flex;
   justify-content: center;
@@ -574,6 +565,7 @@ body[light-theme] #switch-ball #theme-dark-img {
   white-space: nowrap;
 }
 #verbs-preview {
+  margin: -1vw !important;
   margin-left: 2vw;
   flex-basis: 50%;
   flex-grow: 4;
@@ -800,4 +792,41 @@ body[light-theme] .custom-verb-img {
   color: var(--accent-text-color);
   cursor: pointer;
   user-select: none;
+}
+#verbs-1 {
+  flex-flow: column !important;
+}
+#verb-tenses {
+  display: flex;
+  height: 35vw;
+  margin: -1vw;
+  margin-top: 1vw;
+  width: 100%;
+  flex-shrink: 0;
+  flex-flow: row;
+  flex-wrap: wrap;
+}
+.tense-button {
+  flex-grow: 1;
+  margin: 1vw;
+  padding: 0 2vw;
+  white-space: nowrap;
+  box-shadow: none;
+}
+#verb-grid-row {
+  width: 90vw;
+  height: 111vw;
+  position: relative;
+  bottom: 0vw;
+  transition: bottom 0.5s ease-in-out;
+}
+#verbs[verbs-extended="true"] #verb-grid-row {
+  bottom: 121vw;
+}
+#tense-separator {
+  margin: 1vw auto !important;
+}
+#verb-and-subject {
+  height: 71vw;
+  display: flex;
 }

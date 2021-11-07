@@ -300,11 +300,23 @@ function setupVerbs(verbs) {
       );
     }
   });
+  //setup tenses
+
   //setup subjects
   for (subjectTag of localStorage["vite-subjects"].split(",")) {
-    let subject = document.querySelector(`button[name="${subjectTag}"]`);
-    subject.className = subject.className += " active";
+    $(`button[name="${subjectTag}"]`).addClass("active");
   }
+  for (tense of ["pr", "pc", "im", "fs", "fa", "co"]) {
+    if (JSON.parse(localStorage["vite-" + tense])) {
+      $("#tense-" + tense).addClass("active");
+    }
+  }
+  $(".tense-button").click((e) => {
+    localStorage["vite-" + e.target.id.replace("tense-", "")] = !$(
+      e.target
+    ).hasClass("active");
+    $(e.target).toggleClass("active");
+  });
   $(".subject-button").click((e) => {
     let array = localStorage["vite-subjects"].split(",");
     if ($(e.target).hasClass("active")) {
@@ -322,6 +334,7 @@ function setupVerbs(verbs) {
 }
 $("#more-verbs").on("click", function () {
   $("#verbs").attr("verbs-extended", true);
+  document.getElementById("verbs-scroll").scrollTo(0, 0);
 });
 $("#verbs-back").on("click", function () {
   $("#verbs").attr("verbs-extended", false);
