@@ -86,6 +86,9 @@ class Question {
     return this.random(tenses);
   }
   conjugate(t, s, v) {
+    if (v.name.includes("Conna")) {
+      v.verb = verbs["Connaître"];
+    }
     let a = {};
     if (t == "pr") {
       a = this.prTense(s, v);

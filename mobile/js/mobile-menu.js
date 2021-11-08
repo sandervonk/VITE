@@ -26,14 +26,17 @@ function changeScore(num) {
     duration = Math.max(0, duration);
     score.number += Math.max(
       0,
-      problemTime["max-score"] * ((alloted - duration) / alloted)
+      parseInt(
+        problemTime["max-score"] *
+          ((problemTime.allotted - duration) / problemTime.allotted)
+      )
     );
   } else {
     score.incorrect += 1;
-    score.number - problemTime["incorrect-deduction"];
+    score.number -= problemTime["incorrect-deduction"];
     score.number = Math.Max(score.number, 0);
   }
-  score.setScore();
+  setScore();
 }
 
 function split(storageVar) {
@@ -397,7 +400,10 @@ $.ajax({
       );
     }
     setupVerbs(verbs);
-    showQuestion(new Question());
+    setTimeout(function () {
+      showQuestion(new Question());
+    }, 500);
+
     //console.log(verbs)
   },
   error: function (err) {
