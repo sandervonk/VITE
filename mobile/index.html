@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta http-equiv="content-language" content="en" />
     <link rel="manifest" href="manifest.json" />
     <!-- ios support -->
     <link rel="apple-touch-icon" href="img/icon/icon-72x72.png" />
@@ -23,25 +24,43 @@
       href="img/icon/icon-512x512.png"
       type="image/x-icon"
     />
-    <title>VITE! Mobile</title>
+    <title translate="no">VITE! Mobile</title>
   </head>
   <body>
     <div id="content">
       <div id="answer-overlay">
         <div id="answer-status"></div>
         <br />
-        <div id="answer-correction"></div>
+        <div id="answer-correction">
+          <span id="answer-correction-1" class="notranslate"></span>
+          <br />
+          <p
+            translate="yes"
+            class="translate"
+            lang="en-us"
+            content-language="en"
+          >
+            or
+          </p>
+          <br />
+          <span id="answer-correction-2" class="notranslate"></span>
+        </div>
       </div>
       <div id="vite-question">
         <div id="question-content">
-          Conjugate&nbsp;<span id="vite-q-verb" class="question-part">Verb</span
-          >&nbsp;in the &nbsp;<span id="vite-q-tense" class="question-part"
-            >Subject</span
+          Conjugate&nbsp;<span
+            id="vite-q-verb"
+            class="question-part notranslate"
+            >Verb</span
+          >&nbsp;in the &nbsp;<span
+            id="vite-q-tense"
+            class="question-part notranslate"
+            >Tense</span
           >
           &nbsp;with the subject&nbsp;<span
             id="vite-q-subject"
             class="question-part"
-            >Elles</span
+            >Subject</span
           >
         </div>
       </div>
@@ -75,7 +94,7 @@
       </footer>
       <footer class="accent-bar">
         <button id="accent-back"><img src="icon/Back Arrow.svg" /></button>
-        <div id="accent-buttons">
+        <div id="accent-buttons" class="notranslate">
           <button class="accent-button">ç</button>
           <button class="accent-button">é</button>
           <button class="accent-button">è</button>
@@ -91,8 +110,8 @@
       <extended>
         <options id="themes">
           <div class="table-half" id="display-modes">
-            <button class="toggle active">Quizlet</button>
-            <button class="toggle disabled">VITE! WS</button>
+            <button class="toggle active notranslate">Quizlet</button>
+            <button class="toggle disabled notranslate">VITE! WS</button>
             <button class="toggle disabled">Material</button>
           </div>
           <div class="table-half" id="display-colors">
@@ -113,7 +132,7 @@
           <div id="verb-grid-row">
             <div id="verbs-1">
               <div id="verb-and-subject">
-                <div id="subjects-list">
+                <div id="subjects-list" class="notranslate">
                   <button
                     title="Toggle 'Je' as a subject in problems."
                     class="subject-button toggle"
@@ -159,14 +178,14 @@
                 </div>
                 <div id="verbs-preview">
                   <div id="verbs-grid" class="verbs-list"></div>
-                  <button id="more-verbs">See More</button>
+                  <button id="more-verbs" lang="en">See More</button>
                 </div>
               </div>
               <div
                 id="tense-separator"
                 class="bar-separator horizontal-bar"
               ></div>
-              <div id="verb-tenses">
+              <div id="verb-tenses" class="notranslate">
                 <button
                   title="Toggle Present Tense Questions"
                   class="tense-button toggle"
@@ -225,7 +244,7 @@
                     <div id="verbs-back" class="toggle">&#9757; Go Back</div>
                   </div>
                   <div class="bar-separator horizontal-bar"></div>
-                  <div id="verb-add">
+                  <div id="verb-add" lang="en">
                     <div id="verb-add-definition-container">
                       <div id="verb-add-def-stem">
                         <div id="verb-def-label">Definition</div>
@@ -243,6 +262,7 @@
                         <input
                           type="text"
                           spellcheck="false"
+                          class="notranslate"
                           id="verb-add-stem"
                           placeholder="ser"
                         />
@@ -252,69 +272,74 @@
                         <input
                           type="text"
                           spellcheck="false"
+                          class="notranslate"
                           id="verb-add-participle"
                           placeholder="été"
                         />
                       </div>
                       <div id="verb-add-tense-helping">
                         <div id="verb-helping-label">Helping</div>
-                        <select id="verb-add-helping" value="Avoir">
+                        <select
+                          id="verb-add-helping"
+                          class="notranslate"
+                          value="Avoir"
+                        >
                           <option value="Avoir">Avoir</option>
                           <option value="Être">Être</option>
                         </select>
                       </div>
                     </div>
-                    <div class="verb-add-pair">
+                    <div class="verb-add-pair notranslate">
                       <div class="verb-add-label">Je</div>
                       <input
                         id="verb-add-subject-1"
                         spellcheck="false"
                         type="text"
-                        class="verb-add-input"
+                        class="verb-add-input notranslate"
                         placeholder="suis"
                         title="Present tense conjugation for subject Je"
                       />
                     </div>
-                    <div class="verb-add-pair">
+                    <div class="verb-add-pair notranslate">
                       <div class="verb-add-label">Tu</div>
                       <input
                         id="verb-add-subject-2"
                         spellcheck="false"
                         type="text"
-                        class="verb-add-input"
+                        class="verb-add-input notranslate"
                         placeholder="es"
                         title="Present tense conjugation for subject Tu"
                       />
                     </div>
-                    <div class="verb-add-pair">
+                    <div class="verb-add-pair notranslate">
                       <div class="verb-add-label">Il / Elle / On</div>
                       <input
                         id="verb-add-subject-3"
                         spellcheck="false"
                         type="text"
-                        class="verb-add-input"
+                        class="verb-add-input notranslate"
                         placeholder="est"
                         title="Present tense conjugation for subjects Il / Elle / On"
                       />
                     </div>
-                    <div class="verb-add-pair">
+                    <div class="verb-add-pair notranslate">
                       <div class="verb-add-label">Nous</div>
                       <input
                         id="verb-add-subject-4"
                         spellcheck="false"
                         type="text"
-                        class="verb-add-input"
+                        class="verb-add-input notranslate"
                         placeholder="sommes"
                         title="Present tense conjugation for subject Nous"
                       />
                     </div>
-                    <div class="verb-add-pair">
+                    <div class="verb-add-pair notranslate">
                       <div class="verb-add-label">Vous</div>
                       <input
                         id="verb-add-subject-5"
                         spellcheck="false"
                         type="text"
-                        class="verb-add-input"
+                        class="verb-add-input notranslate"
                         placeholder="êtes"
                         title="Present tense conjugation for subject Vous"
                       />
@@ -325,7 +350,7 @@
                         id="verb-add-subject-6"
                         spellcheck="false"
                         type="text"
-                        class="verb-add-input"
+                        class="verb-add-input notranslate"
                         placeholder="sont"
                         title="Present tense conjugation for subjects Ils / Elles"
                       />
@@ -335,11 +360,12 @@
                         title="Add Custom Verb From Above"
                         id="verb-add-submit"
                       >
-                        Add Verb
+                        Add
                       </button>
                       <input
                         id="verb-add-name"
                         spellcheck="false"
+                        class="notranslate"
                         type="text"
                         placeholder="Être"
                         title="Name of the verb"

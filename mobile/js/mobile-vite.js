@@ -5,8 +5,11 @@ function showQuestion(q) {
   question = q;
   questionStart = new Date().getTime();
   $("#vite-q-verb").text(q.verb);
+  $("#vite-q-verb").addClass("notranslate");
   $("#vite-q-tense").text(q.tense);
+  $("#vite-q-tense").addClass("notranslate");
   $("#vite-q-subject").text(q.subject);
+  $("#vite-q-subject").addClass("notranslate");
 }
 function submitAnswer() {
   if (document.body.hasAttribute("showanswer")) {
@@ -22,23 +25,28 @@ function submitAnswer() {
     ) {
       //?correct
       changeScore(1);
-      $("#answer-correction").text("");
+
+      $("#answer-status").text("Correct! 😀");
+      $("#answer-correction-1").text("");
+      $("#answer-correction-2").text("");
       $("#answer-overlay").attr("class", "correct");
       $("#answer-input").val("");
     } else {
       //?incorrect
       changeScore(-1);
       $("#answer-overlay").attr("class", "incorrect");
-      $("#answer-correction").html(
-        question.answer.alt + "<br /> or <br />" + question.answer.full
-      );
+      $("#answer-status").text("😕 Study this One!");
+      $("#answer-correction-1").text(question.answer.alt);
+      $("#answer-correction-2").text(question.answer.full);
+      $("#answer-correction-1").addClass("notranslate");
+      $("#answer-correction-2").addClass("notranslate");
       $("#answer-input").val("");
     }
   }
 }
 //Make the overlay closable
 $("#answer-overlay, #action-next").click(function () {
-  $(document.body).removeAttr("showanswer");
+  submitAnswer();
 });
 //*Answer Handling and Variations
 function variations(answer) {
@@ -164,11 +172,13 @@ class Question {
         },
       },
       a;
+
     a = v.verb[s];
+
     if (a == "regular" || v.verb.All == "regular") {
       //regular verb conjugations
-      let b = verb.substr(0, verb.length - 2),
-        e = verb.substr(-2);
+      let b = v.name.substr(0, v.name.length - 2),
+        e = v.name.substr(-2);
       if (Object.keys(end).includes(e)) {
         a = b + end[e][s];
       } else {

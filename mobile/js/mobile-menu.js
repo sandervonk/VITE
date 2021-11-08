@@ -1,3 +1,9 @@
+//disable autocomplete (& autocomplete bar)
+$(document).ready(function () {
+  $(document).on("focus", ":input", function () {
+    $(this).attr("autocomplete", "off");
+  });
+});
 /*
 Set needed localStorage vars
 */
@@ -18,8 +24,32 @@ var score = {
     problems: 0,
     "incorrect-deduction": 100,
   };
+
+//*Score
+$("#reset-score").on("click", function () {
+  score = {
+    number: 0,
+    correct: 0,
+    incorrect: 0,
+    total: 0,
+  };
+  $("#score-number").text(score.number);
+  $(".score-bar").css("width", "50%");
+  $(".score-num").text(0);
+});
+function setScore() {
+  $("#score-number").text(score.number);
+  $(".score-bar").css("width", "50%");
+  $("#score-num-correct").text(score.correct);
+  $("#score-num-incorrect").text(score.incorrect);
+  $("#score-correct").css("width", (100 * score.correct) / score.total + "%");
+  $("#score-incorrect").css(
+    "width",
+    (100 * score.incorrect) / score.total + "%"
+  );
+}
 function changeScore(num) {
-  if ((num = 1)) {
+  if (num == 1) {
     score.correct += 1;
     let duration = (new Date().getTime() - questionStart) / 1000;
     duration -= problemTime["max-perfect"];
@@ -34,8 +64,9 @@ function changeScore(num) {
   } else {
     score.incorrect += 1;
     score.number -= problemTime["incorrect-deduction"];
-    score.number = Math.Max(score.number, 0);
+    score.number = Math.max(score.number, 0);
   }
+  score.total += 1;
   setScore();
 }
 
@@ -270,37 +301,12 @@ $("#theme-switch").on("click", function () {
   }
   document.body.toggleAttribute("light-theme");
 });
-//*Score
-$("#reset-score").on("click", function () {
-  score = {
-    number: 0,
-    correct: 0,
-    incorrect: 0,
-    total: 0,
-  };
-  $("#score-number").text(score.number);
-  $(".score-bar").css("width", "50%");
-  $(".score-num").text(0);
-});
-function setScore() {
-  $("#score-number").text(score.number);
-  $(".score-bar").css("width", "50%");
-  $("#score-num-correct").text(0);
-  $("#score-num-incorrect").text(0);
-  $("#score-correct").css(
-    "width",
-    (100 * score.correct) / (score.correct + score.incorrect) + "%"
-  );
-  $("#score-incorrect").css(
-    "width",
-    (100 * score.incorrect) / (score.correct + score.incorrect) + "%"
-  );
-}
+
 //*Verbs
 function setupVerbs(verbs) {
   for (verb of Object.keys(verbs)) {
     $(".verbs-list").append(
-      `<button class="verb-button toggle${
+      `<button class="verb-button notranslate toggle${
         localStorage["vite-verbs"].includes(verb) ? " active" : ""
       }${
         verbs[verb].custom == true ? " custom-verb" : ""

@@ -271,6 +271,13 @@ extended > #score {
   padding: 5vw;
   box-sizing: border-box;
 }
+#score-flex-row > div,
+#score-flex-row > button {
+  flex-basis: 25%;
+  flex-grow: 1 !important;
+  text-align: center;
+}
+
 body[menutype="themes"] #footers extended {
   right: -200vw;
 }
@@ -419,7 +426,7 @@ button#reset-score {
 score-bar {
   width: 50%;
   display: flex;
-
+  transition: width 0.5s ease-in-out;
   height: 100%;
   flex-grow: 1;
 }
@@ -842,6 +849,7 @@ body[light-theme] .custom-verb-img {
 }
 #verbs-back {
   height: fit-content;
+  text-align: center;
   flex-grow: 2;
   margin: 1vw;
   background: var(--keyboard-accent);
@@ -991,7 +999,7 @@ body.menu {
 #footers {
   z-index: 99;
 }
-#answer-overlay.incorrect #answer-status::before {
+#answer-overlay.incorrect #answer-status {
   content: "😕 Study this One! \00a0\00a0";
   font-weight: bold;
   color: #ff725b;
@@ -1001,7 +1009,10 @@ body.menu {
   background-color: var(--correct-bg);
   color: white;
 }
-#answer-overlay.correct #answer-status::before {
+#answer-overlay.correct #answer-correction {
+  display: none;
+}
+#answer-overlay.correct #answer-status {
   content: "Correct! 😀";
 }
 body[showanswer] #answer-overlay {
@@ -1031,4 +1042,14 @@ body[showanswer] #answer-overlay {
 #tense-re,
 #tense-re * {
   pointer-events: none;
+}
+p.translate {
+  margin: 2vw 0 !important;
+}
+#answer-correction {
+  display: flex;
+  flex-flow: column;
+}
+#answer-correction br {
+  display: none;
 }
