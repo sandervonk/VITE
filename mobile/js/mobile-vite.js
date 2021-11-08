@@ -300,13 +300,14 @@ class Question {
   }
 }
 //*Buttons & Actions
+/*
 function refreshEvents() {
   $(".subject-button, .tense-button, .verb-button").click(function () {
     //New Question
     showQuestion(new Question());
   });
 }
-
+*/
 $(document.body).on("keypress", (e) => {
   if (e.which == 13) {
     //Submit Question

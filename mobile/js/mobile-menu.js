@@ -1,6 +1,9 @@
 /*
 Set needed localStorage vars
 */
+if (window.location.href.includes("http://sander")) {
+  window.location.href = window.location.href.replace("http://", "https://");
+}
 var score = {
     number: 0,
     correct: 0,
@@ -306,7 +309,10 @@ function setupVerbs(verbs) {
     );
   }
   //add other click handlers
-  refreshEvents();
+  $(".subject-button, .tense-button, .verb-button").click(function () {
+    //New Question
+    showQuestion(new Question());
+  });
   //add click handlers
   $(".verb-button").click((e) => {
     let array = split(localStorage["vite-verbs"]);
