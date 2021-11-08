@@ -1,7 +1,9 @@
 //*Set Question Data
-var question = {};
+var question = {},
+  questionStart = new Date().getTime();
 function showQuestion(q) {
   question = q;
+  questionStart = new Date().getTime();
   $("#vite-q-verb").text(q.verb);
   $("#vite-q-tense").text(q.tense);
   $("#vite-q-subject").text(q.subject);
@@ -19,11 +21,13 @@ function submitAnswer() {
       variations(question.answer.full).includes(inputAnswer)
     ) {
       //?correct
+      changeScore(1);
       $("#answer-correction").text("");
       $("#answer-overlay").attr("class", "correct");
       $("#answer-input").val("");
     } else {
       //?incorrect
+      changeScore(-1);
       $("#answer-overlay").attr("class", "incorrect");
       $("#answer-correction").html(
         question.answer.alt + "<br /> or <br />" + question.answer.full

@@ -1,6 +1,38 @@
 /*
 Set needed localStorage vars
 */
+var score = {
+    number: 0,
+    correct: 0,
+    incorrect: 0,
+    total: 0,
+  },
+  problemTime = {
+    "max-perfect": 2,
+    allotted: 18,
+    "max-score": 1000,
+    score: 0,
+    problems: 0,
+    "incorrect-deduction": 100,
+  };
+function changeScore(num) {
+  if ((num = 1)) {
+    score.correct += 1;
+    let duration = (new Date().getTime() - questionStart) / 1000;
+    duration -= problemTime["max-perfect"];
+    duration = Math.max(0, duration);
+    score.number += Math.max(
+      0,
+      problemTime["max-score"] * ((alloted - duration) / alloted)
+    );
+  } else {
+    score.incorrect += 1;
+    score.number - problemTime["incorrect-deduction"];
+    score.number = Math.Max(score.number, 0);
+  }
+  score.setScore();
+}
+
 function split(storageVar) {
   let arr = [];
   for (let item of storageVar.split(",")) {
@@ -104,11 +136,6 @@ function sendMessage(head, content, foot) {
     window.location.href = link;
   }
 }
-score = {
-  number: 0,
-  correct: 0,
-  incorrect: 0,
-};
 var verbs = {};
 //*Saved values
 if (localStorage["VITE-bg"] == undefined) {
@@ -243,6 +270,7 @@ $("#reset-score").on("click", function () {
     number: 0,
     correct: 0,
     incorrect: 0,
+    total: 0,
   };
   $("#score-number").text(score.number);
   $(".score-bar").css("width", "50%");
