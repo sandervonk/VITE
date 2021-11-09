@@ -1,0 +1,423 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="content-language" content="en" />
+    <link rel="manifest" href="manifest.json" />
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="img/icon/icon-72x72.png" />
+    <link rel="apple-touch-icon" href="img/icon/icon-96x96.png" />
+    <link rel="apple-touch-icon" href="img/icon/icon-128x128.png" />
+    <link rel="apple-touch-icon" href="img/icon/icon-144x144.png" />
+    <link rel="apple-touch-icon" href="img/icon/icon-152x152.png" />
+    <link rel="apple-touch-icon" href="img/icon/icon-192x192.png" />
+    <link rel="apple-touch-icon" href="img/icon/icon-384x384.png" />
+    <link rel="apple-touch-icon" href="img/icon/icon-512x512.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#3FBCAE" />
+    <meta name="theme-color" content="#3FBCAE" />
+    <link rel="stylesheet" href="css/mobile.css" />
+    <script src="../src/jquery-3.6.0.min.js"></script>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="img/icon/icon-512x512.png"
+      type="image/x-icon"
+    />
+    <title translate="no">VITE! Mobile</title>
+  </head>
+  <body>
+    <div id="content">
+      <div id="answer-overlay">
+        <div id="answer-status"></div>
+        <br />
+        <div id="answer-correction">
+          <span id="answer-correction-1" class="notranslate"></span>
+          <br />
+          <p
+            translate="yes"
+            class="translate"
+            lang="en-us"
+            content-language="en"
+          >
+            or
+          </p>
+          <br />
+          <span id="answer-correction-2" class="notranslate"></span>
+        </div>
+      </div>
+      <div id="vite-question">
+        <div id="question-content">
+          Conjugate&nbsp;<span
+            id="vite-q-verb"
+            class="question-part notranslate"
+            >Verb</span
+          >&nbsp;in the &nbsp;<span
+            id="vite-q-tense"
+            class="question-part notranslate"
+            >Tense</span
+          >
+          &nbsp;with the subject&nbsp;<span
+            id="vite-q-subject"
+            class="question-part"
+            >Subject</span
+          >
+        </div>
+      </div>
+      <div id="question-fade">
+        <fade-bar class="fade-bottom"></fade-bar>
+        <div class="solid-fade-bottom"></div>
+      </div>
+      <div id="answer-input-box">
+        <input type="text" id="answer-input" />
+        <button id="answer-submit">
+          <img src="./icon/submit.svg" />
+        </button>
+      </div>
+    </div>
+    <div id="footers">
+      <footer class="bottom-controls">
+        <div id="bottom-fade"></div>
+        <div id="bottom-actions">
+          <div id="action-themes">Themes</div>
+          <div class="bar-separator vertical-bar"></div>
+          <div id="action-verbs">Verbs</div>
+          <div class="bar-separator vertical-bar"></div>
+          <div id="action-score">Score</div>
+          <div class="bar-separator vertical-bar"></div>
+          <div id="action-accents">Accents</div>
+          <div class="bar-separator vertical-bar"></div>
+          <button id="action-next" style="width: unset !important">
+            <img src="icon/submit.svg" id="action-next-img" />
+          </button>
+        </div>
+      </footer>
+      <footer class="accent-bar">
+        <button id="accent-back"><img src="icon/Back Arrow.svg" /></button>
+        <div id="accent-buttons" class="notranslate">
+          <button class="accent-button">ç</button>
+          <button class="accent-button">é</button>
+          <button class="accent-button">è</button>
+          <button class="accent-button">à</button>
+          <button class="accent-button">ê</button>
+          <button class="accent-button">â</button>
+          <button class="accent-button">î</button>
+          <button class="accent-button">ô</button>
+        </div>
+        <div class="bar-separator vertical-bar"></div>
+        <button id="accent-caps"><img src="icon/Caps.svg" /></button>
+      </footer>
+      <extended>
+        <options id="themes">
+          <div class="table-half" id="display-modes">
+            <button class="toggle active notranslate">Quizlet</button>
+            <button class="toggle disabled notranslate">VITE! WS</button>
+            <button class="toggle disabled">Material</button>
+          </div>
+          <div class="table-half" id="display-colors">
+            <div id="bg-color">
+              <input type="color" id="color-bg" value="#ADD8E6" />
+            </div>
+            <div id="theme-switch">
+              <div id="switch-bar">
+                <div id="switch-ball">
+                  <img src="icon/sun.svg" id="theme-light-img" />
+                  <img src="icon/moon.svg" id="theme-dark-img" />
+                </div>
+              </div>
+            </div>
+          </div>
+        </options>
+        <options id="verbs">
+          <div id="verb-grid-row">
+            <div id="verbs-1">
+              <div id="verb-and-subject">
+                <div id="subjects-list" class="notranslate">
+                  <button
+                    title="Toggle 'Je' as a subject in problems."
+                    class="subject-button toggle"
+                    name="Je"
+                  >
+                    Je
+                  </button>
+                  <button
+                    title="Toggle 'Tu' as a subject in problems."
+                    class="subject-button toggle"
+                    name="Tu"
+                  >
+                    Tu
+                  </button>
+                  <button
+                    title="Toggle 'Il / Elle / On' as subjects in problems."
+                    class="subject-button toggle"
+                    name="Il / Elle / On"
+                  >
+                    Il / Elle / On
+                  </button>
+                  <button
+                    title="Toggle 'Nous' as a subject in problems."
+                    class="subject-button toggle"
+                    name="Nous"
+                  >
+                    Nous
+                  </button>
+                  <button
+                    title="Toggle 'Vous' as a subject in problems."
+                    class="subject-button toggle"
+                    name="Vous"
+                  >
+                    Vous
+                  </button>
+                  <button
+                    title="Toggle 'Ils / Elles' as subjects in problems."
+                    class="subject-button toggle"
+                    name="Ils / Elles"
+                  >
+                    Ils / Elles
+                  </button>
+                </div>
+                <div id="verbs-preview">
+                  <div id="verbs-grid" class="verbs-list"></div>
+                  <button id="more-verbs" lang="en">See More</button>
+                </div>
+              </div>
+              <div
+                id="tense-separator"
+                class="bar-separator horizontal-bar"
+              ></div>
+              <div id="verb-tenses" class="notranslate">
+                <button
+                  title="Toggle Present Tense Questions"
+                  class="tense-button toggle"
+                  id="tense-pr"
+                >
+                  Present
+                </button>
+                <button
+                  title="Toggle Imparfait Tense Questions"
+                  class="tense-button toggle"
+                  id="tense-im"
+                >
+                  Imparfait
+                </button>
+                <button
+                  title="Toggle Reflexive Tense Questions"
+                  class="tense-button toggle disabled"
+                  id="tense-re"
+                >
+                  Reflexive
+                </button>
+                <button
+                  title="Toggle Passé Composé Questions"
+                  class="tense-button toggle"
+                  id="tense-pc"
+                >
+                  Passé Composé
+                </button>
+                <button
+                  title="Toggle Futur Simple Questions"
+                  class="tense-button toggle"
+                  id="tense-fs"
+                >
+                  F. Simple
+                </button>
+                <button
+                  title="Toggle Futur Antérieur Questions"
+                  class="tense-button toggle"
+                  id="tense-fa"
+                >
+                  F. Antérieur
+                </button>
+                <button
+                  title="Toggle Conditionnel Questions"
+                  class="tense-button toggle"
+                  id="tense-co"
+                >
+                  Conditionnel
+                </button>
+              </div>
+            </div>
+            <div id="verbs-2">
+              <div id="verbs-scroll" class="scroll-container">
+                <div id="verbs-all" class="scroll-content">
+                  <div id="verbs-extended" class="verbs-list">
+                    <div id="verbs-back" class="toggle">&#9757; Go Back</div>
+                  </div>
+                  <div class="bar-separator horizontal-bar"></div>
+                  <div id="verb-add" lang="en">
+                    <div id="verb-add-definition-container">
+                      <div id="verb-add-def-stem">
+                        <div id="verb-def-label">Definition</div>
+                        <input
+                          type="text"
+                          spellcheck="false"
+                          id="verb-add-def"
+                          placeholder="to be"
+                        />
+                      </div>
+                    </div>
+                    <div id="verb-add-tense-container">
+                      <div id="verb-add-tense-stem">
+                        <div id="verb-stem-label">Stem</div>
+                        <input
+                          type="text"
+                          spellcheck="false"
+                          class="notranslate"
+                          id="verb-add-stem"
+                          placeholder="ser"
+                        />
+                      </div>
+                      <div id="verb-add-tense-participle">
+                        <div id="verb-participle-label">Participle</div>
+                        <input
+                          type="text"
+                          spellcheck="false"
+                          class="notranslate"
+                          id="verb-add-participle"
+                          placeholder="été"
+                        />
+                      </div>
+                      <div id="verb-add-tense-helping">
+                        <div id="verb-helping-label">Helping</div>
+                        <select
+                          id="verb-add-helping"
+                          class="notranslate"
+                          value="Avoir"
+                        >
+                          <option value="Avoir">Avoir</option>
+                          <option value="Être">Être</option>
+                        </select>
+                      </div>
+                    </div>
+                    <div class="verb-add-pair notranslate">
+                      <div class="verb-add-label">Je</div>
+                      <input
+                        id="verb-add-subject-1"
+                        spellcheck="false"
+                        type="text"
+                        class="verb-add-input notranslate"
+                        placeholder="suis"
+                        title="Present tense conjugation for subject Je"
+                      />
+                    </div>
+                    <div class="verb-add-pair notranslate">
+                      <div class="verb-add-label">Tu</div>
+                      <input
+                        id="verb-add-subject-2"
+                        spellcheck="false"
+                        type="text"
+                        class="verb-add-input notranslate"
+                        placeholder="es"
+                        title="Present tense conjugation for subject Tu"
+                      />
+                    </div>
+                    <div class="verb-add-pair notranslate">
+                      <div class="verb-add-label">Il / Elle / On</div>
+                      <input
+                        id="verb-add-subject-3"
+                        spellcheck="false"
+                        type="text"
+                        class="verb-add-input notranslate"
+                        placeholder="est"
+                        title="Present tense conjugation for subjects Il / Elle / On"
+                      />
+                    </div>
+                    <div class="verb-add-pair notranslate">
+                      <div class="verb-add-label">Nous</div>
+                      <input
+                        id="verb-add-subject-4"
+                        spellcheck="false"
+                        type="text"
+                        class="verb-add-input notranslate"
+                        placeholder="sommes"
+                        title="Present tense conjugation for subject Nous"
+                      />
+                    </div>
+                    <div class="verb-add-pair notranslate">
+                      <div class="verb-add-label">Vous</div>
+                      <input
+                        id="verb-add-subject-5"
+                        spellcheck="false"
+                        type="text"
+                        class="verb-add-input notranslate"
+                        placeholder="êtes"
+                        title="Present tense conjugation for subject Vous"
+                      />
+                    </div>
+                    <div class="verb-add-pair last">
+                      <div class="verb-add-label">Ils / Elles</div>
+                      <input
+                        id="verb-add-subject-6"
+                        spellcheck="false"
+                        type="text"
+                        class="verb-add-input notranslate"
+                        placeholder="sont"
+                        title="Present tense conjugation for subjects Ils / Elles"
+                      />
+                    </div>
+                    <div id="verb-add-submit-container">
+                      <button
+                        title="Add Custom Verb From Above"
+                        id="verb-add-submit"
+                      >
+                        Add
+                      </button>
+                      <input
+                        id="verb-add-name"
+                        spellcheck="false"
+                        class="notranslate"
+                        type="text"
+                        placeholder="Être"
+                        title="Name of the verb"
+                      />
+                      <button
+                        title="Remove All Custom Verbs"
+                        id="verb-add-reset"
+                      >
+                        Reset
+                      </button>
+                      <button
+                        title="Share your custom verbs"
+                        id="verb-custom-share"
+                      >
+                        Share
+                      </button>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <div id="verbs-scroll-fade" class="scroll-fade">
+                <fade-bar class="fade-top"></fade-bar>
+                <fade-bar class="fade-bottom"></fade-bar>
+              </div>
+            </div>
+          </div>
+        </options>
+        <options id="score">
+          <div id="score-flex-row">
+            <div id="score-number">####</div>
+            <div id="score-bars">
+              <score-bar
+                class="s-correct score-bar"
+                id="score-correct"
+              ></score-bar>
+              <score-bar
+                class="s-incorrect score-bar"
+                id="score-incorrect"
+              ></score-bar>
+            </div>
+            <flex-break></flex-break>
+            <button id="reset-score">Reset</button>
+            <div class="score-num" id="score-num-correct">##</div>
+            <div class="score-num" id="score-num-incorrect">##</div>
+          </div>
+          <flex-break></flex-break>
+        </options>
+      </extended>
+      <div id="extended-fill"></div>
+    </div>
+    <script src="js/mobile-menu.js"></script>
+    <script src="js/mobile-vite.js"></script>
+    <script src="app.js"></script>
+  </body>
+</html>
