@@ -678,7 +678,7 @@ body.QZ #question-verb-span {
     font-size: 6vh !important;
   }
 }
-@media (max-width: 768px) and (max-width: 75vh) {
+@media (orientation: portrait) and (max-width: 780px) {
   .select-panel button,
   .label {
     font-size: 1em !important;

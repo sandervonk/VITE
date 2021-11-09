@@ -28,6 +28,37 @@ body {
   padding: 0 !important;
   margin: 0 !important;
 }
+#display-cover * {
+  width: fit-content;
+  flex-shrink: 0;
+}
+
+@media (max-device-height: 80vw) {
+  #content,
+  #footers {
+    filter: blur(10px) !important;
+    overflow: hidden !important;
+  }
+  #display-cover {
+    display: flex !important;
+    padding: 20vw;
+    box-sizing: border-box;
+    font-family: "Comfortaa", sans-serif;
+    font-size: 5vw;
+    color: black;
+    text-shadow: 0 0 1vw #ffffffaa;
+    height: 100%;
+    z-index: 1000;
+    width: 100%;
+    top: 0;
+    left: 0;
+    position: absolute;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+  }
+}
+
 button {
   cursor: pointer;
   box-shadow: 0 0.3vw 0 var(--keyboard-shadow);
@@ -1052,4 +1083,8 @@ p.translate {
 }
 #answer-correction br {
   display: none;
+}
+#display-cover {
+  display: none;
+  text-align: center;
 }
