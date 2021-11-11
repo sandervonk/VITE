@@ -105,7 +105,9 @@
         .text-bar {
           display: none;
         }
-
+        .grid-box-text {
+          font-size: 1.5vw !important;
+        }
         #mission-section {
           flex-direction: column-reverse;
           display: flex;
@@ -127,14 +129,18 @@
           align-items: center;
         }
       }
+
       @media screen and (max-width: 768px) {
+        .grid-box-text {
+          font-size: 2.25vw !important;
+        }
+        #lower-flex {
+          flex-flow: column !important;
+        }
         #header-img {
           background: url(../mobile/img/icon/icon-512x512.png);
         }
-        .grid-box {
-          transform-origin: center center;
-          transform: scale(0.9);
-        }
+
         #grid-under-text-1 {
           display: none !important;
         }
@@ -152,9 +158,7 @@
           aspect-ratio: 6 / 6;
           overflow: hidden;
         }
-        .grid-box {
-          margin: 5px 0 !important;
-        }
+
         #header-title {
           font-size: 6vw;
           width: 19vw;
@@ -163,8 +167,10 @@
           border-radius: 0 0 6vw 6vw;
           padding: 2vw;
         }
-        #lower-flex {
-          flex-flow: column !important;
+      }
+      @media screen and (max-width: 500px) {
+        .grid-box-text {
+          font-size: 4.25vw !important;
         }
         .grid-container {
           flex-flow: column !important;
@@ -172,8 +178,14 @@
         .grid-box {
           width: 100% !important;
         }
+        .grid-box {
+          transform-origin: center center;
+          transform: scale(0.9);
+        }
+        .grid-box {
+          margin: 5px 0 !important;
+        }
       }
-
       .text-section {
         flex-basis: 30%;
         flex-grow: 1;
@@ -255,6 +267,7 @@
         display: flex;
         align-content: center;
         align-items: center;
+        padding: 0 !important;
       }
       .grid-container {
         display: flex;
@@ -265,11 +278,46 @@
         aspect-ratio: 3 / 2;
         margin: 0.4rem;
         width: 50%;
+        box-sizing: border-box;
         background-color: #273238;
+        overflow: hidden;
       }
       #right-container {
         display: flex;
         flex-flow: column;
+      }
+      #grid-1 {
+        --font-color: #3cf2ff;
+        --bg-color: #009da822;
+      }
+      #grid-3 {
+        --font-color: #2ffd51;
+        --bg-color: #00a81c22;
+      }
+      #grid-4 {
+        --font-color: #fc3b3b;
+        --bg-color: #a8000022;
+      }
+      .grid-box-content {
+        background-color: var(--bg-color);
+        box-sizing: border-box;
+        aspect-ratio: 3 / 2;
+        width: 100%;
+        height: 100%;
+        padding: 5%;
+        flex-shrink: 0;
+        display: flex;
+        flex-flow: column;
+      }
+      .grid-box-title {
+        font-family: "Righteous", sans-serif;
+        color: var(--font-color);
+        font-size: 1.5em;
+      }
+      .grid-box-text {
+        color: white;
+        font-family: "Lato", sans-serif;
+        flex-grow: 1;
       }
     </style>
   </head>
@@ -314,11 +362,11 @@
           <div class="text-section-title">Development</div>
           <div class="text-section-content">
             VITE! sites and tools are written with HTML, CSS, and Javascript!
-            All parts run client side, peiced together from a number of
-            supporting JSON files that contain basic, non-programmably
+            All parts run client side, pieced together from a number of
+            supporting JSON files that contain basic, non-programablly
             discoverable, aspects of verbs, such as irregular stems,
             participles, and information on what helping verbs they take. The
-            PWA runs with the same sources, but is avaliable offline using
+            PWA runs with the same sources, but is available offline using
             cached versions of the same files, in addition to service-workers
             and the like.
           </div>
@@ -327,14 +375,47 @@
       <div id="lower-flex">
         <div id="grid-layout">
           <div class="grid-container" id="grid-box-1">
-            <div id="grid-1" class="grid-box"></div>
+            <div id="grid-1" class="grid-box">
+              <div class="grid-box-content">
+                <div class="grid-box-title">Accessibility</div>
+                <div class="grid-box-text">
+                  Made to be fully translatable without losing content, VITE!
+                  aims to provide an accessible portal into French learning,
+                  regardless of a user's native language. VITE! mobile makes the
+                  learning experience even more portable, running on any
+                  web-enabled smartphone with basic HTML, CSS, & JS support.
+                </div>
+              </div>
+            </div>
             <div id="grid-2" class="grid-box">
               <img src="graphic.svg" id="grid-vector" />
             </div>
           </div>
           <div class="grid-container" id="grid-box-2">
-            <div id="grid-3" class="grid-box"></div>
-            <div id="grid-4" class="grid-box"></div>
+            <div id="grid-3" class="grid-box">
+              <div class="grid-box-content">
+                <div class="grid-box-title">Adaptability</div>
+                <div class="grid-box-text">
+                  With around 30 verbs preloaded, 6 tenses, 9 subjects, the
+                  option of adding custom verbs, and new content always being
+                  added, VITE! is able to randomly generate thousands of
+                  problems, with each of these factors being completely
+                  customizable by the user.
+                </div>
+              </div>
+            </div>
+            <div id="grid-4" class="grid-box">
+              <div class="grid-box-content">
+                <div class="grid-box-title">Availability</div>
+                <div class="grid-box-text">
+                  VITE! tools for students and teachers are available for French
+                  learners everywhere, completely free of charge. As mentioned
+                  in the accessibility panel, updated VITE! sites are completely
+                  translatable, for use with any browser-supported translate
+                  language.
+                </div>
+              </div>
+            </div>
           </div>
           <div id="grid-under-text-1">
             I recently re-designed VITE! from scratch for mobile devices, made
@@ -345,7 +426,7 @@
             design for the web / desktop site on. Though only a PWA at the
             moment, I hope to write a full app for it some day, at least to the
             point where I could have tappable elements onscreen without having
-            the keyboard change on their interaction!
+            the keyboard close on their interaction!
           </div>
         </div>
         <div id="right-layout">
@@ -361,7 +442,7 @@
             design for the web / desktop site on. Though only a PWA at the
             moment, I hope to write a full app for it some day, at least to the
             point where I could have tappable elements onscreen without having
-            the keyboard change on their interaction!
+            the keyboard close on their interaction!
           </div>
           <div id="mockup">
             <svg
