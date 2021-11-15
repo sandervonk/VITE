@@ -1,3 +1,13 @@
+if (!window.matchMedia("(max-width: 110vh)").matches) {
+  $(document.body).addClass("menu");
+}
+
+//! New
+$("#action-back").click(function () {
+  $(document.body).toggleClass("menu");
+});
+
+//! From Previousf
 //disable autocomplete (& autocomplete bar)
 $(document).ready(function () {
   $(document).on("focus", ":input", function () {
@@ -87,7 +97,7 @@ function stealCookies() {
       "Venir,Pouvoir,Prendre,Connaître,Savoir,Avoir,Être,Aller,Faire,Manger,Finir,Vouloir,Dormir,Devoir,Suivre,Voir,Rendre,Mettre,Conduire,Dire,Descendre,Retourner,Mourir,Rentre,Sortir,Arriver,Naître",
     ],
     ["Display-Mode", "QZ"],
-    ["VITE-bg", "#ADD8E6"],
+    ["VITE-bg", "#414a51"],
     ["vite-old-user", "true"],
     ["VITE-correct", 0],
     ["VITE-incorrect", 0],
@@ -176,7 +186,7 @@ function sendMessage(head, content, foot) {
 var verbs = {};
 //*Saved values
 if (localStorage["VITE-bg"] == undefined) {
-  localStorage["VITE-bg"] = "#ADD8E6";
+  localStorage["VITE-bg"] = "#414a51";
 }
 if (localStorage["light-theme"] == undefined) {
   localStorage["light-theme"] = "false";
@@ -192,14 +202,14 @@ $(document.body)
 
 $("#answer-input").on("focus", function () {
   $(document.body).addClass("keyboard");
-  $(document.body).removeClass("menu");
+  if (window.matchMedia("(max-width: 110vh)").matches) {
+    $(document.body).removeClass("menu");
+  }
+
   clearActive();
 });
 //*Accents
-document.getElementById("accent-back").addEventListener("click", function () {
-  $(".accent-bar").addClass("hide");
-  document.getElementById("accent-caps").className = "";
-});
+
 document.getElementById("accent-caps").addEventListener("click", function () {
   let capsButton = document.getElementById("accent-caps");
   if (capsButton.className == "caps") {
@@ -226,21 +236,9 @@ function clearActive() {
   for (action of ["themes", "verbs", "score"]) {
     $("#action-" + action).removeClass("active");
   }
-  $("#verbs").removeAttr("verbs-extended");
+  $("#verbs-menu").removeAttr("verbs-extended");
 }
-document
-  .getElementById("action-accents")
-  .addEventListener("click", function () {
-    $(document.body).addClass("keyboard");
-    $(document.body).removeClass("menu");
-    clearActive();
-    $(".accent-bar").removeClass("hide");
-    let capsButton = document.getElementById("accent-caps");
-    for (accent of document.getElementsByClassName("accent-button")) {
-      accent.innerText = accent.innerText.toLowerCase();
-    }
-    capsButton.className = "";
-  });
+
 $("#action-themes").click(function () {
   if ($("#action-themes").hasClass("active")) {
     $(document.body).removeClass("menu");
@@ -293,7 +291,6 @@ document.getElementById("color-bg").addEventListener("input", (event) => {
 if (localStorage["light-theme"] == "true") {
   document.body.toggleAttribute("light-theme");
 }
-
 $("#theme-switch").on("click", function () {
   let bgColor = "#ffffff";
   if (document.body.hasAttribute("light-theme")) {
@@ -391,11 +388,11 @@ function setupVerbs(verbs) {
   });
 }
 $("#more-verbs").on("click", function () {
-  $("#verbs").attr("verbs-extended", true);
+  $("#verbs-menu").attr("verbs-extended", true);
   document.getElementById("verbs-scroll").scrollTo(0, 0);
 });
 $("#verbs-back").on("click", function () {
-  $("#verbs").attr("verbs-extended", false);
+  $("#verbs-menu").attr("verbs-extended", false);
 });
 $.ajax({
   url: "../verbs.json",

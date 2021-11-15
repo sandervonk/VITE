@@ -602,6 +602,7 @@ body[light-theme] {
   --theme-color: #ffff0083;
   --keyboard-action: #c46df7;
   --correct-bg: #24b36f;
+  --accent-text-color-transparent: #00000088;
 }
 body[light-theme] #theme-switch #switch-bar {
   width: 100%;

@@ -3,42 +3,31 @@
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="content-language" content="en" />
-    <link rel="manifest" href="manifest.json" />
-    <!-- ios support -->
-    <link rel="apple-touch-icon" href="img/icon/icon-72x72.png" />
-    <link rel="apple-touch-icon" href="img/icon/icon-96x96.png" />
-    <link rel="apple-touch-icon" href="img/icon/icon-128x128.png" />
-    <link rel="apple-touch-icon" href="img/icon/icon-144x144.png" />
-    <link rel="apple-touch-icon" href="img/icon/icon-152x152.png" />
-    <link rel="apple-touch-icon" href="img/icon/icon-192x192.png" />
-    <link rel="apple-touch-icon" href="img/icon/icon-384x384.png" />
-    <link rel="apple-touch-icon" href="img/icon/icon-512x512.png" />
-    <meta name="apple-mobile-web-app-status-bar" content="#3FBCAE" />
     <meta name="theme-color" content="#3FBCAE" />
-    <link rel="stylesheet" href="css/mobile.css" />
+    <link rel="stylesheet" href="css/desktop.css" />
     <script src="../src/jquery-3.6.0.min.js"></script>
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
       rel="shortcut icon"
-      href="img/icon/icon-512x512.png"
+      href="/img/icon/icon-512x512.png"
       type="image/x-icon"
     />
-    <title translate="no">VITE! Mobile</title>
+    <title translate="no">VITE! French Conjugation Practice</title>
     <!-- Search Engine -->
     <meta
       name="description"
       content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
     />
     <!-- Schema.org for Google -->
-    <meta itemprop="name" content="VITE! Mobile" />
+    <meta itemprop="name" content="VITE! French Practice" />
     <meta
       itemprop="description"
       content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
     />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="VITE! Mobile" />
+    <meta name="twitter:title" content="VITE! French Practice" />
     <meta
       name="twitter:description"
       content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
@@ -48,7 +37,7 @@
       content="https://sander.vonk.productions/VITE/social-img/social-twitter.png"
     />
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
-    <meta name="og:title" content="VITE! Mobile" />
+    <meta name="og:title" content="VITE! French Practice" />
     <meta
       name="og:description"
       content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
@@ -59,7 +48,7 @@
     />
     <meta
       name="og:url"
-      content="https://sander.vonk.productions/VITE/mobile/"
+      content="https://sander.vonk.productions/VITE/desktop/"
     />
     <meta name="og:site_name" content="VITE! French Conjugation Practice" />
     <meta name="og:type" content="website" />
@@ -79,99 +68,84 @@
       gtag("config", "G-5GF8MRX85G");
     </script>
   </head>
-  <body>
+  <body class="menu">
     <div id="display-cover">
       <span>
-        Please use&nbsp;<a href="https://sander.vonk.productions/VITE/"
-          >the desktop page</a
+        Please use&nbsp;<a href="https://sander.vonk.productions/VITE/mobile/"
+          >the mobile page</a
         >&nbsp;for a better experience on this device</span
       >
     </div>
     <div id="content">
-      <div id="answer-overlay">
-        <div id="answer-status"></div>
-        <br />
-        <div id="answer-correction">
-          <span id="answer-correction-1" class="notranslate"></span>
+      <div id="content-container">
+        <div id="answer-overlay">
+          <div id="answer-status"></div>
           <br />
-          <p
-            translate="yes"
-            class="translate"
-            lang="en-us"
-            content-language="en"
-          >
-            or
-          </p>
-          <br />
-          <span id="answer-correction-2" class="notranslate"></span>
+          <div id="answer-correction">
+            <span id="answer-correction-1" class="notranslate"></span>
+            <br />
+            <p
+              translate="yes"
+              class="translate"
+              lang="en-us"
+              content-language="en"
+            >
+              or
+            </p>
+            <br />
+            <span id="answer-correction-2" class="notranslate"></span>
+          </div>
         </div>
-      </div>
-      <div id="vite-question">
-        <div id="question-content">
-          Conjugate&nbsp;<span
-            id="vite-q-verb"
-            class="question-part notranslate"
-            >Verb</span
-          >&nbsp;in the &nbsp;<span
-            id="vite-q-tense"
-            class="question-part notranslate"
-            >Tense</span
-          >
-          &nbsp;with the subject&nbsp;<span
-            id="vite-q-subject"
-            class="question-part"
-            >Subject</span
-          >
+        <div id="vite-question">
+          <div id="question-content">
+            Conjugate&nbsp;<span
+              id="vite-q-verb"
+              class="question-part notranslate"
+              >Verb</span
+            >&nbsp;in the &nbsp;<span
+              id="vite-q-tense"
+              class="question-part notranslate"
+              >Tense</span
+            >
+            &nbsp;with the subject&nbsp;<span
+              id="vite-q-subject"
+              class="question-part"
+              >Subject</span
+            >
+          </div>
         </div>
-      </div>
-      <div id="question-fade">
-        <fade-bar class="fade-bottom"></fade-bar>
-        <div class="solid-fade-bottom"></div>
-      </div>
-      <div id="answer-input-box">
-        <input type="text" id="answer-input" />
-        <button id="answer-submit">
-          <img src="./icon/submit.svg" />
-        </button>
-      </div>
-    </div>
-    <div id="footers">
-      <footer class="bottom-controls">
-        <div id="bottom-fade"></div>
-        <div id="bottom-actions">
-          <div id="action-themes">Themes</div>
-          <div class="bar-separator vertical-bar"></div>
-          <div id="action-verbs">Verbs</div>
-          <div class="bar-separator vertical-bar"></div>
-          <div id="action-score">Score</div>
-          <div class="bar-separator vertical-bar"></div>
-          <div id="action-accents">Accents</div>
-          <div class="bar-separator vertical-bar"></div>
-          <button id="action-next" style="width: unset !important">
-            <img src="icon/submit.svg" id="action-next-img" />
+
+        <div id="answer-input-box">
+          <input type="text" id="answer-input" />
+          <button id="answer-submit">
+            <img src="./icon/submit.svg" />
           </button>
         </div>
-      </footer>
-      <footer class="accent-bar">
-        <button id="accent-back"><img src="icon/Back Arrow.svg" /></button>
-        <div id="accent-buttons" class="notranslate">
-          <button class="accent-button">ç</button>
-          <button class="accent-button">é</button>
-          <button class="accent-button">è</button>
-          <button class="accent-button">à</button>
-          <button class="accent-button">ê</button>
-          <button class="accent-button">â</button>
-          <button class="accent-button">î</button>
-          <button class="accent-button">ô</button>
+        <div id="accent-bar">
+          <div id="accent-buttons" class="notranslate">
+            <button class="accent-button">ç</button>
+            <button class="accent-button">é</button>
+            <button class="accent-button">è</button>
+            <button class="accent-button">à</button>
+            <button class="accent-button">ê</button>
+            <button class="accent-button">â</button>
+            <button class="accent-button">î</button>
+            <button class="accent-button">ô</button>
+            <div class="bar-separator vertical-bar"></div>
+            <button id="accent-caps"><img src="icon/Caps.svg" /></button>
+          </div>
         </div>
-        <div class="bar-separator vertical-bar"></div>
-        <button id="accent-caps"><img src="icon/Caps.svg" /></button>
-      </footer>
-      <extended>
-        <options id="themes">
+      </div>
+    </div>
+    <div id="new-foot">
+      <div id="new-foot-sidebar">
+        <div id="default-menu" class="sidebar-menu">
+          choose a menu from the right
+        </div>
+        <div id="themes-menu" class="sidebar-menu">
           <div class="table-half" id="display-modes">
             <button class="toggle active notranslate">Material</button>
-            <button class="toggle disabled notranslate">VITE! WS</button>
+            <button class="toggle disabled notranslate" id="ws-theme">VITE! WS</button>
             <button class="toggle disabled">Quizlet</button>
           </div>
           <div class="table-half" id="display-colors">
@@ -187,9 +161,9 @@
               </div>
             </div>
           </div>
-        </options>
-        <options id="verbs">
-          <div id="verb-grid-row">
+        </div>
+        <div id="verbs-menu" class="sidebar-menu">
+          <div id="verbs-slide">
             <div id="verbs-1">
               <div id="verb-and-subject">
                 <div id="subjects-list" class="notranslate">
@@ -236,6 +210,10 @@
                     Ils / Elles
                   </button>
                 </div>
+                <div
+                  id="tense-separator"
+                  class="bar-separator horizontal-bar"
+                ></div>
                 <div id="verbs-preview">
                   <div id="verbs-grid" class="verbs-list"></div>
                   <button id="more-verbs" lang="en">See More</button>
@@ -244,6 +222,7 @@
               <div
                 id="tense-separator"
                 class="bar-separator horizontal-bar"
+                style="visibility: hidden"
               ></div>
               <div id="verb-tenses" class="notranslate">
                 <button
@@ -452,32 +431,105 @@
               </div>
             </div>
           </div>
+        </div>
+        <div id="score-menu" class="sidebar-menu">
+          <div id="score-flex-row">
+          <div id="score-number">0</div>
+                    <flex-break></flex-break>
+          <div id="score-bars">
+            <div id="score-bar-wrapper">
+            <score-bar
+              class="s-correct score-bar"
+              id="score-correct"
+            ></score-bar>
+            <score-bar
+              class="s-incorrect score-bar"
+              id="score-incorrect"
+            ></score-bar>
+          </div>
+          </div>
+          <flex-break></flex-break>
+          <button id="reset-score">Reset</button>
+          <div class="score-num" id="score-num-correct">0</div>
+          <div class="score-num" id="score-num-incorrect">0</div>
+        </div>
+        <flex-break></flex-break></div>
+      </div>
+      <div id="new-foot-buttons">
+        <div id="action-back" class="new-foot-button active">
+          <img
+            id="action-back-icon"
+            class="new-foot-button-img invert-on-dark"
+            src="icon/submit.svg"
+            title="Open/Close the Options Panel"
+            alt=""
+          />
+        </div>
+        <div
+          id="action-themes"
+          title="Open the Theme Options Menu"
+          class="new-foot-button"
+        >
+          <img
+            id="themes-button-icon"
+            class="new-foot-button-img"
+            src="icon/Theme Icon.svg"
+            alt=""
+          />
+        </div>
+        <div
+          id="action-verbs"
+          title="Open the Verb Options Menu"
+          class="new-foot-button"
+        >
+          <img
+            id="verbs-button-icon"
+            class="new-foot-button-img invert-on-dark"
+            src="icon/Verb Icon.svg"
+            alt=""
+          />
+        </div>
+        <div
+          id="action-score"
+          title="Open the Score Options Menu"
+          class="new-foot-button"
+        >
+          <img
+            id="score-button-icon"
+            class="new-foot-button-img"
+            src="icon/Score Icon.svg"
+            alt=""
+          />
+        </div>
+      </div>
+      <fade-bar id="fade-question-behind-buttons" class="fade-left"></fade-bar>
+    </div>
+
+    <div id="footers">
+      <footer class="bottom-controls">
+        <div id="bottom-fade"></div>
+        <div id="bottom-actions">
+          <button id="action-next" style="width: unset !important">
+            <img src="icon/submit.svg" id="action-next-img" />
+          </button>
+        </div>
+      </footer>
+      <extended>
+        <options id="themes">
+
+        </options>
+        <options id="verbs">
+          <div id="verb-grid-row"></div>
         </options>
         <options id="score">
-          <div id="score-flex-row">
-            <div id="score-number">####</div>
-            <div id="score-bars">
-              <score-bar
-                class="s-correct score-bar"
-                id="score-correct"
-              ></score-bar>
-              <score-bar
-                class="s-incorrect score-bar"
-                id="score-incorrect"
-              ></score-bar>
-            </div>
-            <flex-break></flex-break>
-            <button id="reset-score">Reset</button>
-            <div class="score-num" id="score-num-correct">##</div>
-            <div class="score-num" id="score-num-incorrect">##</div>
+
           </div>
           <flex-break></flex-break>
         </options>
       </extended>
       <div id="extended-fill"></div>
     </div>
-    <script src="js/mobile-menu.js"></script>
-    <script src="js/mobile-vite.js"></script>
-    <script src="app.js"></script>
+    <script src="js/desktop-menu.js"></script>
+    <script src="js/desktop-vite.js"></script>
   </body>
 </html>
