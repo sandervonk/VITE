@@ -1,21 +1,53 @@
 <!DOCTYPE html>
-<html lang="en" translate="no">
+<html lang="en">
   <head>
-    <meta name="google" content="notranslate" />
-    <title>VITE! Practice</title>
-    <link rel="stylesheet" href="vite.css" />
-    <link rel="shortcut icon" href="icon/favicon.png" type="image/x-icon" />
-    <script src="src/jquery-3.6.0.min.js"></script>
-    <script src="js/events.js"></script>
-    <script src="js/vite.js"></script>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="shortcut icon"
+      href="/img/icon/icon-512x512.png"
+      type="image/x-icon"
+    />
+    <title translate="no">VITE! French Conjugation Practice</title>
+    <!-- Search Engine -->
     <meta
       name="description"
-      content="VITE! Style Conjugation Practice for French Verbs"
+      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
+    />
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="VITE! French Practice" />
+    <meta
+      itemprop="description"
+      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
+    />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="About VITE! French Practice Tools" />
+    <meta
+      name="twitter:description"
+      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
     />
     <meta
-      name="keywords"
-      content="French Français VITE! Practice Conjugation"
+      name="twitter:image:src"
+      content="https://sander.vonk.productions/VITE/social-img/social-twitter.png"
     />
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name="og:title" content="VITE! French Practice" />
+    <meta
+      name="og:description"
+      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
+    />
+    <meta
+      name="og:image"
+      content="https://sander.vonk.productions/VITE/social-img/social-og.png"
+    />
+    <meta
+      name="og:url"
+      content="https://sander.vonk.productions/VITE/desktop/"
+    />
+    <meta name="og:site_name" content="About VITE! French Practice Tools" />
+    <meta name="og:type" content="website" />
     <!-- Analytics!! -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script
@@ -31,425 +63,49 @@
 
       gtag("config", "G-5GF8MRX85G");
     </script>
+    <link rel="stylesheet" href="index.css" />
   </head>
-  <body class="MD">
-    <div id="verb-cover">
-      <div id="verb-container">
-        <div id="verb-container-title">Verb Options</div>
-        <div id="verb-container-scrollable">
-          <div id="verb-add">
-            <div id="verb-add-past-container">
-              <div id="verb-add-past-participle">
-                <div id="verb-participle-label">Participle</div>
-                <input
-                  type="text"
-                  spellcheck="false"
-                  id="verb-add-participle"
-                  placeholder="été"
-                />
-              </div>
-              <div id="verb-add-past-helping">
-                <div id="verb-helping-label">Helping</div>
-                <select id="verb-add-helping" value="Avoir">
-                  <option value="Avoir">Avoir</option>
-                  <option value="Être">Être</option>
-                </select>
-              </div>
-            </div>
-            <div class="verb-add-pair">
-              <div class="verb-add-label">Je</div>
-              <input
-                id="verb-add-subject-1"
-                spellcheck="false"
-                type="text"
-                class="verb-add-input"
-                placeholder="suis"
-                title="Present tense conjugation for subject Je"
-              />
-            </div>
-            <div class="verb-add-pair">
-              <div class="verb-add-label">Tu</div>
-              <input
-                id="verb-add-subject-2"
-                spellcheck="false"
-                type="text"
-                class="verb-add-input"
-                placeholder="es"
-                title="Present tense conjugation for subject Tu"
-              />
-            </div>
-            <div class="verb-add-pair">
-              <div class="verb-add-label">Il / Elle / On</div>
-              <input
-                id="verb-add-subject-3"
-                spellcheck="false"
-                type="text"
-                class="verb-add-input"
-                placeholder="est"
-                title="Present tense conjugation for subjects Il / Elle / On"
-              />
-            </div>
-            <div class="verb-add-pair">
-              <div class="verb-add-label">Nous</div>
-              <input
-                id="verb-add-subject-4"
-                spellcheck="false"
-                type="text"
-                class="verb-add-input"
-                placeholder="sommes"
-                title="Present tense conjugation for subject Nous"
-              />
-            </div>
-            <div class="verb-add-pair">
-              <div class="verb-add-label">Vous</div>
-              <input
-                id="verb-add-subject-5"
-                spellcheck="false"
-                type="text"
-                class="verb-add-input"
-                placeholder="êtes"
-                title="Present tense conjugation for subject Vous"
-              />
-            </div>
-            <div class="verb-add-pair last">
-              <div class="verb-add-label">Ils / Elles</div>
-              <input
-                id="verb-add-subject-6"
-                spellcheck="false"
-                type="text"
-                class="verb-add-input"
-                placeholder="sont"
-                title="Present tense conjugation for subjects Ils / Elles"
-              />
-            </div>
-            <div id="verb-add-submit-container">
-              <button title="Add Custom Verb From Above" id="verb-add-submit">
-                Add Verb
-              </button>
-              <input
-                id="verb-add-name"
-                spellcheck="false"
-                type="text"
-                placeholder="Être"
-                title="Name of the verb"
-              />
-              <button title="Remove All Custom Verbs" id="verb-add-reset">
-                Reset
-              </button>
-              <button title="Share your custom verbs" id="verb-custom-share">
-                Share
-              </button>
-            </div>
-          </div>
-          <div id="verb-options"></div>
-        </div>
-      </div>
-    </div>
-    <div id="desktop-cover">
-      <div id="desktop-info">
-        <svg
-          id="desktop-img"
-          version="1.1"
-          xmlns="http://www.w3.org/2000/svg"
-          xmlns:xlink="http://www.w3.org/1999/xlink"
-          x="0px"
-          y="0px"
-          viewBox="0 0 1000 1000"
-          enable-background="new 0 0 1000 1000"
-          xml:space="preserve"
-        >
-          <g>
-            <path
-              d="M919.4,60.7H80.6C41.7,60.7,10,92.9,10,132.5v549.1c0,39.6,31.7,71.8,70.6,71.8H462v111.3H288.8c-20.6,0-37.3,16.7-37.3,37.3c0,20.6,16.7,37.3,37.3,37.3h422.4c20.6,0,37.3-16.7,37.3-37.3c0-20.6-16.7-37.3-37.3-37.3H538V753.4h381.4c38.9,0,70.6-32.2,70.6-71.8V132.5C990,92.9,958.3,60.7,919.4,60.7z M914,677.4H86V136.7H914V677.4z"
-            />
-          </g>
-        </svg>
-        <div id="desktop-info-text">
-          Try
-          <a href="https://sander.vonk.productions/VITE/mobile/"
-            >the mobile page</a
+  <body>
+    <div id="page-title">VITE! Resources</div>
+    <div id="content">
+      <div id="carousel" class="flex-center">
+        <a href="https://sander.vonk.productions/VITE/desktop/">
+          <div
+            class="carousel-item"
+            id="carousel-desktop"
+            title="Open the VITE! Desktop Page"
           >
-          or please use a computer to access this page, preferably one with a
-          keyboard
-        </div>
-      </div>
-    </div>
-    <div id="VITE-title">
-      <span id="title-main">VITE!</span>
-      <div id="title-div"></div>
-      <span id="title-attr">By Sander Vonk</span>
-    </div>
-    <div id="feedback-parent">
-      <a href="https://forms.gle/GzwoTGBpLjwTLsym7">Send Feedback</a>
-      <a id="flashcards" href="./flashcards">Flashcards</a>
-      <a id="sheet" href="./sheet">Worksheet</a>
-    </div>
-    <div id="timer-parent">
-      <div id="nothing-to-see-here">
-        <button id="maxwell-mode">Maxwell Mode</button>
-        <input
-          id="timed-time"
-          value="2"
-          type="number"
-          min="0.5"
-          max="60"
-          step="0.5"
-        />
-      </div>
-      <div id="timer-countdown" class="stopped">0.00</div>
-    </div>
-
-    <div id="flex-parent">
-      <div class="flex-element main-container" id="options">
-        <div id="options-title">Options</div>
-        <div id="options-container">
-          <div class="options-section">
-            <div title="Display mode options" class="options-section-title">
-              Display Mode
-            </div>
-            <div class="options-section-title-line"></div>
-            <div class="options-section-content">
-              <div class="select-panel" id="display-modes">
-                <button
-                  title="Choose Quizlet Theme"
-                  class="select-button"
-                  id="mode-QZ"
-                >
-                  Quizlet Theme
-                </button>
-                <button
-                  title="Choose VITE! Worksheet Theme"
-                  class="select-button"
-                  id="mode-WS"
-                >
-                  VITE! WS
-                </button>
-                <button
-                  title="Choose Material Design Theme"
-                  class="select-button"
-                  id="mode-MD"
-                >
-                  Material
-                </button>
-              </div>
-            </div>
+            <img class="carousel-item-img" src="img/icon/icon-512x512.png" />
+            <div class="carousel-item-label">Desktop</div>
           </div>
-          <div class="options-section">
-            <div class="options-section-title" title="Quiz Set Options">
-              Quiz Sets
+        </a>
+        <a href="https://sander.vonk.productions/VITE/About/">
+          <div
+            class="carousel-item"
+            id="carousel-about"
+            title="Open the VITE! About Page"
+          >
+            <div class="carousel-item-img flex-center" id="about-icon">
+              <span id="information-letter">i</span>
             </div>
-            <div class="options-section-title-line"></div>
-            <div class="options-section-content">
-              <div class="two-table">
-                <div class="table-left" id="table-subjects">
-                  <button
-                    title="Toggle 'Je' as a subject in problems."
-                    class="toggle-button"
-                    name="Je"
-                  >
-                    Je
-                  </button>
-                  <button
-                    title="Toggle 'Tu' as a subject in problems."
-                    class="toggle-button"
-                    name="Tu"
-                  >
-                    Tu
-                  </button>
-                  <button
-                    title="Toggle 'Il / Elle / On' as subjects in problems."
-                    class="toggle-button"
-                    name="Il / Elle / On"
-                  >
-                    Il / Elle / On
-                  </button>
-                  <button
-                    title="Toggle 'Nous' as a subject in problems."
-                    class="toggle-button"
-                    name="Nous"
-                  >
-                    Nous
-                  </button>
-                  <button
-                    title="Toggle 'Vous' as a subject in problems."
-                    class="toggle-button"
-                    name="Vous"
-                  >
-                    Vous
-                  </button>
-                  <button
-                    title="Toggle 'Ils / Elles' as subjects in problems."
-                    class="toggle-button"
-                    name="Ils / Elles"
-                  >
-                    Ils / Elles
-                  </button>
-                </div>
-                <div class="table-seperator"></div>
-                <div class="table-right" id="table-verbs">
-                  <div class="toggle-button custom">
-                    <button
-                      title="Add your own custom verb"
-                      class="custom-button"
-                      id="custom-button"
-                    >
-                      <div>+</div>
-                    </button>
-                    <div>Custom</div>
-                  </div>
-                </div>
-              </div>
-              <div class="select-panel" id="tense-modes">
-                <button
-                  title="Toggle Present Tense Questions"
-                  class="select-button"
-                  id="tense-pr"
-                >
-                  Present
-                </button>
-                <button
-                  title="Toggle Imparfait Tense Questions"
-                  class="select-button"
-                  id="tense-im"
-                >
-                  Imparfait
-                </button>
-                <button
-                  title="Toggle Reflexive Tense Questions"
-                  class="select-button"
-                  id="tense-re"
-                >
-                  Reflexive
-                </button>
-                <button
-                  title="Toggle Passé Composé Questions"
-                  class="select-button"
-                  id="tense-pc"
-                >
-                  Passé Composé
-                </button>
-                <button
-                  title="Toggle Futur Simple Questions"
-                  class="select-button"
-                  id="tense-fs"
-                >
-                  F. Simple
-                </button>
-                <button
-                  title="Toggle Futur Antérieur Questions"
-                  class="select-button"
-                  id="tense-fa"
-                >
-                  F. Antérieur
-                </button>
-                <button
-                  title="Toggle Conditionnel Questions"
-                  class="select-button"
-                  id="tense-co"
-                >
-                  Conditionnel
-                </button>
-              </div>
-            </div>
+            <div class="carousel-item-label">About</div>
           </div>
-          <div class="options-section">
-            <div
-              title="Customization / Statistic Options"
-              class="options-section-title"
-            >
-              Customization / Stats
-            </div>
-            <div class="options-section-title-line"></div>
-            <div class="options-section-content">
-              <div class="customization-panel">
-                <div class="color-panel">
-                  <div class="color-left">
-                    <input
-                      title="Click to choose background color"
-                      type="color"
-                      name="Background Color"
-                      id="color-bg"
-                      value="#add8e6"
-                    />
-                  </div>
-                  <div class="label">Background Color</div>
-                </div>
-              </div>
-              <div title="0 Incorrect" id="stats-parent">
-                <div title="0 Correct" id="stats-correct"></div>
-              </div>
-              <div id="stats-label">
-                <div id="stats-correct-label" title="0 Correct">Correct</div>
-                <div id="stats-reset">&#8635;</div>
-                <div id="stats-incorrect-label" title="0 Incorrect">
-                  Incorrect
-                </div>
-              </div>
-              <div id="score-container">
-                <div id="score-label">score</div>
-                <div id="score-amount">0</div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="flex-element main-container" id="questions">
-        <div
-          id="question-cover"
-          title="Click or press any key to start playing!"
-          class="blur"
-        ></div>
-        <div id="question-center">
-          <div id="question-context">
-            <div title="Subject for Conjugation" id="question-subject">
-              <div id="question-subject-span"></div>
-            </div>
-            <div id="question-seperator"></div>
-            <div id="question-bottom">
-              <div id="question-plus-container">
-                <div id="question-plus">+</div>
-              </div>
-              <div title="Verb for Conjugation" id="question-verb">
-                <div id="question-verb-span"></div>
-              </div>
-            </div>
-          </div>
-          <div id="question-answer">
-            <input
-              title="Input the conjugation here!"
-              type="text"
-              id="question-answer-input"
-              autocomplete="off"
-              autocorrect="off"
-              autocapitalize="off"
-              spellcheck="false"
-              placeholder="conjugation"
+        </a>
+        <a href="https://sander.vonk.productions/VITE/mobile/">
+          <div
+            class="carousel-item"
+            id="carousel-mobile"
+            title="Open the VITE! Mobile Page"
+          >
+            <img
+              class="carousel-item-img"
+              src="mobile/img/icon/icon-512x512.png"
             />
-            <div id="QZ-extras">
-              <div id="QZ-label">Type The Answer</div>
-              <div id="QZ-accents">
-                <button class="accent-shortcut" id="accent-cedille">ç</button>
-                <button class="accent-shortcut" id="accent-aigu-e">é</button>
-                <button class="accent-shortcut" id="accent-grave-e">è</button>
-                <button class="accent-shortcut" id="accent-grave-a">à</button>
-                <button class="accent-shortcut" id="accent-circonflexe-a">
-                  â
-                </button>
-                <button class="accent-shortcut" id="accent-circonflexe-e">
-                  ê
-                </button>
-                <button class="accent-shortcut" id="accent-circonflexe-i">
-                  î
-                </button>
-                <button class="accent-shortcut" id="accent-circonflexe-o">
-                  ô
-                </button>
-                <button id="accent-caps">&#x21EA;</button>
-              </div>
-            </div>
+            <div class="carousel-item-label">Mobile</div>
           </div>
-        </div>
+        </a>
       </div>
     </div>
   </body>
+  <script src="index.js"></script>
 </html>
