@@ -118,12 +118,28 @@ body {
 }
 #desktop-icon,
 #about-icon,
-#mobile-icond {
+#mobile-icon {
   width: calc(50% - 1vh);
   height: calc(50% - 1vh);
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+#mobile-icon-body {
+  border: solid var(--keyboard-accent) 0.5vh;
+  height: 100%;
+  width: 50%;
+  border-radius: calc(var(--bar-size) / 20);
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: start;
+}
+#mobile-icon-notch {
+  border-radius: 0 0 0.25vh 0.25vh;
+  width: 60%;
+  height: 0.5vh;
+  background-color: var(--keyboard-accent);
 }
 .desktop-icon-part {
   font-size: 4vh;
