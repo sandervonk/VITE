@@ -114,6 +114,37 @@ body {
   font-size: 4vh;
   font-weight: bold;
 }
+#desktop-icon,
+#about-icon,
+#mobile-icon {
+  width: calc(50% - 1vh);
+  height: calc(50% - 1vh);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.desktop-icon-part {
+  font-size: 4vh;
+  font-weight: bold;
+  color: var(--keyboard-accent);
+}
+#desktop-icon-top {
+  width: 100%;
+  height: 75%;
+  border: solid var(--keyboard-accent) 0.5vh;
+  border-radius: calc(var(--bar-size) / 15);
+}
+#desktop-icon-middle {
+  width: 1.25vh;
+  height: 15%;
+  background: var(--keyboard-accent);
+}
+#desktop-icon-bottom {
+  width: 50%;
+  height: 0.75vh;
+  border-radius: 20vh;
+  background: var(--keyboard-accent);
+}
 #information-letter {
   transform: scale(2) !important;
 }
