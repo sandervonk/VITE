@@ -12,6 +12,7 @@
   --button-active: #6ab0c9bb;
   --button-active-alt: #7ac96abb;
   --keyboard-shadow: #182128;
+  --keyboard-shadow-light: #ffffff22;
   --keyboard-active: white;
   --keyboard-separator: #3b464c;
   --keyboard-reset: #99240fda;
@@ -78,7 +79,8 @@ body {
   margin: 0;
   transform: none;
   transform-origin: center center;
-  transition: margin 0.5s ease-in-out, transform 0.5s ease-in-out;
+  transition: margin 0.5s ease-in-out, transform 0.5s ease-in-out,
+    box-shadow 0.5s ease-in-out;
 }
 #carousel-desktop {
   margin-left: 0 !important;
@@ -116,7 +118,7 @@ body {
 }
 #desktop-icon,
 #about-icon,
-#mobile-icon {
+#mobile-icond {
   width: calc(50% - 1vh);
   height: calc(50% - 1vh);
   display: flex;
@@ -147,6 +149,11 @@ body {
 }
 #information-letter {
   transform: scale(2) !important;
+}
+@media (min-width: 90vh) {
+  .carousel-item:hover {
+    box-shadow: 0 0 2vh var(--keyboard-shadow-light);
+  }
 }
 @media (max-width: 90vh) {
   #information-letter {
