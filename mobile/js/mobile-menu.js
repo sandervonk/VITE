@@ -337,33 +337,40 @@ function setupVerbs(verbs) {
   });
   //add click handlers
   $(".verb-button").click((e) => {
-    let array = split(localStorage["vite-verbs"]);
-    if ($(e.target).hasClass("active")) {
-      let index = array.indexOf(e.target.name);
-      if (index > -1) {
-        array.splice(index, 1);
-      }
-    } else {
-      array.push(e.target.name);
-      //localStorage["vite-verbs"] = array;
-    }
-    localStorage["vite-verbs"] = array;
-    $(`.verb-button[name="${e.target.name}"]`).toggleClass("active");
-    while (localStorage["vite-verbs"].includes(",,")) {
-      localStorage["vite-verbs"] = localStorage["vite-verbs"].replace(
-        ",,",
-        ","
-      );
-    }
-    while (
-      localStorage["vite-verbs"].substr(
-        localStorage["vite-verbs"].length - 1
-      ) == ","
+    if (
+      $(e.target).hasClass("active") &&
+      localStorage["vite-verbs"].split(",").length < 2
     ) {
-      localStorage["vite-verbs"] = localStorage["vite-verbs"].substr(
-        0,
-        localStorage["vite-verbs"].length - 1
-      );
+      window.alert("Sorry, you need at least one verb active!");
+    } else {
+      let array = split(localStorage["vite-verbs"]);
+      if ($(e.target).hasClass("active")) {
+        let index = array.indexOf(e.target.name);
+        if (index > -1) {
+          array.splice(index, 1);
+        }
+      } else {
+        array.push(e.target.name);
+        //localStorage["vite-verbs"] = array;
+      }
+      localStorage["vite-verbs"] = array;
+      $(`.verb-button[name="${e.target.name}"]`).toggleClass("active");
+      while (localStorage["vite-verbs"].includes(",,")) {
+        localStorage["vite-verbs"] = localStorage["vite-verbs"].replace(
+          ",,",
+          ","
+        );
+      }
+      while (
+        localStorage["vite-verbs"].substr(
+          localStorage["vite-verbs"].length - 1
+        ) == ","
+      ) {
+        localStorage["vite-verbs"] = localStorage["vite-verbs"].substr(
+          0,
+          localStorage["vite-verbs"].length - 1
+        );
+      }
     }
   });
   //setup tenses
@@ -384,17 +391,24 @@ function setupVerbs(verbs) {
     $(e.target).toggleClass("active");
   });
   $(".subject-button").click((e) => {
-    let array = split(localStorage["vite-subjects"]);
-    if ($(e.target).hasClass("active")) {
-      let index = array.indexOf(e.target.name);
-      if (index > -1) {
-        array.splice(index, 1);
-      }
+    if (
+      $(e.target).hasClass("active") &&
+      localStorage["vite-subjects"].split(",").length < 2
+    ) {
+      window.alert("Sorry, you need at least one subject active!");
     } else {
-      array.push(e.target.name);
+      let array = split(localStorage["vite-subjects"]);
+      if ($(e.target).hasClass("active")) {
+        let index = array.indexOf(e.target.name);
+        if (index > -1) {
+          array.splice(index, 1);
+        }
+      } else {
+        array.push(e.target.name);
+      }
+      localStorage["vite-subjects"] = array;
+      $(e.target).toggleClass("active");
     }
-    localStorage["vite-subjects"] = array;
-    $(e.target).toggleClass("active");
   });
 }
 $("#more-verbs").on("click", function () {
