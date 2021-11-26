@@ -1356,3 +1356,6 @@ p.translate {
   text-align: left;
   font-size: 2vh;
 }
+body[showanswer] #fade-question-behind-buttons {
+  display: none !important;
+}
