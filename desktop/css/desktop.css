@@ -1186,7 +1186,7 @@ body[light-theme] #verb-custom-share {
   margin-left: 0;
 }
 .verb-button * {
-  pointer-events: none;
+  pointer-events: none !important;
 }
 .custom-verb {
   align-items: center;

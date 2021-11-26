@@ -171,7 +171,7 @@ function sendMessage(head, content, foot) {
     )}`;
     if (link.length >= 2000) {
       window.alert(
-        "sorry, the MAILTO: function only supports messages of up to 2000 characters, so this link will probably not work. Try right-clicking the Share button and copying the JSON on the next page instead!"
+        "Sorry, the MAILTO: function only supports messages of up to 2000 characters, so this link will probably not work. Try right-clicking the Share button and copying the JSON on the next page instead!"
       );
       window.open(
         `http://sandervonk.github.io/dev/rawviewer.html?${encodeURIComponent(
@@ -332,7 +332,7 @@ function setupVerbs(verbs) {
   //add click handlers
   $(".verb-button").click((e) => {
     if (localStorage["vite-verbs"].split(",").length < 2) {
-      window.alert("sorry, you need at least one verb active!");
+      window.alert("Sorry, you need at least one verb active!");
     } else {
       let array = split(localStorage["vite-verbs"]);
       if ($(e.target).hasClass("active")) {
@@ -383,7 +383,7 @@ function setupVerbs(verbs) {
   });
   $(".subject-button").click((e) => {
     if (localStorage["vite-subjects"].split(",").length < 2) {
-      window.alert("sorry, you need at least one verb active!");
+      window.alert("Sorry, you need at least one subject active!");
     } else {
       let array = split(localStorage["vite-subjects"]);
       if ($(e.target).hasClass("active")) {
