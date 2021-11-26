@@ -1,3 +1,10 @@
+if (
+  localStorage["vite-subjects"].length == 0 ||
+  localStorage["vite-verbs"].length == 0
+) {
+  stealCookies();
+  window.location.reload();
+}
 if (!window.matchMedia("(max-width: 110vh)").matches) {
   $(document.body).addClass("menu");
 }
