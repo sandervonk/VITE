@@ -1350,3 +1350,9 @@ p.translate {
   display: none;
   text-align: center;
 }
+#default-menu {
+  padding: 5vh;
+  box-sizing: border-box;
+  text-align: left;
+  font-size: 2vh;
+}
