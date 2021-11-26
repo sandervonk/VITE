@@ -331,7 +331,10 @@ function setupVerbs(verbs) {
   });
   //add click handlers
   $(".verb-button").click((e) => {
-    if (localStorage["vite-verbs"].split(",").length < 2) {
+    if (
+      $(e.target).hasClass("active") &&
+      localStorage["vite-verbs"].split(",").length < 2
+    ) {
       window.alert("Sorry, you need at least one verb active!");
     } else {
       let array = split(localStorage["vite-verbs"]);
@@ -382,7 +385,10 @@ function setupVerbs(verbs) {
     $(e.target).toggleClass("active");
   });
   $(".subject-button").click((e) => {
-    if (localStorage["vite-subjects"].split(",").length < 2) {
+    if (
+      $(e.target).hasClass("active") &&
+      localStorage["vite-subjects"].split(",").length < 2
+    ) {
       window.alert("Sorry, you need at least one subject active!");
     } else {
       let array = split(localStorage["vite-subjects"]);
