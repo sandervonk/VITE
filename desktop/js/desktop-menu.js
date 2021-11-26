@@ -1,7 +1,4 @@
-if (
-  localStorage["vite-subjects"].length == 0 ||
-  localStorage["vite-verbs"].length == 0
-) {
+if (localStorage["vite-subjects"] == "" || localStorage["vite-verbs"] == "") {
   stealCookies();
   window.location.reload();
 }
