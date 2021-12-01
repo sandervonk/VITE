@@ -512,3 +512,14 @@ $("#verb-custom-share").on("contextmenu", function () {
     "_blank"
   );
 });
+$("#answer-input").on("input", function () {
+  if ($("#answer-input").val().toLowerCase().includes("rick"))
+    $("#rick").html(
+      `<iframe width='100%' height='100%' src='https://www.youtube.com/embed/dQw4w9WgXcQ?controls=0&amp;autoplay=1' title='YouTube video player' frameborder='0' allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture' allowfullscreen=''></iframe>`
+    );
+});
+$(document).on("keydown", function (e) {
+  if (e.key == "Escape") {
+    $("#rick").html("");
+  }
+});
