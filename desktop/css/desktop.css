@@ -1013,6 +1013,7 @@ body[light-theme] #switch-ball #theme-dark-img {
   left: 0;
   z-index: 999999;
   pointer-events: none;
+  cursor: not-allowed;
 }
 #verbs-2 *::-webkit-scrollbar,
 #new-foot-sidebar::-webkit-scrollbar {
