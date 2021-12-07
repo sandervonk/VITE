@@ -19,13 +19,14 @@ function submitAnswer() {
     $(document.body).attr("showanswer", "");
     //Check answer
     let inputAnswer = $("#answer-input").val().toLowerCase();
+    gtag('send', 'event', { eventCategory: 'question', eventAction: 'question_answer', eventLabel: 'desktop_question'});
     if (
       variations(question.answer.alt).includes(inputAnswer) ||
       variations(question.answer.full).includes(inputAnswer)
     ) {
       //?correct
       changeScore(1);
-
+      gtag('send', 'event', { eventCategory: 'question', eventAction: 'question_correct', eventLabel: 'desktop_question'});
       $("#answer-status").text("Correct! 😀");
       $("#answer-correction-1").text("");
       $("#answer-correction-2").text("");
@@ -34,6 +35,7 @@ function submitAnswer() {
     } else {
       //?incorrect
       changeScore(-1);
+      gtag('send', 'event', { eventCategory: 'question', eventAction: 'question_incorrect', eventLabel: 'desktop_question'});
       $("#answer-overlay").attr("class", "incorrect");
       $("#answer-status").text("😕 Study this One!");
       $("#answer-correction-1").text(question.answer.alt);
