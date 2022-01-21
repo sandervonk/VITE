@@ -192,6 +192,37 @@ class Question {
     }
     return this.versions(a, s);
   }
+  psTense(s, v) {
+    //Passé Simple Conjugator
+    let irReEnd = {
+        Je: "is",
+        Tu: "is",
+        "Il / Elle / On": "it",
+        Nous: "îmes",
+        Vous: "îtes",
+        "Ils / Elles": "irent",
+      },
+      erEnd = {
+        Je: "ai",
+        Tu: "as",
+        "Il / Elle / On": "a",
+        Nous: "âmes",
+        Vous: "âtes",
+        "Ils / Elles": "èrent",
+      },
+      a,
+      r = v.name.substr(0, v.name.length - 2);
+    if (v.verb.PS.All == "regular") {
+      if (v.name.substr(-2) == "er") {
+        a = r + erEnd[s];
+      } else if (v.name.substr(-2) == "ir" || v.name.substr(-2) == "re") {
+        a = r + irReEnd[s];
+      }
+    } else {
+      a = v.verb.PS[s];
+    }
+    return this.versions(a, s);
+  }
   pcTense(s, v) {
     //Passé Composé Conjugator
     let a = {
