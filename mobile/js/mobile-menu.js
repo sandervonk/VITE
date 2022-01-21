@@ -100,6 +100,7 @@ function stealCookies() {
     ["VITE-incorrect", 0],
     ["vite-skip-blank", false],
     ["vite-pc", true],
+    ["vite-ps", true],
     ["vite-pr", true],
     ["vite-im", true],
     ["vite-fs", true],
@@ -119,12 +120,14 @@ if (localStorage["vite-custom-verbs"] === undefined) {
 if (
   (localStorage["vite-pr"] != "true" &&
     localStorage["vite-pc"] != "true" &&
+    localStorage["vite-ps"] != "true" &&
     localStorage["vite-im"] != "true" &&
     localStorage["vite-fs"] != "true" &&
     localStorage["vite-co"] != "true" &&
     localStorage["vite-fa"] != "true") ||
   localStorage["vite-pr"] === undefined ||
   localStorage["vite-pc"] === undefined ||
+  localStorage["vite-ps"] === undefined ||
   localStorage["vite-im"] === undefined ||
   localStorage["vite-fs"] === undefined ||
   localStorage["vite-co"] === undefined ||
@@ -132,6 +135,7 @@ if (
 ) {
   localStorage["vite-pr"] = true;
   localStorage["vite-pc"] = true;
+  localStorage["vite-ps"] = true;
   localStorage["vite-im"] = true;
   localStorage["vite-fs"] = true;
   localStorage["vite-fa"] = true;
@@ -379,7 +383,7 @@ function setupVerbs(verbs) {
   for (subjectTag of split(localStorage["vite-subjects"])) {
     $(`button[name="${subjectTag}"]`).addClass("active");
   }
-  for (tense of ["pr", "pc", "im", "fs", "fa", "co"]) {
+  for (tense of ["pr", "pc", "ps", "im", "fs", "fa", "co"]) {
     if (JSON.parse(localStorage["vite-" + tense])) {
       $("#tense-" + tense).addClass("active");
     }

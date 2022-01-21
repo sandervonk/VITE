@@ -86,7 +86,7 @@ class Question {
   pickTense() {
     let tenses = [],
       tense;
-    for (tense of ["pr", "pc", "im", "fs", "fa", "co"]) {
+    for (tense of ["pr", "pc", "ps", "im", "fs", "fa", "co"]) {
       if (JSON.parse(localStorage["vite-" + tense])) {
         tenses.push(tense);
       }
@@ -104,6 +104,9 @@ class Question {
     } else if (t == "pc") {
       a = this.pcTense(s, v);
       t = "Passé Composé";
+    } else if (t == "ps") {
+      a = this.psTense(s, v);
+      t = "Passé Simple";
     } else if (t == "im") {
       a = this.imTense(s, v);
       t = "Imparfait";

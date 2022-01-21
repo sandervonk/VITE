@@ -19,14 +19,22 @@ function submitAnswer() {
     $(document.body).attr("showanswer", "");
     //Check answer
     let inputAnswer = $("#answer-input").val().toLowerCase();
-    gtag('send', 'event', { eventCategory: 'question', eventAction: 'question_answer', eventLabel: 'desktop_question'});
+    gtag("send", "event", {
+      eventCategory: "question",
+      eventAction: "question_answer",
+      eventLabel: "desktop_question",
+    });
     if (
       variations(question.answer.alt).includes(inputAnswer) ||
       variations(question.answer.full).includes(inputAnswer)
     ) {
       //?correct
       changeScore(1);
-      gtag('send', 'event', { eventCategory: 'question', eventAction: 'question_correct', eventLabel: 'desktop_question'});
+      gtag("send", "event", {
+        eventCategory: "question",
+        eventAction: "question_correct",
+        eventLabel: "desktop_question",
+      });
       $("#answer-status").text("Correct! 😀");
       $("#answer-correction-1").text("");
       $("#answer-correction-2").text("");
@@ -35,7 +43,11 @@ function submitAnswer() {
     } else {
       //?incorrect
       changeScore(-1);
-      gtag('send', 'event', { eventCategory: 'question', eventAction: 'question_incorrect', eventLabel: 'desktop_question'});
+      gtag("send", "event", {
+        eventCategory: "question",
+        eventAction: "question_incorrect",
+        eventLabel: "desktop_question",
+      });
       $("#answer-overlay").attr("class", "incorrect");
       $("#answer-status").text("😕 Study this One!");
       $("#answer-correction-1").text(question.answer.alt);
@@ -88,7 +100,7 @@ class Question {
   pickTense() {
     let tenses = [],
       tense;
-    for (tense of ["pr", "pc", "im", "fs", "fa", "co"]) {
+    for (tense of ["pr", "pc", "ps", "im", "fs", "fa", "co"]) {
       if (JSON.parse(localStorage["vite-" + tense])) {
         tenses.push(tense);
       }
@@ -106,6 +118,9 @@ class Question {
     } else if (t == "pc") {
       a = this.pcTense(s, v);
       t = "Passé Composé";
+    } else if (t == "ps") {
+      a = this.psTense(s, v);
+      t = "Passé Simple";
     } else if (t == "im") {
       a = this.imTense(s, v);
       t = "Imparfait";
@@ -228,6 +243,37 @@ class Question {
     } else {
       return this.versions(a.answer, s);
     }
+  }
+  psTense(s, v) {
+    //Passé Simple Conjugator
+    let irReEnd = {
+        Je: "is",
+        Tu: "is",
+        "Il / Elle / On": "it",
+        Nous: "îmes",
+        Vous: "îtes",
+        "Ils / Elles": "irent",
+      },
+      erEnd = {
+        Je: "ai",
+        Tu: "as",
+        "Il / Elle / On": "a",
+        Nous: "âmes",
+        Vous: "âtes",
+        "Ils / Elles": "èrent",
+      },
+      a,
+      r = v.name.substr(0, v.name.length - 2);
+    if (v.verb.PS.All == "regular") {
+      if (v.name.substr(-2) == "er") {
+        a = r + erEnd[s];
+      } else if (v.name.substr(-2) == "ir" || v.name.substr(-2) == "re") {
+        a = r + irReEnd[s];
+      }
+    } else {
+      a = v.verb.PS[s];
+    }
+    return this.versions(a, s);
   }
   imTense(s, v) {
     //Imparfait Conjugator
