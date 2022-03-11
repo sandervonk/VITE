@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="google" content="notranslate">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/practice.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/theme-dark.css"
+      media="(prefers-color-scheme: unset)"
+      id="theme-dark-stylesheet"
+    />
+    <script src="../../js/src/jquery-3.6.0.min.js"></script>
+    <script src="../../js/mobile-vite.js"></script>
+    <script src="../../js/theme.js"></script>
+    <title>VITE! - Practice</title>
+  </head>
+  <body>
+    <div id="info-popup" class="box">Info goes here and hopefully doesent overflow onto the side despite the size</div>
+    <header>
+      <button
+        id="close-button"
+        class="progress-button"
+        onclick="window.history.go(-1)"
+      ></button>
+      <div id="progress-bar">
+        <div id="progress-fill">
+          <div id="progress-fill-accent"></div>
+        </div>
+      </div>
+    </header>
+    <div id="question-content">
+      <div id="content-top">
+      <div id="vite-q-prompt" class="primary" >Conjugate in the&nbsp;<div id="vite-q-tense" class="primary" info="Tense information"></div></div>
+      <div id="question-data">
+        <button id="info-button" class="square-35 box-button">i</button>
+        <div id="vite-q-subject" class="center" info="Subject information">sujet</div>
+        <div id="vite-q-bridge" class="center bridge-word">et</div>
+        <div id="vite-q-verb" class="center" info="Verb information">verbe</div>
+      </div></div>
+      <div id="answer-area">
+        <img id="answer-mascot" src="../../img/mascot/mood=Default.svg"></img>
+        <textarea
+          id="answer-input"
+          class="box text-secondary"
+          placeholder="Tap to enter your answer"
+          name="answer-input"
+          id=""
+          rows="10"
+        ></textarea>
+      </div>
+    </div>
+    <div id="result-container">
+      <div id="result-info">
+        <div id="answer-top-bar">
+          <div id="answer-result" class="primary"></div>
+          <div id="actions"></div>
+        </div>
+        <div id="answer-correction-bar">
+          <div id="answer-correction-1">answer one</div>
+          <div id="answer-correction-bridge" class="bridge-word">&nbsp;ou&nbsp;</div>
+          <div id="answer-correction-2">answer two</div>
+        </div>
+      </div>
+      <div id="result-bg"></div>
+      <div id="next-button" class="box-button primary center"></div>
+    </div>
+  </body>
+  <script src="../../js/practice.js"></script>
+  <script src="../../js/mobile-menu.js"></script>
+</html>

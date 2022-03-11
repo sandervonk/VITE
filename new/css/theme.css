@@ -1,0 +1,50 @@
+:root {
+  --bg: #ffffff;
+  --menu-accent: #c8c8c8;
+  --box-border: #e5e5e5;
+  --box-bg: #ffffff;
+  --button-bg: #ffffff;
+  --secondary: #eeeeee;
+  --secondary-alt: #c8c8c8;
+  --button-border: #e5e5e5;
+  --button-accent: #e5e5e5;
+  --progress-back: #bfbfbf;
+  --progress-bar-bg: #e5e5e5;
+  --progress-fill: #8ac63c;
+  --progress-fill-accent: #9ccf59;
+  --text-primary: #4b4b4b;
+  --text-secondary: #777777;
+  /*tutorial*/
+  --overlay-bg: #00000040;
+  --tutorial-action-bg: #9bce59;
+  --tutorial-action-border: #8ac63c;
+  /*learn*/
+  --bar-bg: #e5e5e5;
+  --bar-color: #3cadc6;
+  --bar-accent: #44c2de;
+  --bar-text: #ffffff;
+  --study-card-bg: url(../img/card/light/card=study.svg);
+  --learn-card-bg: url(../img/card/light/card=learn.svg);
+  --create-card-bg: url(../img/card/light/card=create.svg);
+  --card-text: #ffffff;
+  /*settings*/
+  --switch-bg: var(--box-border);
+  --switch-selected: #828282;
+  --prior-button-bg: #2981d1;
+  --prior-button-border: #1765ac;
+  --prior-button-accent: #ffffff;
+  /*practice*/
+  --info-button-bg: #28bdec;
+  --info-button-border: #119ac5;
+  --check-button-accent: #ffffff;
+  --answer-content: #4b4b4b;
+  --answer-placeholder: #e5e5e5;
+  --check-button-blank: #e5e5e5;
+  --check-button-blank-accent: #c8c8c8;
+  --check-fill: #57cc02;
+  --check-fill-accent: #58a700;
+  --check-fill-incorrect: #ff4b4c;
+  --check-fill-incorrect-accent: #e82e2b;
+  --result-correct-bg: #d7ffb9;
+  --result-incorrect-bg: #ffdfe0;
+}

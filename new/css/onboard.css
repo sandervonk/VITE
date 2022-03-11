@@ -1,0 +1,54 @@
+body {
+  display: flex;
+  flex-flow: column;
+}
+#level-form {
+  margin-top: 26px;
+  flex-grow: 1;
+  justify-content: center;
+  display: flex;
+  flex-flow: column;
+}
+#level-form .option {
+  display: flex;
+  flex-flow: row nowrap;
+  margin: 8px 0;
+  padding: 20px;
+}
+#level-form .option * {
+  pointer-events: none;
+}
+#level-form .option-text {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  flex-grow: 1;
+}
+.option-text > div {
+  font-family: "Next", sans-serif;
+}
+.option-icon {
+  height: 70px;
+  width: 70px;
+  aspect-ratio: 1 / 1;
+  flex-shrink: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 16px;
+}
+.option-icon img {
+  max-height: 100%;
+  max-width: 100%;
+}
+@keyframes expandBar {
+  0% {
+    width: 52px;
+  }
+  100% {
+    width: 50%;
+  }
+}
+#progress-fill {
+  animation: 1s ease-out 0s 1 forwards expandBar;
+}

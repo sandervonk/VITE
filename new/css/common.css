@@ -1,0 +1,155 @@
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  font-family: "Next", sans-serif;
+}
+html {
+  position: fixed;
+}
+body {
+  padding: 16px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.box,
+button.box,
+.box-button {
+  border: solid var(--box-border) 2px;
+  border-bottom-width: 4px !important;
+  padding: 10px;
+  border-radius: 11px;
+}
+
+button.box,
+.box-button {
+  background-color: var(--button-bg);
+  border-color: var(--button-border);
+  color: var(--button-accent);
+}
+.box.thick-border,
+.box-button.thick-border {
+  border-width: 4px !important;
+  border-bottom-width: 8px !important;
+}
+.box-button:not(.fullborder) {
+  border-width: 0px !important;
+  border-bottom-width: 4px !important;
+}
+
+button.box:active,
+.box-button:active {
+  /*transform: translateY(2px);*/
+  margin-bottom: 2px !important;
+  border-bottom-width: 2px !important;
+}
+.box-button:active:not(.fullborder) {
+  border-bottom-width: 0px !important;
+}
+#title-text {
+  color: var(--on-bg);
+  font-family: "Next", sans-serif;
+  font-weight: 500;
+  font-size: 24px;
+  margin-top: 26px;
+}
+header {
+  position: relative;
+  /*margin-top: 48px;*/
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  z-index: 20;
+  filter: drop-shadow(0px 0px 5px var(--bg));
+}
+.progress-button {
+  height: 21px;
+  width: 21.5px;
+  border: none;
+  padding: 0;
+  background-color: var(--progress-back);
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
+#back-button {
+  mask-image: url(../img/icon/back.png);
+  mask-image: url(../img/icon/back.svg);
+  -webkit-mask-image: url(../img/icon/back.png);
+  -webkit-mask-image: url(../img/icon/back.svg);
+}
+#close-button {
+  mask-image: url(../img/icon/close.png);
+  mask-image: url(../img/icon/close.svg);
+  -webkit-mask-image: url(../img/icon/close.png);
+  -webkit-mask-image: url(../img/icon/close.svg);
+  transform: scale(0.8);
+}
+#progress-bar {
+  height: 15px;
+  flex-grow: 1;
+  border-radius: 15px;
+  overflow: hidden;
+  display: flex;
+  margin-left: 20px;
+  background-color: var(--progress-bar-bg);
+}
+#progress-fill {
+  height: 100%;
+  min-width: 52px;
+  flex-grow: 0;
+  padding: 4px;
+  box-sizing: border-box;
+  border-radius: 15px;
+  background-color: var(--progress-fill);
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out,
+    width 0.25s ease-in-out;
+}
+#progress-fill-accent {
+  background-color: var(--progress-fill-accent);
+  height: 5px;
+  margin: 0 2px 2px 1px;
+  border-radius: 5px;
+}
+.bold {
+  font-family: "Next", sans-serif;
+  font-weight: 600;
+  font-size: 18px;
+  color: var(--text-primary);
+}
+.primary {
+  font-family: "Next", sans-serif;
+  font-weight: 700;
+  font-size: 24px;
+  color: var(--text-primary);
+}
+.secondary {
+  font-family: "Next", sans-serif;
+  font-size: 16px;
+  color: var(--text-secondary);
+}
+*[onclick],
+a[href],
+*[form-action],
+.box.option,
+label[for],
+.footer-item,
+button {
+  user-select: none;
+}

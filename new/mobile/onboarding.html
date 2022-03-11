@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../css/fonts.css" />
+    <link rel="stylesheet" href="../css/common.css" />
+    <link rel="stylesheet" href="../css/theme.css" />
+    <link rel="stylesheet" href="../css/onboard.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/theme-dark.css"
+      media="(prefers-color-scheme: unset)"
+      id="theme-dark-stylesheet"
+    />
+    <script src="../js/theme.js"></script>
+    <title>VITE! - Get Started</title>
+  </head>
+  <body>
+    <header>
+      <button
+        id="back-button"
+        class="progress-button"
+        onclick="window.history.go(-1)"
+      ></button>
+      <div id="progress-bar">
+        <div id="progress-fill">
+          <div id="progress-fill-accent"></div>
+        </div>
+      </div>
+    </header>
+    <form id="level-form" action="./app/" method="get">
+      <input type="text" id="path-input" name="path" style="display: none" />
+      <input
+        type="text"
+        id="tutorial-input"
+        name="showTutorial"
+        style="display: none"
+        value="true"
+      />
+      <div class="box option" name="beginner">
+        <div class="option-icon"><img src="../img/icon/onboard/Egg.svg" /></div>
+        <div class="option-text">
+          <div class="option-text-title bold">Just Starting French?</div>
+          <div class="option-text-summary secondary">
+            Start here with the present tense
+          </div>
+        </div>
+      </div>
+      <div class="box option" name="learning">
+        <div class="option-icon">
+          <img src="../img/icon/onboard/Book Icon.svg" />
+        </div>
+        <div class="option-text">
+          <div class="option-text-title bold">Learning French?</div>
+          <div class="option-text-summary secondary">
+            Try working with the past tense and more
+          </div>
+        </div>
+      </div>
+      <div class="box option" name="advanced">
+        <div class="option-icon"><img src="../img/icon/onboard/Cap.svg" /></div>
+        <div class="option-text">
+          <div class="option-text-title bold">Doing well already?</div>
+          <div class="option-text-summary secondary">
+            Work on advanced tenses
+          </div>
+        </div>
+      </div>
+      <div class="box option" name="custom">
+        <div class="option-icon">
+          <img src="../img/icon/onboard/Pencil.svg" />
+        </div>
+        <div class="option-text">
+          <div class="option-text-title bold">Something else?</div>
+          <div class="option-text-summary secondary">
+            Customize your experience
+          </div>
+        </div>
+      </div>
+    </form>
+  </body>
+  <script>
+    for (element of document.getElementsByClassName("box option")) {
+      element.addEventListener("click", function (e) {
+        document.getElementById("path-input").value =
+          e.target.getAttribute("name");
+        e.target.parentElement.submit();
+      });
+    }
+    if (window.location.href.includes("?showTutorial=false")) {
+      document.getElementById("tutorial-input").value = "false";
+    }
+  </script>
+</html>

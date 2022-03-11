@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/app.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/theme-dark.css"
+      media="(prefers-color-scheme: unset)"
+      id="theme-dark-stylesheet"
+    />
+    <link rel="stylesheet" href="../../css/app.css" />
+    <script src="../../js/src/jquery-3.6.0.min.js"></script>
+    <title>VITE! - App</title>
+  </head>
+  <body activetab="learn">
+    <header>
+      <div></div>
+      <div id="mascot-slot"></div>
+      <img src="../../img/icon/pfp.png" id="profile-picutre" />
+    </header>
+    <div id="page-content" activetab="learn">
+      <div id="tab-container">
+        <div class="tab" id="learn-tab">
+          <div id="tab-content">
+            <div id="goal-progress">
+              <div id="goal-fill" style="width: 24%">
+                <div id="goal-fill-accent"></div>
+                <div id="goal-text" value="24" goal="100">/</div>
+              </div>
+            </div>
+            <form action="./practice.html" method="get" id="learn-start">
+              <input type="text" id="learn-type-input" name="type" value="" />
+              <div id="learn-cards">
+                <div class="card learn-card" id="study-card" name="study">
+                  <div class="card-title">Study</div>
+                  <div class="card-description">
+                    Do automatically generated practice problems to build your
+                    skills
+                  </div>
+                </div>
+                <div class="card learn-card" id="learn-card" name="learn">
+                  <div class="card-title">Learn</div>
+                  <div class="card-description">
+                    Learn more about specific structures and conjugations with
+                    paired lessons and practice
+                  </div>
+                </div>
+                <div class="card learn-card" id="create-card" name="create">
+                  <div class="card-title">Create</div>
+                  <div class="card-description">
+                    Add your own verbs and create your own customized study sets
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="footer-space"></div>
+          </div>
+        </div>
+        <div class="tab" id="settings-tab">
+          <div id="tab-content">
+            <form id="settings-form" action="">
+              <div class="settings-section" id="theme-section">
+                <div class="section-title">Theme</div>
+                <div class="section-content box">
+                  <div class="section-description">
+                    Chose your color theme. By default this will match your
+                    device’s system-wide settings if supported
+                  </div>
+
+                  <div class="switch-toggle box">
+                    <input
+                      type="radio"
+                      name="theme"
+                      id="theme-dark"
+                      class="hidden-radio"
+                      value="dark"
+                    />
+                    <label for="theme-dark" class="switch-label">Dark</label>
+                    <input
+                      type="radio"
+                      name="theme"
+                      id="theme-light"
+                      class="hidden-radio"
+                      value="light"
+                      checked
+                    />
+                    <label for="theme-light" class="switch-label">Light</label>
+                  </div>
+                </div>
+              </div>
+              <div class="settings-section" id="pacing-section">
+                <div class="section-title">Pacing</div>
+                <div class="section-content box">
+                  <div class="section-description">
+                    Should VITE! try to adapt to your progress? If this setting
+                    is disabled, you will manually have to enable new tenses and
+                    verbs.
+                  </div>
+
+                  <div class="switch-toggle box">
+                    <input
+                      type="radio"
+                      name="pacing"
+                      id="pacing-yes"
+                      class="hidden-radio"
+                      value="yes"
+                      checked
+                    />
+                    <label for="pacing-yes" class="switch-label">Yes</label>
+                    <input
+                      type="radio"
+                      name="pacing"
+                      id="pacing-no"
+                      class="hidden-radio"
+                      value="no"
+                    />
+                    <label for="pacing-no" class="switch-label">No</label>
+                  </div>
+                </div>
+              </div>
+              <div class="settings-section" id="saves-section">
+                <div class="section-title">Cloud Saves</div>
+                <div class="section-content box">
+                  <div class="section-description">
+                    Should we save your progress to the cloud? Note that this
+                    only works when logged in with a Google Account through
+                    OAuth 2.
+                  </div>
+
+                  <div class="switch-toggle box">
+                    <input
+                      type="radio"
+                      name="saves"
+                      id="saves-yes"
+                      class="hidden-radio"
+                      value="yes"
+                    />
+                    <label for="saves-yes" class="switch-label">Yes</label>
+                    <input
+                      type="radio"
+                      name="saves"
+                      id="saves-no"
+                      class="hidden-radio"
+                      value="no"
+                      checked
+                    />
+                    <label for="saves-no" class="switch-label">No</label>
+                  </div>
+                </div>
+              </div>
+            </form>
+            <div class="settings-section" id="prior-section">
+              <div class="section-title">Prior Knowledge</div>
+              <div class="section-content box">
+                <div class="section-description">
+                  Click below to re-open the starting level chooser. This will
+                  let you start at an easier or harder level than before!
+                </div>
+                <button
+                  class="box-button"
+                  id="retake-prior-button"
+                  onclick="window.location.href = '../onboarding.html?showTutorial=false' "
+                >
+                  Open
+                </button>
+              </div>
+            </div>
+
+            <div class="footer-space"></div>
+          </div>
+        </div>
+        <div class="tab" id="announcements-tab">
+          Announcements
+          <div class="footer-space"></div>
+        </div>
+      </div>
+    </div>
+    <div id="tutorial-overlay">
+      <div id="tutorial-box">
+        <div id="tutorial-text">
+          <div id="tutorial-title">The Learn Tab</div>
+          <div id="tutorial-description">
+            This tab is your go-to place for everything learning. It'll provide
+            you access to different activities at the touch of a tile!
+          </div>
+        </div>
+
+        <div id="tutorial-arrow-container">
+          <div id="tutorial-arrow"></div>
+        </div>
+        <div id="tutorial-action-container">
+          <button
+            id="tutorial-action"
+            class="box-button"
+            onclick="window.location.href='./'"
+          >
+            Start Learning
+          </button>
+        </div>
+      </div>
+      <div id="tutorial-overlay-zone"></div>
+    </div>
+    <div id="footer-fade"></div>
+    <footer>
+      <div class="footer-item active" state="active" id="learn-tab">
+        <div class="active-img footer-tab-img" id="book"></div>
+        <div class="inactive-img footer-tab-img" id="book-lined"></div>
+      </div>
+      <div class="footer-item" id="settings-tab">
+        <div class="active-img footer-tab-img" id="settings"></div>
+        <div class="inactive-img footer-tab-img" id="settings-lined"></div>
+      </div>
+
+      <div class="footer-item" id="announcements-tab">
+        <div class="active-img footer-tab-img" id="announcements"></div>
+        <div class="inactive-img footer-tab-img" id="announcements-lined"></div>
+      </div>
+    </footer>
+  </body>
+  <script src="../../js/app.js"></script>
+</html>
