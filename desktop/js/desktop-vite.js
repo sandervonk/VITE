@@ -100,7 +100,7 @@ class Question {
   pickTense() {
     let tenses = [],
       tense;
-    for (tense of ["pr", "pc", "ps", "im", "fs", "fa", "co"]) {
+    for (tense of ["pr", "pc", "ps", "im", "fs", "fa", "co", "pp"]) {
       if (JSON.parse(localStorage["vite-" + tense])) {
         tenses.push(tense);
       }
@@ -133,6 +133,9 @@ class Question {
     } else if (t == "co") {
       a = this.coTense(s, v);
       t = "Conditionnel";
+    } else if (t == "pp") {
+      a = this.ppTense(s, v);
+      t = "Plus-que-Parfait";
     }
     return {
       subject: a.subject,
@@ -339,6 +342,14 @@ class Question {
       r = r.substr(0, r.length - 1);
     }
     let a = (r + end[s]).toLowerCase();
+    return this.versions(a, s);
+  }
+  ppTense(s, v) {
+    //Plus-que-Parfait Conjugator
+
+    let a = [this.imTense(s, v.verb.PC), this.pcTense(s, v).participle].join(
+      " "
+    );
     return this.versions(a, s);
   }
   agreement(subjects) {
