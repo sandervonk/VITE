@@ -86,7 +86,7 @@ class Question {
   pickTense() {
     let tenses = [],
       tense;
-    for (tense of ["pr", "pc", "ps", "im", "fs", "fa", "co", "pp"]) {
+    for (tense of ["pr", "pc", "ps", "im", "fs", "fa", "co"]) {
       if (JSON.parse(localStorage["vite-" + tense])) {
         tenses.push(tense);
       }
@@ -119,9 +119,6 @@ class Question {
     } else if (t == "co") {
       a = this.coTense(s, v);
       t = "Conditionnel";
-    } else if (t == "pp") {
-      a = this.coTense(s, v);
-      t = "Plus-que-Parfait";
     }
     return {
       subject: a.subject,
