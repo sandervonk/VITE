@@ -14,14 +14,17 @@
       media="(prefers-color-scheme: unset)"
       id="theme-dark-stylesheet"
     />
+
     <link rel="stylesheet" href="../../css/app.css" />
     <script src="../../js/src/jquery-3.6.0.min.js"></script>
+
+    <script src="../../js/theme.js"></script>
     <title>VITE! - App</title>
   </head>
   <body activetab="learn">
     <header>
-      <div></div>
       <div id="mascot-slot"></div>
+      <div id="header-readouts"></div>
       <img src="../../img/icon/pfp.png" id="profile-picutre" />
     </header>
     <div id="page-content" activetab="learn">
@@ -37,6 +40,12 @@
             <form action="./practice.html" method="get" id="learn-start">
               <input type="text" id="learn-type-input" name="type" value="" />
               <div id="learn-cards">
+                <div class="card learn-card" id="create-card" name="create">
+                  <div class="card-title">Create</div>
+                  <div class="card-description">
+                    Add your own verbs and create your own customized study sets
+                  </div>
+                </div>
                 <div class="card learn-card" id="study-card" name="study">
                   <div class="card-title">Study</div>
                   <div class="card-description">
@@ -49,12 +58,6 @@
                   <div class="card-description">
                     Learn more about specific structures and conjugations with
                     paired lessons and practice
-                  </div>
-                </div>
-                <div class="card learn-card" id="create-card" name="create">
-                  <div class="card-title">Create</div>
-                  <div class="card-description">
-                    Add your own verbs and create your own customized study sets
                   </div>
                 </div>
               </div>
@@ -176,7 +179,26 @@
           </div>
         </div>
         <div class="tab" id="announcements-tab">
-          Announcements
+          <div class="announcment-card">
+            <img src="../../img/card/wasteland.png" class="card-upper" />
+            <div class="card-lower secondary">
+              The next generation of VITE! learning is now in testing! Check
+              back to
+              <a href="https://sander.vonk.productions/VITE/new/mobile/app/"
+                >this page</a
+              >
+              to try the newest features, though please be patient, there's
+              still many bugs, and some/most features have stand-ins (such as
+              the login page) until I'm able to actually incorporate them!
+            </div>
+          </div>
+          <div id="announce-filler">
+            <div
+              src="../../img/icon/tabs/bullhorn-lined.svg"
+              id="announcements-lined"
+              class="footer-tab-img inactive-img"
+            ></div>
+          </div>
           <div class="footer-space"></div>
         </div>
       </div>

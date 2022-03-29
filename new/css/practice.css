@@ -108,6 +108,10 @@ body:not([showanswer]) #next-button:not(.avaliable) {
   align-self: start;
   margin-left: 40px;
 }
+#answer-mascot[src^="../../img/mascot/full="] {
+  height: 150px;
+  width: auto;
+}
 #vite-q-subject,
 #vite-q-verb {
   color: var(--text-primary);
@@ -127,7 +131,7 @@ body:not([showanswer]) #next-button:not(.avaliable) {
   content: "\00a0";
 }
 /*for extended keyboard*/
-@media (min-device-height: 140vh) {
+@media (min-device-height: 140vh) and (max-device-width: 768px) {
   #next-button {
     display: none !important;
   }
@@ -139,6 +143,10 @@ body:not([showanswer]) #next-button:not(.avaliable) {
   }
   body[showanswer] #next-button {
     display: flex !important;
+  }
+  #answer-mascot[src^="../../img/mascot/full="] {
+    height: 70px;
+    width: auto;
   }
 }
 #test {
@@ -275,4 +283,20 @@ body[showanswer] #answer-input {
 body:not([info]) #info-popup {
   opacity: 0;
   pointer-events: none;
+}
+.infinite {
+  --progress-fill: var(--infinite);
+  --progress-fill-accent: var(--infinite-accent);
+}
+form[name="practice-results"] {
+  display: flex;
+  flex-flow: row nowrap;
+}
+form[name="practice-results"] > * {
+  display: none;
+}
+header.infinite #back-button {
+  display: block;
+  transform: scaleX(-1);
+  margin-left: 20px;
 }

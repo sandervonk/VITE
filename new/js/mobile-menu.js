@@ -1,5 +1,36 @@
+var scoringData = {
+  target: new URLSearchParams(window.location.search).get("numquestions"),
+  countAll: new URLSearchParams(window.location.search).get("count"),
+  startTime: new Date().getTime(),
+  doSetup: new URLSearchParams(window.location.search).get("type") == "create",
+};
+if (scoringData.doSetup == true) {
+  window.open("./practice-setup.html", "_self");
+}
+if (
+  parseInt(scoringData.target) == NaN ||
+  scoringData.countAll == null ||
+  scoringData.target == Infinity
+) {
+  $("header").addClass("infinite");
+  $("#progress-fill").css("width", "100%");
+}
+history.replaceState({}, "", "practice.html");
 function setScore() {
   console.log("implement score show here");
+  let elapsedTime = new Date().getTime() - scoringData.startTime;
+  $("#results-duration").val(elapsedTime);
+  $("#results-total").val(score.total);
+  $("#results-correct").val(score.correct);
+  if (parseInt(scoringData.target) != NaN && scoringData.countAll != null) {
+    $("#progress-fill").css(
+      "width",
+      ((scoringData.countAll == "all" ? score.total : score.correct) /
+        parseInt(scoringData.target)) *
+        100 +
+        "%"
+    );
+  }
 }
 if (
   localStorage["vite-subjects"] == undefined ||
@@ -47,7 +78,7 @@ function stealCookies() {
     ["vite-subjects", "Je,Tu,Il / Elle / On,Nous,Vous,Ils / Elles"],
     [
       "vite-verbs",
-      "Venir,Pouvoir,Prendre,Connaître,Savoir,Avoir,Être,Aller,Faire,Manger,Finir,Vouloir,Dormir,Devoir,Suivre,Voir,Rendre,Mettre,Conduire,Dire,Descendre,Retourner,Mourir,Rentre,Sortir,Arriver,Naître",
+      "Venir,Pouvoir,Prendre,Connaître,Savoir,Avoir,Être,Aller,Faire,Manger,Finir,Vouloir,Dormir,Rester,Devoir,Suivre,Voir,Rendre,Pleurer,Sauter,Mettre,Conduire,Dire,Penser,Descendre,Retourner,Mourir,Rentre,Sortir,Arriver,Naître",
     ],
     ["Display-Mode", "QZ"],
     ["VITE-bg", "#ADD8E6"],

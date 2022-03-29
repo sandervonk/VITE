@@ -5,9 +5,9 @@
   --box-bg: #131f22;
   --button-bg: #131f22;
   --secondary: #1f3136;
-  --secondary-alt: #37464f;
-  --button-border: #e5e5e5;
-  --button-accent: #e5e5e5;
+  --secondary-alt: #37464f; /*need to fix these*/
+  --button-border: #37464f;
+  --button-accent: #37464f;
   --progress-back: #37464f;
   --progress-bar-bg: #1f3136;
   --progress-fill: #93d333;
@@ -48,6 +48,11 @@
   --result-incorrect-bg: #1f3136;
 }
 .active-img,
-.option-icon {
+.option-icon,
+.result-img {
   filter: brightness(0.9);
+}
+
+#answer-mascot {
+  filter: brightness(0.8);
 }

@@ -59,7 +59,7 @@
     "Ils / Elles": "prennent"
   },
   "Connaître": {
-    "mascot": "Know",
+    "mascot": "Waving",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -95,7 +95,7 @@
     "Ils / Elles": "savent"
   },
   "Avoir": {
-    "mascot": "Basket",
+    "mascot": "Default",
     "FS": "aur",
     "PS": {
       "Je": "eus",
@@ -141,7 +141,7 @@
     "Ils / Elles": "sont"
   },
   "Aller": {
-    "mascot": "Walk",
+    "mascot": "Default",
     "FS": "ir",
     "PS": {
       "Je": "alle",
@@ -187,8 +187,7 @@
     "Ils / Elles": "font"
   },
   "Manger": {
-    "mascot": "Have",
-    "fullsize": "Picnic",
+    "mascot": "Default",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -206,7 +205,7 @@
     "Ils / Elles": "regular"
   },
   "Finir": {
-    "mascot": "Done",
+    "mascot": "Default",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -237,7 +236,7 @@
     "Ils / Elles": "veulent"
   },
   "Dormir": {
-    "mascot": "Sleep",
+    "mascot": "Default",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -253,19 +252,6 @@
     "Nous": "dormons",
     "Vous": "dormez",
     "Ils / Elles": "dorment"
-  },
-  "Rester": {
-    "mascot": "Sleep",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to rest",
-    "PC": {
-      "helping": "Être",
-      "participle": "regular"
-    },
-    "All": "regular"
   },
   "Devoir": {
     "mascot": "Default",
@@ -334,32 +320,6 @@
     },
     "All": "regular"
   },
-  "Pleurer": {
-    "mascot": "Teared",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to cry",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "regular"
-    },
-    "All": "regular"
-  },
-  "Sauter": {
-    "mascot": "Excited",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to jump",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "regular"
-    },
-    "All": "regular"
-  },
   "Mettre": {
     "mascot": "Default",
     "FS": "regular",
@@ -380,7 +340,6 @@
   },
   "Conduire": {
     "mascot": "Default",
-    "fullsize": "Driving",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -398,7 +357,7 @@
     "Ils / Elles": "conduisent"
   },
   "Dire": {
-    "mascot": "Speaking",
+    "mascot": "Default",
     "FS": "regular",
     "PS": {
       "Je": "dis",
@@ -420,19 +379,6 @@
     "Vous": "dites",
     "Ils / Elles": "disent"
   },
-  "Penser": {
-    "mascot": "Think",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to think",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "regular"
-    },
-    "All": "regular"
-  },
   "Descendre": {
     "mascot": "Default",
     "FS": "regular",
@@ -448,7 +394,6 @@
   },
   "Retourner": {
     "mascot": "Default",
-    "fullsize": "Door",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -501,7 +446,6 @@
   },
   "Arriver": {
     "mascot": "Default",
-    "fullsize": "Door",
     "FS": "regular",
     "PS": {
       "All": "regular"

@@ -1,3 +1,7 @@
+* {
+  -webkit-overflow-scrolling: touch !important;
+}
+
 html,
 body {
   margin: 0;
@@ -75,6 +79,14 @@ header {
   z-index: 20;
   filter: drop-shadow(0px 0px 5px var(--bg));
 }
+.color-mask {
+  mask-size: contain;
+  -webkit-mask-size: contain;
+  mask-position: center;
+  -webkit-mask-position: center;
+  mask-repeat: no-repeat;
+  -webkit-mask-repeat: no-repeat;
+}
 .progress-button {
   height: 21px;
   width: 21.5px;
@@ -112,7 +124,7 @@ header {
 }
 #progress-fill {
   height: 100%;
-  min-width: 52px;
+  min-width: 32px;
   flex-grow: 0;
   padding: 4px;
   box-sizing: border-box;
@@ -152,4 +164,49 @@ label[for],
 .footer-item,
 button {
   user-select: none;
+}
+.section-title,
+.switch-label {
+  font-size: 24px;
+  font-weight: 700;
+}
+/*settings*/
+.hidden-radio {
+  width: 0;
+  padding: 0;
+  margin: 0;
+}
+.switch-toggle {
+  padding: 0;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-evenly;
+  overflow: hidden;
+  border-radius: 6px;
+}
+.switch-label {
+  line-height: 40px;
+  flex-grow: 1;
+  text-align: center;
+  color: var(--switch-bg);
+}
+.switch-label {
+  border-left: solid 1px var(--switch-bg);
+  border-right: solid 1px var(--switch-bg);
+}
+.switch-label:first-of-type {
+  border-left: none;
+}
+.switch-label:last-of-type {
+  border-right: none;
+}
+input:checked + .switch-label {
+  background-color: var(--switch-bg);
+  color: var(--switch-selected);
+  box-shadow: 0 0 0 2px var(--switch-bg);
+}
+.section-description {
+  font-size: 16px;
+  color: var(--text-secondary);
+  margin-bottom: 7px;
 }

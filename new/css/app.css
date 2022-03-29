@@ -338,6 +338,10 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   margin: 10px 0;
   color: var(--card-text);
 }
+.card * {
+  pointer-events: none !important;
+  user-select: none !important;
+}
 #study-card {
   background-image: var(--study-card-bg);
 }
@@ -357,45 +361,7 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 #mascot-slot {
   background-image: url(../img/mascot/mood=Waving.svg);
 }
-/*settings*/
-.hidden-radio {
-  width: 0;
-  padding: 0;
-  margin: 0;
-}
-.switch-toggle {
-  padding: 0;
-  display: flex;
-  flex-flow: row nowrap;
-  justify-content: space-evenly;
-  overflow: hidden;
-  border-radius: 6px;
-}
-.switch-label {
-  line-height: 40px;
-  flex-grow: 1;
-  text-align: center;
-  color: var(--switch-bg);
-}
-.switch-label {
-  border-left: solid 1px var(--switch-bg);
-  border-right: solid 1px var(--switch-bg);
-}
-.switch-label:first-of-type {
-  border-left: none;
-}
-.switch-label:last-of-type {
-  border-right: none;
-}
-input:checked + .switch-label {
-  background-color: var(--switch-bg);
-  color: var(--switch-selected);
-}
-.section-description {
-  font-size: 16px;
-  color: var(--text-secondary);
-  margin-bottom: 7px;
-}
+
 .section-title,
 .switch-label,
 #tutorial-title,
@@ -404,6 +370,7 @@ input:checked + .switch-label {
   font-size: 24px;
   font-weight: 700;
 }
+
 .section-title {
   color: var(--text-primary);
   padding-left: 12px;
@@ -484,4 +451,42 @@ input:checked + .switch-label {
 }
 #learn-type-input {
   display: none;
+}
+.announcment-card {
+  overflow: hidden;
+}
+.announcment-card .card-lower,
+.announcment-card {
+  border-radius: 14px;
+  background-color: var(--bg);
+}
+.announcment-card .card-upper {
+  margin-bottom: -28px;
+  width: 100%;
+  height: auto;
+}
+.announcment-card .card-lower {
+  padding: 10px;
+  background-color: var(--secondary);
+  position: relative;
+  width: 100%;
+  box-sizing: border-box;
+}
+#announce-filler {
+  height: 150px;
+  flex-grow: 1;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+#announce-filler * {
+  height: 150px !important;
+  width: 150px !important;
+  transform: rotate(-15deg);
+  opacity: 0.25;
+}
+#announcements-tab {
+  display: flex;
+  flex-flow: column;
 }

@@ -1,24 +1,6 @@
 //*Set Question Data
 /*
-      t = "Present";
-    } else if (t == "pc") {
-      a = this.pcTense(s, v);
-      t = "Passé Composé";
-    } else if (t == "ps") {
-      a = this.psTense(s, v);
-      t = "Passé Simple";
-    } else if (t == "im") {
-      a = this.imTense(s, v);
-      t = "Imparfait";
-    } else if (t == "fs") {
-      a = this.fsTense(s, v);
-      t = "Futur Simple";
-    } else if (t == "fa") {
-      a = this.faTense(s, v);
-      t = "Futur Antérieur";
-    } else if (t == "co") {
-      a = this.coTense(s, v);
-      t = "Conditionnel";
+
 */
 var question = {},
   questionStart = new Date().getTime(),
@@ -56,11 +38,27 @@ function showQuestion(q) {
     subjectDefinitions[q.subject.toLowerCase()]
   );
   $("#vite-q-subject").addClass("notranslate");
+  if (q.fullsize != undefined) {
+    $("#answer-mascot").attr("mood", "full=" + q.fullsize);
+  } else {
+    $("#answer-mascot").attr("mood", "mood=" + q.mascot);
+  }
 }
 function submitAnswer() {
   if (document.body.hasAttribute("showanswer")) {
     $(document.body).removeAttr("showanswer");
-    showQuestion(new Question());
+    let amntDone =
+      (scoringData.countAll == "all" ? score.total : score.correct) /
+      scoringData.target;
+    if (
+      scoringData.target != NaN &&
+      scoringData.countAll != null &&
+      amntDone >= 1
+    ) {
+      $("form[name='practice-results']").submit();
+    } else {
+      showQuestion(new Question());
+    }
 
     $("#answer-input").val("");
   } else {
@@ -174,6 +172,8 @@ class Question {
         full: a.full,
       },
       definition: v.verb.definition,
+      mascot: v.verb.mascot,
+      fullsize: v.verb.fullsize,
     };
   }
   compress(t) {

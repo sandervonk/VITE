@@ -2,7 +2,16 @@ var mascot = $("#answer-mascot"),
   observer = new MutationObserver((changes) => {
     changes.forEach((change) => {
       if (change.attributeName.includes("mood")) {
-        console.log(mascot.attr("mood"));
+        $("#answer-mascot").attr(
+          "src",
+          `../../img/mascot/${mascot.attr("mood")}.svg`
+        );
+      }
+      if (change.attributeName.includes("full")) {
+        $("#answer-mascot").attr(
+          "src",
+          `../../img/mascot/${mascot.attr("full")}.svg`
+        );
       }
     });
   });
@@ -35,7 +44,6 @@ $(document.body).on("click", "#next-button", function () {
   $(document.body).attr("info", null);
 
   $("#next-button").removeClass("avaliable");
-  console.log("submit");
 });
 $(document.body).click((e) => {
   if (
@@ -52,12 +60,16 @@ $(window).on("resize", () => {
 });
 
 $("#vite-q-tense,#vite-q-subject,#vite-q-verb").click((e) => {
-  console.log("showinfo");
   $(document.body).attr("info", "");
   $("#info-popup").text(e.target.getAttribute("info"));
   $("#info-popup").css({
     top: e.target.offsetTop + e.target.offsetHeight,
     left: e.target.offsetLeft,
-    "max-width": document.body.offsetWidth - e.target.offsetLeft - 34,
+    "max-width":
+      document.body.offsetWidth -
+      (e.target.offsetLeft -
+        (document.documentElement.offsetWidth - document.body.offsetWidth) /
+          2) -
+      34,
   });
 });

@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="google" content="notranslate" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="../../css/fonts.css" />
+    <link rel="stylesheet" href="../../css/common.css" />
+    <link rel="stylesheet" href="../../css/theme.css" />
+    <link rel="stylesheet" href="../../css/practice-setup.css" />
+    <link rel="stylesheet" href="../../css/results.css" />
+    <link
+      rel="stylesheet"
+      href="../../css/theme-dark.css"
+      media="(prefers-color-scheme: unset)"
+      id="theme-dark-stylesheet"
+    />
+    <script src="../../js/src/jquery-3.6.0.min.js"></script>
+    <script src="../../js/theme.js"></script>
+    <script src="../../js/vite-util.js"></script>
+    <title>VITE! - Practice</title>
+  </head>
+  <body>
+    <header>
+      <button
+        id="close-button"
+        class="progress-button"
+        type="button"
+        onclick="window.open('./', '_self')"
+      ></button>
+      <div id="progress-bar" style="display: none">
+        <div id="progress-fill">
+          <div id="progress-fill-accent"></div>
+        </div>
+      </div>
+    </header>
+    <div id="results-page">
+      <img src="../../img/results/Celebration.svg" id="celebration-img" />
+      <div id="results-container">
+        <div class="results-item" id="total">
+          <img src="../../img/icon/answered-icon.svg" class="result-img" />
+          <div class="result-number"></div>
+        </div>
+        <div class="results-item" id="correct">
+          <img src="../../img/icon/correct-icon.svg" class="result-img" />
+          <div class="result-number"></div>
+        </div>
+        <div class="results-item" id="time">
+          <img src="../../img/icon/duration-icon.svg" class="result-img" />
+          <div class="result-number"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="bottom-actions">
+      <div id="reset-button" class="box primary center avaliable" onclick="">
+        <div id="save-icon" class="color-mask"></div>
+      </div>
+      <button
+        id="next-button"
+        class="box-button primary center avaliable"
+        value="Continue"
+        onclick="window.open('./', '_self')"
+      ></button>
+    </div>
+  </body>
+  <script src="../../js/results.js"></script>
+</html>
