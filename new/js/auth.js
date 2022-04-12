@@ -110,7 +110,9 @@ authForm.on("submit", (e) => {
     });
   } else {
     // login
-    auth.signInWithEmailAndPassword(email, password).then((cred) => {});
+    auth.signInWithEmailAndPassword(email, password).then((user) => {
+      console.log(user);
+    });
   }
   authForm[0].reset();
 });

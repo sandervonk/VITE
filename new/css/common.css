@@ -215,3 +215,46 @@ input[type="button"],
 [auth="logout-button"] {
   cursor: pointer;
 }
+
+/* TOAST */
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+.toast {
+  z-index: 100000000;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  margin: 20px;
+  width: calc(100% - 40px);
+  background-color: var(--box-bg);
+  border: solid 2px var(--box-border);
+
+  color: var(--box-border);
+  min-height: 200px;
+  font-size: 24px;
+  font-family: "Next", sans-serif;
+  padding: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  box-sizing: border-box;
+  animation: slideIn 0.5s forwards;
+  border-radius: 11px;
+}
+.toast-overlay {
+  z-index: 10000000;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: #000000;
+  opacity: 0.25;
+}
