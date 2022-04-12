@@ -4,13 +4,13 @@ var mascot = $("#answer-mascot"),
       if (change.attributeName.includes("mood")) {
         $("#answer-mascot").attr(
           "src",
-          `../../img/mascot/${mascot.attr("mood")}.svg`
+          `../img/mascot/${mascot.attr("mood")}.svg`
         );
       }
       if (change.attributeName.includes("full")) {
         $("#answer-mascot").attr(
           "src",
-          `../../img/mascot/${mascot.attr("full")}.svg`
+          `../img/mascot/${mascot.attr("full")}.svg`
         );
       }
     });

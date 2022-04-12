@@ -161,7 +161,7 @@ function changeScore(num) {
 }
 
 $.ajax({
-  url: "../../verbs.json",
+  url: "../verbs.json",
   dataType: "json",
   success: (response) => {
     verbs = response;
