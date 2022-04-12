@@ -490,3 +490,8 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   display: flex;
   flex-flow: column;
 }
+
+/* TEMPORARY */
+#goal-progress {
+  display: none;
+}

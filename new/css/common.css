@@ -210,3 +210,8 @@ input:checked + .switch-label {
   color: var(--text-secondary);
   margin-bottom: 7px;
 }
+#back-button,
+input[type="button"],
+[auth="logout-button"] {
+  cursor: pointer;
+}

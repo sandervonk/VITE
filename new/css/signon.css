@@ -50,7 +50,9 @@ body * {
   margin-top: 28px;
   width: 100%;
 }
-#signup-box {
+
+#signup-box,
+#verification-box {
   border-radius: 15px;
   padding: 20px;
   margin-top: 35px;
@@ -58,6 +60,7 @@ body * {
   padding-top: 35px;
   z-index: 10;
   position: relative;
+  box-sizing: border-box;
 }
 #signup-box label {
   font-family: "Next", sans-serif;
@@ -67,7 +70,8 @@ body * {
   line-height: 24px;
   font-weight: 500;
 }
-#signup-box input {
+#signup-box input,
+#verification-box input {
   border: solid var(--input);
   border-radius: 5px;
   color: var(--input);
@@ -77,6 +81,17 @@ body * {
   font-family: "Next", sans-serif;
   padding: 0 12px;
   font-size: 20px;
+}
+#verification-box input[type="button"] {
+  color: white;
+  border-color: var(--button-border);
+  border-radius: 11px;
+}
+#signup-box input[type="submit"].box-button:active,
+#verification-box input[type="button"]:active {
+  height: 42px;
+  margin-bottom: 0 !important;
+  margin-top: 2px;
 }
 #signup-box input[type="date"] {
   text-align: center;
@@ -89,10 +104,28 @@ body * {
 }
 #signup-box input[type="submit"] {
   color: white;
-  background-color: #57dd35;
   opacity: 1 !important;
   border-radius: 11px;
+}
+#signup-box input[type="submit"]:first-of-type {
+  background-color: #57dd35;
   border-color: #35bb13;
+}
+#oauth-login {
+  background-color: #ffffff;
+  border-color: #1d1d1d;
+  background-image: url(../img/icon/google.png);
+  background-repeat: no-repeat;
+  background-position: 10px center;
+  background-size: 30px;
+  height: 50px;
+  color: #1d1d1d;
+  line-height: 50px;
+  padding: 0;
+}
+#oauth-login:active {
+  height: 48px;
+  margin-top: 30px;
 }
 @media (orientation: landscape) {
   @keyframes earthIn {
@@ -127,4 +160,60 @@ body * {
 }
 #earth-illustration {
   z-index: 4;
+}
+#auth-box {
+  display: flex;
+  flex-flow: row nowrap;
+  min-width: 200%;
+  box-sizing: border-box;
+  position: relative;
+  left: 0;
+  transition: left 0.5s ease-in-out;
+}
+#auth-box.second {
+  left: -100%;
+}
+#auth-box > * {
+  width: 50%;
+  transition: transform 0.5s ease-in-out, opacity 0.5s ease-in-out;
+  position: relative;
+  z-index: 10;
+}
+#auth-box > .inactive {
+  transform: scale(0.5);
+  transform-origin: center center;
+  opacity: 0;
+}
+#verification-box {
+  background-color: var(--on-bg);
+  height: fit-content;
+}
+input[type="button"]#change-email {
+  background-color: var(--on-bg);
+  color: var(--box-border);
+  border-color: var(--box-border);
+  flex-grow: 1;
+  border-width: 2px !important;
+  border-bottom-width: 4px !important;
+  margin-right: 10px;
+  flex-basis: fit-content;
+  white-space: nowrap;
+}
+input[type="button"]#change-email:active {
+  border-bottom-width: 2px !important;
+}
+#send-verification {
+  flex-grow: 5;
+}
+#submit-buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: end;
+}
+#verification-email {
+  background-color: var(--box-border);
+  margin-bottom: 20px;
+  font-size: 20px;
+  user-select: none;
+  pointer-events: none;
 }
