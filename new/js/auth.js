@@ -25,6 +25,21 @@ function openOnboard() {
 function openApp() {
   window.open("./app/", "_self");
 }
+//catch errors
+function authError(error) {
+  console.error("caught and showed error: ", error);
+  $("#email-input, #password-input").removeClass("error");
+  new Toast(error.message, "default", 2000, "img/icon/error-icon.png");
+  if (error.code.includes("password")) {
+    $("#password-input").addClass("error");
+  }
+  if (error.code.includes("email")) {
+    $("#email-input").addClass("error");
+  }
+  if ($("#password-input").val() == "") {
+    $("#email-input, #password-input").addClass("error");
+  }
+}
 //add listener for verify button
 function verifyButton(userObj) {
   $(document.body).on("click", "#send-verification:not(.ready)", function () {
@@ -67,6 +82,9 @@ auth.onAuthStateChanged((user) => {
     let authData = auth.currentUser.metadata;
     db.collection("users")
       .doc(auth.getUid())
+      .set({ lastIn: new Date().getTime() }, { merge: true });
+    db.collection("users")
+      .doc(auth.getUid())
       .get()
       .then((doc) => {
         console.log(doc.data());
@@ -100,21 +118,33 @@ authForm.on("submit", (e) => {
   if (document.activeElement.id == "signup") {
     // signup
     authPromise = auth.createUserWithEmailAndPassword(email, password);
-    authPromise.then((user) => {
-      console.log("cred", user);
-      //switch to verification page
-      secondPage();
-      db.collection("users").doc(auth.getUid()).set({
-        joined: new Date().getTime(),
-      });
-    });
+    authPromise
+      .then((user) => {
+        $("#password-input, #email-input").removeClass("error");
+        console.log("cred", user);
+        //switch to verification page
+        secondPage();
+        db.collection("users").doc(auth.getUid()).set(
+          {
+            joined: new Date().getTime(),
+          },
+          { merge: true }
+        );
+
+        authForm[0].reset();
+      })
+      .catch((err) => authError(err));
   } else {
     // login
-    auth.signInWithEmailAndPassword(email, password).then((user) => {
-      console.log(user);
-    });
+    auth
+      .signInWithEmailAndPassword(email, password)
+      .then((user) => {
+        $("#password-input, #email-input").removeClass("error");
+        console.log(user);
+        authForm[0].reset();
+      })
+      .catch((err) => authError(err));
   }
-  authForm[0].reset();
 });
 $("#oauth-login").click((e) => {
   var provider = new firebase.auth.GoogleAuthProvider();

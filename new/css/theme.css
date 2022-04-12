@@ -49,4 +49,10 @@
   --result-incorrect-bg: #ffdfe0;
   --infinite: #2b71c9;
   --infinite-accent: #3e8be9;
+  /*toast*/
+  --toast-bg: #303030;
+  --toast-text: #ffffff;
+  /*login*/
+  --error-border: #ff4b4c;
+  --error-bg: #ffdfe0;
 }

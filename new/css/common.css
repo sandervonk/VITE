@@ -219,34 +219,74 @@ input[type="button"],
 /* TOAST */
 @keyframes slideIn {
   from {
-    transform: translateY(100%);
+    transform: translateX(-50%) translateY(100%);
+    opacity: 0;
   }
   to {
-    transform: translateY(0);
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slideOut {
+  from {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-50%) translateY(100%);
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 0.5;
   }
 }
 .toast {
   z-index: 100000000;
   position: fixed;
   bottom: 0;
-  left: 0;
-  margin: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  margin: 20px 0;
   width: calc(100% - 40px);
+  font-size: 18px;
+  font-family: "Next", sans-serif;
+  display: flex;
+  box-sizing: border-box;
+  animation: slideIn 0.5s forwards;
+  max-width: calc(500px - 32px - 40px);
+}
+.toast.boxed {
   background-color: var(--box-bg);
   border: solid 2px var(--box-border);
-
   color: var(--box-border);
-  min-height: 200px;
-  font-size: 24px;
-  font-family: "Next", sans-serif;
-  padding: 20px;
-  display: flex;
+  border-radius: 11px;
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  box-sizing: border-box;
-  animation: slideIn 0.5s forwards;
-  border-radius: 11px;
+  padding: 20px;
+}
+.toast.default {
+  background-color: var(--toast-bg);
+
+  color: var(--toast-text);
+  border-radius: 20px;
+  flex-flow: row nowrap;
+  justify-content: flex-start;
+  align-items: flex-start;
+  font-family: "Nunito", sans-serif !important;
+  padding: 15px;
+  font-size: 16px;
+  font-weight: 400;
+}
+.toast-icon {
+  height: 25px;
+  align-self: center;
+  margin-right: 15px;
 }
 .toast-overlay {
   z-index: 10000000;
@@ -256,5 +296,12 @@ input[type="button"],
   width: 100%;
   height: 100%;
   background: #000000;
-  opacity: 0.25;
+  animation: fadeIn 0.25s forwards;
+}
+
+input.error {
+  border-color: var(--error-border) !important;
+  background-color: var(--error-bg) !important;
+  opacity: 1 !important;
+  color: var(--error-border) !important;
 }

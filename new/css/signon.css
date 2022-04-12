@@ -100,7 +100,7 @@ body * {
   margin-bottom: 25px;
 }
 #signup-box input:not(:active):not(:focus) {
-  opacity: 0.25;
+  opacity: 0.5;
 }
 #signup-box input[type="submit"] {
   color: white;

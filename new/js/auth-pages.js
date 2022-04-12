@@ -1,3 +1,10 @@
+//img
+function setPhoto(url) {
+  console.log(url, url != null);
+  if (url != null) {
+    $(".auth-picture").attr("src", url);
+  }
+}
 //!setup
 const config = {
   apiKey: "AIzaSyCZelR1HSbmcPf70rTI5Ig02yasL8RSdPw",
@@ -22,7 +29,11 @@ db.settings({ timestampsInSnapshots: true });
 auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("user logged in:");
+    setPhoto(user.photoURL);
     let authData = auth.currentUser.metadata;
+    db.collection("users")
+      .doc(auth.getUid())
+      .set({ lastIn: new Date().getTime() }, { merge: true });
     db.collection("users")
       .doc(auth.getUid())
       .get()
@@ -31,17 +42,35 @@ auth.onAuthStateChanged((user) => {
         localStorage.setItem("userData", JSON.stringify(doc.data()));
         localStorage.setItem("userId", auth.getUid());
       });
-    if (auth.currentUser.emailVerified) {
-      if (authData.creationTime === authData.lastSignInTime) {
-      } else {
-      }
+    if (!auth.currentUser.emailVerified) {
+      new Toast(
+        "Please verify your email to use the app!",
+        "default",
+        3000,
+        "../img/icon/info-icon.svg",
+        "../"
+      );
     } else {
+      /*
+      new Toast(
+        "Logged in successfully!",
+        "default",
+        500,
+        "../img/icon/info-icon.svg"
+      );
+      */
     }
   } else {
     console.log("user logged out");
     localStorage.setItem("userData", "");
     localStorage.setItem("userId", "");
-    window.open("../", "_self");
+    new Toast(
+      "Please login to use the app!",
+      "default",
+      1000,
+      "../img/icon/info-icon.svg",
+      "../"
+    );
   }
 });
 
