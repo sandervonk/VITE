@@ -2,6 +2,7 @@ const staticLinks = "dev-VITE-new-v1";
 const assets = [
   "../index.html",
   "index.html",
+  "/index.html",
   "../404.html",
   "../index.html",
   "../manifest.json",
