@@ -1,4 +1,4 @@
-const staticLinks = "VITE-new-v1";
+const staticLinks = "dev-VITE-new-v1";
 const assets = ["/VITE/new/index.html",
   "/VITE/new/app/index.html",
   "/VITE/new/404.html",
