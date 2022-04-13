@@ -40,6 +40,26 @@ function authError(error) {
     $("#email-input, #password-input").addClass("error");
   }
 }
+function resetEmail() {
+  auth
+    .sendPasswordResetEmail($("#email-input").val())
+    .then((r) => {
+      new Toast(
+        "Sent password reset email",
+        "default",
+        2000,
+        "img/icon/success-icon.svg"
+      );
+    })
+    .catch((err) => {
+      new Toast(
+        "Error sending reset email: " + err.message.replace("Error: ", ""),
+        "default",
+        2000,
+        "img/icon/error-icon.svg"
+      );
+    });
+}
 //add listener for verify button
 function verifyButton(userObj) {
   $(document.body).on("click", "#send-verification:not(.ready)", function () {

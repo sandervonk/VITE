@@ -33,15 +33,32 @@ function loadCookies() {
 function stealCookies() {
   //setup user data from template ('custom' has all enabled)
   return new Promise(function (fulfilled, rejected) {
-    db.collection("templateUsers")
-      .doc("custom")
+    db.collection("users")
+      .doc(auth.getUid())
       .get()
-      .then((levelJSON) => {
-        db.collection("users")
-          .doc(auth.getUid())
-          .set(levelJSON.data(), { merge: true })
-          .then(() => {
-            loadCookies().then(fulfilled());
+      .then((r) => {
+        let path = r.data().path;
+        if (path == undefined) {
+          path = "custom";
+        }
+        db.collection("templateUsers")
+          .doc(path)
+          .get()
+          .then((levelJSON) => {
+            db.collection("users")
+              .doc(auth.getUid())
+              .set(levelJSON.data(), { merge: true })
+              .then(() => {
+                loadCookies().then(() => {
+                  new Toast(
+                    `Reset to path settings for "` + path + `"`,
+                    "default",
+                    1000,
+                    "../img/icon/info-icon.svg"
+                  );
+                  fulfilled();
+                });
+              });
           });
       });
   });
