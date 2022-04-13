@@ -1,6 +1,9 @@
 const staticLinks = "dev-VITE-new-v1";
 const assets = [
-  "/index.html",
+  "index.html",
+  "../manifest.json",
+  "../onboarding.html",
+  "../serviceWorker.js",
 ];
 
 self.addEventListener("install", (installEvent) => {
