@@ -496,7 +496,7 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   width: 50px;
   height: 50px;
 }
-@media (min-width: 500px) {
+@media (orientation: landscape), (min-width: 1000px) {
   footer {
     max-width: 500px;
     box-sizing: content-box;
