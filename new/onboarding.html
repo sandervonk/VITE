@@ -14,6 +14,10 @@
       media="(prefers-color-scheme: unset)"
       id="theme-dark-stylesheet"
     />
+    <script src="js/src/jquery-3.6.0.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
     <script src="js/theme.js"></script>
     <title>VITE! - Get Started</title>
   </head>
@@ -81,16 +85,30 @@
       </div>
     </form>
   </body>
+  <script src="js/toast.js"></script>
+  <script src="js/auth-pages.js"></script>
   <script>
     for (element of document.getElementsByClassName("box option")) {
       element.addEventListener("click", function (e) {
-        document.getElementById("path-input").value =
-          e.target.getAttribute("name");
-        e.target.parentElement.submit();
+        //setup from template
+        db.collection("templateUsers")
+          .doc(e.target.getAttribute("name"))
+          .get()
+          .then((levelJSON) => {
+            db.collection("users")
+              .doc(auth.getUid())
+              .set(levelJSON.data(), { merge: true })
+              .then(() => {
+                document.getElementById("path-input").value =
+                  e.target.getAttribute("name");
+                e.target.parentElement.submit();
+              });
+          });
+
+        if (window.location.href.includes("?showTutorial=false")) {
+          document.getElementById("tutorial-input").value = "false";
+        }
       });
-    }
-    if (window.location.href.includes("?showTutorial=false")) {
-      document.getElementById("tutorial-input").value = "false";
     }
   </script>
 </html>

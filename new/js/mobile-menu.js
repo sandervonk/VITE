@@ -66,77 +66,19 @@ var score = {
   };
 function split(storageVar) {
   let arr = [];
-  for (let item of storageVar.split(",")) {
-    if (item != "") {
-      arr.push(item);
-    }
+  try {
+    arr = JSON.parse(localStorage["userData"])[storageVar];
+  } catch (err) {
+    console.error(
+      "Could not split var: ",
+      err,
+      " attempting fallback to splitting on ',' "
+    );
+    arr = storageVar.split(",");
   }
   return arr;
 }
-function stealCookies() {
-  let cookies = [
-    ["vite-subjects", "Je,Tu,Il / Elle / On,Nous,Vous,Ils / Elles"],
-    [
-      "vite-verbs",
-      "Venir,Pouvoir,Prendre,Connaître,Savoir,Avoir,Être,Aller,Faire,Manger,Finir,Vouloir,Dormir,Rester,Devoir,Suivre,Voir,Rendre,Pleurer,Sauter,Mettre,Conduire,Dire,Penser,Descendre,Retourner,Mourir,Rentre,Sortir,Arriver,Naître",
-    ],
-    ["Display-Mode", "QZ"],
-    ["VITE-bg", "#ADD8E6"],
-    ["vite-old-user", "true"],
-    ["VITE-correct", 0],
-    ["VITE-incorrect", 0],
-    ["vite-skip-blank", false],
-    ["vite-pc", true],
-    ["vite-ps", true],
-    ["vite-pr", true],
-    ["vite-im", true],
-    ["vite-fs", true],
-    ["vite-fa", true],
-    ["vite-co", true],
-    ["vite-custom-verbs", ""],
-  ];
-  for (cookie of cookies) {
-    localStorage[cookie[0]] = cookie[1];
-  }
-}
-if (localStorage["vite-custom-verbs"] === undefined) {
-  localStorage["vite-custom-verbs"] = "";
-  window.location.reload();
-}
 
-if (
-  (localStorage["vite-pr"] != "true" &&
-    localStorage["vite-pc"] != "true" &&
-    localStorage["vite-ps"] != "true" &&
-    localStorage["vite-im"] != "true" &&
-    localStorage["vite-fs"] != "true" &&
-    localStorage["vite-co"] != "true" &&
-    localStorage["vite-fa"] != "true") ||
-  localStorage["vite-pr"] === undefined ||
-  localStorage["vite-pc"] === undefined ||
-  localStorage["vite-ps"] === undefined ||
-  localStorage["vite-im"] === undefined ||
-  localStorage["vite-fs"] === undefined ||
-  localStorage["vite-co"] === undefined ||
-  localStorage["vite-fa"] === undefined
-) {
-  localStorage["vite-pr"] = true;
-  localStorage["vite-pc"] = true;
-  localStorage["vite-ps"] = true;
-  localStorage["vite-im"] = true;
-  localStorage["vite-fs"] = true;
-  localStorage["vite-fa"] = true;
-  localStorage["vite-co"] = true;
-  window.location.reload();
-}
-if (
-  localStorage["vite-old-user"] != "true" ||
-  !typeof localStorage["vite-subjects"] === "string" ||
-  !typeof localStorage["vite-subjects"] === "string" ||
-  !typeof localStorage["Display-Mode"] === "string"
-) {
-  stealCookies();
-}
 var verbs = {};
 function changeScore(num) {
   if (num == 1) {
@@ -165,21 +107,12 @@ $.ajax({
   dataType: "json",
   success: (response) => {
     verbs = response;
-    if (localStorage["vite-custom-verbs"] != "") {
-      $("#verb-custom-share").addClass("active");
-      verbs = JSON.parse(
-        JSON.stringify(verbs).substr(0, JSON.stringify(verbs).length - 1) +
-          ", " +
-          localStorage["vite-custom-verbs"] +
-          "}"
-      );
-    }
+    //temporarily removed custom verbs
     showQuestion(new Question());
 
     //console.log(verbs)
   },
   error: function (err) {
-    console.error("error: could not load verbs.json :(");
-    console.log(err);
+    console.error("Could not load verbs.json :(", err);
   },
 });

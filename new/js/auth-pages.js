@@ -1,6 +1,5 @@
 //img
 function setPhoto(url) {
-  console.log(url, url != null);
   if (url != null) {
     $(".auth-picture").attr("src", url);
   }
@@ -28,7 +27,8 @@ db.settings({ timestampsInSnapshots: true });
 //!code
 auth.onAuthStateChanged((user) => {
   if (user) {
-    console.log("user logged in:");
+    console.log("user logged in");
+
     setPhoto(user.photoURL);
     let authData = auth.currentUser.metadata;
     db.collection("users")
@@ -38,7 +38,6 @@ auth.onAuthStateChanged((user) => {
       .doc(auth.getUid())
       .get()
       .then((doc) => {
-        console.log(doc.data());
         localStorage.setItem("userData", JSON.stringify(doc.data()));
         localStorage.setItem("userId", auth.getUid());
       });
@@ -58,7 +57,17 @@ auth.onAuthStateChanged((user) => {
         500,
         "../img/icon/info-icon.svg"
       );
-      */
+      */ try {
+        startApp().then((r) => {
+          if ($("meta[name=runapp]").prop("content")) {
+            showQuestion(new Question());
+          } else if ($("meta[name=runsetup]").prop("content")) {
+            setupSetup();
+          }
+        });
+      } catch {
+        console.error("could not start app");
+      }
     }
   } else {
     console.log("user logged out");

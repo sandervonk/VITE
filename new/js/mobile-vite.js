@@ -85,10 +85,7 @@ function submitAnswer() {
     }
   }
 }
-//Make the overlay closable
-$("#answer-overlay, #action-next").click(function () {
-  submitAnswer();
-});
+
 //*Answer Handling and Variations
 function variations(answer) {
   return [
@@ -107,8 +104,8 @@ class Question {
   #subject;
   constructor() {
     this.#tense = this.pickTense();
-    this.#subject = this.random(split(localStorage["vite-subjects"]));
-    this.#verb = this.random(split(localStorage["vite-verbs"]));
+    this.#subject = this.random(split("subjects"));
+    this.#verb = this.random(split("verbs"));
     this.#verb = {
       name: this.#verb,
       verb: verbs[this.#verb],
@@ -118,21 +115,14 @@ class Question {
   random(input) {
     if (typeof input == "object") {
       return input[parseInt(Math.random() * input.length)];
-    } else if (typeof input == number) {
+    } else if (typeof input == "number") {
       return parseInt(Math.random() * input);
     } else {
       return Math.random();
     }
   }
   pickTense() {
-    let tenses = [],
-      tense;
-    for (tense of ["pr", "pc", "ps", "im", "fs", "fa", "co"]) {
-      if (JSON.parse(localStorage["vite-" + tense])) {
-        tenses.push(tense);
-      }
-    }
-    return this.random(tenses);
+    return this.random(split("tenses"));
   }
   conjugate(t, s, v) {
     let tOriginal = t;

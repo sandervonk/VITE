@@ -60,7 +60,6 @@
   flex-flow: row wrap;
   box-sizing: border-box;
 }
-
 .option-toggle {
   font-size: 20px;
   font-weight: 700;
@@ -72,6 +71,12 @@
   cursor: pointer;
   box-sizing: border-box;
   height: 40px !important;
+}
+.subject-toggle {
+  flex-basis: fit-content;
+
+  padding: 5px 15px !important;
+  flex-shrink: 0;
 }
 .options-section {
   margin-bottom: 20px;
