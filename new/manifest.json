@@ -1,0 +1,52 @@
+{
+  "name": "VITE! French Practice",
+  "short_name": "VITE!",
+  "start_url": "https://sander.vonk.productions/VITE/new/",
+  "scope": "https://sander.vonk.productions/VITE/new/",
+  "display": "standalone",
+  "background_color": "#131f22",
+  "theme_color": "#3CADC6",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "img/icon/app/icon-72x72.png",
+      "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "img/icon/app/icon-96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "img/icon/app/icon-128x128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "img/icon/app/icon-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "img/icon/app/icon-152x152.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "img/icon/app/icon-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "img/icon/app/icon-384x384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "img/icon/app/icon-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    }
+  ]
+}
