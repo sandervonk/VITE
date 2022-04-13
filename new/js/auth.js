@@ -56,6 +56,13 @@ function verifyButton(userObj) {
             "border-color": "#35BB13",
           });
           $("#send-verification").addClass("ready");
+          new Toast(
+            "Email Verified... Logging in",
+            "default",
+            2000,
+            "img/icon/success-icon.png",
+            "./"
+          );
         }
       }, 1000);
     }

@@ -232,8 +232,7 @@ body:not(.tutorial) #tutorial-overlay {
   flex-flow: row nowrap;
   justify-content: start;
 }
-@media (min-width: 390px) {
-}
+
 #tutorial-arrow {
   height: 25px;
   background-color: var(--secondary);
@@ -380,9 +379,12 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   margin-bottom: 30px;
 }
 
-#saves-section {
-  opacity: 0.5;
+#saves-section,
+#pacing-section {
   pointer-events: none;
+}
+#pacing-section {
+  opacity: 0.5;
 }
 #prior-section {
   margin-bottom: 0;
@@ -493,6 +495,14 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 #profile-picture {
   width: 50px;
   height: 50px;
+}
+@media (min-width: 500px) {
+  footer {
+    max-width: 500px;
+    box-sizing: content-box;
+    height: calc(76px - 18px - 15px);
+    padding: 18px calc(50vw - 250px);
+  }
 }
 /* TEMPORARY */
 #goal-progress {

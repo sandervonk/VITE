@@ -46,7 +46,27 @@ function stealCookies() {
       });
   });
 }
-
+function startSettings() {
+  db.collection("users")
+    .doc(auth.getUid())
+    .get()
+    .then((r) => {
+      settings = r.data().prefs;
+      if (settings == undefined) {
+        db.collection("users")
+          .doc(auth.getUid())
+          .set(
+            { prefs: { theme: "light", pacing: "no", saves: "yes" } },
+            { merge: true }
+          )
+          .then(() => {
+            setupSettings(settings);
+          });
+      } else {
+        setupSettings(settings);
+      }
+    });
+}
 function startApp() {
   //load verb json with promise
   return new Promise(function (fulfilled, rejected) {

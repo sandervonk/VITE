@@ -23,13 +23,7 @@ function setupTheme(jsonIn) {
   }
 }
 var settings;
-try {
-  settings = JSON.parse(localStorage["settings"]);
-  setupSettings(settings);
-} catch {
-  settings = { theme: "light", pacing: "no", saves: "no" };
-  localStorage["settings"] = JSON.stringify(settings);
-}
+
 function setupSettings(jsonIn) {
   for (let key of Object.keys(jsonIn)) {
     let switchSel = "[name=" + key + "][value=" + jsonIn[key] + "]";
@@ -98,6 +92,9 @@ function saveSettings(form) {
   });
   setupTheme(object);
   let settingsJSON = JSON.stringify(object);
+  db.collection("users")
+    .doc(auth.getUid())
+    .set({ prefs: object }, { merge: true });
   localStorage["settings"] = settingsJSON;
 }
 $("#settings-tab .switch-toggle").click((e) => {

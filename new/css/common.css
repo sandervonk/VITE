@@ -220,7 +220,6 @@ input[type="button"],
 @keyframes slideIn {
   from {
     transform: translateX(-50%) translateY(100%);
-    opacity: 0;
   }
   to {
     transform: translateX(-50%) translateY(0);
@@ -272,7 +271,6 @@ input[type="button"],
 }
 .toast.default {
   background-color: var(--toast-bg);
-
   color: var(--toast-text);
   border-radius: 20px;
   flex-flow: row nowrap;
@@ -298,7 +296,35 @@ input[type="button"],
   background: #000000;
   animation: fadeIn 0.25s forwards;
 }
-
+@media (min-width: 500px) {
+  @keyframes slideIn {
+    from {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+    to {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+  }
+  @keyframes slideOut {
+    from {
+      transform: translateY(0%);
+      opacity: 1;
+    }
+    to {
+      transform: translateY(100%);
+      opacity: 0;
+    }
+  }
+  .toast {
+    margin: 20px;
+    right: 0;
+    width: calc(100% - 40px);
+    transform: none;
+    left: unset;
+  }
+}
 input.error {
   border-color: var(--error-border) !important;
   background-color: var(--error-bg) !important;

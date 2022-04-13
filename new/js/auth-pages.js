@@ -63,6 +63,8 @@ auth.onAuthStateChanged((user) => {
             showQuestion(new Question());
           } else if ($("meta[name=runsetup]").prop("content")) {
             setupSetup();
+          } else if ($("meta[name=runsettings]").prop("content")) {
+            startSettings();
           }
         });
       } catch {
