@@ -40,7 +40,9 @@ function showQuestion(q) {
     subjectDefinitions[q.subject.toLowerCase()]
   );
   if ($("#vite-q-prompt").outerHeight() > 28) {
-    $("#vite-q-prompt").css({ "margin-bottom": "17px" });
+    $("#vite-q-prompt").css({
+      "margin-bottom": 45 + 28 - $("#vite-q-prompt").outerHeight(),
+    });
   } else {
     $("#vite-q-prompt").css({ "margin-bottom": "" });
   }
