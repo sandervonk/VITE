@@ -46,6 +46,10 @@
   --check-button-accent: #131f22;
   --result-correct-bg: #1f3136;
   --result-incorrect-bg: #1f3136;
+    /*toast*/
+    --toast-bg: #303030;
+    --toast-bg-transparent: #303030aa;
+    --toast-text: #ffffff;
 }
 .active-img,
 .option-icon,

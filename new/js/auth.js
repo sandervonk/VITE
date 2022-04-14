@@ -107,9 +107,7 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("user logged in:");
     let authData = auth.currentUser.metadata;
-    db.collection("users")
-      .doc(auth.getUid())
-      .set({ lastIn: new Date().getTime() }, { merge: true });
+
     db.collection("users")
       .doc(auth.getUid())
       .get()

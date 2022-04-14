@@ -37,9 +37,6 @@ auth.onAuthStateChanged((user) => {
     let authData = auth.currentUser.metadata;
     db.collection("users")
       .doc(auth.getUid())
-      .set({ lastIn: new Date().getTime() }, { merge: true });
-    db.collection("users")
-      .doc(auth.getUid())
       .get()
       .then((doc) => {
         localStorage.setItem("userData", JSON.stringify(doc.data()));
