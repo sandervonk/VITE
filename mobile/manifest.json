@@ -1,8 +1,8 @@
 {
   "name": "VITE! Mobile",
   "short_name": "VITE! Mobile",
-  "start_url": "https://sander.vonk.productions/VITE/mobile/",
-  "scope": "https://sander.vonk.productions/VITE/mobile/",
+  "start_url": "https://sander.vonk.one/VITE/mobile/",
+  "scope": "https://sander.vonk.one/VITE/mobile/",
   "display": "standalone",
   "background_color": "#add8e6",
   "theme_color": "#3FBCAE",
