@@ -7,6 +7,25 @@ var verbs,
     ps: "Passé Simple",
     fs: "Futur Simple",
     fa: "Futur Antérieur",
+    cp: "Conditionnel Passé",
+  },
+  subjectDefinitions = {
+    Je: "I",
+    Tu: "You",
+    "Il / Elle / On": "He / She / One",
+    Nous: "We",
+    Vous: "You",
+    "Ils / Elles": "They (m) / They (f) ",
+  },
+  tenseDefinitions = {
+    pr: "Present tense",
+    pc: "Past tense",
+    ps: "Past tense (literature)",
+    im: "Past state or ongoing action",
+    fs: "Future tense (intentions, predictions, conditional)",
+    fa: "Future tense (actions previous to another)",
+    co: "Conditional tense",
+    cp: "Past conditional tense (regrets, what would / could have happened)",
   };
 function setupSetup() {
   $(".options-toggles > .option-toggle").remove();
@@ -19,7 +38,9 @@ function setupSetup() {
     "Ils / Elles",
   ]) {
     $("#subject-toggles").append(
-      `<button type="button" class="option-toggle subject-toggle ${
+      `<button type="button" title="${
+        subjectDefinitions[subject]
+      }" class="option-toggle subject-toggle ${
         JSON.parse(localStorage["userData"]).subjects.includes(subject)
           ? "active"
           : ""
@@ -28,7 +49,9 @@ function setupSetup() {
   }
   for (let verb of Object.keys(verbs)) {
     $("#verb-toggles").append(
-      `<button type="button" class="option-toggle verb-toggle ${
+      `<button type="button" title="${
+        verbs[verb].definition
+      }" class="option-toggle verb-toggle ${
         JSON.parse(localStorage["userData"]).verbs.includes(verb)
           ? "active"
           : ""
@@ -37,7 +60,9 @@ function setupSetup() {
   }
   for (let tense of Object.keys(tenses)) {
     $("#tense-toggles").append(
-      `<button id="${tense}" type="button" class="option-toggle tense-toggle ${
+      `<button id="${tense}" type="button" title="${
+        tenseDefinitions[tense]
+      }" class="option-toggle tense-toggle ${
         JSON.parse(localStorage["userData"]).tenses.includes(tense)
           ? "active"
           : ""

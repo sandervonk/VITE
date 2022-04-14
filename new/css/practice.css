@@ -23,12 +23,10 @@ body {
   justify-content: space-between;
 }
 #vite-q-prompt {
-  display: flex;
-  flex-flow: row nowrap;
-  white-space: nowrap;
   height: fit-content;
   flex-grow: 0;
   margin-bottom: 45px;
+  margin-block-start: unset !important;
 }
 #vite-q-tense:before {
   text-transform: none;

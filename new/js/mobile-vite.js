@@ -9,6 +9,7 @@ var question = {},
     tu: "You",
     il: "He",
     elle: "She",
+    on: "One",
     nous: "We",
     vous: "You",
     ils: "They (masculine)",
@@ -22,6 +23,7 @@ var question = {},
     fs: "Future tense (intentions, predictions, conditional)",
     fa: "Future tense (actions previous to another)",
     co: "Conditional tense",
+    cp: "Past conditional tense (regrets, what would / could have happened)",
   };
 function showQuestion(q) {
   question = q;
@@ -37,6 +39,11 @@ function showQuestion(q) {
     "info",
     subjectDefinitions[q.subject.toLowerCase()]
   );
+  if ($("#vite-q-prompt").outerHeight() > 28) {
+    $("#vite-q-prompt").css({ "margin-bottom": "17px" });
+  } else {
+    $("#vite-q-prompt").css({ "margin-bottom": "" });
+  }
   $("#vite-q-subject").addClass("notranslate");
   if (q.fullsize != undefined) {
     $("#answer-mascot").attr("mood", "full=" + q.fullsize);
@@ -151,6 +158,9 @@ class Question {
     } else if (t == "co") {
       a = this.coTense(s, v);
       t = "Conditionnel";
+    } else if (t == "cp") {
+      a = this.cpTense(s, v);
+      t = "Conditionnel Passé";
     }
     return {
       subject: a.subject,
@@ -172,14 +182,15 @@ class Question {
     }
     return t;
   }
-  versions(answer, subjects) {
+  versions(answer, subjects, skipAgreement) {
     let answers = {
-      subject: this.agreement(subjects).subject,
       alt: answer.toLowerCase(),
     };
-    answers.full = this.compress(
-      [answers.subject, answers.alt].join(" ").toLowerCase()
-    );
+    (answers.subject =
+      skipAgreement == true ? subjects : this.agreement(subjects).subject),
+      (answers.full = this.compress(
+        [answers.subject, answers.alt].join(" ").toLowerCase()
+      ));
     return answers;
   }
   prTense(s, v) {
@@ -292,7 +303,7 @@ class Question {
       a.answer = [a.helping, a.participle].join(" ").toLowerCase();
     }
     if (arguments[2] == true) {
-      return a.participle;
+      return { participle: a.participle, subject: a.subject };
     } else {
       return this.versions(a.answer, s);
     }
@@ -340,12 +351,12 @@ class Question {
       name: v.verb.PC.helping,
       verb: verbs[v.verb.PC.helping],
     });
-    a.participle = this.pcTense(s, v, true);
+    a.participle = this.pcTense(s, v, true).participle;
     a.full += (" " + a.participle).toLowerCase();
     a.alt += (" " + a.participle).toLowerCase();
     return a;
   }
-  coTense(s, v) {
+  coTense(s, v, raw) {
     //Conditionnel Conjugator
     let end = {
       Je: "ais",
@@ -361,7 +372,26 @@ class Question {
       r = r.substr(0, r.length - 1);
     }
     let a = (r + end[s]).toLowerCase();
-    return this.versions(a, s);
+    if (raw == true) {
+      return { a: a, s: s };
+    } else {
+      return this.versions(a, s);
+    }
+  }
+  cpTense(s, v) {
+    //Conditionnel Passé Conjugator
+    let a = {};
+    a.coHelping = this.coTense(
+      s,
+      { name: v.verb.PC.helping, verb: verbs[v.verb.PC.helping] },
+      true
+    ).a;
+    a.pc = this.pcTense(s, v, true);
+    return this.versions(
+      [a.coHelping, a.pc.participle].join(" "),
+      a.pc.subject,
+      true
+    );
   }
   agreement(subjects) {
     let data = {
