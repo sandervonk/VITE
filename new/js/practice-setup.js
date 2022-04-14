@@ -2,11 +2,11 @@ var verbs,
   tenses = {
     pr: "Présent",
     pc: "Passé Composé",
-    ps: "Passé Simple",
     im: "Imparfait",
+    co: "Conditionnel",
+    ps: "Passé Simple",
     fs: "Futur Simple",
     fa: "Futur Antérieur",
-    co: "Conditionnel",
   };
 function setupSetup() {
   $(".options-toggles > .option-toggle").remove();

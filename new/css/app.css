@@ -508,3 +508,23 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 #goal-progress {
   display: none;
 }
+#learn-card, #learn-tab, #learn-tab #tab-content, #learn-start {
+  overflow: visible;
+}
+.learn-card {
+  transition: box-shadow .25s ease-in-out;
+  cursor: pointer;
+}
+.learn-card:hover {
+  box-shadow: 0px 0px 15px 0px var(--card-glow);
+}
+#create-card {
+  --card-glow: #22BBD3aa;
+}
+#study-card {
+  --card-glow: #AF22D3aa;
+  
+}
+#learn-card {
+  --card-glow: #3950B8aa;
+}
