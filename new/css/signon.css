@@ -126,6 +126,7 @@ body * {
 #oauth-login:active {
   height: 48px;
   margin-top: 30px;
+  margin-bottom: 0 !important;
 }
 @media (orientation: landscape) {
   @keyframes earthIn {
@@ -217,3 +218,6 @@ input[type="button"]#change-email:active {
   user-select: none;
   pointer-events: none;
 }
+#guest-login:active {
+  margin-top: 30px !important;
+  }

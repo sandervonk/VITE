@@ -13,6 +13,75 @@
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+        <!-- ios support -->
+        <link rel="apple-touch-icon" href="./img/icon/app/icon-72x72.png" />
+        <link rel="apple-touch-icon" href="./img/icon/app/icon-96x96.png" />
+        <link rel="apple-touch-icon" href="./img/icon/app/icon-128x128.png" />
+        <link rel="apple-touch-icon" href="./img/icon/app/icon-144x144.png" />
+        <link rel="apple-touch-icon" href="./img/icon/app/icon-152x152.png" />
+        <link rel="apple-touch-icon" href="./img/icon/app/icon-192x192.png" />
+        <link rel="apple-touch-icon" href="./img/icon/app/icon-384x384.png" />
+        <link rel="apple-touch-icon" href="./img/icon/app/icon-512x512.png" />
+        <meta name="apple-mobile-web-app-status-bar" content="#3FBCAE" />
+        <meta name="theme-color" content="#3CADC6" />
+        <link
+          rel="shortcut icon"
+          href="./img/icon/app/icon-512x512.png"
+          type="image/x-icon"
+        />
+        <!-- Search Engine -->
+        <meta
+          name="description"
+          content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
+        />
+        <!-- Schema.org for Google -->
+        <meta itemprop="name" content="VITE! Mobile" />
+        <meta
+          itemprop="description"
+          content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
+        />
+        <!-- Twitter -->
+        <meta name="twitter:card" content="summary" />
+        <meta name="twitter:title" content="VITE! Mobile" />
+        <meta
+          name="twitter:description"
+          content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
+        />
+        <meta
+          name="twitter:image:src"
+          content="https://sander.vonk.productions/VITE/social-img/social-twitter.png"
+        />
+        <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+        <meta name="og:title" content="VITE! Mobile" />
+        <meta
+          name="og:description"
+          content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
+        />
+        <meta
+          name="og:image"
+          content="https://sander.vonk.productions/VITE/social-img/social-og.png"
+        />
+        <meta
+          name="og:url"
+          content="https://sander.vonk.productions/VITE/mobile/"
+        />
+        <meta name="og:site_name" content="VITE! French Conjugation Practice" />
+        <meta name="og:type" content="website" />
+        <!-- Analytics!! -->
+        <!-- Global site tag (gtag.js) - Google Analytics -->
+        <script
+          async
+          src="https://www.googletagmanager.com/gtag/js?id=G-5GF8MRX85G"
+        ></script>
+        <script>
+          window.dataLayer = window.dataLayer || [];
+          function gtag() {
+            dataLayer.push(arguments);
+          }
+          gtag("js", new Date());
+    
+          gtag("config", "G-5GF8MRX85G");
+        </script>
     <title>VITE! - Login</title>
 </head>
 <body>
@@ -39,6 +108,7 @@
     </div>
 </div>
     <input id="oauth-login" class="login-skip box box-button fullborder" value="Login with Google" type="submit" formaction="./app/"></button>
+    <input id="guest-login" onclick="auth.signInAnonymously()" class="login-skip box box-button fullborder" value="Continue as Guest" type="button"></button>
     </form>
     <div id="verification-box" class="inactive box">
         <div id="verification-email" class="box secondary">email@example.com</div>

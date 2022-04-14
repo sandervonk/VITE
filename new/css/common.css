@@ -40,6 +40,7 @@ button.box,
   background-color: var(--button-bg);
   border-color: var(--button-border);
   color: var(--button-accent);
+  height: 44px;
 }
 .box.thick-border,
 .box-button.thick-border {
@@ -56,6 +57,7 @@ button.box:active,
   /*transform: translateY(2px);*/
   margin-bottom: 2px !important;
   border-bottom-width: 2px !important;
+  height: 42px;
 }
 .box-button:active:not(.fullborder) {
   border-bottom-width: 0px !important;
@@ -269,7 +271,7 @@ input[type="button"],
   align-items: center;
   padding: 20px;
 }
-.toast.default {
+.toast.default,.toast.transparent {
   background-color: var(--toast-bg);
   color: var(--toast-text);
   border-radius: 20px;
@@ -280,6 +282,10 @@ input[type="button"],
   padding: 15px;
   font-size: 16px;
   font-weight: 400;
+}
+.toast.transparent {
+  
+  background-color: var(--toast-bg-transparent);
 }
 .toast-icon {
   height: 25px;
@@ -331,3 +337,4 @@ input.error {
   opacity: 1 !important;
   color: var(--error-border) !important;
 }
+

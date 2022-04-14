@@ -124,6 +124,14 @@ auth.onAuthStateChanged((user) => {
       } else {
         openApp();
       }
+    } else if (auth.currentUser.isAnonymous) {
+      new Toast(
+        "Logged in as guest, your progress will not be saved!",
+        "default",
+        1000,
+        "./img/icon/info-icon.svg",
+        "./onboarding.html"
+      );
     } else {
       secondPage();
       verifyButton(user);

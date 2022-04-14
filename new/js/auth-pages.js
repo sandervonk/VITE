@@ -27,9 +27,13 @@ db.settings({ timestampsInSnapshots: true });
 //!code
 auth.onAuthStateChanged((user) => {
   if (user) {
+    console.log(user)
     console.log("user logged in");
 
     setPhoto(user.photoURL);
+    if (auth.currentUser.isAnonymous) {
+      setPhoto("../img/icon/guest.png")
+    }
     let authData = auth.currentUser.metadata;
     db.collection("users")
       .doc(auth.getUid())
@@ -41,7 +45,7 @@ auth.onAuthStateChanged((user) => {
         localStorage.setItem("userData", JSON.stringify(doc.data()));
         localStorage.setItem("userId", auth.getUid());
       });
-    if (!auth.currentUser.emailVerified) {
+    if (!auth.currentUser.emailVerified && !auth.currentUser.isAnonymous) {
       new Toast(
         "Please verify your email to use the app!",
         "default",
@@ -50,6 +54,19 @@ auth.onAuthStateChanged((user) => {
         "../"
       );
     } else {
+      if (auth.currentUser.isAnonymous) {
+        if ($("meta[name=guestprompt]").prop("content")) {
+          new Toast(
+            "Logged in as guest, your progress will not be saved!",
+            "transparent",
+            1500,
+            "../img/icon/info-icon.svg"
+          );
+        } else {
+          console.log("guest user, proceed with caution")
+        }
+     
+      }
       /*
       new Toast(
         "Logged in successfully!",

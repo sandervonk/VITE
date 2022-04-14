@@ -51,6 +51,7 @@
   --infinite-accent: #3e8be9;
   /*toast*/
   --toast-bg: #303030;
+  --toast-bg-transparent: #303030aa;
   --toast-text: #ffffff;
   /*login*/
   --error-border: #ff4b4c;
