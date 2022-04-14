@@ -118,7 +118,7 @@ body {
 }
 #desktop-icon,
 #about-icon,
-#mobile-icon {
+#mobile-icon, #new-icon {
   width: calc(50% - 1vh);
   height: calc(50% - 1vh);
   display: flex;

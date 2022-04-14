@@ -160,6 +160,7 @@ authForm.on("submit", (e) => {
         db.collection("users").doc(auth.getUid()).set(
           {
             joined: new Date().getTime(),
+            prefs: {theme: 'light', pacing: 'no', saves: 'yes'}
           },
           { merge: true }
         );
