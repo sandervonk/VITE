@@ -200,6 +200,7 @@ body {
   }
   .carousel-item {
     transform: scale(1.5);
+    background-color: transparent;
   }
   .carousel-item:hover {
     transform: scale(2);
