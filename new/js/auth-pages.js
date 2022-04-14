@@ -84,8 +84,8 @@ auth.onAuthStateChanged((user) => {
             startSettings();
           }
         });
-      } catch {
-        console.error("could not start app");
+      } catch(err) {
+        console.error("could not start app, Error: ", err);
       }
     }
   } else {

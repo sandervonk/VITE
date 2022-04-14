@@ -214,7 +214,9 @@ input:checked + .switch-label {
 }
 #back-button,
 input[type="button"],
-[auth="logout-button"] {
+[auth="logout-button"],
+[onclick], 
+.box.option {
   cursor: pointer;
 }
 
