@@ -1,5 +1,5 @@
 try {
-  if (JSON.parse(localStorage["settings"]).theme == "dark") {
+  if (JSON.parse(localStorage["userData"]).prefs.theme == "dark") {
     document.getElementById("theme-dark-stylesheet").setAttribute("media", "");
   }
 } catch {}
