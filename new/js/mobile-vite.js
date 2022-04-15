@@ -53,7 +53,7 @@ function showQuestion(q) {
     $("#answer-mascot").attr("mood", "mood=" + q.mascot);
   }
 }
-function submitAnswer() {
+function submitAnswer(skipped) {
   if (document.body.hasAttribute("showanswer")) {
     $(document.body).removeAttr("showanswer");
     let amntDone =
@@ -91,6 +91,9 @@ function submitAnswer() {
       $("#answer-correction-2").text(question.answer.full);
       $("#answer-correction-1").addClass("notranslate");
       $("#answer-correction-2").addClass("notranslate");
+    }
+    if (skipped == true) {
+      $(document.body).attr("result", "skipped");
     }
   }
 }

@@ -130,7 +130,8 @@ body:not([showanswer]) #next-button:not(.avaliable) {
 }
 /*for extended keyboard*/
 @media (min-device-height: 140vh) and (max-device-width: 768px) {
-  #next-button {
+  #next-button,
+  #skip-button {
     display: none !important;
   }
   #answer-input {
@@ -230,6 +231,9 @@ body[showanswer][result="correct"] #answer-result::before {
 body[showanswer][result="incorrect"] #answer-result::before {
   content: "Not Quite";
 }
+body[showanswer][result="skipped"] #answer-result::before {
+  content: "Take a guess?";
+}
 #answer-correction-bar {
   display: flex;
   flex-flow: row nowrap;
@@ -244,10 +248,16 @@ body[showanswer][result="incorrect"] {
   --check-fill: var(--check-fill-incorrect);
   --check-fill-accent: var(--check-fill-incorrect-accent);
 }
-body:not([showanswer][result="incorrect"]) #answer-correction-bar {
+body[showanswer][result="skipped"] {
+  --check-fill: var(--check-fill-skipped);
+  --check-fill-accent: var(--check-fill-skipped-accent);
+}
+body[result="correct"] #answer-correction-bar,
+body:not([showanswer]) #answer-correction-bar {
   color: transparent;
   visibility: hidden;
 }
+
 body[showanswer] #result-bg {
   background-color: var(--secondary);
 }
@@ -297,4 +307,15 @@ header.infinite #back-button {
   display: block;
   transform: scaleX(-1);
   margin-left: 20px;
+}
+#skip-button {
+  text-transform: uppercase;
+  font-size: 20px;
+  color: var(--check-button-blank);
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+body[showanswer] #skip-button,
+body[avaliable] #skip-button {
+  display: none;
 }

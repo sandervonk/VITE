@@ -43,6 +43,8 @@
   --check-button-blank-accent: #c8c8c8;
   --check-fill: #57cc02;
   --check-fill-accent: #58a700;
+  --check-fill-skipped: #ffaf1a;
+  --check-fill-skipped-accent: #ca8b16;
   --check-fill-incorrect: #ff4b4c;
   --check-fill-incorrect-accent: #e82e2b;
   --result-correct-bg: #d7ffb9;
@@ -50,9 +52,9 @@
   --infinite: #2b71c9;
   --infinite-accent: #3e8be9;
   /*toast*/
-  --toast-bg: #F0F0F3;
-  --toast-bg-transparent: #F0F0F3aa;
-  --toast-text: #181C1E;
+  --toast-bg: #f0f0f3;
+  --toast-bg-transparent: #f0f0f3aa;
+  --toast-text: #181c1e;
   /*login*/
   --error-border: #ff4b4c;
   --error-bg: #ffdfe0;

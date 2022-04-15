@@ -19,15 +19,21 @@ observer.observe(mascot[0], { attributes: true });
 $("#answer-input").on("change, input", (e) => {
   if (e.target.value != "") {
     $("#next-button").addClass("avaliable");
+    $(document.body).attr("avaliable", true);
   } else {
     $("#next-button").removeClass("avaliable");
+    $(document.body).removeAttr("avaliable");
   }
 });
 $(document.body).on("keypress", (e) => {
   if (e.which == 13 || e.keyCode == 13) {
     e.preventDefault();
     //Submit Question
-    submitAnswer();
+    if ($("#answer-input").val() == "") {
+      submitAnswer(true);
+    } else {
+      submitAnswer();
+    }
     $(document.body).attr("info", null);
   }
 });
@@ -41,6 +47,14 @@ $(document.body).on("click", "#next-button", function () {
     $("body[showanswer] #next-button").hasClass("box-button")
   )
     submitAnswer();
+  $(document.body).attr("info", null);
+
+  $("#next-button").removeClass("avaliable");
+});
+
+$(document.body).on("click", "#skip-button", function () {
+  //Submit Question
+  submitAnswer(true);
   $(document.body).attr("info", null);
 
   $("#next-button").removeClass("avaliable");
