@@ -56,6 +56,8 @@ function showQuestion(q) {
 function submitAnswer(skipped) {
   if (document.body.hasAttribute("showanswer")) {
     $(document.body).removeAttr("showanswer");
+    $(document.body).removeAttr("avaliable");
+    $(document.body).removeAttr("result");
     let amntDone =
       (scoringData.countAll == "all" ? score.total : score.correct) /
       scoringData.target;
