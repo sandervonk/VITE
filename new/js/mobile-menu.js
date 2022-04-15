@@ -32,15 +32,7 @@ function setScore() {
     );
   }
 }
-if (
-  localStorage["vite-subjects"] == undefined ||
-  localStorage["vite-verbs"] == undefined ||
-  localStorage["vite-subjects"].length == 0 ||
-  localStorage["vite-verbs"].length == 0
-) {
-  stealCookies();
-  window.location.reload();
-}
+
 //disable autocomplete (& autocomplete bar)
 $(document).ready(function () {
   $(document).on("focus", ":input", function () {
