@@ -215,7 +215,7 @@ input:checked + .switch-label {
 #back-button,
 input[type="button"],
 [auth="logout-button"],
-[onclick], 
+[onclick],
 .box.option {
   cursor: pointer;
 }
@@ -250,6 +250,7 @@ input[type="button"],
 }
 .toast {
   z-index: 100000000;
+  pointer-events: none;
   position: fixed;
   bottom: 0;
   left: 50%;
@@ -273,7 +274,8 @@ input[type="button"],
   align-items: center;
   padding: 20px;
 }
-.toast.default,.toast.transparent {
+.toast.default,
+.toast.transparent {
   background-color: var(--toast-bg);
   color: var(--toast-text);
   border-radius: 20px;
@@ -286,7 +288,6 @@ input[type="button"],
   font-weight: 400;
 }
 .toast.transparent {
-  
   background-color: var(--toast-bg-transparent);
 }
 .toast-icon {
@@ -339,4 +340,3 @@ input.error {
   opacity: 1 !important;
   color: var(--error-border) !important;
 }
-
