@@ -1,4 +1,4 @@
-const staticLinks = "dev-VITE-new-v1";
+const staticLinks = "dev-VITE-new-v2";
 const OFFLINE_URL = "offline.html";
 const assets = [
   "index.html",
