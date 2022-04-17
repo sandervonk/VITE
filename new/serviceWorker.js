@@ -1,6 +1,7 @@
 const staticLinks = "dev-VITE-new-v1";
 const assets = [
   "index.html",
+  "offline.html",
   "onboarding.html",
   "verbs.json",
   "app/index.html",
@@ -174,7 +175,7 @@ const assets = [
   "js/theme.js",
   "js/toast.js",
   "js/vite-util.js",
-  "js/src/jquery-3.6.0.min.js"
+  "js/src/jquery-3.6.0.min.js",
 ];
 
 self.addEventListener("install", (installEvent) => {
@@ -186,8 +187,11 @@ self.addEventListener("install", (installEvent) => {
 });
 self.addEventListener("fetch", (fetchEvent) => {
   fetchEvent.respondWith(
-    caches.match(fetchEvent.request).then((res) => {
-      return res || fetch(fetchEvent.request);
-    })
+    caches
+      .match(fetchEvent.request)
+      .then((res) => {
+        return res || fetch(fetchEvent.request);
+      })
+      .catch(() => caches.match(OFFLINE_URL))
   );
 });
