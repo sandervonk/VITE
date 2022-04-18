@@ -30,12 +30,12 @@
   /*settings*/
   --switch-bg: var(--box-border);
   --switch-selected: #828282;
-  --prior-button-bg: #2981d1;
+  --prior-button-bg: #1fc2ff;
   --prior-button-border: #1765ac;
   --prior-button-accent: #ffffff;
   /*practice*/
-  --info-button-bg: #28bdec;
-  --info-button-border: #119ac5;
+  --info-button-bg: #1fc2ff;
+  --info-button-border: #1aa7ea;
   --check-button-accent: #ffffff;
   --answer-content: #4b4b4b;
   --answer-placeholder: #e5e5e5;
@@ -43,10 +43,10 @@
   --check-button-blank-accent: #c8c8c8;
   --check-fill: #57cc02;
   --check-fill-accent: #58a700;
-  --check-fill-skipped: #ffaf1a;
-  --check-fill-skipped-accent: #ca8b16;
-  --check-fill-incorrect: #ff4b4c;
-  --check-fill-incorrect-accent: #e82e2b;
+  --check-fill-skipped: hsl(39, 98%, 40%);
+  --check-fill-skipped-accent: hsl(39, 100%, 33%);
+  --check-fill-incorrect: #ff4b4b;
+  --check-fill-incorrect-accent: #ff2f2f;
   --result-correct-bg: #d7ffb9;
   --result-incorrect-bg: #ffdfe0;
   --infinite: #2b71c9;
