@@ -43,13 +43,17 @@
   --check-button-blank-accent: #37464f;
   --check-fill: #93d334;
   --check-fill-accent: #77ba34;
+  --check-fill-skipped: #ffaf1a;
+  --check-fill-skipped-accent: #ca8b16;
+  --check-fill-incorrect: #ff4b4c;
+  --check-fill-incorrect-accent: #e82e2b;
   --check-button-accent: #131f22;
   --result-correct-bg: #1f3136;
   --result-incorrect-bg: #1f3136;
-    /*toast*/
-    --toast-bg: #303030;
-    --toast-bg-transparent: #303030aa;
-    --toast-text: #ffffff;
+  /*toast*/
+  --toast-bg: #303030;
+  --toast-bg-transparent: #303030aa;
+  --toast-text: #ffffff;
 }
 .active-img,
 .option-icon,
