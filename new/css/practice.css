@@ -53,7 +53,7 @@ body {
 }
 #info-button:active {
   transform: translateY(2px);
-  margin-bottom: 2px !important;
+  margin-top: 2px !important;
 }
 #next-button {
   text-transform: uppercase;
