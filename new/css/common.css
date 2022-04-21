@@ -295,7 +295,8 @@ input[type="button"],
   align-self: center;
   margin-right: 15px;
 }
-.toast-overlay {
+.toast-overlay,
+.popup-overlay {
   z-index: 10000000;
   position: fixed;
   top: 0;
@@ -395,4 +396,13 @@ input.error {
 .popup-top-bar {
   display: flex;
   flex-flow: row nowrap;
+}
+#popup-buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+}
+#popup-buttons button {
+  flex-grow: 1;
+  margin: 5px;
 }

@@ -35,23 +35,28 @@ class Toast {
   }
 }
 class Popup {
-  constructor(message, type, duration, iconPath, [action, actionMsg]) {
+  constructor(message, type, duration, iconPath, action) {
     this.message = message;
     this.type = type;
     this.duration = duration;
     this.icon = iconPath;
     this.action = action;
-    this.actionText = actionMsg;
     this.showPopup();
   }
   showPopup() {
     $(".popup").remove();
-    $(".toast-overlay").remove();
+    $(".popup-overlay").remove();
     let overlay = document.createElement("div"),
-      toast = document.createElement("div");
+      toast = document.createElement("div"),
+      buttons = "<div id='popup-buttons'>";
     toast.classList.add("popup");
-    overlay.classList.add("toast-overlay");
+    overlay.classList.add("popup-overlay");
     toast.classList.add(this.type);
+    for (let actionInfo of this.action) {
+      console.log(actionInfo);
+      buttons += `<button class="popup-button box-button" onclick="${actionInfo[0]}">${actionInfo[1]}</button>`;
+    }
+    buttons += "</div>";
     toast.innerHTML +=
       (this.icon != null ? `<div class="popup-top-bar">` : "") +
       "<div class='popup-text'>" +
@@ -60,7 +65,7 @@ class Popup {
       (this.icon != null
         ? `<img src="${this.icon}" class="popup-icon"></div>`
         : "");
-    toast.innerHTML += `<button class="popup-button box-button" onclick="${this.action}">${this.actionText}</button>`;
+    toast.innerHTML += buttons;
     if (this.action != null) {
       document.body.appendChild(overlay);
     }
@@ -77,9 +82,12 @@ class Popup {
 }
 function removePopup() {
   $(".popup").css({ animation: "fadeout 0.5s forwards" });
-  $(".toast-overlay").css({ animation: "fadeout 0.5s forwards" });
+  $(".popup-overlay").css({ animation: "fadeout 0.5s forwards" });
   setTimeout(() => {
     $(".popup").remove();
-    $("toast-overlay").remove();
+    $(".popup-overlay").remove();
   }, 500);
 }
+$(document.body).on("click", ".popup-overlay", function () {
+  removePopup();
+});
