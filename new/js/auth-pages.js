@@ -27,12 +27,12 @@ db.settings({ timestampsInSnapshots: true });
 //!code
 auth.onAuthStateChanged((user) => {
   if (user) {
-    console.log(user)
+    console.log(user);
     console.log("user logged in");
 
     setPhoto(user.photoURL);
     if (auth.currentUser.isAnonymous) {
-      setPhoto("../img/icon/guest.png")
+      setPhoto("../img/icon/guest.png");
     }
     let authData = auth.currentUser.metadata;
     db.collection("users")
@@ -60,9 +60,8 @@ auth.onAuthStateChanged((user) => {
             "../img/icon/info-icon.svg"
           );
         } else {
-          console.log("guest user, proceed with caution")
+          console.log("guest user, proceed with caution");
         }
-     
       }
       /*
       new Toast(
@@ -81,7 +80,7 @@ auth.onAuthStateChanged((user) => {
             startSettings();
           }
         });
-      } catch(err) {
+      } catch (err) {
         console.error("could not start app, Error: ", err);
       }
     }
@@ -101,5 +100,14 @@ auth.onAuthStateChanged((user) => {
 
 //! listeners
 $("[auth='logout-button']").click((e) => {
-  auth.signOut();
+  new Popup(
+    "Are you sure you want to sign out?",
+    "default",
+    10000,
+    "../img/icon/info-icon.svg",
+    [
+      ["removePopup()", "Cancel"],
+      ["auth.signOut(); removePopup()", "Yes"],
+    ]
+  );
 });

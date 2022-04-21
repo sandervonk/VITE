@@ -401,8 +401,10 @@ input.error {
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
+  font-weight: 700 !important;
 }
 #popup-buttons button {
   flex-grow: 1;
   margin: 5px;
+  flex-basis: 25%;
 }
