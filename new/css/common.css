@@ -376,9 +376,15 @@ input.error {
   justify-content: center;
   align-items: center;
 }
-.popup-button:active {
-  margin-top: 2px;
-  height: 40px;
+.primary-action {
+  --button-bg: var(--prior-button-bg);
+  --button-border: var(--prior-button-border);
+  --button-accent: var(--prior-button-accent);
+}
+.secondary-action {
+  --button-bg: var(--check-button-blank);
+  --button-border: var(--check-button-blank-accent);
+  --button-accent: var(--check-button-blank-accent);
 }
 .popup-text {
   margin-bottom: 10px;
@@ -389,13 +395,18 @@ input.error {
 }
 .popup-icon {
   margin-bottom: 10px;
-  flex-grow: 1;
+  flex-grow: 0;
   justify-self: start;
   height: fit-content;
+  height: 40px;
+  width: 40px;
+  display: none;
 }
 .popup-top-bar {
   display: flex;
   flex-flow: row nowrap;
+  width: 100%;
+  justify-content: space-between;
 }
 #popup-buttons {
   display: flex;
@@ -407,4 +418,10 @@ input.error {
   flex-grow: 1;
   margin: 5px;
   flex-basis: 25%;
+}
+
+.popup-button:active {
+  margin-top: 9px !important;
+  margin-bottom: 0px !important;
+  height: 40px;
 }

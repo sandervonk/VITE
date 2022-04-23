@@ -106,8 +106,8 @@ $("[auth='logout-button']").click((e) => {
     10000,
     "../img/icon/info-icon.svg",
     [
-      ["removePopup()", "Cancel"],
-      ["auth.signOut(); removePopup()", "Yes"],
+      ["removePopup()", "Cancel", "secondary-action"],
+      ["auth.signOut(); removePopup()", "Yes", "primary-action"],
     ]
   );
 });

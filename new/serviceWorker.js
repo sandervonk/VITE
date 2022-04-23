@@ -197,6 +197,10 @@ self.addEventListener("fetch", (fetchEvent) => {
       .then((res) => {
         return res || fetch(fetchEvent.request);
       })
-      .catch(() => caches.match(OFFLINE_URL))
+      .catch((e) => {
+        console.log("fetch event failed:");
+        console.log(e);
+        caches.match(OFFLINE_URL);
+      })
   );
 });
