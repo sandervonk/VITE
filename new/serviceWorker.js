@@ -1,5 +1,6 @@
 const staticLinks = "dev-VITE-new-v2";
 const OFFLINE_URL = "offline.html";
+const OFFLINE_IMG = "img/offline/image-offline.svg";
 const assets = [
   "index.html",
   "offline.html",
@@ -201,8 +202,12 @@ self.addEventListener("fetch", (fetchEvent) => {
       })
       .catch((e) => {
         console.log("fetch event failed:");
-        console.log(fetchEvent);
-        caches.match(OFFLINE_URL);
+        console.log(fetchEvent.request.url);
+        if (fetchEvent.request.url.split("?")[0].substr(-5) == ".html") {
+          caches.match(OFFLINE_URL);
+        } else {
+          caches.match(OFFLINE_IMG);
+        }
       })
   );
 });
