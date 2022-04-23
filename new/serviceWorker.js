@@ -201,7 +201,7 @@ self.addEventListener("fetch", (fetchEvent) => {
       })
       .catch((e) => {
         console.log("fetch event failed:");
-        console.log(fetchEvent.request);
+        console.log(fetchEvent);
         caches.match(OFFLINE_URL);
       })
   );
