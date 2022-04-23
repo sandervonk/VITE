@@ -29,6 +29,8 @@ const assets = [
   "font/Nunito-Light.ttf",
   "font/Nunito-Regular.ttf",
   "font/Nunito-Semibold.ttf",
+  "img/offline/image-offline.svg",
+  "img/offline/image-offline.png",
   "img/splash/offline-dark.svg",
   "img/splash/offline-light.svg",
   "img/splash/offline-dark.png",
@@ -199,7 +201,7 @@ self.addEventListener("fetch", (fetchEvent) => {
       })
       .catch((e) => {
         console.log("fetch event failed:");
-        console.log(e);
+        console.log(fetchEvent.request);
         caches.match(OFFLINE_URL);
       })
   );
