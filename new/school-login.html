@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="css/fonts.css" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/signon.css" />
+    <link rel="stylesheet" href="css/signon-school.css" />
+    <link rel="stylesheet" href="css/stars.css" />
+    <script src="js/src/jquery-3.6.0.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.0.0/firebase-firestore.js"></script>
+    <!-- ios support -->
+    <link rel="apple-touch-icon" href="./img/icon/app/icon-72x72.png" />
+    <link rel="apple-touch-icon" href="./img/icon/app/icon-96x96.png" />
+    <link rel="apple-touch-icon" href="./img/icon/app/icon-128x128.png" />
+    <link rel="apple-touch-icon" href="./img/icon/app/icon-144x144.png" />
+    <link rel="apple-touch-icon" href="./img/icon/app/icon-152x152.png" />
+    <link rel="apple-touch-icon" href="./img/icon/app/icon-192x192.png" />
+    <link rel="apple-touch-icon" href="./img/icon/app/icon-384x384.png" />
+    <link rel="apple-touch-icon" href="./img/icon/app/icon-512x512.png" />
+    <meta name="apple-mobile-web-app-status-bar" content="#3FBCAE" />
+    <meta name="theme-color" content="#3CADC6" />
+    <link
+      rel="shortcut icon"
+      href="./img/icon/app/icon-512x512.png"
+      type="image/x-icon"
+    />
+    <!-- Search Engine -->
+    <meta
+      name="description"
+      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
+    />
+    <!-- Schema.org for Google -->
+    <meta itemprop="name" content="VITE! Mobile" />
+    <meta
+      itemprop="description"
+      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
+    />
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="VITE! Mobile" />
+    <meta
+      name="twitter:description"
+      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
+    />
+    <meta
+      name="twitter:image:src"
+      content="https://sander.vonk.one/VITE/social-img/new/social-twitter.png"
+    />
+    <!-- Open Graph general (Facebook, Pinterest & Google+) -->
+    <meta name="og:title" content="VITE! Mobile" />
+    <meta
+      name="og:description"
+      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
+    />
+    <meta
+      name="og:image"
+      content="https://sander.vonk.one/VITE/social-img/new/social-og.png"
+    />
+    <meta name="og:url" content="https://sander.vonk.one/VITE/mobile/" />
+    <meta name="og:site_name" content="VITE! French Conjugation Practice" />
+    <meta name="og:type" content="website" />
+    <!-- Analytics!! -->
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script
+      async
+      src="https://www.googletagmanager.com/gtag/js?id=G-5GF8MRX85G"
+    ></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag() {
+        dataLayer.push(arguments);
+      }
+      gtag("js", new Date());
+
+      gtag("config", "G-5GF8MRX85G");
+    </script>
+    <title>VITE! - Login</title>
+  </head>
+  <body>
+    <header>
+      <div id="header-wrap">
+        <button
+          id="back-button"
+          class="progress-button"
+          onclick="window.history.go(-1)"
+        ></button>
+        <div id="progress-bar">
+          <div id="progress-fill">
+            <div id="progress-fill-accent"></div>
+          </div>
+        </div>
+      </div>
+      <div id="title-text">Getting Started for Students / Educators</div>
+    </header>
+    <div id="school-signup">
+      <form id="type-container" action="./" method="get">
+        <input
+          id="edu-code"
+          name="edu-code"
+          type="text"
+          style="display: none"
+          value=""
+        />
+        <div
+          id="student-signup"
+          class="school-type box"
+          onclick="$('#edu-code').val('student'); $('#code-form').show(); $('#teacher-signup').hide(); $('#code-enter').attr('name', 'join-code')"
+        >
+          <div class="option-icon"><img src="img/icon/onboard/Cap.svg" /></div>
+          <div class="option-text">
+            <div class="option-text-title bold">Student</div>
+            <div class="option-text-summary secondary">
+              Use a classroom code to join a classroom and start practicing
+            </div>
+          </div>
+        </div>
+        <div
+          id="teacher-signup"
+          class="school-type box"
+          onclick="$('#edu-code').val('teacher'); $('#type-container').submit();"
+        >
+          <div class="option-icon">
+            <img src="img/icon/onboard/Teacher.svg" />
+          </div>
+          <div class="option-text">
+            <div class="option-text-title bold">Teacher</div>
+            <div class="option-text-summary secondary">
+              Setup classroom prefrences and invite students with a sharable
+              student signup code
+            </div>
+          </div>
+        </div>
+        <div class="flex-break"></div>
+        <div id="code-form" style="display: none">
+          <input
+            class="box"
+            type="text"
+            id="code-enter"
+            placeholder="Student Code"
+          />
+          <input
+            class="box-button fullborder"
+            type="submit"
+            id="enter-code"
+            value="Get Started"
+          />
+        </div>
+      </form>
+    </div>
+    <div id="bg-items">
+      <div id="bg-stars"></div>
+    </div>
+  </body>
+  <script>
+    const config = {
+      apiKey: "AIzaSyCZelR1HSbmcPf70rTI5Ig02yasL8RSdPw",
+      authDomain: "vite-practice.firebaseapp.com",
+      projectId: "vite-practice",
+      storageBucket: "vite-practice.appspot.com",
+      messagingSenderId: "559659689480",
+      appId: "1:559659689480:web:417819295e1ad204e193bd",
+      measurementId: "G-61KY0KX892",
+    };
+
+    // Initialize Firebase
+    firebase.initializeApp(config);
+    // make auth and firestore references
+    const auth = firebase.auth();
+    const db = firebase.firestore();
+
+    // update firestore settings
+    db.settings({ timestampsInSnapshots: true });
+  </script>
+  <script src="js/toast.js"></script>
+  <script src="js/stars.js"></script>
+  <script src="js/auth-school.js"></script>
+</html>

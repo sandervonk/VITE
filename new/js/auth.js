@@ -157,13 +157,17 @@ authForm.on("submit", (e) => {
         console.log("cred", user);
         //switch to verification page
         secondPage();
-        db.collection("users").doc(auth.getUid()).set(
-          {
-            joined: new Date().getTime(),
-            prefs: {theme: 'light', pacing: 'no', saves: 'yes'}
-          },
-          { merge: true }
-        );
+        db.collection("users")
+          .doc(auth.getUid())
+          .set(
+            {
+              joined: new Date().getTime(),
+              prefs: { theme: "light", pacing: "no", saves: "yes" },
+              education:
+                params.get("edu-code") != null ? params.get("edu-code") : "",
+            },
+            { merge: true }
+          );
 
         authForm[0].reset();
       })
@@ -186,3 +190,14 @@ $("#oauth-login").click((e) => {
   provider.addScope("email");
   firebase.auth().signInWithRedirect(provider);
 });
+let url = window.location.href,
+  params = new URL(url).searchParams;
+if (params.get("edu-code") != null) {
+  $("#extended-options").hide();
+  new Toast(
+    "Continued to signup as a " + params.get("edu-code"),
+    "default",
+    5000,
+    "img/icon/info-icon.svg"
+  );
+}

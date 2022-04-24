@@ -24,6 +24,14 @@
         <link rel="apple-touch-icon" href="./img/icon/app/icon-512x512.png" />
         <meta name="apple-mobile-web-app-status-bar" content="#3FBCAE" />
         <meta name="theme-color" content="#3CADC6" />
+        <style>
+        #back-button {
+          display: none;
+        }
+        #progress-bar {
+          margin-left: 0px !important;
+        }
+        </style>
         <link
           rel="shortcut icon"
           href="./img/icon/app/icon-512x512.png"
@@ -108,7 +116,16 @@
     </div>
 </div>
     <input id="oauth-login" class="login-skip box box-button fullborder" value="Login with Google" type="submit" formaction="./app/"></button>
-    <input id="guest-login" onclick="auth.signInAnonymously()" class="login-skip box box-button fullborder" value="Continue as Guest" type="button"></button>
+    <div id="extended-options"><input id="guest-login" onclick="auth.signInAnonymously()" class="login-skip box box-button fullborder" value="Continue as Guest" type="button"></button>
+      <input id="school-login" onclick='new Toast(
+        "Continuing to school signup!",
+        "default",
+        500,
+        "./img/icon/info-icon.svg",
+        "./school-login.html"
+      );' class="login-skip box box-button fullborder" value="Student / Teacher" title="Student / Teacher Signup" type="button"></button>
+      </div>
+
     </form>
     <div id="verification-box" class="inactive box">
         <div id="verification-email" class="box secondary">email@example.com</div>

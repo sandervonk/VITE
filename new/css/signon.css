@@ -218,6 +218,40 @@ input[type="button"]#change-email:active {
   user-select: none;
   pointer-events: none;
 }
-#guest-login:active {
+#guest-login:active,
+#school-login:active {
   margin-top: 30px !important;
-  }
+}
+#extended-options {
+  display: flex;
+  flex-flow: row nowrap;
+}
+#extended-options > * {
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+#school-login {
+  width: 42px;
+  flex-shrink: 0;
+  flex-grow: 0;
+  padding-left: 40px;
+  padding-right: 0px;
+  box-sizing: border-box;
+  margin-left: 10px;
+  background-image: url(../img/icon/group-icon.svg);
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: left center;
+  transition: padding-left 0.5s 0s ease-out, padding-right 0.5s 0s ease-out,
+    width 0.5s 0s ease-out, color 0.5s 0s ease-in-out;
+  color: transparent;
+}
+#school-login:hover {
+  color: white;
+  padding-left: 50px;
+  padding-right: 10px;
+  width: 11em;
+  transition: padding-left 0.5s 1s ease-out, padding-right 0.5s 1s ease-out,
+    width 0.5s 1s ease-out, color 0.5s 1s ease-in-out;
+}
