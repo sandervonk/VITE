@@ -192,7 +192,10 @@ $("#oauth-login").click((e) => {
 let url = window.location.href,
   params = new URL(url).searchParams;
 if (params.get("edu-code") != null) {
-  $("#extended-options").hide();
+  $("#extended-options, #oauth-login").hide();
+  if (params.get("edu-code") == "student") {
+    $("#education-options").show();
+  }
   new Toast(
     "Continued to signup as a " + params.get("edu-code"),
     "default",

@@ -255,3 +255,53 @@ input[type="button"]#change-email:active {
   transition: padding-left 0.5s 1s ease-out, padding-right 0.5s 1s ease-out,
     width 0.5s 1s ease-out, color 0.5s 1s ease-in-out;
 }
+#education-options {
+  height: 44px;
+  display: flex;
+  flex-flow: row nowrap;
+  margin-top: 20px;
+}
+#edu-back {
+  background-image: url(../img/icon/back.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  width: 42px;
+  height: 44px;
+  box-sizing: border-box;
+  margin-right: 10px;
+}
+#join-code {
+  font-size: 20px;
+  font-weight: 500;
+  font-family: "Next", sans-serif;
+  color: var(--text-secondary);
+  text-transform: uppercase;
+}
+#join-code::placeholder {
+  color: var(--box-border);
+  font-weight: 400;
+  text-transform: none;
+}
+#join-code {
+  height: 44px;
+  box-sizing: border-box;
+  flex-grow: 1;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  pointer-events: none;
+  user-select: none;
+}
+#code-submit {
+  background-image: url(../img/icon/forward.svg);
+  background-position: center center;
+  background-repeat: no-repeat;
+  border-top-left-radius: 0;
+  border-bottom-left-radius: 0;
+  width: 44px;
+  border-width: 2px !important;
+  background-color: var(--box-border);
+}
+#edu-back:active {
+  height: 42px;
+  margin-top: 2px;
+}
