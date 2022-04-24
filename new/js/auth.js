@@ -67,7 +67,7 @@ function verifyButton(userObj) {
     if (verificationInterval == null) {
       verificationInterval = setInterval(function () {
         userObj.reload();
-        if (auth.currentUser.emailVerified) {
+        if (auth.currentUser.email) {
           clearInterval(verificationInterval);
           $("#send-verification").val("Verified!");
           $("#send-verification").css({
@@ -106,17 +106,16 @@ function verifyButton(userObj) {
 auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("user logged in:");
+    console;
     let authData = auth.currentUser.metadata;
-
     db.collection("users")
       .doc(auth.getUid())
       .get()
       .then((doc) => {
-        console.log(doc.data());
         localStorage.setItem("userData", JSON.stringify(doc.data()));
         localStorage.setItem("userId", auth.getUid());
       });
-    if (auth.currentUser.emailVerified) {
+    if (auth.currentUser.emailVerified || auth.currentUser.email == null) {
       if (authData.creationTime === authData.lastSignInTime) {
         openOnboard();
       } else {
@@ -154,7 +153,6 @@ authForm.on("submit", (e) => {
     authPromise
       .then((user) => {
         $("#password-input, #email-input").removeClass("error");
-        console.log("cred", user);
         //switch to verification page
         secondPage();
         db.collection("users")
@@ -165,6 +163,8 @@ authForm.on("submit", (e) => {
               prefs: { theme: "light", pacing: "no", saves: "yes" },
               education:
                 params.get("edu-code") != null ? params.get("edu-code") : "",
+              joinCode:
+                params.get("join-code") != null ? params.get("join-code") : "",
             },
             { merge: true }
           );
@@ -178,7 +178,6 @@ authForm.on("submit", (e) => {
       .signInWithEmailAndPassword(email, password)
       .then((user) => {
         $("#password-input, #email-input").removeClass("error");
-        console.log(user);
         authForm[0].reset();
       })
       .catch((err) => authError(err));

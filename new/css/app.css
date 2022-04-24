@@ -495,6 +495,7 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 #profile-picture {
   width: 50px;
   height: 50px;
+  border-radius: 25px;
 }
 @media (orientation: landscape), (min-width: 1000px) {
   footer {
@@ -508,23 +509,25 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 #goal-progress {
   display: none;
 }
-#learn-card, #learn-tab, #learn-tab #tab-content, #learn-start {
+#learn-card,
+#learn-tab,
+#learn-tab #tab-content,
+#learn-start {
   overflow: visible;
 }
 .learn-card {
-  transition: box-shadow .25s ease-in-out;
+  transition: box-shadow 0.25s ease-in-out;
   cursor: pointer;
 }
 .learn-card:hover {
   box-shadow: 0px 0px 15px 0px var(--card-glow);
 }
 #create-card {
-  --card-glow: #22BBD3aa;
+  --card-glow: #22bbd3aa;
 }
 #study-card {
-  --card-glow: #AF22D3aa;
-  
+  --card-glow: #af22d3aa;
 }
 #learn-card {
-  --card-glow: #3950B8aa;
+  --card-glow: #3950b8aa;
 }

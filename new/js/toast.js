@@ -51,7 +51,9 @@ class Popup {
       buttons = "<div id='popup-buttons'>";
     toast.classList.add("popup");
     overlay.classList.add("popup-overlay");
-    toast.classList.add(this.type);
+    for (let classData of this.type.split(" ")) {
+      toast.classList.add(classData);
+    }
     for (let actionInfo of this.action) {
       buttons += `<button class="popup-button box-button${
         actionInfo[2] == undefined ? "" : " " + actionInfo[2]

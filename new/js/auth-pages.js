@@ -27,7 +27,6 @@ db.settings({ timestampsInSnapshots: true });
 //!code
 auth.onAuthStateChanged((user) => {
   if (user) {
-    console.log(user);
     console.log("user logged in");
 
     setPhoto(user.photoURL);
@@ -42,7 +41,11 @@ auth.onAuthStateChanged((user) => {
         localStorage.setItem("userData", JSON.stringify(doc.data()));
         localStorage.setItem("userId", auth.getUid());
       });
-    if (!auth.currentUser.emailVerified && !auth.currentUser.isAnonymous) {
+    if (
+      !auth.currentUser.emailVerified &&
+      !auth.currentUser.isAnonymous &&
+      !auth.currentUser.email == null
+    ) {
       new Toast(
         "Please verify your email to use the app!",
         "default",
@@ -102,11 +105,11 @@ auth.onAuthStateChanged((user) => {
 $("[auth='logout-button']").click((e) => {
   new Popup(
     "Are you sure you want to sign out?",
-    "default",
+    "box fullborder default",
     10000,
     "../img/icon/info-icon.svg",
     [
-      ["removePopup()", "Cancel", "secondary-action"],
+      ["removePopup()", "Cancel", "secondary-action fullborder"],
       ["auth.signOut(); removePopup()", "Yes", "primary-action"],
     ]
   );

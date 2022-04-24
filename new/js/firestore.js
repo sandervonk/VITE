@@ -69,19 +69,18 @@ function startSettings() {
     .get()
     .then((r) => {
       settings = r.data().prefs;
-      if (settings == undefined) {
-        db.collection("users")
-          .doc(auth.getUid())
-          .set(
-            { prefs: { theme: "light", pacing: "no", saves: "yes" } },
-            { merge: true }
-          )
-          .then(() => {
-            setupSettings(settings);
-          });
-      } else {
-        setupSettings(settings);
-      }
+      setupSettings(settings);
+    })
+    .catch(() => {
+      db.collection("users")
+        .doc(auth.getUid())
+        .set(
+          { prefs: { theme: "light", pacing: "no", saves: "yes" } },
+          { merge: true }
+        )
+        .then(() => {
+          setupSettings(settings);
+        });
     });
 }
 function startApp() {
