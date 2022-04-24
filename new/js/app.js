@@ -22,6 +22,17 @@ function setupTheme(jsonIn) {
     $("#theme-dark-stylesheet").attr("media", "(prefers-color-scheme: unset)");
   }
 }
+function setupGoal(goalNum, goalXp) {
+  console.log("goal:", goalNum);
+  console.log("xp:", goalXp);
+  $("#goal-text").attr({
+    value: goalXp,
+    goal: goalNum + " xp",
+  });
+  $("#goal-fill").css({
+    width: `${(100 * goalXp) / goalNum}%`,
+  });
+}
 var settings;
 
 function setupSettings(jsonIn) {

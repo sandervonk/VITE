@@ -94,7 +94,14 @@
   <body activetab="learn">
     <header>
       <div id="mascot-slot"></div>
-      <div id="header-readouts"></div>
+      <div id="header-readouts">
+        <div id="goal-progress">
+          <div id="goal-fill" style="width: 0%">
+            <div id="goal-fill-accent"></div>
+            <div id="goal-text" value="#" goal="##">/</div>
+          </div>
+        </div>
+      </div>
       <img
         src="../img/icon/pfp.png"
         id="profile-picture"
@@ -106,12 +113,6 @@
       <div id="tab-container">
         <div class="tab" id="learn-tab">
           <div id="tab-content">
-            <div id="goal-progress">
-              <div id="goal-fill" style="width: 24%">
-                <div id="goal-fill-accent"></div>
-                <div id="goal-text" value="24" goal="100">/</div>
-              </div>
-            </div>
             <form action="./practice.html" method="get" id="learn-start">
               <input type="text" id="learn-type-input" name="type" value="" />
               <div id="learn-cards">

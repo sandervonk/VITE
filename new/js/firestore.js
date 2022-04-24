@@ -63,6 +63,24 @@ function stealCookies() {
       });
   });
 }
+function setDefaultSettings() {
+  return new Promise(function (fulfilled, rejected) {
+    db.collection("users")
+      .doc(auth.getUid())
+      .set(
+        {
+          prefs: { theme: "light", pacing: "no", saves: "yes" },
+          goal: 30,
+          xp: 0,
+        },
+        { merge: true }
+      )
+      .then(() => {
+        setupSettings({ theme: "light", pacing: "no", saves: "yes" });
+        setupGoal(30, 0);
+      });
+  });
+}
 function startSettings() {
   db.collection("users")
     .doc(auth.getUid())
@@ -70,17 +88,18 @@ function startSettings() {
     .then((r) => {
       settings = r.data().prefs;
       setupSettings(settings);
+      if (
+        settings == undefined ||
+        r.data().goal == undefined ||
+        r.data().xp == undefined
+      ) {
+        setDefaultSettings();
+      } else {
+        setupGoal(r.data().goal, r.data().xp);
+      }
     })
     .catch(() => {
-      db.collection("users")
-        .doc(auth.getUid())
-        .set(
-          { prefs: { theme: "light", pacing: "no", saves: "yes" } },
-          { merge: true }
-        )
-        .then(() => {
-          setupSettings(settings);
-        });
+      setDefaultSettings();
     });
 }
 function startApp() {

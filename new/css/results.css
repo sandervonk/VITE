@@ -8,9 +8,14 @@
   width: 100%;
 }
 #next-button {
+  --button-accent: var(--prior-button-accent);
+  color: var(--button-accent);
   --button-border: var(--prior-button-border);
   --button-bg: var(--prior-button-bg);
   height: 47px;
+}
+#reset-button {
+  background-color: var(--box-bg);
 }
 #next-button:active {
   margin-top: 4px !important;
@@ -55,6 +60,10 @@ body {
   content: " answered correctly";
 }
 #time .result-number::after {
+  content: " elapsed";
+}
+#xp .result-number::after {
+  content: " xp earned";
 }
 .result-number::after {
   opacity: 0.5;

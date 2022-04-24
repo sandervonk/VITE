@@ -43,8 +43,8 @@
   --check-button-blank-accent: #c8c8c8;
   --check-fill: #57cc02;
   --check-fill-accent: #58a700;
-  --check-fill-skipped: hsl(39, 98%, 40%);
-  --check-fill-skipped-accent: hsl(39, 100%, 33%);
+  --check-fill-skipped: hsl(44, 100%, 46%);
+  --check-fill-skipped-accent: hsl(39, 100%, 41%);
   --check-fill-incorrect: #ff4b4b;
   --check-fill-incorrect-accent: #ff2f2f;
   --result-correct-bg: #d7ffb9;

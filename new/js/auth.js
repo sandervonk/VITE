@@ -1,3 +1,7 @@
+let url = window.location.href,
+  params = new URL(url).searchParams;
+
+history.replaceState({}, "", "./");
 var verificationInterval;
 //control pages of auth (for verification)
 function firstPage() {
@@ -189,8 +193,7 @@ $("#oauth-login").click((e) => {
   provider.addScope("email");
   firebase.auth().signInWithRedirect(provider);
 });
-let url = window.location.href,
-  params = new URL(url).searchParams;
+
 if (params.get("edu-code") != null) {
   $("#extended-options, #oauth-login").hide();
   if (params.get("edu-code") == "student") {

@@ -93,7 +93,7 @@ footer {
   top: -100%;
 }
 #mascot-slot {
-  width: 60px;
+  width: 40px;
   height: 100%;
   background-position: center left;
   background-repeat: no-repeat;
@@ -290,21 +290,6 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   display: flex;
   flex-flow: row nowrap;
   margin: 10px 0;
-}
-#goal-fill {
-  background-color: var(--bar-color);
-  border-radius: 15px;
-  min-width: 45px;
-  box-sizing: border-box;
-  height: 100%;
-  flex-grow: 0;
-  transition: width 0.5s ease-in-out;
-}
-#goal-fill-accent {
-  background-color: var(--bar-accent);
-  height: 6px;
-  margin: 5px 16px 0 9px;
-  border-radius: 5px;
 }
 #goal-text {
   color: var(--bar-text);
@@ -505,10 +490,10 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
     padding: 18px calc(50vw - 250px);
   }
 }
-/* TEMPORARY */
+/* TEMPORARY 
 #goal-progress {
   display: none;
-}
+}*/
 #learn-card,
 #learn-tab,
 #learn-tab #tab-content,
@@ -530,4 +515,40 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 }
 #learn-card {
   --card-glow: #3950b8aa;
+}
+#header-readouts {
+  flex-shrink: 0;
+  flex-grow: 1;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  padding: 0 20px;
+}
+#goal-progress {
+  flex-basis: 200px;
+  width: 200px;
+  max-width: 700px;
+  flex-shrink: 0;
+  flex-grow: 1;
+}
+#goal-text {
+  padding: 0 10px;
+  white-space: nowrap;
+}
+
+#goal-fill {
+  background-color: var(--bar-color);
+  border-radius: 15px;
+  box-sizing: border-box;
+  height: 100%;
+  flex-grow: 0;
+  transition: width 0.5s ease-in-out;
+  min-width: fit-content;
+}
+#goal-fill-accent {
+  background-color: var(--bar-accent);
+  height: 6px;
+  margin: 5px 16px 0 9px;
+  border-radius: 5px;
 }

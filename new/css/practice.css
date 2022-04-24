@@ -314,6 +314,8 @@ header.infinite #back-button {
   color: var(--check-button-blank);
   font-weight: 700;
   margin-bottom: 4px;
+  user-select: none;
+  cursor: pointer;
 }
 body[showanswer] #skip-button,
 body[avaliable] #skip-button {
