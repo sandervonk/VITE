@@ -60,11 +60,17 @@ header {
   max-height: 100%;
   max-width: 100%;
 }
+
+#code-enter {
+  flex-basis: 100px;
+  width: 100px;
+  flex-grow: 1;
+}
 .school-type {
   flex-grow: 1;
   flex-shrink: 0;
   margin: 10px;
-  flex-basis: 300px;
+  flex-basis: 200px;
   min-height: 125px;
   display: flex;
   flex-flow: row nowrap;

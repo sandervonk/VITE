@@ -282,6 +282,10 @@ input[type="button"]#change-email:active {
   font-weight: 400;
   text-transform: none;
 }
+#join-code::before {
+  content: "Class Code: " !important;
+  color: var(--box-border);
+}
 #join-code {
   height: 44px;
   box-sizing: border-box;
@@ -293,7 +297,7 @@ input[type="button"]#change-email:active {
   border-bottom-right-radius: 0;
   */
   border-color: var(--box-bg);
-  border-bottom: 2px;
+  border-bottom-width: 2px !important;
 }
 #code-submit {
   display: none;
@@ -309,4 +313,11 @@ input[type="button"]#change-email:active {
 #edu-back:active {
   height: 42px;
   margin-top: 2px;
+}
+body {
+  overflow-y: auto !important;
+  max-height: 100%;
+}
+#auth-form {
+  min-height: fit-content;
 }
