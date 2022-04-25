@@ -545,6 +545,7 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   flex-grow: 0;
   transition: width 0.5s ease-in-out;
   min-width: fit-content;
+  max-width: 100%;
 }
 #goal-fill-accent {
   background-color: var(--bar-accent);

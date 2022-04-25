@@ -32,6 +32,12 @@ function setupGoal(goalNum, goalXp) {
   $("#goal-fill").css({
     width: `${(100 * goalXp) / goalNum}%`,
   });
+  console.log(goalXp >= goalNum);
+  if (goalXp >= goalNum) {
+    $("#mascot-slot").css({
+      "background-image": "url(../img/mascot/mood=Excited.svg)",
+    });
+  }
 }
 var settings;
 
