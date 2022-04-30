@@ -24,6 +24,7 @@ var question = {},
     fa: "Future tense (actions previous to another)",
     co: "Conditional tense",
     cp: "Past conditional tense (regrets, what would / could have happened)",
+    su: "Subjunctive Tense (opinions, emotions, and possibilities)",
   };
 function showQuestion(q) {
   question = q;
@@ -168,6 +169,9 @@ class Question {
     } else if (t == "cp") {
       a = this.cpTense(s, v);
       t = "Conditionnel Passé";
+    } else if (t == "su") {
+      a = this.suTense(s, v);
+      t = "Subjonctif";
     }
     return {
       subject: a.subject,
@@ -399,6 +403,36 @@ class Question {
       a.pc.subject,
       true
     );
+  }
+  suTense(s, v) {
+    //Subjonctif Conjugator
+    let end = {
+        Je: "e",
+        Tu: "es",
+        "Il / Elle / On": "e",
+        Nous: "ions",
+        Vous: "iez",
+        "Ils / Elles": "ent",
+      },
+      a,
+      r;
+    if (v.verb.SU == "regular" || v.verb.SU[s] == "regular") {
+      r = this.prTense("Ils / Elles", v).alt;
+      if (r.substr(r.length - 3, 3) == "ent") {
+        r = r.substr(0, r.length - 3);
+        a = r + end[s];
+      } else {
+        console.warn("ERR Data:");
+        console.info([s, v.verb, v.name]);
+        console.info([r, r.substr(0, r.length - 3), r.substr(r.length - 3, 3)]);
+        window.alert(
+          `ERR: Could not remove -ent ending from present tense of 'Ils / Elles' conjugation ('${r}'), cannot form Subjonctif`
+        );
+      }
+    } else {
+      a = v.verb.SU[s];
+    }
+    return this.versions(a, s);
   }
   agreement(subjects) {
     let data = {

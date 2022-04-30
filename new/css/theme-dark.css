@@ -13,15 +13,15 @@
   --progress-fill: #93d333;
   --progress-fill-accent: #a9dc5c;
   --text-primary: #f1f7fb;
-  --text-secondary: hsl(198, 14%, 37%);
+  --text-secondary: #51646c;
   /*tutorial*/
   --overlay-bg: #ffffff40;
   --tutorial-action-bg: #68952d;
   --tutorial-action-border: #557b24;
   /*learn*/
-  --bar-bg: #1f3136;
-  --bar-color: hsl(191, 55%, 41%);
-  --bar-accent: hsl(191, 70%, 47%);
+  --bar-bg: #37464f;
+  --bar-color: #2f8da2;
+  --bar-accent: #24adcc;
   --bar-text: #ffffff;
   --study-card-bg: url(../img/card/dark/card=study.svg);
   --learn-card-bg: url(../img/card/dark/card=learn.svg);
@@ -54,6 +54,8 @@
   --toast-bg: #303030;
   --toast-bg-transparent: #303030aa;
   --toast-text: #ffffff;
+  --toast-border: #242424;
+  --toast-secondary: #3b3b3b;
 }
 .active-img,
 .option-icon,

@@ -350,6 +350,9 @@ input.error {
   box-sizing: border-box;
   background-color: var(--toast-bg);
   color: var(--toast-text);
+  border-color: var(--toast-border) !important;
+  --check-button-blank: var(--toast-secondary);
+  --check-button-blank-accent: var(--toast-border);
   position: fixed;
   display: flex;
   flex-flow: column;

@@ -17,7 +17,7 @@ if (
 }
 history.replaceState({}, "", "practice.html");
 function setScore() {
-  console.log("implement score show here");
+  //implement score show here
   let elapsedTime = new Date().getTime() - scoringData.startTime;
   $("#results-duration").val(elapsedTime);
   $("#results-total").val(score.total);

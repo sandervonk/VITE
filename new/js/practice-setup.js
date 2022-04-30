@@ -8,6 +8,7 @@ var verbs,
     fs: "Futur Simple",
     fa: "Futur Antérieur",
     cp: "Conditionnel Passé",
+    su: "Subjonctif",
   },
   subjectDefinitions = {
     Je: "I",
@@ -26,6 +27,7 @@ var verbs,
     fa: "Future tense (actions previous to another)",
     co: "Conditional tense",
     cp: "Past conditional tense (regrets, what would / could have happened)",
+    su: "Subjunctive Tense (opinions, emotions, and possibilities)",
   };
 function setupSetup() {
   $(".options-toggles > .option-toggle").remove();

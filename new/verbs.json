@@ -1,6 +1,7 @@
 {
   "Venir": {
     "mascot": "Walk",
+    "SU": "regular",
     "FS": "viendr",
     "PS": {
       "Je": "vin",
@@ -24,6 +25,14 @@
   },
   "Pouvoir": {
     "mascot": "Default",
+    "SU": {
+      "Je": "puisse",
+      "Tu": "puisses",
+      "Il / Elle / On": "puisse",
+      "Nous": "puissions",
+      "Vous": "puissiez",
+      "Ils / Elles": "puissent"
+    },
     "FS": "pourr",
     "PS": {
       "All": "regular"
@@ -42,6 +51,7 @@
   },
   "Prendre": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -60,6 +70,7 @@
   },
   "Connaître": {
     "mascot": "Know",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -78,6 +89,7 @@
   },
   "Savoir": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "saur",
     "PS": {
       "All": "regular"
@@ -96,6 +108,14 @@
   },
   "Avoir": {
     "mascot": "Basket",
+    "SU": {
+      "Je": "aie",
+      "Tu": "aies",
+      "Il / Elle / On": "ait",
+      "Nous": "ayons",
+      "Vous": "ayez",
+      "Ils / Elles": "aient"
+    },
     "FS": "aur",
     "PS": {
       "Je": "eus",
@@ -119,6 +139,14 @@
   },
   "Être": {
     "mascot": "Default",
+    "SU": {
+      "Je": "sois",
+      "Tu": "sois",
+      "Il / Elle / On": "soit",
+      "Nous": "soyons",
+      "Vous": "soyez",
+      "Ils / Elles": "soient"
+    },
     "FS": "ser",
     "PS": {
       "Je": "fus",
@@ -142,6 +170,14 @@
   },
   "Aller": {
     "mascot": "Walk",
+    "SU": {
+      "Je": "aille",
+      "Tu": "ailles",
+      "Il / Elle / On": "aille",
+      "Nous": "allions",
+      "Vous": "alliez",
+      "Ils / Elles": "aillent"
+    },
     "FS": "ir",
     "PS": {
       "Je": "alle",
@@ -165,6 +201,14 @@
   },
   "Faire": {
     "mascot": "Default",
+    "SU": {
+      "Je": "fasse",
+      "Tu": "fasses",
+      "Il / Elle / On": "fasse",
+      "Nous": "fassions",
+      "Vous": "fassiez",
+      "Ils / Elles": "fassent"
+    },
     "FS": "fer",
     "PS": {
       "Je": "fis",
@@ -189,6 +233,7 @@
   "Manger": {
     "mascot": "Have",
     "fullsize": "Picnic",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -207,6 +252,7 @@
   },
   "Finir": {
     "mascot": "Done",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -220,6 +266,7 @@
   },
   "Vouloir": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "voudr",
     "PS": {
       "All": "regular"
@@ -238,6 +285,7 @@
   },
   "Dormir": {
     "mascot": "Sleep",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -256,6 +304,7 @@
   },
   "Rester": {
     "mascot": "Sleep",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -269,6 +318,7 @@
   },
   "Devoir": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "devr",
     "PS": {
       "All": "regular"
@@ -287,6 +337,7 @@
   },
   "Suivre": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -305,6 +356,7 @@
   },
   "Voir": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "verr",
     "PS": {
       "All": "regular"
@@ -323,6 +375,7 @@
   },
   "Rendre": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -336,6 +389,7 @@
   },
   "Pleurer": {
     "mascot": "Teared",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -349,6 +403,7 @@
   },
   "Sauter": {
     "mascot": "Excited",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -362,6 +417,7 @@
   },
   "Mettre": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -381,6 +437,7 @@
   "Conduire": {
     "mascot": "Default",
     "fullsize": "Driving",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -399,6 +456,7 @@
   },
   "Dire": {
     "mascot": "Speaking",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "Je": "dis",
@@ -422,6 +480,7 @@
   },
   "Penser": {
     "mascot": "Think",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -435,6 +494,7 @@
   },
   "Descendre": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -449,6 +509,7 @@
   "Retourner": {
     "mascot": "Default",
     "fullsize": "Door",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -462,6 +523,7 @@
   },
   "Mourir": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "mourr",
     "PS": {
       "All": "regular"
@@ -475,6 +537,7 @@
   },
   "Rentre": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -488,6 +551,7 @@
   },
   "Sortir": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -502,6 +566,7 @@
   "Arriver": {
     "mascot": "Default",
     "fullsize": "Door",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -515,6 +580,7 @@
   },
   "Naître": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
