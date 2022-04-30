@@ -135,7 +135,12 @@ $("form").on("submit", (e) => {
   } catch {
     console.warn("could not clear previous update");
   }
-  db.collection("users").doc(auth.getUid()).set(newJSON, { merge: true });
+  db.collection("users")
+    .doc(auth.getUid())
+    .set(newJSON, { merge: true })
+    .then(() => {
+      $("form").submit();
+    });
 });
 $("#reset-button").on("click", (e) => {
   stealCookies().then(() => {

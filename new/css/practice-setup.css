@@ -18,6 +18,7 @@
   flex-grow: 0;
   box-sizing: border-box;
 }
+
 #next-button {
   --button-border: var(--check-fill-accent);
   margin: 0px !important;
@@ -30,7 +31,6 @@
   content: "Continue";
   padding: 0;
 }
-
 #page-content {
   max-width: calc(500px - 32px);
   position: absolute;
@@ -169,4 +169,17 @@ form {
 }
 body {
   padding: 0 !important;
+}
+#reset-button,
+#next-button {
+  height: 44px !important;
+}
+#reset-button:active {
+  border-bottom-width: 2px !important;
+  margin-top: 2px !important;
+}
+#next-button:active {
+  border-bottom: none !important;
+  margin-top: 4px !important;
+  height: 40px !important;
 }
