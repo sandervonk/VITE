@@ -64,10 +64,11 @@ class tutorialObject {
   next() {
     let order = ["learn", "settings", "announcements", "none"],
       current = $(".footer-item.active")[0].id.replace("-tab", "");
-    let next = order[order.indexOf(current) + 1],
-      nextTab = ".footer-item#" + next + "-tab";
+    let next = order[order.indexOf(current) + 1];
+    let nextTab = ".footer-item#" + next + "-tab";
+    console.log(next, nextTab);
     if (next != "none") {
-      $();
+      console.log("next != 'none'");
       $(".footer-item").removeClass("active");
       $(nextTab).addClass("active");
       $("#page-content, body").attr("activetab", next);
@@ -77,12 +78,8 @@ class tutorialObject {
     }
   }
   setText(tabName) {
-    $(this.parent)
-      .children("#tutorial-title")
-      .text(tutorialTabs[tabName].title);
-    $(this.parent)
-      .children("#tutorial-description")
-      .text(tutorialTabs[tabName].description);
+    $("#tutorial-title").text(tutorialTabs[tabName].title);
+    $("#tutorial-description").text(tutorialTabs[tabName].description);
   }
 }
 let url = window.location.href,
@@ -100,6 +97,7 @@ $(".footer-item").click((e) => {
   $(".footer-item").removeClass("active");
   $(e.target).addClass("active");
   $("#page-content, body").attr("activetab", e.target.id.replace("-tab", ""));
+  tutorialClass.setText(e.target.id.replace("-tab", ""));
 });
 
 function saveSettings(form) {
