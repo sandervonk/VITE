@@ -183,7 +183,6 @@ const assets = [
   "js/theme.js",
   "js/toast.js",
   "js/vite-util.js",
-  "js/src/jquery-3.6.0.min.js",
 ];
 
 self.addEventListener("install", (installEvent) => {

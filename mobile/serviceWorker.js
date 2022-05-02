@@ -10,7 +10,6 @@ const assets = [
   "icon/moon.svg",
   "icon/submit.svg",
   "icon/sun.svg",
-  "/src/jquery-3.6.0.min.js",
 ];
 
 self.addEventListener("install", (installEvent) => {
