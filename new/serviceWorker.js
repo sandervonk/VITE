@@ -210,7 +210,8 @@ self.addEventListener("fetch", (fetchEvent) => {
       })
   );
 });
-messaging.setBackgroundMessageHandler(function (payload) {
+
+firebase.messaging().setBackgroundMessageHandler(function (payload) {
   console.log(
     "[firebase-messaging-sw.js] Received background message ",
     payload
@@ -226,4 +227,8 @@ messaging.setBackgroundMessageHandler(function (payload) {
     notificationTitle,
     notificationOptions
   );
+});
+self.addEventListener("notificationclick", function (event) {
+  event.notification.close();
+  event.waitUntil(self.clients.openWindow(event.notification.data));
 });
