@@ -165,8 +165,7 @@ const config = {
     const auth = firebase.auth();
     const db = firebase.firestore();
     const messaging = firebase.messaging();
-    try{setupMessaging()}catch(err){console.warn("firebase msg err:", err)}
-    // update firestore settings
+   // update firestore settings
     db.settings({ timestampsInSnapshots: true });
 </script>
 <script src="js/toast.js"></script>
