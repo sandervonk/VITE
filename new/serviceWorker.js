@@ -216,6 +216,7 @@ self.addEventListener("notificationclick", function (event) {
   event.waitUntil(self.clients.openWindow(event.notification.data));
 });
 
+importScripts("https://www.gstatic.com/firebasejs/8.0.0/firebase.js");
 importScripts("https://www.gstatic.com/firebasejs/8.0.0/firebase-messaging.js");
 firebase.messaging().setBackgroundMessageHandler(function (payload) {
   console.log(
