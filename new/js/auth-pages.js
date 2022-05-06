@@ -21,6 +21,11 @@ firebase.initializeApp(config);
 const auth = firebase.auth();
 const db = firebase.firestore();
 const messaging = firebase.messaging();
+try {
+  setupMessaging();
+} catch (err) {
+  console.warn("firebase msg err:", err);
+}
 // update firestore settings
 db.settings({ timestampsInSnapshots: true });
 
