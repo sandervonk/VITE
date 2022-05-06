@@ -20,7 +20,24 @@ firebase.initializeApp(config);
 // make auth and firestore references
 const auth = firebase.auth();
 const db = firebase.firestore();
+const messaging = firebase.messaging();
+messaging.setBackgroundMessageHandler(function (payload) {
+  console.log(
+    "[firebase-messaging-sw.js] Received background message ",
+    payload
+  );
+  // Customize notification here
+  const notificationTitle = "Background Message Title";
+  const notificationOptions = {
+    body: "Background Message body.",
+    icon: "/logo.png",
+  };
 
+  return self.registration.showNotification(
+    notificationTitle,
+    notificationOptions
+  );
+});
 // update firestore settings
 db.settings({ timestampsInSnapshots: true });
 
