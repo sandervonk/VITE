@@ -7,7 +7,7 @@ if ("serviceWorker" in navigator) {
         try {
           firebase.messaging().useServiceWorker(res);
         } catch (err) {
-          console.err("firebase messsaging err: ", err);
+          console.error("firebase messsaging err: ", err);
         }
       })
       .catch((err) => console.log("service worker not registered", err));
