@@ -211,6 +211,12 @@ self.addEventListener("fetch", (fetchEvent) => {
   );
 });
 
+self.addEventListener("notificationclick", function (event) {
+  event.notification.close();
+  event.waitUntil(self.clients.openWindow(event.notification.data));
+});
+
+importScripts("https://www.gstatic.com/firebasejs/8.0.0/firebase-messaging.js");
 firebase.messaging().setBackgroundMessageHandler(function (payload) {
   console.log(
     "[firebase-messaging-sw.js] Received background message ",
@@ -227,8 +233,4 @@ firebase.messaging().setBackgroundMessageHandler(function (payload) {
     notificationTitle,
     notificationOptions
   );
-});
-self.addEventListener("notificationclick", function (event) {
-  event.notification.close();
-  event.waitUntil(self.clients.openWindow(event.notification.data));
 });
