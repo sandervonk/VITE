@@ -63,7 +63,7 @@ auth.onAuthStateChanged((user) => {
             "../img/icon/info-icon.svg"
           );
         } else {
-          console.log("guest user, proceed with caution");
+          console.warn("Signed in as guest");
         }
       }
       /*

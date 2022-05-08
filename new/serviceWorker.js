@@ -10,6 +10,7 @@ const assets = [
   "app/practice.html",
   "app/practice-setup.html",
   "app/results.html",
+  "app/sheetify.html",
   "css/app.css",
   "css/common.css",
   "css/fonts.css",
@@ -204,6 +205,10 @@ self.addEventListener("fetch", (fetchEvent) => {
         console.log(fetchEvent.request.url);
         if (fetchEvent.request.url.split("?")[0].substr(-5) == ".html") {
           caches.match(OFFLINE_URL);
+          console.log(
+            "failed fetch, returning offline html for request:",
+            fetchEvent.request
+          );
         } else {
           caches.match(OFFLINE_IMG);
         }
