@@ -203,6 +203,10 @@ self.addEventListener("fetch", (fetchEvent) => {
         console.log("fetch event failed:");
         console.log(fetchEvent.request.url);
         if (fetchEvent.request.url.split("?")[0].substr(-5) == ".html") {
+          console.log(
+            "failed fetch, returning offline html for request:",
+            fetchEvent.request
+          );
           caches.match(OFFLINE_URL);
         } else {
           caches.match(OFFLINE_IMG);
