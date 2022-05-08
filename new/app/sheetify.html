@@ -4,7 +4,7 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="noAuthEnforce" content="true" />
+    <meta name="noauthenforce" content="true" />
     <link rel="manifest" href="../manifest.json" />
     <!-- ios support -->
     <link rel="apple-touch-icon" href="../img/icon/app/icon-72x72.png" />
@@ -82,16 +82,58 @@
       media="(prefers-color-scheme: unset)"
       id="theme-dark-stylesheet"
     />
-    <link rel="stylesheet" href="../css/app.css" />
+    <link rel="stylesheet" href="../css/sheetify.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
     <script src="../js/theme.js"></script>
-    <title>VITE! - App</title>
+    <title>VITE! - Sheetify</title>
   </head>
-  <body></body>
+  <body>
+    <header class="secondary-underline">
+      <img src="../img/icon/sheetify-logo.svg" id="sheetify-logo" />
+      <div id="sheetify-title" class="accented">sheetify</div>
+    </header>
+    <div id="sheetify-content">
+      <div id="filter-options">
+        <div id="options-header" class="secondary-underline">
+          <div class="primary" style="font-size: 26px">Settings</div>
+          <div
+            class="uppercase primary"
+            style="color: #19aff5; font-size: 18px"
+          >
+            Reset All
+          </div>
+        </div>
+        <form id="filters-from">
+          <select id="orientation-select" class="options-item">
+            <option value="" disabled selected hidden>Orientation</option>
+            <option value="portrait">Portrait</option>
+            <option value="landscape">Landscape</option>
+          </select>
+          <select id="tense-select" class="options-item">
+            <option value="" disabled selected hidden>Tense</option>
+          </select>
+          <select id="verbs-select" class="options-item">
+            <option value="" disabled selected hidden>Verb Types</option>
+          </select>
+        </form>
+        <button id="open-saved" class="options-item box-button bold">
+          Saved Sheets
+        </button>
+      </div>
+      <div id="options-overlay"></div>
+      <div id="results-container">
+        <div id="results-header" class="primary secondary-underline">
+          # Template(s) Avaliable
+        </div>
+        <div id="results-filters" class="primary">All</div>
+        <div id="results-grid">
+          <img src="../img/template/Template.svg" class="template-img" />
+          <img src="../img/template/Template.svg" class="template-img" />
+        </div>
+      </div>
+    </div>
+  </body>
   <script src="../js/sheetify.js"></script>
   <script src="../js/toast.js"></script>
   <script src="../js/firebase.js"></script>

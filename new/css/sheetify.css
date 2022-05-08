@@ -1,0 +1,185 @@
+html,
+body {
+  background-color: var(--bg);
+}
+body {
+  display: flex;
+  flex-flow: column;
+}
+header {
+  background-color: var(--bg);
+  height: 75px;
+  padding: 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: row nowrap;
+  border-radius: 0;
+  justify-content: start;
+  position: sticky;
+  top: 0;
+}
+.secondary-underline {
+  border-bottom: solid 2px var(--secondary);
+}
+#sheetify-logo {
+  transform: scale(0.75);
+}
+.accented {
+  color: #3cadc6;
+}
+#sheetify-title {
+  font-size: 35px;
+  font-family: "Feather", "Next", sans-serif;
+  margin-left: 10px;
+}
+#sheetify-content {
+  padding: 30px 30px;
+  display: flex;
+  flex-flow: row nowrap;
+}
+#results-container {
+  width: 100%;
+  min-height: 100%;
+}
+#results-header {
+  font-size: 26px;
+  width: 100%;
+  padding-bottom: 20px;
+  margin-bottom: 20px;
+}
+#results-filters {
+  font-size: 17px;
+  margin-bottom: 20px;
+}
+#results-grid {
+  display: flex;
+  flex-flow: row;
+  justify-content: start;
+  align-items: stretch;
+}
+#results-grid > * {
+  border: 2px solid var(--secondary);
+  border-radius: 10px;
+  width: auto;
+  width: calc(50% - 20px);
+  height: auto;
+  flex-grow: 1;
+  margin: 10px;
+  box-sizing: border-box;
+}
+#options-overlay {
+  background-color: #000000aa;
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: 10000;
+}
+#filter-options {
+  display: flex;
+  flex-flow: column;
+}
+.options-item {
+  margin: 8px 0;
+  width: 100%;
+}
+select.options-item {
+  border-radius: 10px;
+  height: 55px;
+  box-sizing: border-box;
+  border: solid 2px var(--dropdown-border);
+  border-bottom-width: 4px;
+  color: var(--dropdown-items);
+  font-size: 17px;
+  font-weight: bold;
+  padding: 10px;
+  padding-left: 48px;
+  background-repeat: no-repeat;
+  align-items: center;
+  display: flex;
+}
+#orientation-select {
+  background-image: url(../img/template/rotation-icon.svg);
+
+  background-position: 20px center;
+}
+#tense-select {
+  background-image: url(../img/template/clocks-icon.svg);
+
+  background-position: 12px center;
+}
+#verbs-select {
+  background-image: url(../img/template/verb-icon.svg);
+
+  background-position: 12px center;
+}
+#open-saved {
+  --button-bg: var(--prior-button-bg);
+  --button-border: var(--prior-button-border);
+  --button-accent: var(--prior-button-accent);
+  color: var(--button-accent);
+  margin-top: 8px;
+  height: 44px;
+  box-sizing: border-box;
+  margin-bottom: 0px !important;
+}
+#open-saved:active {
+  margin-top: 12px;
+  height: 40px;
+}
+#filter-options {
+  white-space: nowrap;
+}
+#options-header {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 20px;
+  margin-bottom: 8px;
+}
+@media (max-width: 499.9px) {
+  #filter-options {
+    border-radius: 20px;
+    background-color: var(--bg);
+    box-sizing: border-box;
+    z-index: 10001;
+    padding: 20px;
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 275px;
+    max-width: 90vw;
+  }
+  #options-overlay {
+    display: block;
+  }
+}
+@media (min-width: 500px) {
+  header,
+  #sheetify-content {
+    padding: 50px 135px;
+  }
+  #sheetify-content {
+    flex-flow: column;
+  }
+  #sheetify-logo {
+    transform: scale(0.9);
+  }
+}
+@media (min-width: 700px) {
+  #sheetify-content {
+    flex-flow: row nowrap;
+  }
+  #filter-options {
+    min-width: 230px;
+    margin-right: 60px;
+  }
+  #results-grid * {
+    flex-basis: 170px;
+    max-width: 250px;
+  }
+}

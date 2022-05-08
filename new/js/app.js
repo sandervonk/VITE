@@ -116,6 +116,10 @@ $("#settings-tab .switch-toggle").click((e) => {
   saveSettings($("#settings-form")[0]);
 });
 $(".learn-card").click((e) => {
-  $("#learn-type-input").val($(e.target).closest(".learn-card").attr("name"));
-  $("#learn-start").submit();
+  window.open(
+    $(e.target).closest(".learn-card").attr("page") +
+      "?type=" +
+      $(e.target).closest(".learn-card").attr("name"),
+    "_self"
+  );
 });

@@ -56,10 +56,13 @@
   --toast-text: #ffffff;
   --toast-border: #242424;
   --toast-secondary: #3b3b3b;
+  /*items*/
+  --dropdown-border: #aeaeae;
 }
 .active-img,
 .option-icon,
-.result-img {
+.result-img,
+.accented {
   filter: brightness(0.9);
 }
 
