@@ -5,6 +5,7 @@ body {
 body {
   display: flex;
   flex-flow: column;
+  transition: overflow-y 0.25s ease-out;
 }
 header {
   background-color: var(--bg);
@@ -17,7 +18,46 @@ header {
   justify-content: start;
   position: sticky;
   top: 0;
+  pointer-events: none;
+  user-select: none;
 }
+#horizontal-container {
+  position: relative;
+  display: flex;
+  flex-flow: row nowrap;
+  width: 200vw;
+  flex-shrink: 0;
+  height: fit-content;
+  transition: 0.25s left ease-in-out;
+  left: 0;
+}
+#print-button-container {
+  left: 100vw;
+  transition: 0.25s left ease-in-out;
+}
+body.right {
+  overflow-y: hidden;
+  transition: none;
+}
+body.right #horizontal-container {
+  left: -100vw;
+  transition: none;
+}
+body.right .bottom-container {
+  transition: 0.25s left ease-in-out;
+}
+body.right .bottom-container {
+  left: -100vw;
+}
+body.right #print-button-container {
+  left: 0;
+}
+#horizontal-container > div:not(.bottom-container) {
+  flex-grow: 0;
+  flex-shrink: 0;
+  flex-basis: 100vw;
+}
+
 .secondary-underline {
   border-bottom: solid 2px var(--secondary);
 }
@@ -32,10 +72,17 @@ header {
   font-family: "Feather", "Next", sans-serif;
   margin-left: 10px;
 }
-#sheetify-content {
+#sheetify-content,
+#sheetify-print {
   padding: 30px 30px;
   display: flex;
+  box-sizing: border-box;
+}
+#sheetify-content {
   flex-flow: row nowrap;
+}
+#sheetify-print {
+  flex-flow: column;
 }
 #results-container {
   width: 100%;
@@ -45,9 +92,9 @@ header {
   font-size: 26px;
   width: 100%;
   padding-bottom: 20px;
-  margin-bottom: 20px;
 }
 #results-filters {
+  margin-top: 20px;
   font-size: 17px;
   margin-bottom: 20px;
 }
@@ -89,9 +136,9 @@ select.options-item {
   border-radius: 10px;
   height: 55px;
   box-sizing: border-box;
-  border: solid 2px var(--dropdown-border);
-  border-bottom-width: 4px;
-  color: var(--dropdown-items);
+  border: solid 2px var(--dropdown-border) !important;
+  border-bottom-width: 4px !important;
+  color: var(--dropdown-items) !important;
   font-size: 17px;
   font-weight: bold;
   padding: 10px;
@@ -99,26 +146,21 @@ select.options-item {
   background-repeat: no-repeat;
   align-items: center;
   display: flex;
+  background-color: var(--button-bg);
 }
 #orientation-select {
   background-image: url(../img/template/rotation-icon.svg);
-
   background-position: 20px center;
 }
 #tense-select {
   background-image: url(../img/template/clocks-icon.svg);
-
   background-position: 12px center;
 }
 #verbs-select {
   background-image: url(../img/template/verb-icon.svg);
-
   background-position: 12px center;
 }
 #open-saved {
-  --button-bg: var(--prior-button-bg);
-  --button-border: var(--prior-button-border);
-  --button-accent: var(--prior-button-accent);
   color: var(--button-accent);
   margin-top: 8px;
   height: 44px;
@@ -140,7 +182,31 @@ select.options-item {
   padding-bottom: 20px;
   margin-bottom: 8px;
 }
+@keyframes zoomIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.25);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, -50%) scale(1);
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 @media (max-width: 499.9px) {
+  body {
+    overflow-y: auto;
+  }
+  #sheetify-content {
+    padding-bottom: 84px;
+  }
   #filter-options {
     border-radius: 20px;
     background-color: var(--bg);
@@ -157,13 +223,58 @@ select.options-item {
   #options-overlay {
     display: block;
   }
+  #filter-options,
+  #options-overlay {
+    display: none;
+    transform-origin: center center;
+  }
+  #filter-options.active {
+    display: flex;
+    animation: zoomIn 0.25s ease-in-out forwards;
+  }
+  #filter-options.active ~ #options-overlay {
+    display: flex;
+    animation: fadeIn 0.25s ease-in-out forwards;
+  }
 }
+.bottom-container {
+  display: flex;
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100vw;
+  padding: 20px;
+  box-sizing: border-box;
+  align-items: end;
+  justify-content: center;
+}
+
 @media (min-width: 500px) {
+  body {
+    overflow-y: auto;
+  }
+  #sheetify-content,
+  #sheetify-print {
+    max-height: calc(100vh - 102px);
+    flex-grow: 1;
+    flex-basis: 20px;
+  }
+  #results-scrollable {
+    overflow-y: auto;
+  }
+  #results-container {
+    margin-top: 40px;
+  }
+  .bottom-container {
+    display: none;
+  }
   header,
-  #sheetify-content {
+  #sheetify-content,
+  #sheetify-print {
     padding: 50px 135px;
   }
-  #sheetify-content {
+  #sheetify-content,
+  #sheetify-print {
     flex-flow: column;
   }
   #sheetify-logo {
@@ -171,6 +282,19 @@ select.options-item {
   }
 }
 @media (min-width: 700px) {
+  body {
+    overflow-y: hidden;
+  }
+  #sheetify-content {
+    max-height: calc(100vh - 102px + 50px);
+  }
+  #results-scrollable {
+    overflow-y: auto;
+    max-height: calc(100% - 53px);
+  }
+  #results-container {
+    margin-top: 0px;
+  }
   #sheetify-content {
     flex-flow: row nowrap;
   }
@@ -181,5 +305,67 @@ select.options-item {
   #results-grid * {
     flex-basis: 170px;
     max-width: 250px;
+  }
+}
+
+#open-saved,
+#settings-button,
+#print-button {
+  --button-bg: var(--prior-button-bg);
+  --button-border: var(--prior-button-border);
+  --button-accent: var(--prior-button-accent);
+}
+#settings-button,
+#print-button {
+  height: 44px !important;
+  box-sizing: border-box;
+  width: 100%;
+  color: var(--button-accent);
+  margin: 0px !important;
+}
+#settings-button:active,
+#settings-button.active,
+#print-button:active,
+#print-button.active {
+  border-bottom: none !important;
+  margin-top: 4px !important;
+  height: 40px !important;
+}
+#settings-button.active,
+#print-button.active,
+button.disabled {
+  --button-bg: var(--check-button-blank) !important;
+  border-bottom: none !important;
+  margin-top: 4px !important;
+  height: 40px !important;
+  --button-accent: var(--check-button-blank-accent) !important;
+}
+#reset-filters {
+  user-select: none;
+  cursor: pointer;
+}
+#results-grid > *,
+button:not(.disabled),
+select {
+  cursor: pointer;
+  user-select: none;
+}
+#template-print {
+  background-color: white;
+  visibility: hidden;
+  height: 0;
+  width: 0;
+}
+@media print {
+  #template-print {
+    visibility: visible;
+    width: 100vw;
+    height: 100vh;
+    position: fixed;
+    left: 0;
+    top: 0;
+    background-color: var(--bg);
+    box-sizing: border-box;
+    padding: 0px;
   }
 }
