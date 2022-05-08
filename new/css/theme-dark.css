@@ -57,7 +57,8 @@
   --toast-border: #242424;
   --toast-secondary: #3b3b3b;
   /*items*/
-  --dropdown-border: #aeaeae;
+  --dropdown-border: #37464f;
+  --dropdown-items: #37464f;
 }
 .active-img,
 .option-icon,
@@ -68,4 +69,13 @@
 
 #answer-mascot {
   filter: brightness(0.8);
+}
+#orientation-select {
+  background-image: url(../img/template/rotation-icon-dark.svg) !important;
+}
+#tense-select {
+  background-image: url(../img/template/clocks-icon-dark.svg) !important;
+}
+#verbs-select {
+  background-image: url(../img/template/verb-icon-dark.svg) !important;
 }

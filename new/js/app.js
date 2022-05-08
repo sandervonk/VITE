@@ -19,7 +19,10 @@ function setupTheme(jsonIn) {
   if (jsonIn.theme === "dark") {
     $("#theme-dark-stylesheet").attr("media", "");
   } else {
-    $("#theme-dark-stylesheet").attr("media", "(prefers-color-scheme: unset)");
+    $("#theme-dark-stylesheet").attr(
+      "media",
+      "(prefers-color-scheme: unset) and not(print)"
+    );
   }
 }
 function setupGoal(goalNum, goalXp) {

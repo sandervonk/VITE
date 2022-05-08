@@ -431,3 +431,8 @@ input.error {
   margin-bottom: 0px !important;
   height: 40px;
 }
+@media print {
+  [noprint] {
+    display: none !important;
+  }
+}

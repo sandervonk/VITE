@@ -7,6 +7,11 @@
     <meta name="noauthenforce" content="true" />
     <link rel="manifest" href="../manifest.json" />
     <!-- ios support -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="VITE!" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <link rel="apple-touch-icon" href="../img/icon/app/icon-72x72.png" />
     <link rel="apple-touch-icon" href="../img/icon/app/icon-96x96.png" />
     <link rel="apple-touch-icon" href="../img/icon/app/icon-128x128.png" />
@@ -15,6 +20,7 @@
     <link rel="apple-touch-icon" href="../img/icon/app/icon-192x192.png" />
     <link rel="apple-touch-icon" href="../img/icon/app/icon-384x384.png" />
     <link rel="apple-touch-icon" href="../img/icon/app/icon-512x512.png" />
+    <link id="sheet-css" rel="stylesheet" href="../css/templates/classic.css" />
     <meta name="apple-mobile-web-app-status-bar" content="#3FBCAE" />
     <meta name="theme-color" content="#3CADC6" />
     <link
@@ -79,7 +85,7 @@
     <link
       rel="stylesheet"
       href="../css/theme-dark.css"
-      media="(prefers-color-scheme: unset)"
+      media="(prefers-color-scheme: unset) and not(print)"
       id="theme-dark-stylesheet"
     />
     <link rel="stylesheet" href="../css/sheetify.css" />
@@ -89,53 +95,87 @@
     <title>VITE! - Sheetify</title>
   </head>
   <body>
-    <header class="secondary-underline">
+    <header class="secondary-underline" noprint>
       <img src="../img/icon/sheetify-logo.svg" id="sheetify-logo" />
       <div id="sheetify-title" class="accented">sheetify</div>
     </header>
-    <div id="sheetify-content">
-      <div id="filter-options">
-        <div id="options-header" class="secondary-underline">
-          <div class="primary" style="font-size: 26px">Settings</div>
-          <div
-            class="uppercase primary"
-            style="color: #19aff5; font-size: 18px"
-          >
-            Reset All
+    <div id="horizontal-container">
+      <div id="sheetify-content" noprint>
+        <div id="filter-options">
+          <div id="options-header" class="secondary-underline">
+            <div class="primary" style="font-size: 26px">Settings</div>
+            <div
+              id="reset-filters"
+              class="uppercase primary"
+              style="color: #19aff5; font-size: 18px"
+            >
+              Reset All
+            </div>
+          </div>
+          <form id="filters-from">
+            <select id="orientation-select" class="options-item">
+              <option value="" disabled selected hidden>Orientation</option>
+              <option value="portrait">Portrait</option>
+              <option value="landscape">Landscape</option>
+            </select>
+            <select id="tense-select" class="options-item">
+              <option value="" disabled selected hidden>Tense</option>
+              <option value="pr">Présent</option>
+              <option value="pc">Passé Composé</option>
+              <option value="im">Imparfait</option>
+              <option value="co">Conditionnel</option>
+              <option value="ps">Passé Simple</option>
+              <option value="fs">Futur Simple</option>
+              <option value="fa">Futur Antérieur</option>
+              <option value="cp">Conditionnel Passé</option>
+              <option value="su">Subjonctif</option>
+            </select>
+            <select id="verbs-select" class="options-item">
+              <option value="" disabled selected hidden>Verb Types</option>
+
+              <option value="all">All Verbs</option>
+              <option value="irregular">Irregular Only</option>
+            </select>
+          </form>
+          <button id="open-saved" class="options-item box-button bold disabled">
+            Saved Sheets
+          </button>
+        </div>
+        <div id="options-overlay"></div>
+        <div id="results-container">
+          <div id="results-header" class="primary secondary-underline">
+            # Template(s) Avaliable
+          </div>
+          <div id="results-scrollable">
+            <div id="results-filters" class="primary">All • No Filters</div>
+            <div id="results-grid">
+              <img src="../img/template/Template.svg" class="template-img" />
+            </div>
           </div>
         </div>
-        <form id="filters-from">
-          <select id="orientation-select" class="options-item">
-            <option value="" disabled selected hidden>Orientation</option>
-            <option value="portrait">Portrait</option>
-            <option value="landscape">Landscape</option>
-          </select>
-          <select id="tense-select" class="options-item">
-            <option value="" disabled selected hidden>Tense</option>
-          </select>
-          <select id="verbs-select" class="options-item">
-            <option value="" disabled selected hidden>Verb Types</option>
-          </select>
-        </form>
-        <button id="open-saved" class="options-item box-button bold">
-          Saved Sheets
-        </button>
       </div>
-      <div id="options-overlay"></div>
-      <div id="results-container">
-        <div id="results-header" class="primary secondary-underline">
-          # Template(s) Avaliable
+      <div id="sheetify-print">
+        <div id="print-options" noprint>
+          <div id="print-name" class="primary">Template Name</div>
         </div>
-        <div id="results-filters" class="primary">All</div>
-        <div id="results-grid">
-          <img src="../img/template/Template.svg" class="template-img" />
-          <img src="../img/template/Template.svg" class="template-img" />
+        <div id="template-print">[Template HTML]</div>
+        <div class="bottom-container" id="print-button-container" noprint>
+          <div
+            id="print-button"
+            class="box-button center bold"
+            onclick="window.print()"
+          >
+            PRINT
+          </div>
         </div>
+      </div>
+      <div class="bottom-container">
+        <div id="settings-button" class="box-button center bold">SETTINGS</div>
       </div>
     </div>
   </body>
   <script src="../js/sheetify.js"></script>
   <script src="../js/toast.js"></script>
-  <script src="../js/firebase.js"></script>
+  <script src="../js/firestore.js"></script>
   <script src="../js/auth-pages.js"></script>
 </html>

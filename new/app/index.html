@@ -8,6 +8,11 @@
     <meta name="guestprompt" content="true" />
     <link rel="manifest" href="../manifest.json" />
     <!-- ios support -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="apple-touch-fullscreen" content="yes" />
+    <meta name="apple-mobile-web-app-title" content="VITE!" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
     <link rel="apple-touch-icon" href="../img/icon/app/icon-72x72.png" />
     <link rel="apple-touch-icon" href="../img/icon/app/icon-96x96.png" />
     <link rel="apple-touch-icon" href="../img/icon/app/icon-128x128.png" />
@@ -80,7 +85,7 @@
     <link
       rel="stylesheet"
       href="../css/theme-dark.css"
-      media="(prefers-color-scheme: unset)"
+      media="(prefers-color-scheme: unset) and not(print)"
       id="theme-dark-stylesheet"
     />
     <link rel="stylesheet" href="../css/app.css" />
