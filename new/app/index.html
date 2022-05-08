@@ -85,10 +85,7 @@
     />
     <link rel="stylesheet" href="../css/app.css" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase.js"></script>
     <script src="../js/theme.js"></script>
     <title>VITE! - App</title>
   </head>
@@ -114,23 +111,39 @@
       <div id="tab-container">
         <div class="tab" id="learn-tab">
           <div id="tab-content">
-            <form action="./practice.html" method="get" id="learn-start">
-              <input type="text" id="learn-type-input" name="type" value="" />
+            <form id="learn-start">
               <div id="learn-cards">
-                <div class="card learn-card" id="create-card" name="create">
-                  <div class="card-title">Create</div>
-                  <div class="card-description">
-                    Add your own verbs and create your own customized study sets
-                  </div>
-                </div>
-                <div class="card learn-card" id="study-card" name="study">
+                <div
+                  class="card learn-card"
+                  id="study-card"
+                  name="study"
+                  page="./practice-setup.html"
+                >
                   <div class="card-title">Study</div>
                   <div class="card-description">
-                    Do automatically generated practice problems to build your
-                    skills
+                    Study and customize automatically generated practice
+                    problems to build your skills
                   </div>
                 </div>
-                <div class="card learn-card" id="learn-card" name="learn">
+                <div
+                  class="card learn-card"
+                  id="create-card"
+                  name="create"
+                  page="./sheetify.html"
+                >
+                  <div class="card-title">Create</div>
+                  <div class="card-description">
+                    Create your own customized study worksheets from tweakable
+                    templates with
+                    <b>Sheetify</b>
+                  </div>
+                </div>
+                <div
+                  class="card learn-card"
+                  id="learn-card"
+                  name="learn"
+                  page="./practice.html"
+                >
                   <div class="card-title">Learn</div>
                   <div class="card-description">
                     Learn more about specific structures and conjugations with

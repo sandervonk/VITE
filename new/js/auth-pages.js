@@ -51,7 +51,7 @@ auth.onAuthStateChanged((user) => {
         "default",
         3000,
         "../img/icon/info-icon.svg",
-        "../"
+        $("meta[name=noauthenforce]").prop("content") ? "" : "../"
       );
     } else {
       if (auth.currentUser.isAnonymous) {
@@ -96,7 +96,8 @@ auth.onAuthStateChanged((user) => {
       "default",
       1000,
       "../img/icon/info-icon.svg",
-      "../"
+
+      $("meta[name=noauthenforce]").prop("content") ? "" : "../"
     );
   }
 });

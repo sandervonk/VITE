@@ -60,4 +60,7 @@
   /*login*/
   --error-border: #ff4b4c;
   --error-bg: #ffdfe0;
+  /*items*/
+  --dropdown-border: #aeaeae;
+  --dropdown-items: #aaaaaa;
 }
