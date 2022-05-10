@@ -84,10 +84,15 @@ $(document.body).on("click", "#results-grid > *", (e) => {
     title = "Le Passé Composé: Les Verbes Aléatoires";
   $("#sheet-css").attr("href", "../css/templates/" + template.html.css);
   $("#template-print").html("[Template HTML]");
-  let templateHTML =
-    template.html.head +
-    template.html.content.repeat(numQuestions) +
-    template.html.foot;
+  let templateContent = "";
+  for (let questionNum = 0; questionNum <= numQuestions; questionNum++) {
+    let questionData = new Question();
+    templateContent += template.html.content
+      .replace("%q-subject%", questionData.subject)
+      .replace("%q-verb%", questionData.verb)
+      .replace("%q-answer%", questionData.answer.full);
+  }
+  let templateHTML = template.html.head + templateContent + template.html.foot;
   templateHTML = templateHTML
     .replace("%title%", title)
     .replace("%numQuestions%", numQuestions);
