@@ -1,3 +1,12 @@
+try {
+  $(params.get("hide")).hide();
+} catch {}
+if (params.has("resolveto")) {
+  $("#close-button").click(function () {
+    e.preventDefault();
+    window.open(params.get("resolveto"), "_self");
+  });
+}
 var verbs,
   tenses = {
     pr: "Présent",
@@ -29,6 +38,7 @@ var verbs,
     cp: "Past conditional tense (regrets, what would / could have happened)",
     su: "Subjunctive Tense (opinions, emotions, and possibilities)",
   };
+
 function setupSetup() {
   $(".options-toggles > .option-toggle").remove();
   for (let subject of [
@@ -139,7 +149,11 @@ $("form").on("submit", (e) => {
     .doc(auth.getUid())
     .set(newJSON, { merge: true })
     .then(() => {
-      $("form").submit();
+      if (params.has("resolveto")) {
+        window.open(params.get("resolveto"), "_self");
+      } else {
+        $("form").submit();
+      }
     });
 });
 $("#reset-button").on("click", (e) => {

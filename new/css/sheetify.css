@@ -57,7 +57,10 @@ body.right #print-button-container {
   flex-shrink: 0;
   flex-basis: 100vw;
 }
-
+body.right #print-button-container {
+  display: flex !important;
+  animation: fadeIn forwards 0.5s;
+}
 .secondary-underline {
   border-bottom: solid 2px var(--secondary);
 }
@@ -129,7 +132,7 @@ body.right #print-button-container {
   flex-flow: column;
 }
 .options-item {
-  margin: 8px 0;
+  margin: 8px auto;
   width: 100%;
 }
 select.options-item {
@@ -147,16 +150,24 @@ select.options-item {
   align-items: center;
   display: flex;
   background-color: var(--button-bg);
+  max-width: 400px;
 }
-#orientation-select {
+div.toggle-box,
+div.max-width-box,
+select.options-item {
+  max-width: 400px;
+  margin: 8px auto;
+  box-sizing: border-box;
+}
+.orientation-select {
   background-image: url(../img/template/rotation-icon.svg);
   background-position: 20px center;
 }
-#tense-select {
+.tense-select {
   background-image: url(../img/template/clocks-icon.svg);
   background-position: 12px center;
 }
-#verbs-select {
+.verbs-select {
   background-image: url(../img/template/verb-icon.svg);
   background-position: 12px center;
 }
@@ -248,8 +259,15 @@ select.options-item {
   align-items: end;
   justify-content: center;
 }
-
+#sheetify-print {
+  overflow-y: auto !important;
+}
 @media (min-width: 500px) {
+  #print-button-container {
+    max-width: 400px;
+    right: 0 !important;
+    left: unset !important;
+  }
   body {
     overflow-y: auto;
   }
@@ -315,8 +333,14 @@ select.options-item {
   --button-border: var(--prior-button-border);
   --button-accent: var(--prior-button-accent);
 }
+#answers-button {
+  --button-bg: var(--check-fill-incorrect);
+  --button-border: var(--check-fill-incorrect-accent);
+  --button-accent: var(--prior-button-accent);
+}
 #settings-button,
-#print-button {
+#print-button,
+#answers-button {
   height: 44px !important;
   box-sizing: border-box;
   width: 100%;
@@ -330,15 +354,6 @@ select.options-item {
   border-bottom: none !important;
   margin-top: 4px !important;
   height: 40px !important;
-}
-#settings-button.active,
-#print-button.active,
-button.disabled {
-  --button-bg: var(--check-button-blank) !important;
-  border-bottom: none !important;
-  margin-top: 4px !important;
-  height: 40px !important;
-  --button-accent: var(--check-button-blank-accent) !important;
 }
 #reset-filters {
   user-select: none;
@@ -368,4 +383,19 @@ select {
     box-sizing: border-box;
     padding: 0px;
   }
+}
+.fill-width {
+  width: 100%;
+}
+
+#settings-button.active,
+#print-button.active,
+button.disabled button[disabled],
+#print-button.disabled,
+#answers-button.disabled {
+  --button-bg: var(--check-button-blank) !important;
+  border-bottom: none !important;
+  margin-top: 4px !important;
+  height: 40px !important;
+  --button-accent: var(--check-button-blank-accent) !important;
 }

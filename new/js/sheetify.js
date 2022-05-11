@@ -1,3 +1,23 @@
+var verbs;
+$.ajax({
+  url: "../verbs.json",
+  dataType: "json",
+  success: (response) => {
+    verbs = response;
+
+    //console.log(verbs)
+  },
+  error: function (err) {
+    console.error("error: could not load verbs.json :(");
+    console.log(err);
+  },
+});
+try {
+  if (params.get("right") == "true" && params.has("template")) {
+    $(document.body).addClass("right");
+    $("#print-name, .template-name").text(params.get("template"));
+  }
+} catch {}
 function startApp() {
   return new Promise(function (resolve, reject) {
     resolve();
@@ -56,15 +76,15 @@ $("#filters-from").on("change", () => {
   let matchings = templates,
     filters = [],
     filterText = [];
-  $("select.options-item").each((i, e) => {
+  $("#filters-from select.options-item").each((i, e) => {
     e = $(e);
     if (e.val() != "" && e.val() != null) {
       filters.push({
         property: e.attr("id").replace("-select", ""),
         value: e.val(),
-        valueText: $(`option[value='${e.val()}']`).text(),
+        valueText: $(`#filters-from option[value='${e.val()}']`).text(),
       });
-      filterText.push($(`option[value='${e.val()}']`).text());
+      filterText.push($(`#filters-from option[value='${e.val()}']`).text());
     }
   });
   for (filter of filters) {
@@ -73,23 +93,37 @@ $("#filters-from").on("change", () => {
     });
   }
   $("#results-filters").text(filterText.join(" • "));
+
+  $("#print-tense-select").val(
+    $("#tense-select").val() != null ? $("#tense-select").val() : ""
+  );
   setupTemplates(matchings);
 });
 $(document.body).on("click", "#results-grid > *", (e) => {
+  let name = $(e.target).closest("img[name]").attr("name");
   $(document.body).addClass("right");
   $(document.body).scrollTop(09);
   $("#print-name").text($(e.target).attr("name"));
   let template = templates[0],
     numQuestions = 24,
-    title = "Le Passé Composé: Les Verbes Aléatoires";
+    title = "Le Title";
+  try {
+    template = $.grep(templates, function (n, i) {
+      return n.name == name;
+    })[0];
+  } catch (err) {
+    window.alert("Could not find matching template by name, got error:", err);
+  }
   $("#sheet-css").attr("href", "../css/templates/" + template.html.css);
   $("#template-print").html("[Template HTML]");
   let templateContent = "";
+  let options = undefined;
+  //options = { subject: "", verb: "", tense: "" };
   for (let questionNum = 0; questionNum <= numQuestions; questionNum++) {
-    let questionData = new Question();
+    let questionData = new Question(options);
     templateContent += template.html.content
       .replace("%q-subject%", questionData.subject)
-      .replace("%q-verb%", questionData.verb)
+      .replace("%q-verb%", questionData.verb.toLowerCase())
       .replace("%q-answer%", questionData.answer.full);
   }
   let templateHTML = template.html.head + templateContent + template.html.foot;
@@ -97,4 +131,14 @@ $(document.body).on("click", "#results-grid > *", (e) => {
     .replace("%title%", title)
     .replace("%numQuestions%", numQuestions);
   $("#template-print").html(templateHTML);
+});
+$("#print-tense-select").on("change, input", function () {
+  if (
+    $("#print-tense-select").val() != "" &&
+    $("#print-tense-select").val() != null
+  ) {
+    $("#print-button, #answers-button").removeClass("disabled");
+  } else {
+    $("#print-button, #answers-button").addClass("disabled");
+  }
 });

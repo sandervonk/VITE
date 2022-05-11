@@ -117,10 +117,17 @@ class Question {
   #tense;
   #verb;
   #subject;
-  constructor() {
-    this.#tense = this.pickTense();
-    this.#subject = this.random(split("subjects"));
-    this.#verb = this.random(split("verbs"));
+  constructor(options) {
+    if (options == undefined || options == null) {
+      this.#tense = this.pickTense();
+      this.#subject = this.random(split("subjects"));
+      this.#verb = this.random(split("verbs"));
+    } else {
+      this.#tense = options.tense;
+      this.#subject = options.subject;
+      this.#verb = options.verb;
+    }
+
     this.#verb = {
       name: this.#verb,
       verb: verbs[this.#verb],
