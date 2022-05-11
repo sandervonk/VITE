@@ -432,7 +432,9 @@ input.error {
   height: 40px;
 }
 @media print {
-  [noprint] {
+  [noprint],
+  [noprint] *,
+  .toast {
     display: none !important;
   }
 }

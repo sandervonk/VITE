@@ -20,6 +20,7 @@
     <link rel="apple-touch-icon" href="../img/icon/app/icon-192x192.png" />
     <link rel="apple-touch-icon" href="../img/icon/app/icon-384x384.png" />
     <link rel="apple-touch-icon" href="../img/icon/app/icon-512x512.png" />
+    <link id="sheet-css" rel="stylesheet" href="../css/practice-setup.css" />
     <link id="sheet-css" rel="stylesheet" href="../css/templates/classic.css" />
     <meta name="apple-mobile-web-app-status-bar" content="#3FBCAE" />
     <meta name="theme-color" content="#3CADC6" />
@@ -113,12 +114,15 @@
             </div>
           </div>
           <form id="filters-from">
-            <select id="orientation-select" class="options-item">
+            <select
+              id="orientation-select"
+              class="options-item orientation-select"
+            >
               <option value="" disabled selected hidden>Orientation</option>
               <option value="portrait">Portrait</option>
               <option value="landscape">Landscape</option>
             </select>
-            <select id="tense-select" class="options-item">
+            <select id="tense-select" class="options-item tense-select">
               <option value="" disabled selected hidden>Tense</option>
               <option value="pr">Présent</option>
               <option value="pc">Passé Composé</option>
@@ -130,7 +134,7 @@
               <option value="cp">Conditionnel Passé</option>
               <option value="su">Subjonctif</option>
             </select>
-            <select id="verbs-select" class="options-item">
+            <select id="verbs-select" class="options-item verbs-select">
               <option value="" disabled selected hidden>Verb Types</option>
 
               <option value="all">All Verbs</option>
@@ -157,13 +161,44 @@
       <div id="sheetify-print">
         <div id="print-options" noprint>
           <div id="print-name" class="primary">Template Name</div>
+          <div id="print-dropdowns">
+            <select id="print-tense-select" class="options-item tense-select">
+              <option value="" disabled selected hidden>Tense</option>
+              <option value="pr">Présent</option>
+              <option value="pc">Passé Composé</option>
+              <option value="im">Imparfait</option>
+              <option value="co">Conditionnel</option>
+              <option value="ps">Passé Simple</option>
+              <option value="fs">Futur Simple</option>
+              <option value="fa">Futur Antérieur</option>
+              <option value="cp">Conditionnel Passé</option>
+              <option value="su">Subjonctif</option>
+            </select>
+            <div class="box max-width-box" id="print-other-options">
+              <div id="settings-item"></div>
+              <button
+                class="box-button fullborder center bold fill-width"
+                onclick="window.open(`./practice-setup.html?hide=%23scoring%2C%20%23tenses&resolveto=.%2Fsheetify.html%3Fright%3Dtrue%26template%3D${encodeURIComponent($('#print-name').text())}`, '_self');"
+              >
+                EDIT
+              </button>
+            </div>
+          </div>
         </div>
         <div id="template-print">[Template HTML]</div>
         <div class="bottom-container" id="print-button-container" noprint>
           <div
+            id="answers-button"
+            style="margin-right: 10px !important"
+            class="box-button center bold disabled"
+            onclick="$('.question-answer').css({color: 'red'}); new Toast('Opening prompt to print answers', 'default', 1000, '../img/icon/print-icon.svg'); window.print();"
+          >
+            ANSWERS
+          </div>
+          <div
             id="print-button"
-            class="box-button center bold"
-            onclick="window.print()"
+            class="box-button center bold disabled"
+            onclick="$('.question-answer').css({color: 'transparent'}); new Toast('Opening prompt to print worksheet', 'default', 1000, '../img/icon/print-icon.svg'); window.print();"
           >
             PRINT
           </div>
@@ -190,6 +225,7 @@
       return arr;
     }
   </script>
+  <script src="../js/uri-params.js"></script>
   <script src="../js/mobile-vite.js"></script>
   <script src="../js/sheetify.js"></script>
   <script src="../js/toast.js"></script>

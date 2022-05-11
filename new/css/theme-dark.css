@@ -70,12 +70,12 @@
 #answer-mascot {
   filter: brightness(0.8);
 }
-#orientation-select {
+.orientation-select {
   background-image: url(../img/template/rotation-icon-dark.svg) !important;
 }
-#tense-select {
+.tense-select {
   background-image: url(../img/template/clocks-icon-dark.svg) !important;
 }
-#verbs-select {
+.verbs-select {
   background-image: url(../img/template/verb-icon-dark.svg) !important;
 }
