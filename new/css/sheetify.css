@@ -80,6 +80,8 @@ body.right #print-button-container {
   padding: 30px 30px;
   display: flex;
   box-sizing: border-box;
+  overflow-x: hidden;
+  min-height: calc(100vh - 102px);
 }
 #sheetify-content {
   flex-flow: row nowrap;
@@ -328,7 +330,8 @@ select.options-item {
 
 #open-saved,
 #settings-button,
-#print-button {
+#print-button,
+#edit-button {
   --button-bg: var(--prior-button-bg);
   --button-border: var(--prior-button-border);
   --button-accent: var(--prior-button-accent);
@@ -340,7 +343,8 @@ select.options-item {
 }
 #settings-button,
 #print-button,
-#answers-button {
+#answers-button,
+#edit-button {
   height: 44px !important;
   box-sizing: border-box;
   width: 100%;
@@ -398,4 +402,64 @@ button.disabled button[disabled],
   margin-top: 4px !important;
   height: 40px !important;
   --button-accent: var(--check-button-blank-accent) !important;
+}
+#verbs-settings::before,
+#subjects-settings::before {
+  font-weight: bold;
+  color: var(--text-primary);
+}
+#verbs-settings::before {
+  content: "Verbs: ";
+}
+#subjects-settings::before {
+  content: "Subjects: ";
+}
+.separator {
+  width: 80%;
+  box-sizing: border-box;
+  margin: 10px 10%;
+  background-color: var(--secondary);
+  height: 2px;
+}
+
+#edit-button:active {
+  margin-top: 2px;
+  height: 42px;
+  margin-top: 2px;
+}
+.field-row {
+  display: flex;
+  flex-flow: row nowrap;
+  height: 30px;
+}
+.row-title {
+  border-right: solid 2px var(--box-border);
+  height: 100%;
+  font-size: 20px;
+  padding-right: 10px;
+  flex-grow: 0;
+  width: 200px;
+  flex-shrink: 0;
+  text-align: left;
+  justify-content: start;
+}
+.row-input {
+  background-color: var(--bg);
+  border: none;
+  height: 100%;
+  flex-grow: 1;
+  font-size: 18px;
+  padding: 0 10px;
+  width: 20px;
+}
+
+.row-input,
+.row-input::placeholder {
+  color: var(--secondary-alt);
+  color: var(--text-primary);
+  text-align: center;
+}
+#ws-repeat {
+  height: 15px;
+  margin: auto;
 }
