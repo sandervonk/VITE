@@ -49,7 +49,7 @@
     />
     <meta
       name="twitter:image:src"
-      content="https://sander.vonk.one/VITE/social-img/new/social-twitter.png"
+      content="https://sander.vonk.one/VITE/img/social-img/new/social-twitter.png"
     />
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
     <meta name="og:title" content="VITE! Mobile" />
@@ -59,7 +59,7 @@
     />
     <meta
       name="og:image"
-      content="https://sander.vonk.one/VITE/social-img/new/social-og.png"
+      content="https://sander.vonk.one/VITE/img/social-img/new/social-og.png"
     />
     <meta name="og:url" content="https://sander.vonk.one/VITE/mobile/" />
     <meta name="og:site_name" content="VITE! French Conjugation Practice" />
@@ -163,7 +163,7 @@
           <div id="print-name" class="primary">Template Name</div>
           <div id="print-dropdowns">
             <select id="print-tense-select" class="options-item tense-select">
-              <option value="" disabled selected hidden>Tense</option>
+              <option value="" selected disabled hidden>Tense</option>
               <option value="pr">Présent</option>
               <option value="pc">Passé Composé</option>
               <option value="im">Imparfait</option>
@@ -175,13 +175,65 @@
               <option value="su">Subjonctif</option>
             </select>
             <div class="box max-width-box" id="print-other-options">
-              <div id="settings-item"></div>
+              <div class="settings-item secondary" id="subjects-settings">
+                [subjects]
+              </div>
+              <div class="separator"></div>
+              <div
+                class="settings-item secondary"
+                id="verbs-settings"
+                style="margin-bottom: 10px"
+              >
+                [verbs]
+              </div>
               <button
+                id="edit-button"
                 class="box-button fullborder center bold fill-width"
                 onclick="window.open(`./practice-setup.html?hide=%23scoring%2C%20%23tenses&resolveto=.%2Fsheetify.html%3Fright%3Dtrue%26template%3D${encodeURIComponent($('#print-name').text())}`, '_self');"
               >
                 EDIT
               </button>
+            </div>
+            <div class="box max-width-box" id="print-template-fields">
+              <div class="field-row">
+                <label class="row-title center secondary" for="ws-title"
+                  >Worksheet Title:
+                </label>
+                <input
+                  class="row-input"
+                  type="text"
+                  name="ws-title"
+                  id="ws-title"
+                  value="Le Title"
+                  placeholder="Le Title"
+                />
+              </div>
+              <div class="field-row">
+                <label class="row-title center secondary" for="ws-questions"
+                  >Number of Questions:
+                </label>
+                <input
+                  class="row-input"
+                  type="number"
+                  name="ws-questions"
+                  id="ws-questions"
+                  value="24"
+                  placeholder="24"
+                  max="24"
+                  min="0"
+                />
+              </div>
+              <div class="field-row">
+                <label class="row-title center secondary" for="ws-repeat"
+                  >Purge Repeats:
+                </label>
+                <input
+                  class="row-input center"
+                  type="checkbox"
+                  name="ws-repeat"
+                  id="ws-repeat"
+                />
+              </div>
             </div>
           </div>
         </div>
@@ -210,6 +262,15 @@
     </div>
   </body>
   <script>
+    function random(input) {
+      if (typeof input == "object") {
+        return input[parseInt(Math.random() * input.length)];
+      } else if (typeof input == "number") {
+        return parseInt(Math.random() * input);
+      } else {
+        return Math.random();
+      }
+    }
     function split(storageVar) {
       let arr = [];
       try {

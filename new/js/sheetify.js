@@ -1,3 +1,9 @@
+$("#subjects-settings").text(
+  "[" + JSON.parse(localStorage.getItem("userData")).subjects.join("], [") + "]"
+);
+$("#verbs-settings").text(
+  JSON.parse(localStorage.getItem("userData")).verbs.join(", ")
+);
 var verbs;
 $.ajax({
   url: "../verbs.json",
@@ -99,14 +105,11 @@ $("#filters-from").on("change", () => {
   );
   setupTemplates(matchings);
 });
-$(document.body).on("click", "#results-grid > *", (e) => {
-  let name = $(e.target).closest("img[name]").attr("name");
-  $(document.body).addClass("right");
-  $(document.body).scrollTop(09);
-  $("#print-name").text($(e.target).attr("name"));
+function makePrint(name) {
   let template = templates[0],
-    numQuestions = 24,
-    title = "Le Title";
+    numQuestions = $("#ws-questions").val(),
+    title = $("#ws-title").val(),
+    selectedTense = $("#print-tense-select").val();
   try {
     template = $.grep(templates, function (n, i) {
       return n.name == name;
@@ -117,28 +120,47 @@ $(document.body).on("click", "#results-grid > *", (e) => {
   $("#sheet-css").attr("href", "../css/templates/" + template.html.css);
   $("#template-print").html("[Template HTML]");
   let templateContent = "";
-  let options = undefined;
-  //options = { subject: "", verb: "", tense: "" };
   for (let questionNum = 0; questionNum <= numQuestions; questionNum++) {
+    let options = {
+      verb: random(JSON.parse(localStorage.getItem("userData")).verbs),
+      subject: random(JSON.parse(localStorage.getItem("userData")).subjects),
+      tense: selectedTense,
+    };
     let questionData = new Question(options);
     templateContent += template.html.content
       .replace("%q-subject%", questionData.subject)
       .replace("%q-verb%", questionData.verb.toLowerCase())
-      .replace("%q-answer%", questionData.answer.full);
+      .replace("%q-answer%", questionData.answer.alt);
   }
   let templateHTML = template.html.head + templateContent + template.html.foot;
   templateHTML = templateHTML
     .replace("%title%", title)
     .replace("%numQuestions%", numQuestions);
   $("#template-print").html(templateHTML);
+}
+$(document.body).on("click", "#results-grid > *", (e) => {
+  let name = $(e.target).closest("img[name]").attr("name");
+  $(document.body).addClass("right");
+  $(document.body).scrollTop(0);
+  $("#print-name").text($(e.target).attr("name"));
+  makePrint(name);
 });
-$("#print-tense-select").on("change, input", function () {
+
+$("#print-dropdowns").on("change, input", function () {
   if (
     $("#print-tense-select").val() != "" &&
     $("#print-tense-select").val() != null
   ) {
     $("#print-button, #answers-button").removeClass("disabled");
+    makePrint($("#print-name").text());
   } else {
     $("#print-button, #answers-button").addClass("disabled");
   }
+});
+$("#print-tense-select").change(() => {
+  $("#ws-title").val(
+    $("#print-tense-select :selected").text() != "Imparfait"
+      ? "Le " + $("#print-tense-select :selected").text()
+      : "L'imparfait"
+  );
 });

@@ -1,9 +1,9 @@
 const staticLinks = "dev-VITE-mobile-v1";
 const assets = [
   "/index.html",
-  "css/mobile.css",
-  "js/mobile-menu.js",
-  "js/mobile-vite.js",
+  "../css/mobile.css",
+  "../js/mobile-menu.js",
+  "../js/mobile-vite.js",
   "icon/Back Arrow.svg",
   "icon/Caps.svg",
   "icon/edit.svg",
