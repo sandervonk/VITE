@@ -114,7 +114,7 @@ class Question {
     let a = {};
     if (t == "pr") {
       a = this.prTense(s, v);
-      t = "Present";
+      t = "Présent";
     } else if (t == "pc") {
       a = this.pcTense(s, v);
       t = "Passé Composé";
@@ -161,7 +161,7 @@ class Question {
     return answers;
   }
   prTense(s, v) {
-    //Present Tense Conjugator
+    //Présent Tense Conjugator
     let end = {
         ir: {
           Je: "is",

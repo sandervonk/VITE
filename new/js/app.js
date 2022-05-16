@@ -15,42 +15,9 @@ let tutorialTabs = {
       "Learn about new features and find more information about how you can best improve your learning experience here",
   },
 };
-function setupTheme(jsonIn) {
-  if (jsonIn.theme === "dark") {
-    $("#theme-dark-stylesheet").attr("media", "");
-  } else {
-    $("#theme-dark-stylesheet").attr(
-      "media",
-      "(prefers-color-scheme: unset) and not(print)"
-    );
-  }
-}
-function setupGoal(goalNum, goalXp) {
-  console.log("goal:", goalNum);
-  console.log("xp:", goalXp);
-  $("#goal-text").attr({
-    value: goalXp,
-    goal: goalNum + " xp",
-  });
-  $("#goal-fill").css({
-    width: `${(100 * goalXp) / goalNum}%`,
-  });
-  console.log(goalXp >= goalNum);
-  if (goalXp >= goalNum) {
-    $("#mascot-slot").css({
-      "background-image": "url(../img/mascot/mood=Excited.svg)",
-    });
-  }
-}
+
 var settings;
 
-function setupSettings(jsonIn) {
-  for (let key of Object.keys(jsonIn)) {
-    let switchSel = "[name=" + key + "][value=" + jsonIn[key] + "]";
-    $(switchSel).attr("checked", true);
-  }
-  setupTheme(jsonIn);
-}
 class tutorialObject {
   constructor() {
     this.start();

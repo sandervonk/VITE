@@ -216,6 +216,7 @@ input:checked + .switch-label {
   margin-bottom: 7px;
 }
 #back-button,
+#mascot-slot,
 input[type="button"],
 [auth="logout-button"],
 [onclick],

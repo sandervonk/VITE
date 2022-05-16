@@ -63,6 +63,40 @@ function stealCookies() {
       });
   });
 }
+function setupTheme(jsonIn) {
+  if (jsonIn.theme === "dark") {
+    $("#theme-dark-stylesheet").attr("media", "");
+  } else {
+    $("#theme-dark-stylesheet").attr(
+      "media",
+      "(prefers-color-scheme: unset) and not(print)"
+    );
+  }
+}
+function setupGoal(goalNum, goalXp) {
+  console.log("goal:", goalNum);
+  console.log("xp:", goalXp);
+  $("#goal-text").attr({
+    value: goalXp,
+    goal: goalNum + " xp",
+  });
+  $("#goal-fill").css({
+    width: `${(100 * goalXp) / goalNum}%`,
+  });
+  console.log(goalXp >= goalNum);
+  if (goalXp >= goalNum) {
+    $("#mascot-slot").css({
+      "background-image": "url(../img/mascot/mood=Excited.svg)",
+    });
+  }
+}
+function setupSettings(jsonIn) {
+  for (let key of Object.keys(jsonIn)) {
+    let switchSel = "[name=" + key + "][value=" + jsonIn[key] + "]";
+    $(switchSel).attr("checked", true);
+  }
+  setupTheme(jsonIn);
+}
 function setDefaultSettings() {
   return new Promise(function (fulfilled, rejected) {
     db.collection("users")
@@ -128,16 +162,12 @@ function sendUpdate(newData) {
   for (let key of Object.keys(newData)) {
     if (typeof newData[key] != "object" || newData[key].length > 0) {
       filteredJSON[key] = newData[key];
-    } else {
-      console.warn("ignoring empty key: " + key);
     }
   }
   newJSON = filteredJSON;
   try {
     clearTimeout(updateTimedFunction);
-  } catch {
-    console.warn("could not clear previous update");
-  }
+  } catch {}
   updateTimedFunction = setTimeout(function () {
     db.collection("users")
       .doc(auth.getUid())

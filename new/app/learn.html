@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <meta name="runsettings" content="true" />
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -93,8 +94,25 @@
     <script src="../js/theme.js"></script>
     <title>VITE! - Learn</title>
   </head>
-  <body></body>
-
+  <body>
+    <header>
+      <div id="mascot-slot"></div>
+      <div id="header-readouts">
+        <div id="goal-progress">
+          <div id="goal-fill" style="width: 0%">
+            <div id="goal-fill-accent"></div>
+            <div id="goal-text" value="#" goal="##">/</div>
+          </div>
+        </div>
+      </div>
+      <img
+        src="../img/icon/pfp.png"
+        id="profile-picture"
+        class="auth-picture"
+        auth="logout-button"
+      />
+    </header>
+  </body>
   <script src="../js/uri-params.js"></script>
   <script src="../js/learn.js"></script>
   <script src="../js/toast.js"></script>
