@@ -115,3 +115,6 @@ $("[auth='logout-button']").click((e) => {
     ]
   );
 });
+$("#mascot-slot").click(() => {
+  window.open("./", "self");
+});

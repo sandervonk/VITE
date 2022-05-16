@@ -16,7 +16,7 @@ var question = {},
     elles: "They (feminine)",
   },
   tenseDefinitions = {
-    pr: "Present tense",
+    pr: "Présent tense",
     pc: "Past tense",
     ps: "Past tense (literature)",
     im: "Past state or ongoing action",
@@ -25,21 +25,32 @@ var question = {},
     co: "Conditional tense",
     cp: "Past conditional tense (regrets, what would / could have happened)",
     su: "Subjunctive Tense (opinions, emotions, and possibilities)",
+    sp: "Past of the Subjunctive Tense (opinions, emotions, and possibilities)",
   };
 function showQuestion(q) {
   question = q;
   questionStart = new Date().getTime();
+  $("#vite-q-verb, #vite-q-tense").addClass("notranslate");
   $("#vite-q-verb").text(q.verb);
-  $("#vite-q-verb").attr("info", q.definition);
-  $("#vite-q-verb").addClass("notranslate");
   $("#vite-q-tense").text(q.tense);
-  $("#vite-q-tense").addClass("notranslate");
-  $("#vite-q-tense").attr("info", tenseDefinitions[q.tenseShort]);
-  $("#vite-q-subject").text(q.subject);
+  $("#vite-q-verb").attr("info", q.definition);
   $("#vite-q-subject").attr(
     "info",
     subjectDefinitions[q.subject.toLowerCase()]
   );
+  if (
+    q.tense.includes("Subjonctif") &&
+    ["e", "i", "o"].includes(q.subject[0].toLowerCase())
+  ) {
+    $("#vite-q-prefix").html("qu'");
+  } else if (q.tense.includes("Subjonctif")) {
+    $("#vite-q-prefix").html("que&nbsp;");
+  } else {
+    $("#vite-q-prefix").html("");
+  }
+  $("#vite-q-tense").attr("info", tenseDefinitions[q.tenseShort]);
+  $("#vite-q-subject").text(q.subject);
+  // sizing
   if ($("#vite-q-prompt").outerHeight() > 28) {
     $("#vite-q-prompt").css({
       "margin-bottom": 45 + 28 - $("#vite-q-prompt").outerHeight(),
@@ -118,7 +129,6 @@ class Question {
   #verb;
   #subject;
   constructor(options) {
-    console.log(options);
     if (options == undefined || options == null) {
       this.#tense = this.pickTense();
       this.#subject = this.random(split("subjects"));
@@ -154,34 +164,51 @@ class Question {
       v.verb = verbs["Connaître"];
     }
     let a = {};
-    if (t == "pr") {
-      a = this.prTense(s, v);
-      t = "Present";
-    } else if (t == "pc") {
-      a = this.pcTense(s, v);
-      t = "Passé Composé";
-    } else if (t == "ps") {
-      a = this.psTense(s, v);
-      t = "Passé Simple";
-    } else if (t == "im") {
-      a = this.imTense(s, v);
-      t = "Imparfait";
-    } else if (t == "fs") {
-      a = this.fsTense(s, v);
-      t = "Futur Simple";
-    } else if (t == "fa") {
-      a = this.faTense(s, v);
-      t = "Futur Antérieur";
-    } else if (t == "co") {
-      a = this.coTense(s, v);
-      t = "Conditionnel";
-    } else if (t == "cp") {
-      a = this.cpTense(s, v);
-      t = "Conditionnel Passé";
-    } else if (t == "su") {
-      a = this.suTense(s, v);
-      t = "Subjonctif";
+    switch (t) {
+      case "pr":
+        a = this.pcTense(s, v);
+        t = "Présent";
+        break;
+      case "pc":
+        a = this.pcTense(s, v);
+        t = "Passé Composé";
+        break;
+      case "ps":
+        a = this.psTense(s, v);
+        t = "Passé Simple";
+        break;
+      case "im":
+        a = this.imTense(s, v);
+        t = "Imparfait";
+        break;
+      case "fs":
+        a = this.fsTense(s, v);
+        t = "Futur Simple";
+        break;
+      case "fa":
+        a = this.faTense(s, v);
+        t = "Futur Antérieur";
+        break;
+      case "co":
+        a = this.coTense(s, v);
+        t = "Conditionnel";
+        break;
+      case "cp":
+        a = this.cpTense(s, v);
+        t = "Conditionnel Passé";
+        break;
+      case "su":
+        a = this.suTense(s, v);
+        t = "Subjonctif";
+        break;
+      case "sp":
+        a = this.spTense(s, v);
+        t = "Subjonctif Passé";
+        break;
+      default:
+        alert(`Could not match requested tense "${t}" to method`);
     }
+
     return {
       subject: a.subject,
       verb: v.name,
@@ -214,7 +241,7 @@ class Question {
     return answers;
   }
   prTense(s, v) {
-    //Present Tense Conjugator
+    //Présent Tense Conjugator
     let end = {
         ir: {
           Je: "is",
@@ -413,7 +440,7 @@ class Question {
       true
     );
   }
-  suTense(s, v) {
+  suTense(s, v, raw) {
     //Subjonctif Conjugator
     let end = {
         Je: "e",
@@ -431,17 +458,33 @@ class Question {
         r = r.substr(0, r.length - 3);
         a = r + end[s];
       } else {
-        console.warn("ERR Data:");
-        console.info([s, v.verb, v.name]);
-        console.info([r, r.substr(0, r.length - 3), r.substr(r.length - 3, 3)]);
         window.alert(
-          `ERR: Could not remove -ent ending from present tense of 'Ils / Elles' conjugation ('${r}'), cannot form Subjonctif`
+          `ERR: Could not remove -ent ending from présent tense of 'Ils / Elles' conjugation ('${r}'), cannot form Subjonctif`
         );
       }
     } else {
       a = v.verb.SU[s];
     }
-    return this.versions(a, s);
+    if (raw == true) {
+      return { a: a, s: s };
+    } else {
+      return this.versions(a, s);
+    }
+  }
+  spTense(s, v) {
+    //Subjonctif Passé Conjugator
+    let a = {};
+    a.coHelping = this.suTense(
+      s,
+      { name: v.verb.PC.helping, verb: verbs[v.verb.PC.helping] },
+      true
+    ).a;
+    a.pc = this.pcTense(s, v, true);
+    return this.versions(
+      [a.coHelping, a.pc.participle].join(" "),
+      a.pc.subject,
+      true
+    );
   }
   agreement(subjects) {
     let data = {

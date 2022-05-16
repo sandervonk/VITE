@@ -93,12 +93,12 @@ class Conjugate {
     //question.answer = [subject, question.answer].join(" ")
     return question;
   }
-  present(subject, verb) {
+  présent(subject, verb) {
     let question = {};
     question.subject = subject.toLowerCase();
     question.verb = verb.toLowerCase();
     question.answer = verbs[verb][subject];
-    question.tense = "(present)";
+    question.tense = "(présent)";
     if (verbs[verb]["All"] === "regular" || question.answer === "regular") {
       let regular = {};
       regular.ending = verb.substr(verb.length - 2);
@@ -185,7 +185,7 @@ function returnQuestion() {
   /*
   return parseInt(Math.random() * 2) === 0
     ? conjugator.passeCompose(subject, verb)
-    : conjugator.present(subject, verb);
+    : conjugator.présent(subject, verb);
     */
   return conjugator.passeCompose(subject, verb);
 }

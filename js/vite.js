@@ -314,8 +314,8 @@ function pickTense() {
   }
   return newTense;
 }
-//Present handler
-function presentTense(verb, subject) {
+//Présent handler
+function présentTense(verb, subject) {
   let regularEnd = {
       ir: {
         Je: "is",
@@ -369,8 +369,8 @@ function reflexiveTense(verb, subject) {
       Vous: "vous",
       "Ils / Elles": "se",
     }
-    //answer = [subject, compress(compress(reflexive[subject], presentTense("Être", subject)), presentTense(verb, subject))].join(" ")
-    answer = [subject, compress(reflexive[subject], presentTense(verb, subject))].join("")
+    //answer = [subject, compress(compress(reflexive[subject], présentTense("Être", subject)), présentTense(verb, subject))].join(" ")
+    answer = [subject, compress(reflexive[subject], présentTense(verb, subject))].join("")
     return answer.toLowerCase()
 }
 */
@@ -443,7 +443,7 @@ function imparfaitTense(verb, name, subject) {
   if (name == "Être") {
     question.answer = "ét" + imparfaitEnd[subject];
   } else {
-    question.answer = presentTense(name, "Nous");
+    question.answer = présentTense(name, "Nous");
     question.answer =
       question.answer.substr(0, question.answer.length - 3) +
       imparfaitEnd[subject];
@@ -747,7 +747,7 @@ function returnProblem(verbs) {
     altAnswer = fullAnswer.full;
     question.verb += " (PC)";
   } else if (pickedTense === "pr") {
-    question.answer = presentTense(question.verb, question.subject);
+    question.answer = présentTense(question.verb, question.subject);
     altAnswer = compress(question.subject, question.answer);
   } else if (pickedTense === "im") {
     fullAnswer = imparfaitTense(verbParent, question.verb, question.subject);

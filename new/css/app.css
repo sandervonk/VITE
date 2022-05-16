@@ -441,6 +441,9 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 }
 .announcment-card {
   overflow: hidden;
+  min-height: fit-content;
+  flex-shrink: 0;
+  margin-bottom: 16px;
 }
 .announcment-card .card-lower,
 .announcment-card {

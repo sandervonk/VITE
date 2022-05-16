@@ -121,7 +121,8 @@ body:not([showanswer]) #next-button:not(.avaliable) {
   cursor: pointer;
   text-transform: capitalize;
 }
-#vite-q-bridge {
+#vite-q-bridge,
+#vite-q-prefix {
   color: var(--text-primary);
 }
 #vite-q-bridge::before,

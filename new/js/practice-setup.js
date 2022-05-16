@@ -18,6 +18,7 @@ var verbs,
     fa: "Futur Antérieur",
     cp: "Conditionnel Passé",
     su: "Subjonctif",
+    sp: "Subjonctif Passé",
   },
   subjectDefinitions = {
     Je: "I",
@@ -28,7 +29,7 @@ var verbs,
     "Ils / Elles": "They (m) / They (f) ",
   },
   tenseDefinitions = {
-    pr: "Present tense",
+    pr: "Présent tense",
     pc: "Past tense",
     ps: "Past tense (literature)",
     im: "Past state or ongoing action",
@@ -37,7 +38,9 @@ var verbs,
     co: "Conditional tense",
     cp: "Past conditional tense (regrets, what would / could have happened)",
     su: "Subjunctive Tense (opinions, emotions, and possibilities)",
-  };
+    sp: "Past of the Subjunctive Tense (opinions, emotions, and possibilities)",
+  },
+  updatedJSON = {};
 
 function setupSetup() {
   $(".options-toggles > .option-toggle").remove();
