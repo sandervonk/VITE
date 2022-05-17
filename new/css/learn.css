@@ -1,0 +1,24 @@
+#page-content {
+  overflow-x: hidden;
+  overflow-y: auto;
+}
+#tree-container {
+  height: fit-content;
+  display: flex;
+  flex-flow: column;
+}
+.tree-row {
+  height: fit-content;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+}
+.tree-item {
+  margin: 25px;
+  width: 90px;
+  height: 90px;
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: center center;
+  background-image: url(../img/learn/tree/im.svg);
+}
