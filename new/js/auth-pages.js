@@ -1,3 +1,4 @@
+const messagechannelBroadcast = new BroadcastChannel("messagechannel");
 //img
 function setPhoto(url) {
   if (url != null) {
@@ -117,4 +118,31 @@ $("[auth='logout-button']").click((e) => {
 });
 $("#mascot-slot").click(() => {
   window.open("./", "self");
+});
+messagechannelBroadcast.onmessage = (event) => {
+  value = event.data.key;
+  if (value == "reloadCashe") {
+    window.location.reload(true);
+  }
+};
+$(document.body).on("click", ".clear-sw", (e) => {
+  // caches.keys().then(function (names) {
+  //   for (let name of names) caches.delete(name);
+  // });
+  navigator.serviceWorker.getRegistrations().then(function (registrations) {
+    for (let registration of registrations) {
+      registration.unregister();
+    }
+  });
+  console.log("Cleared ServiceWorkers");
+  localStorage.setItem("clearCashe", true);
+  new Toast(
+    "Cleared Service Workers and SW Cashe",
+    "default",
+    1000,
+    "../img/icon/info-icon.svg"
+  );
+  setTimeout(function () {
+    messagechannelBroadcast.postMessage({ key: "clearsw" });
+  }, 1500);
 });

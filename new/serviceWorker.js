@@ -1,3 +1,4 @@
+const messagechannelBroadcast = new BroadcastChannel("messagechannel");
 const staticLinks = "dev-VITE-new-v2";
 const OFFLINE_URL = "offline.html";
 const OFFLINE_IMG = "img/offline/image-offline.svg";
@@ -218,4 +219,15 @@ self.addEventListener("notificationclick", function (event) {
   event.notification.close();
   event.waitUntil(self.clients.openWindow(event.notification.data));
 });
+messagechannelBroadcast.onmessage = (event) => {
+  value = event.data.key;
+  if (value == "clearsw") {
+    caches.keys().then(function (names) {
+      for (let name of names) caches.delete(name);
+
+      window.location.reload(true);
+    });
+    messagechannelBroadcast.postMessage({ key: "reloadCashe" });
+  }
+};
 //importScripts("firebase-messaging-sw.js");

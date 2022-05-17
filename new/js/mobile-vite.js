@@ -206,7 +206,20 @@ class Question {
         t = "Subjonctif Passé";
         break;
       default:
-        alert(`Could not match requested tense "${t}" to method`);
+        console.error(`Could not match requested tense "${t}" to method`);
+        return {
+          subject: a.subject,
+          verb: v.name,
+          tense: "error: could not be matched",
+          tenseShort: "error",
+          answer: {
+            alt: "error",
+            full: "error",
+          },
+          definition: v.verb.definition,
+          mascot: v.verb.mascot,
+          fullsize: v.verb.fullsize,
+        };
     }
 
     return {

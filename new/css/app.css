@@ -350,7 +350,8 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 .switch-label,
 #tutorial-title,
 .card-title,
-#retake-prior-button {
+#retake-prior-button,
+#clear-sw-button {
   font-size: 24px;
   font-weight: 700;
 }
@@ -372,12 +373,17 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   opacity: 0.5;
 }
 #prior-section {
-  margin-bottom: 0;
   --button-bg: var(--prior-button-bg);
   --button-border: var(--prior-button-border);
   --button-accent: var(--prior-button-accent);
 }
-#retake-prior-button {
+#other-section {
+  --button-bg: var(--check-fill-incorrect);
+  --button-border: var(--check-fill-incorrect-accent);
+  --button-accent: var(--prior-button-accent);
+}
+#retake-prior-button,
+#clear-sw-button {
   height: 46px;
   line-height: 40px;
   padding: 0;
