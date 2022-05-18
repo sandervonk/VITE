@@ -46,3 +46,28 @@
   font-weight: bold;
   cursor: help;
 }
+.expand-down {
+  animation: expandDown 0.25s ease-out forwards;
+}
+@keyframes expandDown {
+  from {
+    transform-origin: center top;
+    transform: translateX(-50%) scale(0.25);
+    opacity: 0;
+  }
+  to {
+    transform-origin: center top;
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
+#learn-popup {
+  position: fixed;
+  background-color: var(--bg);
+  z-index: 9999;
+  font-size: 20px;
+  padding: 5px 10px;
+  color: var(--secondary-alt);
+  margin-top: 10px;
+  min-width: 300px;
+}
