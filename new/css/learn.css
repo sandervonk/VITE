@@ -14,11 +14,35 @@
   justify-content: center;
 }
 .tree-item {
-  margin: 25px;
+  margin: 12.5px;
   width: 90px;
   height: 90px;
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
   background-image: url(../img/learn/tree/im.svg);
+  cursor: pointer;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: end;
+  align-items: end;
+}
+.tree-item[badged]::after {
+  content: "!";
+  position: relative;
+  bottom: -5px;
+  right: -5px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  /* color: var(--badge-accent); */
+  background-color: #3db1d6;
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  font-size: 26px;
+  font-weight: bold;
+  cursor: help;
 }

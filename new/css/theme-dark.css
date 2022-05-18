@@ -70,6 +70,9 @@
 #answer-mascot {
   filter: brightness(0.8);
 }
+.tree-item {
+  filter: brightness(0.75) contrast(1.25) saturate(1.5);
+}
 .orientation-select {
   background-image: url(../img/template/rotation-icon-dark.svg) !important;
 }
