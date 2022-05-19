@@ -1,18 +1,14 @@
 $(".tree-item").click((e) => {
-  let target = $(e.target);
+  let target = $(e.target),
+    windowWidth = $("#page-content").innerWidth();
   let offset = {
-    left: target.offset().left,
-    top: target.offset().top + target.outerHeight(),
-    width: Math.min($(window).width() * 0.75, 300),
+    left: target.offset().left - $("#page-content").offset().left,
+    top: target.offset().top + $("#page-content").scrollTop(),
+    width: Math.min(windowWidth * 0.75, 300),
   };
   offset.left += target.outerWidth() / 2;
-  console.log(offset);
-  offset.left = Math.min(
-    offset.left,
-    $(window).width() - offset.width * 0.5 - 16
-  );
+  offset.left = Math.min(offset.left, windowWidth - offset.width * 0.5 - 16);
   offset.left = Math.max(offset.left, offset.width * 0.5 + 16);
-  console.log(offset);
   $("[info]").removeAttr("info");
   target.attr("info", true);
   $("#learn-popup-container > *").remove();
@@ -23,7 +19,7 @@ $(".tree-item").click((e) => {
         <div id="tense-name">
             ${target.attr("tense")}
         </div>
-        <button id="learn-popup-action">LEARN</button>
+        <button id="learn-popup-action" class="box-button">LEARN</button>
      </div>`
   );
 });

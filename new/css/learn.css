@@ -1,10 +1,13 @@
 #page-content {
-  overflow-x: hidden;
-  overflow-y: auto;
+  overflow-x: hidden !important;
+  overflow-y: auto !important;
+  max-height: 100vh;
 }
 #tree-container {
   display: flex;
   flex-flow: column;
+  flex-shrink: 0;
+  height: fit-content;
 }
 .tree-row {
   display: flex;
@@ -61,10 +64,14 @@
     opacity: 1;
   }
 }
+#learn-popup-container {
+  top: 0;
+  height: 0px;
+  width: 0px;
+}
 #learn-popup {
-  position: absolute;
+  position: relative;
   background-color: var(--bg);
-  z-index: 9999;
   font-size: 20px;
   padding: 5px 10px;
   color: var(--secondary-alt);
@@ -75,4 +82,17 @@
   display: flex;
   flex-flow: column;
   padding: 10px;
+}
+#learn-popup-action {
+  width: 100%;
+  font-size: 18px;
+  height: 44px;
+  font-weight: bold;
+  --button-bg: var(--prior-button-bg);
+  --button-border: var(--prior-button-border);
+  --button-accent: var(--prior-button-accent);
+}
+#learn-popup-action:active {
+  margin-top: 4px;
+  height: 40px;
 }
