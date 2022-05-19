@@ -3,18 +3,17 @@
   overflow-y: auto;
 }
 #tree-container {
-  height: fit-content;
   display: flex;
   flex-flow: column;
 }
 .tree-row {
-  height: fit-content;
   display: flex;
   flex-flow: row nowrap;
   justify-content: center;
+  max-width: 100%;
 }
 .tree-item {
-  margin: 12.5px;
+  margin: 12px;
   width: 90px;
   height: 90px;
   background-repeat: no-repeat;
@@ -23,9 +22,10 @@
   background-image: url(../img/learn/tree/im.svg);
   cursor: pointer;
   display: flex;
-  flex-flow: row nowrap;
+  flex-flow: row;
   justify-content: end;
   align-items: end;
+  flex-shrink: 0;
 }
 .tree-item[badged]::after {
   content: "!";
@@ -62,12 +62,17 @@
   }
 }
 #learn-popup {
-  position: fixed;
+  position: absolute;
   background-color: var(--bg);
   z-index: 9999;
   font-size: 20px;
   padding: 5px 10px;
   color: var(--secondary-alt);
   margin-top: 10px;
-  min-width: 300px;
+  width: 300px;
+  max-width: 75vw;
+  box-sizing: border-box;
+  display: flex;
+  flex-flow: column;
+  padding: 10px;
 }
