@@ -95,7 +95,7 @@
     <title>VITE! - Learn</title>
   </head>
   <body>
-    <header>
+    <header class="hidepopup">
       <div id="mascot-slot"></div>
       <div id="header-readouts">
         <div id="goal-progress">
@@ -112,20 +112,22 @@
         auth="logout-button"
       />
     </header>
-    <div id="page-content">
+    <div id="page-content" class="hidepopup">
       <div id="tree-container" class="hidepopup">
-        <div id="learn-popup-container"></div>
+        <div id="learn-popup-container">
+          <div id="learn-popup-padding"></div>
+        </div>
         <div class="tree-row">
           <div
             class="tree-item"
             tenseshort="pr"
             tense="Présent"
-            message="Get started!"
+            badged
+            message="Get started here!"
             style="
               --badge-color: #3db1d6;
               background-image: url(../img/learn/tree/pr.svg);
             "
-            badged
           ></div>
         </div>
         <div class="tree-row">
@@ -134,7 +136,7 @@
             tenseshort="co"
             tense="Conditionnel"
             style="
-              --badge-color: #3db1d6;
+              --badge-color: #ef2ace;
               background-image: url(../img/learn/tree/co.svg);
             "
           ></div>
@@ -143,7 +145,7 @@
             tenseshort="pc"
             tense="Passé Composé"
             style="
-              --badge-color: #3db1d6;
+              --badge-color: #6c72f2;
               background-image: url(../img/learn/tree/pc.svg);
             "
           ></div>
@@ -152,7 +154,7 @@
             tenseshort="im"
             tense="Imparfait"
             style="
-              --badge-color: #3db1d6;
+              --badge-color: #29b985;
               background-image: url(../img/learn/tree/im.svg);
             "
           ></div>
@@ -163,7 +165,7 @@
             tenseshort="pp"
             tense="Plus que Parfait"
             style="
-              --badge-color: #3db1d6;
+              --badge-color: #6ca2f2;
               background-image: url(../img/learn/tree/pp.svg);
             "
           ></div>
@@ -172,7 +174,7 @@
             tenseshort="fs"
             tense="Futur Simple"
             style="
-              --badge-color: #3db1d6;
+              --badge-color: #f2a024;
               background-image: url(../img/learn/tree/fs.svg);
             "
           ></div>
@@ -183,7 +185,7 @@
             tenseshort="cp"
             tense="Conditionnel Passé"
             style="
-              --badge-color: #3db1d6;
+              --badge-color: #ef2ace;
               background-image: url(../img/learn/tree/cp.svg);
             "
           ></div>
@@ -192,7 +194,7 @@
             tenseshort="fa"
             tense="Futur Antérieur"
             style="
-              --badge-color: #3db1d6;
+              --badge-color: #88d920;
               background-image: url(../img/learn/tree/fa.svg);
             "
           ></div>
@@ -200,8 +202,10 @@
             class="tree-item"
             tenseshort="su"
             tense="Subjonctif"
+            badged
+            message="New! May include inconsistencies"
             style="
-              --badge-color: #3db1d6;
+              --badge-color: #f41818;
               background-image: url(../img/learn/tree/su.svg);
             "
           ></div>
@@ -212,7 +216,7 @@
             tenseshort="ps"
             tense="Passe Simple"
             style="
-              --badge-color: #3db1d6;
+              --badge-color: #6c89f2;
               background-image: url(../img/learn/tree/ps.svg);
             "
           ></div>
@@ -221,7 +225,7 @@
             tenseshort="sp"
             tense="Subjonctif Passé"
             style="
-              --badge-color: #3db1d6;
+              --badge-color: #f41818;
               background-image: url(../img/learn/tree/sp.svg);
             "
           ></div>

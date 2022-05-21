@@ -206,7 +206,7 @@ body:not([showanswer]) #answer-top-bar {
 body[showanswer] #result-container {
   height: fit-content;
 }
-body[showanswer] #result-container > *:not(#next-button) {
+body[showanswer] #result-container > #learn-popup:not(#next-button) {
   animation: popUp 0.5s forwards;
 }
 #result-bg {

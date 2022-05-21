@@ -5,6 +5,7 @@
   overflow-x: hidden !important;
   overflow-y: auto !important;
   max-height: 100vh;
+  transition: padding-bottom 0.25s ease-in-out;
 }
 #tree-container {
   display: flex;
@@ -86,6 +87,7 @@
   background-color: var(--badge-color);
   height: 30px;
   width: 30px;
+  flex-shrink: 0;
   border-radius: 50%;
   font-size: 26px;
   font-weight: bold;
@@ -125,6 +127,10 @@
   height: 0px;
   width: 0px;
   z-index: 10;
+  display: flex;
+  flex-flow: column;
+  justify-content: start;
+  align-items: flex-start;
 }
 #learn-popup {
   position: relative;
@@ -148,7 +154,7 @@
 }
 #tense-def {
   margin-bottom: 10px;
-  text-transform: lowercase;
+  /* text-transform: lowercase; */
 }
 #learn-popup > * {
   width: 100%;
@@ -163,8 +169,9 @@
   --button-accent: var(--prior-button-accent);
 }
 #learn-popup-action:active {
-  margin-top: 4px;
+  margin-top: 4px !important;
   height: 40px;
+  margin-bottom: 0px !important;
 }
 #learn-popup-message-separator {
   margin-top: 10px;
@@ -178,7 +185,5 @@
   width: 100%;
   align-items: center;
 }
-
-#page-content {
-  padding-bottom: calc(90px + 16px);
+#learn-popup-padding {
 }
