@@ -213,7 +213,7 @@ $("#github-login").click((e) => {
     .catch((error) => {
       // Handle Errors here.
       new Toast(
-        "Github Auth Error: " + error.message,
+        "Github auth error: " + error.message,
         "default",
         1000 + error.message.length * 50,
         "img/icon/error-icon.png"
@@ -224,7 +224,31 @@ $("#github-login").click((e) => {
   https://firebase.google.com/docs/auth/web/github-auth#:~:text=.signInWithPopup(provider)-,.then((result)
   */
 });
-
+$("#facebook-login").click((e) => {
+  e.preventDefault();
+  let provider = new firebase.auth.FacebookAuthProvider();
+  provider.addScope("profile");
+  provider.addScope("email");
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then((result) => {
+      console.log("logged in, ", result);
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      new Toast(
+        "Facebook auth error: " + error.message,
+        "default",
+        1000 + error.message.length * 50,
+        "img/icon/error-icon.png"
+      );
+    });
+  /*
+  things that can be called on this:
+  https://firebase.google.com/docs/auth/web/github-auth#:~:text=.signInWithPopup(provider)-,.then((result)
+  */
+});
 if (params.get("edu-code") != null) {
   $("#extended-options, #provider-login").hide();
   if (params.get("edu-code") == "student") {

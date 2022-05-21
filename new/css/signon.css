@@ -115,6 +115,7 @@ body * {
   border-color: #35bb13;
 }
 #oauth-login,
+#facebook-login,
 #github-login {
   background-color: #ffffff;
   border-color: #1d1d1d;
@@ -131,13 +132,21 @@ body * {
   background-size: 30px;
   flex-grow: 1;
 }
+#facebook-login,
 #github-login {
-  background-image: url(../img/icon/github-inverted.svg);
   background-size: cover;
   width: 48px;
   margin-left: 10px;
 }
+#github-login {
+  background-image: url(../img/icon/github-inverted.svg);
+}
+#facebook-login {
+  background-image: url(../img/icon/facebook.png);
+  border-color: #14386e;
+}
 #oauth-login:active,
+#facebook-login:active,
 #github-login:active {
   height: 48px;
   margin-top: 2px;
