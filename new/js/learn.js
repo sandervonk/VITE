@@ -23,9 +23,16 @@ $(".tree-item").click((e) => {
      </div>`
   );
 });
-$(document.body).on("click", ".showpopup", (e) => {
-  console.log("outside");
-  $(document.body).removeClass("showpopup");
+$(document.body).on("click", (e) => {
+  console.log(e.target);
+  if (
+    $(e.target).hasClass("hidepopup")
+    // || $(e.target).parent("hidepopup").length > 0
+  ) {
+    $(document.body).removeClass("showpopup");
+    $("#learn-popup-container > *").remove();
+    $("[info]").removeAttr("info");
+  }
 });
 $(window).on("resize", (e) => {
   $("#learn-popup-container > *").remove();

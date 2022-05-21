@@ -188,6 +188,7 @@ authForm.on("submit", (e) => {
   }
 });
 $("#oauth-login").click((e) => {
+  e.preventDefault();
   var provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope("profile");
   provider.addScope("email");

@@ -14,6 +14,7 @@
   flex-flow: row nowrap;
   justify-content: center;
   max-width: 100%;
+  pointer-events: none;
 }
 .tree-item {
   margin: 12px;
@@ -29,6 +30,8 @@
   justify-content: end;
   align-items: end;
   flex-shrink: 0;
+  z-index: 1;
+  pointer-events: all;
 }
 .tree-item[badged]::after {
   content: "!";
@@ -64,10 +67,23 @@
     opacity: 1;
   }
 }
+@keyframes expandDown {
+  from {
+    transform-origin: center top;
+    transform: translateX(-50%) scale(0.25);
+    opacity: 0;
+  }
+  to {
+    transform-origin: center top;
+    transform: translateX(-50%) scale(1);
+    opacity: 1;
+  }
+}
 #learn-popup-container {
   top: 0;
   height: 0px;
   width: 0px;
+  z-index: 10;
 }
 #learn-popup {
   position: relative;
@@ -82,6 +98,7 @@
   display: flex;
   flex-flow: column;
   padding: 10px;
+  z-index: 10;
 }
 #learn-popup-action {
   width: 100%;

@@ -1,5 +1,7 @@
 * {
   -webkit-overflow-scrolling: touch !important;
+  -webkit-tap-highlight-color: transparent;
+  -webkit-tap-highlight-color: transparent;
 }
 
 html,
