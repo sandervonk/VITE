@@ -29,7 +29,7 @@ class Toast {
       overlay.remove();
       toast.remove();
       if (this.action != null) {
-        window.open(this.action, "_self");
+        window.location.href = this.action;
       }
     }, this.duration + 500);
   }

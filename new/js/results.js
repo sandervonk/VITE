@@ -8,7 +8,7 @@ results = {
   duration: parseInt(param.get("duration")),
 };
 if (Object.values(results).includes(null)) {
-  window.open("./", "_self");
+  window.location.href = "./";
 }
 history.replaceState({}, "", "results.html");
 console.log(results);

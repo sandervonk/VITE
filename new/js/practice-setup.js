@@ -4,7 +4,7 @@ try {
 if (params.has("resolveto")) {
   $("#close-button").click(function () {
     e.preventDefault();
-    window.open(params.get("resolveto"), "_self");
+    window.location.href = params.get("resolveto");
   });
 }
 var verbs,
@@ -154,7 +154,7 @@ $("form").on("submit", (e) => {
     .set(newJSON, { merge: true })
     .then(() => {
       if (params.has("resolveto")) {
-        window.open(params.get("resolveto"), "_self");
+        window.location.href = params.get("resolveto");
       } else {
         $("form").submit();
       }

@@ -5,7 +5,7 @@ var scoringData = {
   doSetup: new URLSearchParams(window.location.search).get("type") == "create",
 };
 if (scoringData.doSetup == true) {
-  window.open("./practice-setup.html", "_self");
+  window.location.href = "./practice-setup.html";
 }
 if (
   parseInt(scoringData.target) == NaN ||

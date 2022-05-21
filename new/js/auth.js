@@ -24,10 +24,10 @@ $(document.body).on("click", "#send-verification.ready", function () {
 });
 //redirects
 function openOnboard() {
-  window.open("./onboarding.html", "_self");
+  window.location.href = "./onboarding.html";
 }
 function openApp() {
-  window.open("./app/", "_self");
+  window.location.href = "./app/";
 }
 //catch errors
 function authError(error) {
