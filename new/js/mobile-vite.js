@@ -205,6 +205,10 @@ class Question {
         a = this.spTense(s, v);
         t = "Subjonctif Passé";
         break;
+      // case "pp":
+      //   a = this.ppTense(s, v);
+      //   t = "Plus que Parfait";
+      //   break;
       default:
         console.error(`Could not match requested tense "${t}" to method`);
         return {

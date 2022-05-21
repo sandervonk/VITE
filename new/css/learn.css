@@ -36,6 +36,16 @@
   z-index: 1;
   pointer-events: all;
 }
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
 .tree-item[badged]::after {
   content: "!";
   position: relative;
@@ -54,11 +64,14 @@
   font-size: 26px;
   font-weight: bold;
   cursor: help;
-  transform-origin: calc();
-  transition: transform 0.2s ease-in-out;
+  transform-origin: center center;
+  animation: scaleIn 0.25s 0.1s ease-in-out;
+  opacity: 1;
+  transition: transform 0.2s ease-in-out, opacity 0.2s ease-in-out !important;
 }
 .tree-item[badged][info]::after {
-  transform: scale(0);
+  transform: scale(0) !important;
+  opacity: 0;
   transition: transform 0.1s ease-in-out;
 }
 #learn-popup-message::before {
@@ -81,7 +94,7 @@
   animation: expandDown 0.25s ease-out forwards;
 }
 .collapse {
-  animation: expandDown 0.25s ease-out backwards !important;
+  animation: collapseUp 0.15s ease-in forwards !important;
 }
 @keyframes expandDown {
   from {
@@ -95,16 +108,16 @@
     opacity: 1;
   }
 }
-@keyframes expandDown {
+@keyframes collapseUp {
   from {
-    transform-origin: center top;
-    transform: translateX(-50%) scale(0.25);
-    opacity: 0;
-  }
-  to {
     transform-origin: center top;
     transform: translateX(-50%) scale(1);
     opacity: 1;
+  }
+  to {
+    transform-origin: center top;
+    transform: translateX(-50%) scale(0.25);
+    opacity: 0;
   }
 }
 #learn-popup-container {
@@ -130,6 +143,16 @@
   padding: 10px;
   z-index: 10;
 }
+#tense-name {
+  margin-bottom: 5px;
+}
+#tense-def {
+  margin-bottom: 10px;
+  text-transform: lowercase;
+}
+#learn-popup > * {
+  width: 100%;
+}
 #learn-popup-action {
   width: 100%;
   font-size: 18px;
@@ -154,4 +177,8 @@
   padding-top: 10px;
   width: 100%;
   align-items: center;
+}
+
+#page-content {
+  padding-bottom: calc(90px + 16px);
 }
