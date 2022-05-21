@@ -186,4 +186,16 @@
   align-items: center;
 }
 #learn-popup-padding {
+  position: relative;
+
+  height: 20px;
+  width: 100%;
+  flex-shrink: 0;
+}
+#learn-popup-container::after {
+  content: "-";
+  color: transparent;
+  height: 20px;
+  flex-shrink: 0;
+  width: 100%;
 }
