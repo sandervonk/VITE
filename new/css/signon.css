@@ -45,12 +45,13 @@ body * {
   font-family: "Next", sans-serif;
   position: relative;
   line-height: 24px;
-  height: 44px;
+  height: 50px;
   font-size: 24px;
-  margin-top: 28px;
   width: 100%;
 }
-
+.login-margin {
+  margin-top: 28px !important;
+}
 #signup-box,
 #verification-box {
   border-radius: 15px;
@@ -88,8 +89,10 @@ body * {
   border-radius: 11px;
 }
 #signup-box input[type="submit"].box-button:active,
-#verification-box input[type="button"]:active {
-  height: 42px;
+#verification-box input[type="button"]:active,
+#edu-back:active,
+#extended-options > *:active {
+  height: 48px;
   margin-bottom: 0 !important;
   margin-top: 2px;
 }
@@ -111,21 +114,33 @@ body * {
   background-color: #57dd35;
   border-color: #35bb13;
 }
-#oauth-login {
+#oauth-login,
+#github-login {
   background-color: #ffffff;
   border-color: #1d1d1d;
-  background-image: url(../img/icon/google.png);
   background-repeat: no-repeat;
-  background-position: 10px center;
-  background-size: 30px;
+  width: 48px;
   height: 50px;
   color: #1d1d1d;
   line-height: 50px;
   padding: 0;
 }
-#oauth-login:active {
+#oauth-login {
+  background-image: url(../img/icon/google.png);
+  background-position: 10px center;
+  background-size: 30px;
+  flex-grow: 1;
+}
+#github-login {
+  background-image: url(../img/icon/github-inverted.svg);
+  background-size: cover;
+  width: 48px;
+  margin-left: 10px;
+}
+#oauth-login:active,
+#github-login:active {
   height: 48px;
-  margin-top: 30px;
+  margin-top: 2px;
   margin-bottom: 0 !important;
 }
 @media (orientation: landscape) {
@@ -218,10 +233,6 @@ input[type="button"]#change-email:active {
   user-select: none;
   pointer-events: none;
 }
-#guest-login:active,
-#school-login:active {
-  margin-top: 30px !important;
-}
 #extended-options {
   display: flex;
   flex-flow: row nowrap;
@@ -232,7 +243,7 @@ input[type="button"]#change-email:active {
   text-overflow: ellipsis;
 }
 #school-login {
-  width: 42px;
+  width: 48px;
   flex-shrink: 0;
   flex-grow: 0;
   padding-left: 40px;
@@ -256,7 +267,7 @@ input[type="button"]#change-email:active {
     width 0.5s 1s ease-out, color 0.5s 1s ease-in-out;
 }
 #education-options {
-  height: 44px;
+  height: 50px;
   display: flex;
   flex-flow: row nowrap;
   margin-top: 20px;
@@ -265,8 +276,8 @@ input[type="button"]#change-email:active {
   background-image: url(../img/icon/back.svg);
   background-position: center center;
   background-repeat: no-repeat;
-  width: 42px;
-  height: 44px;
+  width: 48px;
+  height: 50px;
   box-sizing: border-box;
   margin-right: 10px;
 }
@@ -287,7 +298,7 @@ input[type="button"]#change-email:active {
   color: var(--box-border);
 }
 #join-code {
-  height: 44px;
+  height: 50px;
   box-sizing: border-box;
   flex-grow: 1;
   pointer-events: none;
@@ -306,18 +317,22 @@ input[type="button"]#change-email:active {
   background-repeat: no-repeat;
   border-top-left-radius: 0;
   border-bottom-left-radius: 0;
-  width: 44px;
+  width: 50px;
   border-width: 2px !important;
   background-color: var(--box-border);
 }
-#edu-back:active {
-  height: 42px;
-  margin-top: 2px;
-}
+
 body {
   overflow-y: auto !important;
   max-height: 100%;
 }
 #auth-form {
   min-height: fit-content;
+}
+#provider-login {
+  display: flex;
+  flex-flow: row nowrap;
+}
+#provider-login > * {
+  flex-shrink: 0;
 }

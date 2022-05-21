@@ -119,7 +119,12 @@ auth.onAuthStateChanged((user) => {
         localStorage.setItem("userData", JSON.stringify(doc.data()));
         localStorage.setItem("userId", auth.getUid());
       });
-    if (auth.currentUser.emailVerified || auth.currentUser.email == null) {
+    if (
+      auth.currentUser.emailVerified ||
+      auth.currentUser.email == null ||
+      (auth.currentUser.providerData &&
+        auth.currentUser.providerData[0].providerId == "github.com")
+    ) {
       if (authData.creationTime === authData.lastSignInTime) {
         openOnboard();
       } else {
@@ -194,12 +199,26 @@ $("#oauth-login").click((e) => {
   provider.addScope("email");
   firebase.auth().signInWithPopup(provider);
 });
-$("#oauth-login").click((e) => {
+$("#github-login").click((e) => {
   e.preventDefault();
   let provider = new firebase.auth.GithubAuthProvider();
   provider.addScope("profile");
   provider.addScope("email");
-  firebase.auth().signInWithPopup(provider);
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .then((result) => {
+      console.log("logged in, ", result);
+    })
+    .catch((error) => {
+      // Handle Errors here.
+      new Toast(
+        "Github Auth Error: " + error.message,
+        "default",
+        1000 + error.message.length * 50,
+        "img/icon/error-icon.png"
+      );
+    });
   /*
   things that can be called on this:
   https://firebase.google.com/docs/auth/web/github-auth#:~:text=.signInWithPopup(provider)-,.then((result)

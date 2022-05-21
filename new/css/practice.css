@@ -31,9 +31,9 @@ body {
 #vite-q-tense:before {
   text-transform: none;
 }
-#vite-q-tense {
+/* #vite-q-tense {
   text-transform: capitalize;
-}
+} */
 #info-button {
   --button-border: var(--info-button-border);
   --button-bg: var(--info-button-bg);
