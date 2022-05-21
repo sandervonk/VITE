@@ -226,7 +226,7 @@ $("#github-login").click((e) => {
 });
 
 if (params.get("edu-code") != null) {
-  $("#extended-options, #oauth-login").hide();
+  $("#extended-options, #provider-login").hide();
   if (params.get("edu-code") == "student") {
     $("#education-options").show();
     $("#join-code").val(params.get("join-code"));
