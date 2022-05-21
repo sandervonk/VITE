@@ -86,10 +86,8 @@ $("#settings-tab .switch-toggle").click((e) => {
   saveSettings($("#settings-form")[0]);
 });
 $(".learn-card").click((e) => {
-  window.open(
+  window.location.href =
     $(e.target).closest(".learn-card").attr("page") +
       "?type=" +
-      $(e.target).closest(".learn-card").attr("name"),
-    "_self"
-  );
+      $(e.target).closest(".learn-card").attr("name")
 });

@@ -1,3 +1,6 @@
+:root {
+  --badge-color: #3db1d6;
+}
 #page-content {
   overflow-x: hidden !important;
   overflow-y: auto !important;
@@ -44,16 +47,41 @@
   align-items: center;
   color: white;
   /* color: var(--badge-accent); */
-  background-color: #3db1d6;
+  background-color: var(--badge-color);
   height: 30px;
   width: 30px;
   border-radius: 50%;
   font-size: 26px;
   font-weight: bold;
   cursor: help;
+  transform-origin: calc();
+  transition: transform 0.2s ease-in-out;
+}
+.tree-item[badged][info]::after {
+  transform: scale(0);
+  transition: transform 0.1s ease-in-out;
+}
+#learn-popup-message::before {
+  content: "!";
+  margin-right: 10px;
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  /* color: var(--badge-accent); */
+  background-color: var(--badge-color);
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  font-size: 26px;
+  font-weight: bold;
 }
 .expand-down {
   animation: expandDown 0.25s ease-out forwards;
+}
+.collapse {
+  animation: expandDown 0.25s ease-out backwards !important;
 }
 @keyframes expandDown {
   from {
@@ -96,6 +124,8 @@
   max-width: 75vw;
   box-sizing: border-box;
   display: flex;
+  align-items: center;
+  text-align: left;
   flex-flow: column;
   padding: 10px;
   z-index: 10;
@@ -112,4 +142,16 @@
 #learn-popup-action:active {
   margin-top: 4px;
   height: 40px;
+}
+#learn-popup-message-separator {
+  margin-top: 10px;
+  border-top: solid 2px var(--secondary);
+  width: 60%;
+}
+#learn-popup-message {
+  display: flex;
+  flex-flow: row nowrap;
+  padding-top: 10px;
+  width: 100%;
+  align-items: center;
 }

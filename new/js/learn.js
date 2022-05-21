@@ -20,6 +20,17 @@ $(".tree-item").click((e) => {
             ${target.attr("tense")}
         </div>
         <button id="learn-popup-action" class="box-button">LEARN</button>
+        ${
+          target[0].hasAttribute("badged")
+            ? "<div id='learn-popup-message-separator'></div><div id='learn-popup-message' style='--badge-color:" +
+              target.css("--badge-color") +
+              "'>" +
+              (target.attr("message") != undefined
+                ? target.attr("message")
+                : "[message]") +
+              "</div>"
+            : ""
+        }
      </div>`
   );
 });
