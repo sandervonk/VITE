@@ -185,3 +185,8 @@
   width: 100%;
   align-items: center;
 }
+@media (min-width: 501px) {
+  #page-content::-webkit-scrollbar {
+    display: none;
+  }
+}

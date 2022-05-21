@@ -18,6 +18,7 @@ var question = {},
   tenseDefinitions = {
     pr: "Present tense",
     pc: "Past tense",
+    pp: "Past perfect tense",
     ps: "Past tense (literature)",
     im: "Imperfect past (past state or ongoing action)",
     fs: "Future tense (intentions, predictions, conditional)",
@@ -197,6 +198,10 @@ class Question {
         a = this.cpTense(s, v);
         t = "Conditionnel Passé";
         break;
+      case "pp":
+        a = this.ppTense(s, v);
+        t = "Plus que Parfait";
+        break;
       case "su":
         a = this.suTense(s, v);
         t = "Subjonctif";
@@ -372,7 +377,7 @@ class Question {
       return this.versions(a.answer, s);
     }
   }
-  imTense(s, v) {
+  imTense(s, v, raw) {
     //Imparfait Conjugator
     let end = {
         Je: "ais",
@@ -389,7 +394,11 @@ class Question {
       a = this.prTense("Nous", v).alt;
       a = a.substr(0, a.length - 3) + end[s];
     }
-    return this.versions(a, s);
+    if (raw == true) {
+      return { a: a, s: s };
+    } else {
+      return this.versions(a, s);
+    }
   }
   fsTense(s, v) {
     //Futur Simple Conjugator
@@ -453,6 +462,21 @@ class Question {
     a.pc = this.pcTense(s, v, true);
     return this.versions(
       [a.coHelping, a.pc.participle].join(" "),
+      a.pc.subject,
+      true
+    );
+  }
+  ppTense(s, v) {
+    //Plus que Parfait Conjugator
+    let a = {};
+    a.imHelping = this.imTense(
+      s,
+      { name: v.verb.PC.helping, verb: verbs[v.verb.PC.helping] },
+      true
+    ).a;
+    a.pc = this.pcTense(s, v, true);
+    return this.versions(
+      [a.imHelping, a.pc.participle].join(" "),
       a.pc.subject,
       true
     );

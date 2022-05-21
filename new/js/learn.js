@@ -22,14 +22,20 @@ $(".tree-item").click((e) => {
     top: target.offset().top + $("#page-content").scrollTop(),
     width: Math.min(windowWidth * 0.75, 300),
   };
+  //correction for transformX(-50%) to center in CSS
   offset.left += target.outerWidth() / 2;
+  //prevent overflow
   offset.left = Math.min(offset.left, windowWidth - offset.width * 0.5 - 16);
   offset.left = Math.max(offset.left, offset.width * 0.5 + 16);
+  //set options on other items
   target.attr("info", true);
   $(document.body).addClass("showpopup");
-  let style = `top:${offset.top}px; left:${offset.left}px;`;
   $("#learn-popup-container").append(
-    `<div id="learn-popup" class="expand-down box center" style="${style}">
+    `<div id="learn-popup" tenseshort="${target.attr(
+      "tenseshort"
+    )}" class="expand-down box center" style="top:${offset.top}px; left:${
+      offset.left
+    }px;">
         <div id="tense-name" class="primary">
             ${target.attr("tense")}
         </div>
@@ -53,7 +59,7 @@ $(".tree-item").click((e) => {
      </div>`
   );
 });
-
+//outside click handler
 let popupTimeout;
 $(document.body).on("click", (e) => {
   if (
@@ -69,7 +75,17 @@ $(document.body).on("click", (e) => {
     }, 175);
   }
 });
+//move on resize
 $(window).on("resize", (e) => {
   $("#learn-popup-container > #learn-popup").remove();
   $("[info]").click();
+});
+//action button listener
+$(document.body).on("click", "#learn-popup-action", (e) => {
+  db.collection("users")
+    .doc(auth.getUid())
+    .set({ tenses: [$("#learn-popup").attr("tenseshort")] }, { merge: true })
+    .then(() => {
+      window.location.href = "./practice.html";
+    });
 });

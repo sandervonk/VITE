@@ -31,6 +31,7 @@ var verbs,
   tenseDefinitions = {
     pr: "Present tense",
     pc: "Past tense",
+    pp: "Past perfect tense",
     ps: "Past tense (literature)",
     im: "Imperfect past (past state or ongoing action)",
     fs: "Future tense (intentions, predictions, conditional)",
@@ -39,8 +40,8 @@ var verbs,
     cp: "Past conditional tense (regrets, what would / could have happened)",
     su: "Subjunctive Tense (opinions, emotions, and possibilities)",
     sp: "Past of the Subjunctive Tense (opinions, emotions, and possibilities)",
-  },
-  updatedJSON = {};
+  };
+updatedJSON = {};
 
 function setupSetup() {
   $(".options-toggles > .option-toggle").remove();

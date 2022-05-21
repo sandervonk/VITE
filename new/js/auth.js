@@ -189,10 +189,21 @@ authForm.on("submit", (e) => {
 });
 $("#oauth-login").click((e) => {
   e.preventDefault();
-  var provider = new firebase.auth.GoogleAuthProvider();
+  let provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope("profile");
   provider.addScope("email");
-  firebase.auth().signInWithRedirect(provider);
+  firebase.auth().signInWithPopup(provider);
+});
+$("#oauth-login").click((e) => {
+  e.preventDefault();
+  let provider = new firebase.auth.GithubAuthProvider();
+  provider.addScope("profile");
+  provider.addScope("email");
+  firebase.auth().signInWithPopup(provider);
+  /*
+  things that can be called on this:
+  https://firebase.google.com/docs/auth/web/github-auth#:~:text=.signInWithPopup(provider)-,.then((result)
+  */
 });
 
 if (params.get("edu-code") != null) {
