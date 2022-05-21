@@ -1,8 +1,9 @@
 let tenseDefinitions = {
-  pr: "Présent tense",
+  pr: "Present tense",
   pc: "Past tense",
+  pp: "Past perfect tense",
   ps: "Past tense (literature)",
-  im: "Past state or ongoing action",
+  im: "Imperfect past (past state or ongoing action)",
   fs: "Future tense (intentions, predictions, conditional)",
   fa: "Future tense (actions previous to another)",
   co: "Conditional tense",
@@ -12,6 +13,8 @@ let tenseDefinitions = {
 };
 
 $(".tree-item").click((e) => {
+  $("#learn-popup-container > #learn-popup").remove();
+  $("[info]").removeAttr("info");
   let target = $(e.target),
     windowWidth = $("#page-content").innerWidth();
   let offset = {
@@ -22,12 +25,6 @@ $(".tree-item").click((e) => {
   offset.left += target.outerWidth() / 2;
   offset.left = Math.min(offset.left, windowWidth - offset.width * 0.5 - 16);
   offset.left = Math.max(offset.left, offset.width * 0.5 + 16);
-  $("#learn-popup-container > *").addClass("collapse");
-  popupTimeout = setTimeout(function () {
-    $(document.body).removeClass("showpopup");
-    $("#learn-popup-container > .collapse").remove();
-    $(".collapse[info]").removeAttr("info");
-  }, 175);
   target.attr("info", true);
   $(document.body).addClass("showpopup");
   let style = `top:${offset.top}px; left:${offset.left}px;`;
@@ -37,9 +34,11 @@ $(".tree-item").click((e) => {
             ${target.attr("tense")}
         </div>
         <div id="tense-def" class="">
-            ${tenseDefinitions[target.attr("tenseshort")]}
+            Learn the ${tenseDefinitions[
+              target.attr("tenseshort")
+            ].toLowerCase()}
         </div>
-        <button id="learn-popup-action" class="box-button">LEARN</button>
+        <button id="learn-popup-action" class="box-button">PRACTICE</button>
         ${
           target[0].hasAttribute("badged")
             ? "<div id='learn-popup-message-separator'></div><div id='learn-popup-message' style='--badge-color:" +
@@ -54,6 +53,7 @@ $(".tree-item").click((e) => {
      </div>`
   );
 });
+
 let popupTimeout;
 $(document.body).on("click", (e) => {
   if (
@@ -61,14 +61,15 @@ $(document.body).on("click", (e) => {
     // || $(e.target).parent("hidepopup").length > 0
   ) {
     $("[info]").removeAttr("info");
-    $("#learn-popup-container > *").addClass("collapse");
+    $("#learn-popup-container > #learn-popup").addClass("collapse");
     popupTimeout = setTimeout(function () {
       $(document.body).removeClass("showpopup");
       $("#learn-popup-container > .collapse").remove();
+      $(".removeInfo[info]").removeAttr("info");
     }, 175);
   }
 });
 $(window).on("resize", (e) => {
-  $("#learn-popup-container > *").remove();
+  $("#learn-popup-container > #learn-popup").remove();
   $("[info]").click();
 });
