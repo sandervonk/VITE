@@ -190,3 +190,9 @@
     display: none;
   }
 }
+#learn-popup-action {
+  width: 100%;
+  --button-bg: var(--prior-button-bg);
+  --button-border: var(--prior-button-border);
+  --button-accent: var(--prior-button-accent);
+}
