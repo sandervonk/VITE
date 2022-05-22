@@ -145,3 +145,19 @@ $(document.body).on("click", ".clear-sw", (e) => {
     messagechannelBroadcast.postMessage({ key: "clearsw" });
   }, 1500);
 });
+$(document.body).on("click", "#delete-acc-button", (e) => {
+  new Popup(
+    "Are you sure you want to delete your account? <span class='primary'>THIS ACTION CANNOT BE REVERSED</span>",
+    "box fullborder default",
+    10000,
+    "../img/icon/info-icon.svg",
+    [
+      ["removePopup()", "Cancel", "secondary-action fullborder"],
+      [
+        "auth.currentUser.delete(); removePopup()",
+        "Yes",
+        "primary-action delete-user",
+      ],
+    ]
+  );
+});

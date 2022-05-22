@@ -441,3 +441,13 @@ input.error {
     display: none !important;
   }
 }
+.flex-row-nowrap {
+  display: flex;
+  flex-flow: row nowrap;
+}
+.delete-user {
+  --button-bg: var(--check-fill-incorrect) !important;
+  --button-border: var(--check-fill-incorrect-accent) !important;
+  --button-accent: var(--prior-button-accent) !important;
+  font-weight: bold;
+}

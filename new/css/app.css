@@ -351,7 +351,8 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 #tutorial-title,
 .card-title,
 #retake-prior-button,
-#clear-sw-button {
+#clear-sw-button,
+#delete-acc-button {
   font-size: 24px;
   font-weight: 700;
 }
@@ -364,7 +365,16 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 .settings-section {
   margin-bottom: 30px;
 }
-
+.settings-section button {
+  margin-bottom: 0 !important;
+  height: 46px !important;
+  margin-top: 0px !important;
+}
+.settings-section button:active {
+  margin-bottom: 0 !important;
+  height: 44px !important;
+  margin-top: 2px !important;
+}
 #saves-section,
 #pacing-section {
   pointer-events: none;
@@ -372,18 +382,20 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 #pacing-section {
   opacity: 0.5;
 }
-#prior-section {
+#prior-section,
+#clear-sw-button {
   --button-bg: var(--prior-button-bg);
   --button-border: var(--prior-button-border);
   --button-accent: var(--prior-button-accent);
 }
-#other-section {
+#delete-acc-button {
   --button-bg: var(--check-fill-incorrect);
   --button-border: var(--check-fill-incorrect-accent);
   --button-accent: var(--prior-button-accent);
 }
 #retake-prior-button,
-#clear-sw-button {
+#clear-sw-button,
+#delete-acc-button {
   height: 46px;
   line-height: 40px;
   padding: 0;
