@@ -451,3 +451,6 @@ input.error {
   --button-accent: var(--prior-button-accent) !important;
   font-weight: bold;
 }
+.delete-text {
+  color: var(--error-border) !important;
+}
