@@ -123,7 +123,8 @@ auth.onAuthStateChanged((user) => {
       auth.currentUser.emailVerified ||
       auth.currentUser.email == null ||
       (auth.currentUser.providerData &&
-        auth.currentUser.providerData[0].providerId == "github.com")
+        (auth.currentUser.providerData[0].providerId == "github.com" ||
+          auth.currentUser.providerData[0].providerId == "facebook.com"))
     ) {
       if (authData.creationTime === authData.lastSignInTime) {
         openOnboard();
