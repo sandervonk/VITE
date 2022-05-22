@@ -227,8 +227,6 @@ $("#github-login").click((e) => {
 $("#facebook-login").click((e) => {
   e.preventDefault();
   let provider = new firebase.auth.FacebookAuthProvider();
-  provider.addScope("profile");
-  provider.addScope("email");
   firebase
     .auth()
     .signInWithPopup(provider)
