@@ -44,6 +44,15 @@ function authError(error) {
     $("#email-input, #password-input").addClass("error");
   }
 }
+function providerError(provider, error) {
+  // Handle Errors here.
+  new Toast(
+    provider + " auth error: " + error.message,
+    "default",
+    1000 + error.message.length * 50,
+    "img/icon/error-icon.png"
+  );
+}
 function resetEmail() {
   auth
     .sendPasswordResetEmail($("#email-input").val())
@@ -124,7 +133,8 @@ auth.onAuthStateChanged((user) => {
       auth.currentUser.email == null ||
       (auth.currentUser.providerData &&
         (auth.currentUser.providerData[0].providerId == "github.com" ||
-          auth.currentUser.providerData[0].providerId == "facebook.com"))
+          auth.currentUser.providerData[0].providerId == "facebook.com" ||
+          auth.currentUser.providerData[0].providerId == "twitter.com"))
     ) {
       if (authData.creationTime === authData.lastSignInTime) {
         openOnboard();
@@ -198,7 +208,10 @@ $("#oauth-login").click((e) => {
   let provider = new firebase.auth.GoogleAuthProvider();
   provider.addScope("profile");
   provider.addScope("email");
-  firebase.auth().signInWithPopup(provider);
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .catch((err) => providerError("Github", err));
 });
 $("#github-login").click((e) => {
   e.preventDefault();
@@ -208,18 +221,7 @@ $("#github-login").click((e) => {
   firebase
     .auth()
     .signInWithPopup(provider)
-    .then((result) => {
-      console.log("logged in, ", result);
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      new Toast(
-        "Github auth error: " + error.message,
-        "default",
-        1000 + error.message.length * 50,
-        "img/icon/error-icon.png"
-      );
-    });
+    .catch((err) => providerError("Github", err));
   /*
   things that can be called on this:
   https://firebase.google.com/docs/auth/web/github-auth#:~:text=.signInWithPopup(provider)-,.then((result)
@@ -231,22 +233,15 @@ $("#facebook-login").click((e) => {
   firebase
     .auth()
     .signInWithPopup(provider)
-    .then((result) => {
-      console.log("logged in, ", result);
-    })
-    .catch((error) => {
-      // Handle Errors here.
-      new Toast(
-        "Facebook auth error: " + error.message,
-        "default",
-        1000 + error.message.length * 50,
-        "img/icon/error-icon.png"
-      );
-    });
-  /*
-  things that can be called on this:
-  https://firebase.google.com/docs/auth/web/github-auth#:~:text=.signInWithPopup(provider)-,.then((result)
-  */
+    .catch((err) => providerError("Facebook", err));
+});
+$("#twitter-login").click((e) => {
+  e.preventDefault();
+  let provider = new firebase.auth.TwitterAuthProvider();
+  firebase
+    .auth()
+    .signInWithPopup(provider)
+    .catch((err) => providerError("Twitter", err));
 });
 if (params.get("edu-code") != null) {
   $("#extended-options, #provider-login").hide();

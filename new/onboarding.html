@@ -32,11 +32,7 @@
   </head>
   <body>
     <header>
-      <button
-        id="back-button"
-        class="progress-button"
-        onclick="window.history.go(-1)"
-      ></button>
+      <button id="back-button" class="progress-button"></button>
       <div id="progress-bar">
         <div id="progress-fill">
           <div id="progress-fill-accent"></div>
@@ -97,6 +93,17 @@
   <script src="js/toast.js"></script>
   <script src="js/auth-pages.js"></script>
   <script>
+    if (window.location.href.includes("?showTutorial=false")) {
+      document.getElementById("tutorial-input").value = "false";
+      document.getElementById("back-button").addEventListener("click", (e) => {
+        window.history.go(-1);
+      });
+    } else {
+      document.getElementById("back-button").addEventListener("click", (e) => {
+        e.preventDefault();
+        auth.signOut();
+      });
+    }
     for (element of document.getElementsByClassName("box option")) {
       element.addEventListener("click", function (e) {
         //setup from template
@@ -113,10 +120,6 @@
                 e.target.parentElement.submit();
               });
           });
-
-        if (window.location.href.includes("?showTutorial=false")) {
-          document.getElementById("tutorial-input").value = "false";
-        }
       });
     }
   </script>

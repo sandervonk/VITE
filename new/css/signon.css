@@ -116,6 +116,7 @@ body * {
 }
 #oauth-login,
 #facebook-login,
+#twitter-login,
 #github-login {
   background-color: #ffffff;
   border-color: #1d1d1d;
@@ -132,6 +133,7 @@ body * {
   background-size: 30px;
   flex-grow: 1;
 }
+#twitter-login,
 #facebook-login,
 #github-login {
   background-size: cover;
@@ -145,9 +147,14 @@ body * {
   background-image: url(../img/icon/facebook.png);
   border-color: #14386e;
 }
+#twitter-login {
+  background-image: url(../img/icon/twitter.png);
+  border-color: #1574af;
+}
 #oauth-login:active,
 #facebook-login:active,
-#github-login:active {
+#github-login:active,
+#twitter-login:active {
   height: 48px;
   margin-top: 2px;
   margin-bottom: 0 !important;
