@@ -147,7 +147,7 @@ $(document.body).on("click", ".clear-sw", (e) => {
 });
 $(document.body).on("click", "#delete-acc-button", (e) => {
   new Popup(
-    "Are you sure you want to delete your account? <span class='primary delete-text'>THIS ACTION CANNOT BE REVERSED</span>",
+    "Are you sure you want to delete your account? <span class='delete-text'>THIS ACTION CANNOT BE REVERSED</span>",
     "box fullborder default",
     10000,
     "../img/icon/info-icon.svg",

@@ -91,6 +91,13 @@
     </form>
   </body>
   <script src="js/toast.js"></script>
+  <script>
+    function startApp() {
+      return new Promise(function (resolve, reject) {
+        resolve();
+      });
+    }
+  </script>
   <script src="js/auth-pages.js"></script>
   <script>
     if (window.location.href.includes("?showTutorial=false")) {
