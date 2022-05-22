@@ -128,6 +128,7 @@ body * {
   padding: 0;
 }
 #oauth-login {
+  background-color: white;
   background-image: url(../img/icon/google.png);
   background-position: 10px center;
   background-size: 30px;
@@ -136,8 +137,9 @@ body * {
 #twitter-login,
 #facebook-login,
 #github-login {
-  background-size: cover;
+  background-size: contain;
   width: 48px;
+  background-position: center center;
 }
 #oauth-login,
 #twitter-login,
@@ -151,13 +153,16 @@ body * {
   margin-right: -5px;
 }
 #github-login {
+  background-color: white;
   background-image: url(../img/icon/github-inverted.svg);
 }
 #facebook-login {
+  background-color: #3b579d;
   background-image: url(../img/icon/facebook.png);
   border-color: #14386e;
 }
 #twitter-login {
+  background-color: #1da1f2;
   background-image: url(../img/icon/twitter.png);
   border-color: #1574af;
 }
@@ -367,4 +372,16 @@ body {
 }
 #provider-login > * {
   flex-shrink: 0;
+}
+@media (max-width: 400px) {
+  #oauth-login {
+    content-visibility: hidden !important;
+    color: transparent !important;
+    font-size: 0 !important;
+    flex-basis: 48px;
+    background-position: center center;
+  }
+  #provider-login > input {
+    flex-grow: 1 !important;
+  }
 }
