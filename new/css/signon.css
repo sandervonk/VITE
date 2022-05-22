@@ -138,7 +138,17 @@ body * {
 #github-login {
   background-size: cover;
   width: 48px;
-  margin-left: 10px;
+}
+#oauth-login,
+#twitter-login,
+#facebook-login,
+#github-login {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+#provider-login {
+  margin-left: -5px;
+  margin-right: -5px;
 }
 #github-login {
   background-image: url(../img/icon/github-inverted.svg);
@@ -150,6 +160,12 @@ body * {
 #twitter-login {
   background-image: url(../img/icon/twitter.png);
   border-color: #1574af;
+}
+#oauth-login {
+  padding-left: 46px;
+  padding-right: 10px;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 #oauth-login:active,
 #facebook-login:active,
