@@ -102,6 +102,7 @@ function setTab(tab) {
 $("#page-content")
   .swipeDetector({
     swipeThreshold: Math.min(150, $("#page-content").width() * 0.75),
+    useOnlyTouch: true,
   })
   .on("swipeLeft.sd swipeRight.sd swipeUp.sd swipeDown.sd", function (event) {
     let active = $(document.body).attr("activetab");
