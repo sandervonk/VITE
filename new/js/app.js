@@ -67,7 +67,9 @@ $(".footer-item").click((e) => {
   $(".footer-item").removeClass("active");
   $(e.target).addClass("active");
   $("#page-content, body").attr("activetab", e.target.id.replace("-tab", ""));
-  tutorialClass.setText(e.target.id.replace("-tab", ""));
+  try {
+    tutorialClass.setText(e.target.id.replace("-tab", ""));
+  } catch {}
 });
 
 function saveSettings(form) {
@@ -88,6 +90,43 @@ $("#settings-tab .switch-toggle").click((e) => {
 $(".learn-card").click((e) => {
   window.location.href =
     $(e.target).closest(".learn-card").attr("page") +
-      "?type=" +
-      $(e.target).closest(".learn-card").attr("name")
+    "?type=" +
+    $(e.target).closest(".learn-card").attr("name");
 });
+function setTab(tab) {
+  tab = tab.replace("-tab", "");
+  $(".footer-item").removeClass("active");
+  $(`.footer-item#${tab}-tab`).addClass("active");
+  $("#page-content, body").attr("activetab", tab);
+}
+$("#page-content")
+  .swipeDetector({
+    swipeThreshold: Math.min(200, $("#page-content").width() * 0.75),
+  })
+  .on("swipeLeft.sd swipeRight.sd swipeUp.sd swipeDown.sd", function (event) {
+    let active = $(document.body).attr("activetab");
+    if (event.type == "swipeLeft") {
+      if (active == "learn") {
+        setTab("settings");
+      } else if (active == "settings") {
+        setTab("announcements");
+      }
+    } else if (event.type == "swipeRight") {
+      if (active == "settings") {
+        setTab("learn");
+      } else if (active == "announcements") {
+        setTab("settings");
+      }
+    } else if (event.type == "swipeUp") {
+      //close menu
+    }
+  });
+$("#page-content")
+  .swipeDetector({
+    swipeThreshold: Math.min(400, $("#page-content").height() * 0.7),
+  })
+  .on("swipeLeft.sd swipeRight.sd swipeUp.sd swipeDown.sd", function (event) {
+    if (event.type == "swipeDown") {
+      //open menu
+    }
+  });
