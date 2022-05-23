@@ -79,8 +79,13 @@ footer {
   flex-grow: 1;
   max-width: 60px;
   padding-top: 35px;
+  transition: transform 0.5s ease-out;
+  transform-origin: center center;
 }
-
+.footer-item.active {
+  transform: scale(1.1);
+  transition: transform 0.25s ease-out;
+}
 .footer-item.active .inactive-img,
 .footer-item .active-img {
   opacity: 0;
