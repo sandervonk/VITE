@@ -39,7 +39,11 @@ auth.onAuthStateChanged((user) => {
       .doc(auth.getUid())
       .get()
       .then((doc) => {
-        localStorage.setItem("userData", JSON.stringify(doc.data()));
+        let data = doc.data()
+        if([data.tenses, data.subjects, data.verbs, data.path].includes(undefined) && !window.location.href.includes("onboarding")){
+          new Toast("Some account data is missing, opening onboarding", "default", 1000, "https://sander.vonk.one/VITE/new/img/icon/error-icon.svg", "https://sander.vonk.one/VITE/new/onboarding.html?showTutorial=false")
+        }
+        localStorage.setItem("userData", JSON.stringify(data));
         localStorage.setItem("userId", auth.getUid());
       });
     if (
@@ -116,7 +120,7 @@ $("[auth='logout-button']").click((e) => {
   );
 });
 $("#mascot-slot").click(() => {
-  window.open("./", "self");
+  window.location.href = "./";
 });
 messagechannelBroadcast.onmessage = (event) => {
   value = event.data.key;

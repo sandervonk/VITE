@@ -167,7 +167,7 @@ class Question {
     let a = {};
     switch (t) {
       case "pr":
-        a = this.pcTense(s, v);
+        a = this.prTense(s, v);
         t = "Présent";
         break;
       case "pc":

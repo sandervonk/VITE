@@ -120,12 +120,17 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("user logged in:");
     console;
-    let authData = auth.currentUser.metadata;
+    let authData = auth.currentUser.metadata, 
+        doOnboard = false;
     db.collection("users")
       .doc(auth.getUid())
       .get()
       .then((doc) => {
-        localStorage.setItem("userData", JSON.stringify(doc.data()));
+        let data = doc.data()
+        if([data.tenses, data.subjects, data.verbs, data.path].includes(undefined)){
+          doOnboard = true;
+        }
+        localStorage.setItem("userData", JSON.stringify(data));
         localStorage.setItem("userId", auth.getUid());
       });
     if (
@@ -138,6 +143,8 @@ auth.onAuthStateChanged((user) => {
     ) {
       if (authData.creationTime === authData.lastSignInTime) {
         openOnboard();
+      } else if(doOnboard){
+        new Toast("Some account data is missing, opening onboarding", "default", 1000, "./img/icon/error-icon.svg", "./onboarding.html?showTutorial=false")
       } else {
         openApp();
       }
