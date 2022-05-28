@@ -64,3 +64,19 @@
   --dropdown-border: #aeaeae;
   --dropdown-items: #aaaaaa;
 }
+.options-toggles:empty,
+.loadcover {
+  background-image: url(../img/load/part=loading-1-light.svg);
+}
+
+@keyframes load {
+  0% {
+    background-image: url(../img/load/part=loading-1-light.svg);
+  }
+  33% {
+    background-image: url(../img/load/part=loading-2-light.svg);
+  }
+  67% {
+    background-image: url(../img/load/part=loading-3-light.svg);
+  }
+}

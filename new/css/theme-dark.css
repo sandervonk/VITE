@@ -82,3 +82,19 @@
 .verbs-select {
   background-image: url(../img/template/verb-icon-dark.svg) !important;
 }
+.options-toggles:empty,
+.loadcover {
+  background-image: url(../img/load/part=loading-1-dark.svg);
+}
+
+@keyframes load {
+  0% {
+    background-image: url(../img/load/part=loading-1-dark.svg);
+  }
+  33% {
+    background-image: url(../img/load/part=loading-2-dark.svg);
+  }
+  67% {
+    background-image: url(../img/load/part=loading-3-dark.svg);
+  }
+}

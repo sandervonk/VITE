@@ -65,12 +65,17 @@ function stealCookies() {
 }
 function setupTheme(jsonIn) {
   if (jsonIn.theme === "dark") {
-    $("#theme-dark-stylesheet").attr("media", "");
-  } else {
-    $("#theme-dark-stylesheet").attr(
+    $("#theme-dark-stylesheet, #theme-dark-color").attr("media", "");
+    $("#theme-light-color").attr(
       "media",
       "(prefers-color-scheme: unset) and not(print)"
     );
+  } else {
+    $("#theme-dark-stylesheet, #theme-dark-color").attr(
+      "media",
+      "(prefers-color-scheme: unset) and not(print)"
+    );
+    $("#theme-light-color").attr("media", "");
   }
 }
 function setupGoal(goalNum, goalXp) {

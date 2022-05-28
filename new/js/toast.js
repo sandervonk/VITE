@@ -1,3 +1,26 @@
+class LoadCover {
+  constructor() {
+    try {
+      if ($("meta[name=waitforload]").prop("content")) {
+        $(document.body).append(`<div class="loadcover"></div>`);
+      }
+    } catch (err) {
+      console.warn("could not setup loading animation, error:", err);
+    }
+  }
+  hide() {
+    $(".loadcover").addClass("hide");
+    this.removeTheme();
+  }
+  remove() {
+    $(".loadcover").remove();
+    this.removeTheme();
+  }
+  removeTheme() {
+    $(".theme-load-color").remove();
+  }
+}
+var loadElement = new LoadCover();
 class Toast {
   constructor(message, type, duration, iconPath, action) {
     this.message = message;

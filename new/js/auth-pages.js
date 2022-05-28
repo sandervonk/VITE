@@ -106,6 +106,18 @@ auth.onAuthStateChanged((user) => {
       } catch (err) {
         console.error("could not start app, Error: ", err);
       }
+      try {
+        if (document.readyState == "complete") {
+          loadElement.hide();
+        }
+        $(document).on("readystatechange", function () {
+          try {
+            if (document.readyState == "complete") {
+              loadElement.hide();
+            }
+          } catch (err) {}
+        });
+      } catch (err) {}
     }
   } else {
     console.log("user logged out");
@@ -116,7 +128,9 @@ auth.onAuthStateChanged((user) => {
       "default",
       1000,
       "../img/icon/info-icon.svg",
-      $("meta[name=noauthenforce]").prop("content") ? "" : "../"
+      $("meta[name=noauthenforce]").prop("content")
+        ? ""
+        : window.location.href.split("new/")[0] + "new/"
     );
   }
 });

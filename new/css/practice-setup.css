@@ -59,6 +59,16 @@
   display: flex;
   flex-flow: row wrap;
   box-sizing: border-box;
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-color: var(--bg);
+}
+
+.options-toggles:empty {
+  background-image: url(../img/load/part=loading-1-light.svg);
+  min-height: 150px;
+  background-size: 175px auto;
+  animation: load 1.75s infinite linear;
 }
 .option-toggle {
   font-size: 20px;

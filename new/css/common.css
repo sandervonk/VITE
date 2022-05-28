@@ -259,7 +259,7 @@ input[type="button"],
   }
 }
 .toast {
-  z-index: 100000000;
+  z-index: 100000001;
   pointer-events: none;
   position: fixed;
   bottom: 0;
@@ -457,4 +457,25 @@ input.error {
 }
 .delete-text {
   color: var(--error-border) !important;
+}
+.loadcover {
+  z-index: 100000000;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  pointer-events: all;
+  user-select: none;
+  -webkit-touch-callout: none;
+  background-color: var(--bg);
+  background-repeat: no-repeat;
+  background-size: 200px auto;
+  background-position: center center;
+  animation: load 1.75s infinite linear;
+}
+.loadcover.hide {
+  animation: fadeout forwards 0.25s;
+  pointer-events: none;
 }
