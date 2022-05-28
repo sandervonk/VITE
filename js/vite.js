@@ -150,7 +150,7 @@ function toggleVerb(event, isMenu) {
         document
           .querySelector(`.menu-verb[name='${element.name}']`)
           .className.replace(" active", "");
-    } catch {}
+    } catch (err) {}
   }
   if (element.className.includes(" active")) {
     element.className = element.className.replace(" active", "");
@@ -160,7 +160,7 @@ function toggleVerb(event, isMenu) {
     try {
       document.querySelector(`.menu-verb[name='${element.name}']`).className +=
         " active";
-    } catch {}
+    } catch (err) {}
     if (!verbStorage.includes(element.textContent)) {
       verbStorage.push(element.textContent);
     }
@@ -250,7 +250,7 @@ function clearTimedFunction() {
   try {
     document.getElementById("timer-countdown").textContent = (0).toFixed(2);
     document.getElementById("timer-countdown").className = "stopped";
-  } catch {
+  } catch (err) {
     console.log("failed setting info for countdown");
   }
   try {

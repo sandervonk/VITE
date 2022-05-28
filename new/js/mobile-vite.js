@@ -126,26 +126,26 @@ function variations(answer) {
 }
 //*Setup Questions
 class Question {
-  #tense;
-  #verb;
-  #subject;
+  // #tense;
+  // #verb;
+  // #subject;
   constructor(options) {
     if (options == undefined || options == null) {
-      this.#tense = this.pickTense();
-      this.#subject = this.random(split("subjects"));
-      this.#verb = this.random(split("verbs"));
+      this.tense = this.pickTense();
+      this.subject = this.random(split("subjects"));
+      this.verb = this.random(split("verbs"));
     } else {
       console.log("tense:", options.tense);
-      this.#tense = options.tense;
-      this.#subject = options.subject;
-      this.#verb = options.verb;
+      this.tense = options.tense;
+      this.subject = options.subject;
+      this.verb = options.verb;
     }
 
-    this.#verb = {
-      name: this.#verb,
-      verb: verbs[this.#verb],
+    this.verb = {
+      name: this.verb,
+      verb: verbs[this.verb],
     };
-    return this.conjugate(this.#tense, this.#subject, this.#verb);
+    return this.conjugate(this.tense, this.subject, this.verb);
   }
   random(input) {
     if (typeof input == "object") {

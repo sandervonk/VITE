@@ -41,7 +41,7 @@ header {
     0deg,
     var(--bg) 0%,
     var(--bg) 70%,
-    transparent 100%
+    rgba(255, 255, 255, 0) 100%
   );
   /*border-radius: 35px 35px 0 0;*/
   z-index: 1022;
@@ -206,7 +206,6 @@ body:not(.tutorial) #tutorial-overlay {
   width: 100%;
   position: fixed;
   bottom: 0;
-  height: fit-content;
   padding: 20px;
   box-sizing: border-box;
   border-radius: 20px 20px 0 0;

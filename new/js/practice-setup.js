@@ -1,6 +1,6 @@
 try {
   $(params.get("hide")).hide();
-} catch {}
+} catch (err) {}
 if (params.has("resolveto")) {
   $("#close-button").click(function () {
     e.preventDefault();
@@ -146,7 +146,7 @@ $("form").on("submit", (e) => {
   $("form").off();
   try {
     clearTimeout(updateTimedFunction);
-  } catch {
+  } catch (err) {
     console.warn("could not clear previous update");
   }
   db.collection("users")

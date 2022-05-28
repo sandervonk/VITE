@@ -69,7 +69,7 @@ $(".footer-item").click((e) => {
   $("#page-content, body").attr("activetab", e.target.id.replace("-tab", ""));
   try {
     tutorialClass.setText(e.target.id.replace("-tab", ""));
-  } catch {}
+  } catch (err) {}
 });
 
 function saveSettings(form) {

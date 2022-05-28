@@ -61,18 +61,18 @@ function variations(answer) {
 }
 //*Setup Questions
 class Question {
-  #tense;
-  #verb;
-  #subject;
+  // #tense;
+  // #verb;
+  // #subject;
   constructor() {
-    this.#tense = this.pickTense();
-    this.#subject = this.random(split(localStorage["vite-subjects"]));
-    this.#verb = this.random(split(localStorage["vite-verbs"]));
-    this.#verb = {
-      name: this.#verb,
-      verb: verbs[this.#verb],
+    this.tense = this.pickTense();
+    this.subject = this.random(split(localStorage["vite-subjects"]));
+    this.verb = this.random(split(localStorage["vite-verbs"]));
+    this.verb = {
+      name: this.verb,
+      verb: verbs[this.verb],
     };
-    return this.conjugate(this.#tense, this.#subject, this.#verb);
+    return this.conjugate(this.tense, this.subject, this.verb);
   }
   random(input) {
     if (typeof input == "object") {

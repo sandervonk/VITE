@@ -204,7 +204,8 @@ body:not([showanswer]) #answer-top-bar {
   display: none;
 }
 body[showanswer] #result-container {
-  height: fit-content;
+  height: 159px;
+  box-sizing: border-box;
 }
 body[showanswer] #result-container > #learn-popup:not(#next-button) {
   animation: popUp 0.5s forwards;

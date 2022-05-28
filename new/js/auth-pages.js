@@ -1,4 +1,8 @@
-const messagechannelBroadcast = new BroadcastChannel("messagechannel");
+try {
+  var messagechannelBroadcast = new BroadcastChannel("messagechannel");
+} catch (err) {
+  console.warn("could not setup BroadcastChannel");
+}
 //img
 function setPhoto(url) {
   if (url != null) {
@@ -21,7 +25,7 @@ firebase.initializeApp(config);
 // make auth and firestore references
 const auth = firebase.auth();
 const db = firebase.firestore();
-const messaging = firebase.messaging();
+//const messaging = firebase.messaging();
 // update firestore settings
 db.settings({ timestampsInSnapshots: true });
 
@@ -39,9 +43,20 @@ auth.onAuthStateChanged((user) => {
       .doc(auth.getUid())
       .get()
       .then((doc) => {
-        let data = doc.data()
-        if([data.tenses, data.subjects, data.verbs, data.path].includes(undefined) && !window.location.href.includes("onboarding")){
-          new Toast("Some account data is missing, opening onboarding", "default", 1000, "https://sander.vonk.one/VITE/new/img/icon/error-icon.svg", "https://sander.vonk.one/VITE/new/onboarding.html?showTutorial=false")
+        let data = doc.data();
+        if (
+          [data.tenses, data.subjects, data.verbs, data.path].includes(
+            undefined
+          ) &&
+          !window.location.href.includes("onboarding")
+        ) {
+          new Toast(
+            "Some account data is missing, opening onboarding",
+            "default",
+            1000,
+            "https://sander.vonk.one/VITE/new/img/icon/error-icon.svg",
+            "https://sander.vonk.one/VITE/new/onboarding.html?showTutorial=false"
+          );
         }
         localStorage.setItem("userData", JSON.stringify(data));
         localStorage.setItem("userId", auth.getUid());
@@ -122,12 +137,17 @@ $("[auth='logout-button']").click((e) => {
 $("#mascot-slot").click(() => {
   window.location.href = "./";
 });
-messagechannelBroadcast.onmessage = (event) => {
-  value = event.data.key;
-  if (value == "reloadCashe") {
-    window.location.reload(true);
-  }
-};
+try {
+  messagechannelBroadcast.onmessage = (event) => {
+    value = event.data.key;
+    if (value == "reloadCashe") {
+      window.location.reload(true);
+    }
+  };
+} catch (err) {
+  console.warn("could not setup BroadcastChannel listeners");
+}
+
 $(document.body).on("click", ".clear-sw", (e) => {
   // caches.keys().then(function (names) {
   //   for (let name of names) caches.delete(name);
@@ -139,14 +159,25 @@ $(document.body).on("click", ".clear-sw", (e) => {
   });
   console.log("Cleared ServiceWorkers");
   localStorage.setItem("clearCashe", true);
-  new Toast(
-    "Cleared Service Workers and SW Cashe",
-    "default",
-    1000,
-    "../img/icon/info-icon.svg"
-  );
+
   setTimeout(function () {
-    messagechannelBroadcast.postMessage({ key: "clearsw" });
+    try {
+      messagechannelBroadcast.postMessage({ key: "clearsw" });
+      new Toast(
+        "Cleared Service Workers and SW Cashe",
+        "default",
+        1000,
+        "../img/icon/info-icon.svg"
+      );
+    } catch (err) {
+      console.warn("could not send message on BroadcastChannel");
+      new Toast(
+        "Could not send message on BroadcastChannel, may not be supported on Safari or Chrome on iOS browsers < v14.5",
+        "default",
+        1000,
+        "../img/icon/error-icon.svg"
+      );
+    }
   }, 1500);
 });
 $(document.body).on("click", "#delete-acc-button", (e) => {

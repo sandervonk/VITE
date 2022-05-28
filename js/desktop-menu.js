@@ -287,13 +287,13 @@ try {
     "--vite-bg",
     localStorage["VITE-bg"]
   );
-} catch {}
+} catch (err) {}
 document.getElementById("color-bg").addEventListener("input", (event) => {
   let bgColor = event.target.value;
   document.documentElement.style.setProperty("--vite-bg", bgColor);
   try {
     localStorage["VITE-bg"] = bgColor;
-  } catch {}
+  } catch (err) {}
 });
 //*Color Themes
 if (localStorage["light-theme"] == "true") {

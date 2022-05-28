@@ -4,4 +4,4 @@ try {
       .getElementById("theme-dark-stylesheet")
       .setAttribute("media", "not print");
   }
-} catch {}
+} catch (err) {}

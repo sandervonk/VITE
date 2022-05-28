@@ -23,7 +23,7 @@ try {
     $(document.body).addClass("right");
     $("#print-name, .template-name").text(params.get("template"));
   }
-} catch {}
+} catch (err) {}
 function startApp() {
   return new Promise(function (resolve, reject) {
     resolve();

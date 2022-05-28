@@ -9,7 +9,7 @@ function initChangeListeners() {
         try {
           updatedJSON = JSON.parse(localStorage.getItem("userData"));
           clearTimeout(updateTimedFunction);
-        } catch {
+        } catch (err) {
           console.warn("could not clear timed updates");
         }
         loadCookies();
@@ -167,7 +167,7 @@ function sendUpdate(newData) {
   newJSON = filteredJSON;
   try {
     clearTimeout(updateTimedFunction);
-  } catch {}
+  } catch (err) {}
   updateTimedFunction = setTimeout(function () {
     db.collection("users")
       .doc(auth.getUid())

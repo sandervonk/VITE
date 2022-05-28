@@ -275,13 +275,13 @@ try {
         localStorage["VITE-bg"]
       );
       document.getElementById("color-bg").value = localStorage["VITE-bg"];
-    } catch {}
+    } catch (err) {}
     document.getElementById("color-bg").addEventListener("input", (event) => {
       let bgColor = event.target.value;
       document.body.style.background = bgColor;
       try {
         localStorage["VITE-bg"] = bgColor;
-      } catch {}
+      } catch (err) {}
     });
 
     for (subjectToggle of document.querySelectorAll("#table-subjects button")) {

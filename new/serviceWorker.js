@@ -1,4 +1,3 @@
-const messagechannelBroadcast = new BroadcastChannel("messagechannel");
 const staticLinks = "dev-VITE-new-v2";
 const OFFLINE_URL = "offline.html";
 const OFFLINE_IMG = "img/offline/image-offline.svg";
@@ -184,7 +183,11 @@ const assets = [
   "js/toast.js",
   "js/vite-util.js",
 ];
-
+try {
+  var messagechannelBroadcast = new BroadcastChannel("messagechannel");
+} catch (err) {
+  console.warn("could not setup BroadcastChannel");
+}
 self.addEventListener("install", (installEvent) => {
   installEvent.waitUntil(
     caches.open(staticLinks).then((cache) => {
@@ -219,15 +222,18 @@ self.addEventListener("notificationclick", function (event) {
   event.notification.close();
   event.waitUntil(self.clients.openWindow(event.notification.data));
 });
-messagechannelBroadcast.onmessage = (event) => {
-  value = event.data.key;
-  if (value == "clearsw") {
-    caches.keys().then(function (names) {
-      for (let name of names) caches.delete(name);
+try {
+  messagechannelBroadcast.onmessage = (event) => {
+    value = event.data.key;
+    if (value == "clearsw") {
+      caches.keys().then(function (names) {
+        for (let name of names) caches.delete(name);
+      });
+      messagechannelBroadcast.postMessage({ key: "reloadCashe" });
+    }
+  };
+} catch (err) {
+  console.warn("could not setup BroadcastChannel listeners");
+}
 
-      window.location.reload(true);
-    });
-    messagechannelBroadcast.postMessage({ key: "reloadCashe" });
-  }
-};
 //importScripts("firebase-messaging-sw.js");

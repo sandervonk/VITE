@@ -2,6 +2,7 @@
   -webkit-overflow-scrolling: touch !important;
   -webkit-tap-highlight-color: transparent;
   -webkit-tap-highlight-color: transparent;
+  -webkit-appearance: unset !important;
 }
 
 html,
@@ -182,6 +183,9 @@ button {
   width: 0;
   padding: 0;
   margin: 0;
+  color: rgba(255, 255, 255, 0);
+  visibility: hidden;
+  background-color: rgba(255, 255, 255, 0);
 }
 .switch-toggle {
   padding: 0;

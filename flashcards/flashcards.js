@@ -101,7 +101,7 @@ function shiftCard(num) {
   //setup element things
   try {
     window.clearTimeout(timeout);
-  } catch {}
+  } catch (err) {}
   flash.className = "";
   if (num > 0) {
     timeout = setTimeout(function () {
