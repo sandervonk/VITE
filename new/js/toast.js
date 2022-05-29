@@ -41,7 +41,7 @@ class Toast {
     overlay.classList.add("toast-overlay");
     toast.classList.add(this.type);
     if (this.icon != null) {
-      toast.innerHTML += `<img src="${this.icon}" class="toast-icon">`;
+      toast.innerHTML += `<img src="${this.icon}" class="toast-icon" alt="Toast Popup Icon">`;
     }
     toast.innerHTML += this.message;
     if (this.action != null) {
@@ -92,7 +92,7 @@ class Popup {
       this.message +
       `</div>` +
       (this.icon != null
-        ? `<img src="${this.icon}" class="popup-icon"></div>`
+        ? `<img src="${this.icon}" class="popup-icon" alt="Popup Icon"></div>`
         : "");
     toast.innerHTML += buttons;
     if (this.action != null) {

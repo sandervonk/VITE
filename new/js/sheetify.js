@@ -73,7 +73,7 @@ function setupTemplates(templateArr) {
   );
   for (templateObj of templateArr) {
     $("#results-grid").append(
-      `<img src="../img/template/${templateObj.img}" title="${templateObj.name} | ${templateObj.author}" name="${templateObj.name}" class="template-img" />`
+      `<img src="../img/template/${templateObj.img}" title="${templateObj.name} | ${templateObj.author}" alt="${templateObj.name} by ${templateObj.author}" name="${templateObj.name}" class="template-img" />`
     );
   }
 }
