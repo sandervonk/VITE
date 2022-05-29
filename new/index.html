@@ -9,9 +9,9 @@
       <link rel="stylesheet" href="css/theme.css">
       <link rel="stylesheet" href="css/signon.css">
       <link rel="stylesheet" href="css/stars.css">
-      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+      <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
       <!-- ios support -->
       <link rel="apple-touch-icon" href="./img/icon/app/icon-72x72.png" />
       <link rel="apple-touch-icon" href="./img/icon/app/icon-96x96.png" />
@@ -149,7 +149,7 @@
          <object alt="Earth Illustration" id="earth-illustration" data="img/Earth.png" type="image/png"></object>
       </div>
    </body>
-   <script>
+   <script defer>
       const config = {
             apiKey: "AIzaSyCZelR1HSbmcPf70rTI5Ig02yasL8RSdPw",
             authDomain: "vite-practice.firebaseapp.com",
@@ -169,7 +169,7 @@
          // update firestore settings
           db.settings({ timestampsInSnapshots: true });
    </script>
-   <script src="js/toast.js"></script>
-   <script src="js/stars.js"></script>
-   <script src="js/auth.js"></script>
+   <script defer src="js/toast.js"></script>
+   <script defer src="js/stars.js"></script>
+   <script defer src="js/auth.js"></script>
 </html>
