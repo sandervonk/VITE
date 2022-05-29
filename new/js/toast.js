@@ -1,7 +1,10 @@
 class LoadCover {
   constructor() {
     try {
-      if ($("meta[name=waitforload]").prop("content")) {
+      if (
+        $("meta[name=waitforload]").prop("content") &&
+        $(".loadcover").length < 1
+      ) {
         $(document.body).append(`<div class="loadcover"></div>`);
       }
     } catch (err) {
