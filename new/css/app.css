@@ -601,7 +601,7 @@ footer {
   flex-flow: column;
   flex-grow: 1;
   max-height: calc(100vh - 90px - 76px - 10px);
-  transform-origin: calc(100% - 40px) 0px;
+  transform-origin: calc(100% - 33px) -3px;
 }
 .menu-content {
   overflow-y: auto;
