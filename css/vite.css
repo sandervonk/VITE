@@ -725,8 +725,7 @@ body.QZ #question-verb-span {
   padding-right: 1.25vh;
   text-align: center;
   transform: scale(0.1);
-  transition: opacity ease-in-out 0.25s, box-shadow ease-in-out 0.5s,
-    transform ease-in-out 0.25s;
+  transition: opacity ease-in-out 0.25s, box-shadow ease-in-out 0.5s, transform ease-in-out 0.25s;
   cursor: pointer;
 }
 #nothing-to-see-here:hover > #maxwell-mode,

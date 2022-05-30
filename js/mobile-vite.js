@@ -19,10 +19,7 @@ function submitAnswer() {
     $(document.body).attr("showanswer", "");
     //Check answer
     let inputAnswer = $("#answer-input").val().toLowerCase();
-    if (
-      variations(question.answer.alt).includes(inputAnswer) ||
-      variations(question.answer.full).includes(inputAnswer)
-    ) {
+    if (variations(question.answer.alt).includes(inputAnswer) || variations(question.answer.full).includes(inputAnswer)) {
       //?correct
       changeScore(1);
 
@@ -141,9 +138,7 @@ class Question {
       subject: this.agreement(subjects).subject,
       alt: answer.toLowerCase(),
     };
-    answers.full = this.compress(
-      [answers.subject, answers.alt].join(" ").toLowerCase()
-    );
+    answers.full = this.compress([answers.subject, answers.alt].join(" ").toLowerCase());
     return answers;
   }
   prTense(s, v) {
@@ -185,9 +180,7 @@ class Question {
       if (Object.keys(end).includes(e)) {
         a = b + end[e][s];
       } else {
-        window.alert(
-          "ERR: Cannot find regular ending for verb with non-ir/er/re ending marked as regular"
-        );
+        window.alert("ERR: Cannot find regular ending for verb with non-ir/er/re ending marked as regular");
       }
     }
     return this.versions(a, s);
@@ -239,9 +232,7 @@ class Question {
       } else if (a.end === "ir") {
         a.end = "i";
       } else {
-        window.alert(
-          "errored while conjugating a verb marked as regular, but with no acceptable ending"
-        );
+        window.alert("errored while conjugating a verb marked as regular, but with no acceptable ending");
       }
       a.participle = a.base + a.end;
     } else {

@@ -2,16 +2,10 @@ var mascot = $("#answer-mascot"),
   observer = new MutationObserver((changes) => {
     changes.forEach((change) => {
       if (change.attributeName.includes("mood")) {
-        $("#answer-mascot").attr(
-          "src",
-          `../img/mascot/${mascot.attr("mood")}.svg`
-        );
+        $("#answer-mascot").attr("src", `../img/mascot/${mascot.attr("mood")}.svg`);
       }
       if (change.attributeName.includes("full")) {
-        $("#answer-mascot").attr(
-          "src",
-          `../img/mascot/${mascot.attr("full")}.svg`
-        );
+        $("#answer-mascot").attr("src", `../img/mascot/${mascot.attr("full")}.svg`);
       }
     });
   });
@@ -42,11 +36,7 @@ function randomItem(arrayIn) {
 }
 $(document.body).on("click", "#next-button", function () {
   //Submit Question
-  if (
-    $("#next-button").hasClass("avaliable") ||
-    $("body[showanswer] #next-button").hasClass("box-button")
-  )
-    submitAnswer();
+  if ($("#next-button").hasClass("avaliable") || $("body[showanswer] #next-button").hasClass("box-button")) submitAnswer();
   $(document.body).attr("info", null);
 
   $("#next-button").removeClass("avaliable");
@@ -60,12 +50,7 @@ $(document.body).on("click", "#skip-button", function () {
   $("#next-button").removeClass("avaliable");
 });
 $(document.body).click((e) => {
-  if (
-    e.target.id != "vite-q-tense" &&
-    e.target.id != "vite-q-verb" &&
-    e.target.id != "vite-q-subject" &&
-    e.target.id != "info-popup"
-  ) {
+  if (e.target.id != "vite-q-tense" && e.target.id != "vite-q-verb" && e.target.id != "vite-q-subject" && e.target.id != "info-popup") {
     $(document.body).attr("info", null);
   }
 });
@@ -79,11 +64,6 @@ $("#vite-q-tense,#vite-q-subject,#vite-q-verb").click((e) => {
   $("#info-popup").css({
     top: e.target.offsetTop + e.target.offsetHeight,
     left: e.target.offsetLeft,
-    "max-width":
-      document.body.offsetWidth -
-      (e.target.offsetLeft -
-        (document.documentElement.offsetWidth - document.body.offsetWidth) /
-          2) -
-      34,
+    "max-width": document.body.offsetWidth - (e.target.offsetLeft - (document.documentElement.offsetWidth - document.body.offsetWidth) / 2) - 34,
   });
 });

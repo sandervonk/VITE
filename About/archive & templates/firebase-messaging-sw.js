@@ -2,9 +2,7 @@
 // Note that you can only use Firebase Messaging here. Other Firebase libraries
 // are not available in the service worker.
 importScripts("https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js");
-importScripts(
-  "https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"
-);
+importScripts("https://www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js");
 
 // Initialize the Firebase app in the service worker by passing in
 // your app's Firebase config object.
@@ -39,16 +37,14 @@ function checkNotify() {
 const messaging = firebase.messaging();
 // Add the public key generated from the console here.
 messaging.getToken({
-  vapidKey:
-    "BPIghLBfHqAtB9qWjkDg96k-0uPy4FnliqvQvKiGjmC_dDFupBXrFPIThURj-iPW-rLUtPYits3Bi7odHyNA4Nc",
+  vapidKey: "BPIghLBfHqAtB9qWjkDg96k-0uPy4FnliqvQvKiGjmC_dDFupBXrFPIThURj-iPW-rLUtPYits3Bi7odHyNA4Nc",
 });
 // Get registration token. Initially this makes a network call, once retrieved
 
 // subsequent calls to getToken will return from cache.
 messaging
   .getToken({
-    vapidKey:
-      "BPIghLBfHqAtB9qWjkDg96k-0uPy4FnliqvQvKiGjmC_dDFupBXrFPIThURj-iPW-rLUtPYits3Bi7odHyNA4Nc",
+    vapidKey: "BPIghLBfHqAtB9qWjkDg96k-0uPy4FnliqvQvKiGjmC_dDFupBXrFPIThURj-iPW-rLUtPYits3Bi7odHyNA4Nc",
   })
   .then((currentToken) => {
     if (currentToken) {
@@ -57,9 +53,7 @@ messaging
       console.log("registration token:", currentToken);
     } else {
       // Show permission request UI
-      console.log(
-        "No registration token available. Request permission to generate one."
-      );
+      console.log("No registration token available. Request permission to generate one.");
       // ...
     }
   })
@@ -69,10 +63,7 @@ messaging
   });
 
 messaging.onBackgroundMessage((payload) => {
-  console.log(
-    "[firebase-messaging-sw.js] Received background message ",
-    payload
-  );
+  console.log("[firebase-messaging-sw.js] Received background message ", payload);
   // Customize notification here
   const notificationTitle = "Background Message Title";
   const notificationOptions = {
@@ -81,10 +72,7 @@ messaging.onBackgroundMessage((payload) => {
   };
   checkNotify
     .then(() => {
-      self.registration.showNotification(
-        notificationTitle,
-        notificationOptions
-      );
+      self.registration.showNotification(notificationTitle, notificationOptions);
     })
     .catch((err) => {
       console.error(err);

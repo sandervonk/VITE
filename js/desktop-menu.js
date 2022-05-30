@@ -57,10 +57,7 @@ function setScore() {
   $("#score-num-correct").text(score.correct);
   $("#score-num-incorrect").text(score.incorrect);
   $("#score-correct").css("width", (100 * score.correct) / score.total + "%");
-  $("#score-incorrect").css(
-    "width",
-    (100 * score.incorrect) / score.total + "%"
-  );
+  $("#score-incorrect").css("width", (100 * score.incorrect) / score.total + "%");
 }
 function changeScore(num) {
   if (num == 1) {
@@ -68,13 +65,7 @@ function changeScore(num) {
     let duration = (new Date().getTime() - questionStart) / 1000;
     duration -= problemTime["max-perfect"];
     duration = Math.max(0, duration);
-    score.number += Math.max(
-      0,
-      parseInt(
-        problemTime["max-score"] *
-          ((problemTime.allotted - duration) / problemTime.allotted)
-      )
-    );
+    score.number += Math.max(0, parseInt(problemTime["max-score"] * ((problemTime.allotted - duration) / problemTime.allotted)));
   } else {
     score.incorrect += 1;
     score.number -= problemTime["incorrect-deduction"];
@@ -166,24 +157,16 @@ function sendMessage(head, content, foot) {
       "looks like something's wrong with your JSON, please try checking the console, and/or make sure you have some custom verbs added below!"
     );
   } else if (content === "{}") {
-    window.alert(
-      "You don't seem to have any custom verbs, try adding some then trying again!"
-    );
+    window.alert("You don't seem to have any custom verbs, try adding some then trying again!");
   } else {
-    let link = `mailto:100026480@mvla.net?subject=My%20Custom%20VITE%20Verbs&body=${encodeURIComponent(
-      head + "\n" + content + "\n" + foot
-    )}`;
+    let link = `mailto:100026480@mvla.net?subject=My%20Custom%20VITE%20Verbs&body=${encodeURIComponent(head + "\n" + content + "\n" + foot)}`;
     if (link.length >= 2000) {
       window.alert(
         "Sorry, the MAILTO: function only supports messages of up to 2000 characters, so this link will probably not work. Try right-clicking the Share button and copying the JSON on the next page instead!"
       );
       window.open(
         `http://sandervonk.github.io/dev/rawviewer.html?${encodeURIComponent(
-          JSON.stringify(
-            JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"),
-            null,
-            "\t"
-          )
+          JSON.stringify(JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"), null, "\t")
         )}`,
         "_blank"
       );
@@ -283,10 +266,7 @@ $("#action-score").click(function () {
 //*Background Color
 try {
   document.getElementById("color-bg").value = localStorage["VITE-bg"];
-  document.documentElement.style.setProperty(
-    "--vite-bg",
-    localStorage["VITE-bg"]
-  );
+  document.documentElement.style.setProperty("--vite-bg", localStorage["VITE-bg"]);
 } catch (err) {}
 document.getElementById("color-bg").addEventListener("input", (event) => {
   let bgColor = event.target.value;
@@ -317,14 +297,10 @@ $("#theme-switch").on("click", function () {
 function setupVerbs(verbs) {
   for (verb of Object.keys(verbs)) {
     $(".verbs-list").append(
-      `<button class="verb-button notranslate toggle${
-        localStorage["vite-verbs"].includes(verb) ? " active" : ""
-      }${
+      `<button class="verb-button notranslate toggle${localStorage["vite-verbs"].includes(verb) ? " active" : ""}${
         verbs[verb].custom == true ? " custom-verb" : ""
       }" title="Toggle '${verb}' as a verb in problems." name="${verb}"><span class="verb-name">${verb}</span>${
-        verbs[verb].custom == true
-          ? " <img class='custom-verb-img' src='icon/edit.svg' />"
-          : ""
+        verbs[verb].custom == true ? " <img class='custom-verb-img' src='icon/edit.svg' />" : ""
       }</button>`
     );
   }
@@ -335,10 +311,7 @@ function setupVerbs(verbs) {
   });
   //add click handlers
   $(".verb-button").click((e) => {
-    if (
-      $(e.target).hasClass("active") &&
-      localStorage["vite-verbs"].split(",").length < 2
-    ) {
+    if ($(e.target).hasClass("active") && localStorage["vite-verbs"].split(",").length < 2) {
       window.alert("Sorry, you need at least one verb active!");
     } else {
       let array = split(localStorage["vite-verbs"]);
@@ -354,20 +327,10 @@ function setupVerbs(verbs) {
       localStorage["vite-verbs"] = array;
       $(`.verb-button[name="${e.target.name}"]`).toggleClass("active");
       while (localStorage["vite-verbs"].includes(",,")) {
-        localStorage["vite-verbs"] = localStorage["vite-verbs"].replace(
-          ",,",
-          ","
-        );
+        localStorage["vite-verbs"] = localStorage["vite-verbs"].replace(",,", ",");
       }
-      while (
-        localStorage["vite-verbs"].substr(
-          localStorage["vite-verbs"].length - 1
-        ) == ","
-      ) {
-        localStorage["vite-verbs"] = localStorage["vite-verbs"].substr(
-          0,
-          localStorage["vite-verbs"].length - 1
-        );
+      while (localStorage["vite-verbs"].substr(localStorage["vite-verbs"].length - 1) == ",") {
+        localStorage["vite-verbs"] = localStorage["vite-verbs"].substr(0, localStorage["vite-verbs"].length - 1);
       }
     }
   });
@@ -383,16 +346,11 @@ function setupVerbs(verbs) {
     }
   }
   $(".tense-button").click((e) => {
-    localStorage["vite-" + e.target.id.replace("tense-", "")] = !$(
-      e.target
-    ).hasClass("active");
+    localStorage["vite-" + e.target.id.replace("tense-", "")] = !$(e.target).hasClass("active");
     $(e.target).toggleClass("active");
   });
   $(".subject-button").click((e) => {
-    if (
-      $(e.target).hasClass("active") &&
-      localStorage["vite-subjects"].split(",").length < 2
-    ) {
+    if ($(e.target).hasClass("active") && localStorage["vite-subjects"].split(",").length < 2) {
       window.alert("Sorry, you need at least one subject active!");
     } else {
       let array = split(localStorage["vite-subjects"]);
@@ -423,12 +381,7 @@ $.ajax({
     verbs = response;
     if (localStorage["vite-custom-verbs"] != "") {
       $("#verb-custom-share").addClass("active");
-      verbs = JSON.parse(
-        JSON.stringify(verbs).substr(0, JSON.stringify(verbs).length - 1) +
-          ", " +
-          localStorage["vite-custom-verbs"] +
-          "}"
-      );
+      verbs = JSON.parse(JSON.stringify(verbs).substr(0, JSON.stringify(verbs).length - 1) + ", " + localStorage["vite-custom-verbs"] + "}");
     }
     setupVerbs(verbs);
     setTimeout(function () {
@@ -450,9 +403,7 @@ $("#verb-add-reset").on("click", function () {
 });
 $("#verb-add-submit").click(function () {
   let finished = true;
-  for (inputElement of document.querySelectorAll(
-    "#verb-add input, #verb-add select"
-  )) {
+  for (inputElement of document.querySelectorAll("#verb-add input, #verb-add select")) {
     $(inputElement).removeClass("attention");
     if (inputElement.value === "") {
       finished = false;
@@ -460,9 +411,7 @@ $("#verb-add-submit").click(function () {
     }
   }
   if (!finished) {
-    window.alert(
-      "Looks like some fields still need to be filled out. Try doing so and submitting it again!"
-    );
+    window.alert("Looks like some fields still need to be filled out. Try doing so and submitting it again!");
   } else {
     let newVerb = {
       defintion: $("#verb-add-def").val(),
@@ -480,38 +429,20 @@ $("#verb-add-submit").click(function () {
       "Ils / Elles": $("#verb-add-subject-6").val(),
     };
     newVerb = JSON.stringify(newVerb);
-    newVerb =
-      `"` +
-      document.getElementById("verb-add-name").value +
-      `"` +
-      ": " +
-      newVerb;
-    localStorage["vite-custom-verbs"] +=
-      (localStorage["vite-custom-verbs"].length > 0 ? "," : "") + newVerb;
+    newVerb = `"` + document.getElementById("verb-add-name").value + `"` + ": " + newVerb;
+    localStorage["vite-custom-verbs"] += (localStorage["vite-custom-verbs"].length > 0 ? "," : "") + newVerb;
     setupVerbs(JSON.parse("{" + newVerb + "}"));
     $("#verb-add input").val("");
     $("#verb-add select").val("Avoir");
   }
 });
 $("#verb-custom-share").click(function () {
-  sendMessage(
-    "Check out my custom VITE! verbs:",
-    JSON.stringify(
-      JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"),
-      null,
-      "\t"
-    ),
-    "Best,\nMe"
-  );
+  sendMessage("Check out my custom VITE! verbs:", JSON.stringify(JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"), null, "\t"), "Best,\nMe");
 });
 $("#verb-custom-share").on("contextmenu", function () {
   window.open(
     `http://sandervonk.github.io/dev/rawviewer.html?${encodeURIComponent(
-      JSON.stringify(
-        JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"),
-        null,
-        "\t"
-      )
+      JSON.stringify(JSON.parse("{" + localStorage["vite-custom-verbs"] + "}"), null, "\t")
     )}`,
     "_blank"
   );

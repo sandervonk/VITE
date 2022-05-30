@@ -44,12 +44,7 @@ class Conjugate {
       verbEle = verbs[verb];
     question.subject = subject.toLowerCase();
     question.verb = verb.toLowerCase();
-    question.answer = [
-      verbs[verbEle.PC.helping][subject],
-      verbEle.PC.participle,
-    ]
-      .join(" ")
-      .toLowerCase();
+    question.answer = [verbs[verbEle.PC.helping][subject], verbEle.PC.participle].join(" ").toLowerCase();
     question.tense = "(passé composé)";
     //question.answer = [subject, question.answer].join(" ")
     return question;
@@ -136,10 +131,7 @@ function createCard(back) {
   if (back) {
     cardData = cards[cardIndex];
   } else if (cardIndex > cards.length - 1) {
-    cardData =
-      parseInt(Math.random() * 2) === 0
-        ? conjugator.passeCompose(subject, verb)
-        : conjugator.présent(subject, verb);
+    cardData = parseInt(Math.random() * 2) === 0 ? conjugator.passeCompose(subject, verb) : conjugator.présent(subject, verb);
     cards.push(cardData);
   } else {
     cardData = cards[cardIndex];
@@ -171,15 +163,11 @@ window.addEventListener("load", function () {
   document.getElementById("touch-flip").addEventListener("click", function () {
     flipCard();
   });
-  document
-    .getElementById("touch-swap-left")
-    .addEventListener("click", function () {
-      shiftCard(-1);
-    });
-  document
-    .getElementById("touch-swap-right")
-    .addEventListener("click", function () {
-      shiftCard(1);
-    });
+  document.getElementById("touch-swap-left").addEventListener("click", function () {
+    shiftCard(-1);
+  });
+  document.getElementById("touch-swap-right").addEventListener("click", function () {
+    shiftCard(1);
+  });
   loadVerbs();
 });

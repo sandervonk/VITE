@@ -2,11 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link
-      rel="shortcut icon"
-      href="https://sander.vonk.one/VITE/new/img/icon/app/icon-512x512.png"
-      type="image/png"
-    />
+    <link rel="shortcut icon" href="https://sander.vonk.one/VITE/new/img/icon/app/icon-512x512.png" type="image/png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="css/fonts.css" />
@@ -33,23 +29,11 @@
     <link rel="apple-touch-icon" href="./img/icon/app/icon-192x192.png" />
     <link rel="apple-touch-icon" href="./img/icon/app/icon-384x384.png" />
     <link rel="apple-touch-icon" href="./img/icon/app/icon-512x512.png" />
-    <meta
-      name="theme-color"
-      id="theme-light-color"
-      id="theme-light-color"
-      content="#1D55A8"
-    />
+    <meta name="theme-color" id="theme-light-color" id="theme-light-color" content="#1D55A8" />
     <meta name="theme-color" id="theme-light-color" content="#1D55A8" />
-    <link
-      rel="shortcut icon"
-      href="./img/icon/app/icon-512x512.png"
-      type="image/x-icon"
-    />
+    <link rel="shortcut icon" href="./img/icon/app/icon-512x512.png" type="image/x-icon" />
     <!-- Search Engine -->
-    <meta
-      name="description"
-      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
-    />
+    <meta name="description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
     <!-- Schema.org for Google -->
     <meta itemprop="name" content="VITE! Mobile" />
     <meta
@@ -63,29 +47,20 @@
       name="twitter:description"
       content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
     />
-    <meta
-      name="twitter:image:src"
-      content="https://sander.vonk.one/VITE/img/social-img/new/social-twitter.png"
-    />
+    <meta name="twitter:image:src" content="https://sander.vonk.one/VITE/img/social-img/new/social-twitter.png" />
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
     <meta name="og:title" content="VITE! Mobile" />
     <meta
       name="og:description"
       content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
     />
-    <meta
-      name="og:image"
-      content="https://sander.vonk.one/VITE/img/social-img/new/social-og.png"
-    />
+    <meta name="og:image" content="https://sander.vonk.one/VITE/img/social-img/new/social-og.png" />
     <meta name="og:url" content="https://sander.vonk.one/VITE/mobile/" />
     <meta name="og:site_name" content="VITE! French Conjugation Practice" />
     <meta name="og:type" content="website" />
     <!-- Analytics!! -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script
-      async
-      src="https://www.googletagmanager.com/gtag/js?id=G-5GF8MRX85G"
-    ></script>
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-5GF8MRX85G"></script>
     <script>
       window.dataLayer = window.dataLayer || [];
       function gtag() {
@@ -100,11 +75,7 @@
   <body>
     <header>
       <div id="header-wrap">
-        <button
-          id="back-button"
-          class="progress-button"
-          onclick="window.history.go(-1)"
-        ></button>
+        <button id="back-button" class="progress-button" onclick="window.history.go(-1)"></button>
         <div id="progress-bar">
           <div id="progress-fill">
             <div id="progress-fill-accent"></div>
@@ -115,13 +86,7 @@
     </header>
     <div id="school-signup">
       <form id="type-container" action="./" method="get">
-        <input
-          id="edu-code"
-          name="edu-code"
-          type="text"
-          style="display: none"
-          value=""
-        />
+        <input id="edu-code" name="edu-code" type="text" style="display: none" value="" />
         <div
           id="student-signup"
           class="school-type box"
@@ -132,41 +97,22 @@
           </div>
           <div class="option-text">
             <div class="option-text-title bold">Student</div>
-            <div class="option-text-summary secondary">
-              Use a classroom code to join a classroom and start practicing
-            </div>
+            <div class="option-text-summary secondary">Use a classroom code to join a classroom and start practicing</div>
           </div>
         </div>
-        <div
-          id="teacher-signup"
-          class="school-type box"
-          onclick="$('#edu-code').val('teacher'); $('#type-container').submit();"
-        >
+        <div id="teacher-signup" class="school-type box" onclick="$('#edu-code').val('teacher'); $('#type-container').submit();">
           <div class="option-icon">
             <img src="img/icon/onboard/Teacher.svg" alt="Teacher Login" />
           </div>
           <div class="option-text">
             <div class="option-text-title bold">Teacher</div>
-            <div class="option-text-summary secondary">
-              Setup classroom prefrences and invite students with a sharable
-              student signup code
-            </div>
+            <div class="option-text-summary secondary">Setup classroom prefrences and invite students with a sharable student signup code</div>
           </div>
         </div>
         <div class="flex-break"></div>
         <div id="code-form" style="display: none">
-          <input
-            class="box"
-            type="text"
-            id="code-enter"
-            placeholder="Student Code"
-          />
-          <input
-            class="box-button fullborder"
-            type="submit"
-            id="enter-code"
-            value="Get Started"
-          />
+          <input class="box" type="text" id="code-enter" placeholder="Student Code" />
+          <input class="box-button fullborder" type="submit" id="enter-code" value="Get Started" />
         </div>
       </form>
     </div>

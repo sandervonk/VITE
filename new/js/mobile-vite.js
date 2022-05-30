@@ -35,14 +35,8 @@ function showQuestion(q) {
   $("#vite-q-verb").text(q.verb);
   $("#vite-q-tense").text(q.tense);
   $("#vite-q-verb").attr("info", q.definition);
-  $("#vite-q-subject").attr(
-    "info",
-    subjectDefinitions[q.subject.toLowerCase()]
-  );
-  if (
-    q.tense.includes("Subjonctif") &&
-    ["e", "i", "o"].includes(q.subject[0].toLowerCase())
-  ) {
+  $("#vite-q-subject").attr("info", subjectDefinitions[q.subject.toLowerCase()]);
+  if (q.tense.includes("Subjonctif") && ["e", "i", "o"].includes(q.subject[0].toLowerCase())) {
     $("#vite-q-prefix").html("qu'");
   } else if (q.tense.includes("Subjonctif")) {
     $("#vite-q-prefix").html("que&nbsp;");
@@ -71,14 +65,8 @@ function submitAnswer(skipped) {
     $(document.body).removeAttr("showanswer");
     $(document.body).removeAttr("avaliable");
     $(document.body).removeAttr("result");
-    let amntDone =
-      (scoringData.countAll == "all" ? score.total : score.correct) /
-      scoringData.target;
-    if (
-      scoringData.target != NaN &&
-      scoringData.countAll != null &&
-      amntDone >= 1
-    ) {
+    let amntDone = (scoringData.countAll == "all" ? score.total : score.correct) / scoringData.target;
+    if (scoringData.target != NaN && scoringData.countAll != null && amntDone >= 1) {
       $("form[name='practice-results']").submit();
     } else {
       showQuestion(new Question());
@@ -89,10 +77,7 @@ function submitAnswer(skipped) {
     $(document.body).attr("showanswer", "");
     //Check answer
     let inputAnswer = $("#answer-input").val().toLowerCase();
-    if (
-      variations(question.answer.alt).includes(inputAnswer) ||
-      variations(question.answer.full).includes(inputAnswer)
-    ) {
+    if (variations(question.answer.alt).includes(inputAnswer) || variations(question.answer.full).includes(inputAnswer)) {
       //?correct
       changeScore(1);
       $("#answer-correction-1").text("");
@@ -255,11 +240,8 @@ class Question {
     let answers = {
       alt: answer.toLowerCase(),
     };
-    (answers.subject =
-      skipAgreement == true ? subjects : this.agreement(subjects).subject),
-      (answers.full = this.compress(
-        [answers.subject, answers.alt].join(" ").toLowerCase()
-      ));
+    (answers.subject = skipAgreement == true ? subjects : this.agreement(subjects).subject),
+      (answers.full = this.compress([answers.subject, answers.alt].join(" ").toLowerCase()));
     return answers;
   }
   prTense(s, v) {
@@ -301,9 +283,7 @@ class Question {
       if (Object.keys(end).includes(e)) {
         a = b + end[e][s];
       } else {
-        window.alert(
-          "ERR: Cannot find regular ending for verb with non-ir/er/re ending marked as regular"
-        );
+        window.alert("ERR: Cannot find regular ending for verb with non-ir/er/re ending marked as regular");
       }
     }
     return this.versions(a, s);
@@ -355,9 +335,7 @@ class Question {
       } else if (a.end === "ir") {
         a.end = "i";
       } else {
-        window.alert(
-          "errored while conjugating a verb marked as regular, but with no acceptable ending"
-        );
+        window.alert("errored while conjugating a verb marked as regular, but with no acceptable ending");
       }
       a.participle = a.base + a.end;
     } else {
@@ -454,32 +432,16 @@ class Question {
   cpTense(s, v) {
     //Conditionnel Passé Conjugator
     let a = {};
-    a.coHelping = this.coTense(
-      s,
-      { name: v.verb.PC.helping, verb: verbs[v.verb.PC.helping] },
-      true
-    ).a;
+    a.coHelping = this.coTense(s, { name: v.verb.PC.helping, verb: verbs[v.verb.PC.helping] }, true).a;
     a.pc = this.pcTense(s, v, true);
-    return this.versions(
-      [a.coHelping, a.pc.participle].join(" "),
-      a.pc.subject,
-      true
-    );
+    return this.versions([a.coHelping, a.pc.participle].join(" "), a.pc.subject, true);
   }
   ppTense(s, v) {
     //Plus que Parfait Conjugator
     let a = {};
-    a.imHelping = this.imTense(
-      s,
-      { name: v.verb.PC.helping, verb: verbs[v.verb.PC.helping] },
-      true
-    ).a;
+    a.imHelping = this.imTense(s, { name: v.verb.PC.helping, verb: verbs[v.verb.PC.helping] }, true).a;
     a.pc = this.pcTense(s, v, true);
-    return this.versions(
-      [a.imHelping, a.pc.participle].join(" "),
-      a.pc.subject,
-      true
-    );
+    return this.versions([a.imHelping, a.pc.participle].join(" "), a.pc.subject, true);
   }
   suTense(s, v, raw) {
     //Subjonctif Conjugator
@@ -499,9 +461,7 @@ class Question {
         r = r.substr(0, r.length - 3);
         a = r + end[s];
       } else {
-        window.alert(
-          `ERR: Could not remove -ent ending from présent tense of 'Ils / Elles' conjugation ('${r}'), cannot form Subjonctif`
-        );
+        window.alert(`ERR: Could not remove -ent ending from présent tense of 'Ils / Elles' conjugation ('${r}'), cannot form Subjonctif`);
       }
     } else {
       a = v.verb.SU[s];
@@ -515,17 +475,9 @@ class Question {
   spTense(s, v) {
     //Subjonctif Passé Conjugator
     let a = {};
-    a.coHelping = this.suTense(
-      s,
-      { name: v.verb.PC.helping, verb: verbs[v.verb.PC.helping] },
-      true
-    ).a;
+    a.coHelping = this.suTense(s, { name: v.verb.PC.helping, verb: verbs[v.verb.PC.helping] }, true).a;
     a.pc = this.pcTense(s, v, true);
-    return this.versions(
-      [a.coHelping, a.pc.participle].join(" "),
-      a.pc.subject,
-      true
-    );
+    return this.versions([a.coHelping, a.pc.participle].join(" "), a.pc.subject, true);
   }
   agreement(subjects) {
     let data = {

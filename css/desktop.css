@@ -716,13 +716,7 @@ body[showanswer].keyboard #bottom-actions .bar-separator.vertical-bar {
 #bottom-fade {
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-    90deg,
-    --var(--keyboard-bg) 0%,
-    rgba(0, 0, 0, 0) 5%,
-    rgba(0, 0, 0, 0) 95%,
-    --var(--keyboard-bg) 100%
-  );
+  background: linear-gradient(90deg, --var(--keyboard-bg) 0%, rgba(0, 0, 0, 0) 5%, rgba(0, 0, 0, 0) 95%, --var(--keyboard-bg) 100%);
   display: block;
   position: absolute;
   bottom: 0%;
@@ -1276,20 +1270,13 @@ body.menu {
 }
 #question-fade fade-bar {
   height: 5vh;
-  background: linear-gradient(
-    180deg,
-    #00000000 0%,
-    var(--vite-bg) 100%
-  ) !important;
+  background: linear-gradient(180deg, #00000000 0%, var(--vite-bg) 100%) !important;
   pointer-events: none !important;
 }
 .solid-fade-bottom {
   background: var(--vite-bg);
   width: 100%;
-  height: calc(
-    (var(--bottom-height) + 13vh) + (100vh - (var(--bottom-height) + 13vh)) / 2 +
-      5.5vh
-  );
+  height: calc((var(--bottom-height) + 13vh) + (100vh - (var(--bottom-height) + 13vh)) / 2 + 5.5vh);
   transition: height 0.5s ease-in-out;
 }
 .disabled {

@@ -1,9 +1,5 @@
-$("#subjects-settings").text(
-  "[" + JSON.parse(localStorage.getItem("userData")).subjects.join("], [") + "]"
-);
-$("#verbs-settings").text(
-  JSON.parse(localStorage.getItem("userData")).verbs.join(", ")
-);
+$("#subjects-settings").text("[" + JSON.parse(localStorage.getItem("userData")).subjects.join("], [") + "]");
+$("#verbs-settings").text(JSON.parse(localStorage.getItem("userData")).verbs.join(", "));
 var verbs;
 $.ajax({
   url: "../verbs.json",
@@ -66,11 +62,7 @@ $("#options-overlay").click(() => {
 });
 function setupTemplates(templateArr) {
   $("#results-grid > img").remove();
-  $("#results-header").text(
-    `${templateArr.length} Template${
-      templateArr.length == 1 ? "" : "s"
-    } Avaliable`
-  );
+  $("#results-header").text(`${templateArr.length} Template${templateArr.length == 1 ? "" : "s"} Avaliable`);
   for (templateObj of templateArr) {
     $("#results-grid").append(
       `<img src="../img/template/${templateObj.img}" title="${templateObj.name} | ${templateObj.author}" alt="${templateObj.name} by ${templateObj.author}" name="${templateObj.name}" class="template-img" />`
@@ -100,9 +92,7 @@ $("#filters-from").on("change", () => {
   }
   $("#results-filters").text(filterText.join(" • "));
 
-  $("#print-tense-select").val(
-    $("#tense-select").val() != null ? $("#tense-select").val() : ""
-  );
+  $("#print-tense-select").val($("#tense-select").val() != null ? $("#tense-select").val() : "");
   setupTemplates(matchings);
 });
 function makePrint(name) {
@@ -133,9 +123,7 @@ function makePrint(name) {
       .replace("%q-answer%", questionData.answer.alt);
   }
   let templateHTML = template.html.head + templateContent + template.html.foot;
-  templateHTML = templateHTML
-    .replace("%title%", title)
-    .replace("%numQuestions%", numQuestions);
+  templateHTML = templateHTML.replace("%title%", title).replace("%numQuestions%", numQuestions);
   $("#template-print").html(templateHTML);
 }
 $(document.body).on("click", "#results-grid > *", (e) => {
@@ -147,10 +135,7 @@ $(document.body).on("click", "#results-grid > *", (e) => {
 });
 
 $("#print-dropdowns").on("change, input", function () {
-  if (
-    $("#print-tense-select").val() != "" &&
-    $("#print-tense-select").val() != null
-  ) {
+  if ($("#print-tense-select").val() != "" && $("#print-tense-select").val() != null) {
     $("#print-button, #answers-button").removeClass("disabled");
     makePrint($("#print-name").text());
   } else {
@@ -158,9 +143,5 @@ $("#print-dropdowns").on("change, input", function () {
   }
 });
 $("#print-tense-select").change(() => {
-  $("#ws-title").val(
-    $("#print-tense-select :selected").text() != "Imparfait"
-      ? "Le " + $("#print-tense-select :selected").text()
-      : "L'imparfait"
-  );
+  $("#ws-title").val($("#print-tense-select :selected").text() != "Imparfait" ? "Le " + $("#print-tense-select :selected").text() : "L'imparfait");
 });

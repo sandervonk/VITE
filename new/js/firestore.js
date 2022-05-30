@@ -50,12 +50,7 @@ function stealCookies() {
               .set(levelJSON.data(), { merge: true })
               .then(() => {
                 loadCookies().then(() => {
-                  new Toast(
-                    `Reset to path settings for "` + path + `"`,
-                    "default",
-                    1000,
-                    "../img/icon/info-icon.svg"
-                  );
+                  new Toast(`Reset to path settings for "` + path + `"`, "default", 1000, "../img/icon/info-icon.svg");
                   fulfilled();
                 });
               });
@@ -66,15 +61,9 @@ function stealCookies() {
 function setupTheme(jsonIn) {
   if (jsonIn.theme === "dark") {
     $("#theme-dark-stylesheet, #theme-dark-color").attr("media", "");
-    $("#theme-light-color").attr(
-      "media",
-      "(prefers-color-scheme: unset) and not(print)"
-    );
+    $("#theme-light-color").attr("media", "(prefers-color-scheme: unset) and not(print)");
   } else {
-    $("#theme-dark-stylesheet, #theme-dark-color").attr(
-      "media",
-      "(prefers-color-scheme: unset) and not(print)"
-    );
+    $("#theme-dark-stylesheet, #theme-dark-color").attr("media", "(prefers-color-scheme: unset) and not(print)");
     $("#theme-light-color").attr("media", "");
   }
 }
@@ -127,11 +116,7 @@ function startSettings() {
     .then((r) => {
       settings = r.data().prefs;
       setupSettings(settings);
-      if (
-        settings == undefined ||
-        r.data().goal == undefined ||
-        r.data().xp == undefined
-      ) {
+      if (settings == undefined || r.data().goal == undefined || r.data().xp == undefined) {
         setDefaultSettings();
       } else {
         setupGoal(r.data().goal, r.data().xp);
@@ -174,8 +159,6 @@ function sendUpdate(newData) {
     clearTimeout(updateTimedFunction);
   } catch (err) {}
   updateTimedFunction = setTimeout(function () {
-    db.collection("users")
-      .doc(auth.getUid())
-      .set(filteredJSON, { merge: true });
+    db.collection("users").doc(auth.getUid()).set(filteredJSON, { merge: true });
   }, 2000);
 }

@@ -44,12 +44,7 @@ auth.onAuthStateChanged((user) => {
       .get()
       .then((doc) => {
         let data = doc.data();
-        if (
-          [data.tenses, data.subjects, data.verbs, data.path].includes(
-            undefined
-          ) &&
-          !window.location.href.includes("onboarding")
-        ) {
+        if ([data.tenses, data.subjects, data.verbs, data.path].includes(undefined) && !window.location.href.includes("onboarding")) {
           new Toast(
             "Some account data is missing, opening onboarding",
             "default",
@@ -61,11 +56,7 @@ auth.onAuthStateChanged((user) => {
         localStorage.setItem("userData", JSON.stringify(data));
         localStorage.setItem("userId", auth.getUid());
       });
-    if (
-      !auth.currentUser.emailVerified &&
-      !auth.currentUser.isAnonymous &&
-      !auth.currentUser.email == null
-    ) {
+    if (!auth.currentUser.emailVerified && !auth.currentUser.isAnonymous && !auth.currentUser.email == null) {
       new Toast(
         "Please verify your email to use the app!",
         "default",
@@ -76,12 +67,7 @@ auth.onAuthStateChanged((user) => {
     } else {
       if (auth.currentUser.isAnonymous) {
         if ($("meta[name=guestprompt]").prop("content")) {
-          new Toast(
-            "Logged in as guest, your progress will not be saved!",
-            "transparent",
-            1500,
-            "../img/icon/info-icon.svg"
-          );
+          new Toast("Logged in as guest, your progress will not be saved!", "transparent", 1500, "../img/icon/info-icon.svg");
         } else {
           console.warn("Signed in as guest");
         }
@@ -128,25 +114,17 @@ auth.onAuthStateChanged((user) => {
       "default",
       1000,
       "../img/icon/info-icon.svg",
-      $("meta[name=noauthenforce]").prop("content")
-        ? ""
-        : window.location.href.split("new/")[0] + "new/"
+      $("meta[name=noauthenforce]").prop("content") ? "" : window.location.href.split("new/")[0] + "new/"
     );
   }
 });
 
 //! listeners
 $("[auth='logout-button']").click((e) => {
-  new Popup(
-    "Are you sure you want to sign out?",
-    "box fullborder default",
-    10000,
-    "../img/icon/info-icon.svg",
-    [
-      ["removePopup()", "Cancel", "secondary-action fullborder"],
-      ["auth.signOut(); removePopup()", "Yes", "primary-action"],
-    ]
-  );
+  new Popup("Are you sure you want to sign out?", "box fullborder default", 10000, "../img/icon/info-icon.svg", [
+    ["removePopup()", "Cancel", "secondary-action fullborder"],
+    ["auth.signOut(); removePopup()", "Yes", "primary-action"],
+  ]);
 });
 $("#mascot-slot").click(() => {
   window.location.href = "./";
@@ -177,12 +155,7 @@ $(document.body).on("click", ".clear-sw", (e) => {
   setTimeout(function () {
     try {
       messagechannelBroadcast.postMessage({ key: "clearsw" });
-      new Toast(
-        "Cleared Service Workers and SW Cashe",
-        "default",
-        1000,
-        "../img/icon/info-icon.svg"
-      );
+      new Toast("Cleared Service Workers and SW Cashe", "default", 1000, "../img/icon/info-icon.svg");
     } catch (err) {
       console.warn("could not send message on BroadcastChannel");
       new Toast(
@@ -202,11 +175,7 @@ $(document.body).on("click", "#delete-acc-button", (e) => {
     "../img/icon/info-icon.svg",
     [
       ["removePopup()", "Cancel", "secondary-action fullborder"],
-      [
-        "auth.currentUser.delete(); removePopup()",
-        "Yes",
-        "primary-action delete-user",
-      ],
+      ["auth.currentUser.delete(); removePopup()", "Yes", "primary-action delete-user"],
     ]
   );
 });

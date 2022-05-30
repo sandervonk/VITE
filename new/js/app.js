@@ -1,18 +1,15 @@
 let tutorialTabs = {
   learn: {
     title: "The Learn Tab",
-    description:
-      "This tab is your go-to place for everything learning. It'll provide you access to different activities at the touch of a tile!",
+    description: "This tab is your go-to place for everything learning. It'll provide you access to different activities at the touch of a tile!",
   },
   settings: {
     title: "The Settings Tab",
-    description:
-      "Customize your learning experience here, with theme toggles, pace re-adjustments, and more!",
+    description: "Customize your learning experience here, with theme toggles, pace re-adjustments, and more!",
   },
   announcements: {
     title: "The Announcements Tab",
-    description:
-      "Learn about new features and find more information about how you can best improve your learning experience here",
+    description: "Learn about new features and find more information about how you can best improve your learning experience here",
   },
 };
 
@@ -79,19 +76,14 @@ function saveSettings(form) {
   });
   setupTheme(object);
   let settingsJSON = JSON.stringify(object);
-  db.collection("users")
-    .doc(auth.getUid())
-    .set({ prefs: object }, { merge: true });
+  db.collection("users").doc(auth.getUid()).set({ prefs: object }, { merge: true });
   localStorage["settings"] = settingsJSON;
 }
 $("#settings-tab .switch-toggle").click((e) => {
   saveSettings($("#settings-form")[0]);
 });
 $(".learn-card").click((e) => {
-  window.location.href =
-    $(e.target).closest(".learn-card").attr("page") +
-    "?type=" +
-    $(e.target).closest(".learn-card").attr("name");
+  window.location.href = $(e.target).closest(".learn-card").attr("page") + "?type=" + $(e.target).closest(".learn-card").attr("name");
 });
 function setTab(tab) {
   tab = tab.replace("-tab", "");

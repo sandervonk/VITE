@@ -291,8 +291,7 @@ input[type="button"]#change-email:active {
   background-size: contain;
   background-repeat: no-repeat;
   background-position: left center;
-  transition: padding-left 0.5s 0s ease-out, padding-right 0.5s 0s ease-out,
-    width 0.5s 0s ease-out, color 0.5s 0s ease-in-out;
+  transition: padding-left 0.5s 0s ease-out, padding-right 0.5s 0s ease-out, width 0.5s 0s ease-out, color 0.5s 0s ease-in-out;
   color: transparent;
 }
 #school-login:hover {
@@ -300,8 +299,7 @@ input[type="button"]#change-email:active {
   padding-left: 50px;
   padding-right: 10px;
   width: 11em;
-  transition: padding-left 0.5s 1s ease-out, padding-right 0.5s 1s ease-out,
-    width 0.5s 1s ease-out, color 0.5s 1s ease-in-out;
+  transition: padding-left 0.5s 1s ease-out, padding-right 0.5s 1s ease-out, width 0.5s 1s ease-out, color 0.5s 1s ease-in-out;
 }
 #education-options {
   height: 50px;

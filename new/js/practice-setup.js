@@ -45,43 +45,24 @@ updatedJSON = {};
 
 function setupSetup() {
   $(".options-toggles > .option-toggle").remove();
-  for (let subject of [
-    "Je",
-    "Tu",
-    "Il / Elle / On",
-    "Nous",
-    "Vous",
-    "Ils / Elles",
-  ]) {
+  for (let subject of ["Je", "Tu", "Il / Elle / On", "Nous", "Vous", "Ils / Elles"]) {
     $("#subject-toggles").append(
-      `<button type="button" title="${
-        subjectDefinitions[subject]
-      }" class="option-toggle subject-toggle ${
-        JSON.parse(localStorage["userData"]).subjects.includes(subject)
-          ? "active"
-          : ""
+      `<button type="button" title="${subjectDefinitions[subject]}" class="option-toggle subject-toggle ${
+        JSON.parse(localStorage["userData"]).subjects.includes(subject) ? "active" : ""
       } box">${subject}</button>`
     );
   }
   for (let verb of Object.keys(verbs)) {
     $("#verb-toggles").append(
-      `<button type="button" title="${
-        verbs[verb].definition
-      }" class="option-toggle verb-toggle ${
-        JSON.parse(localStorage["userData"]).verbs.includes(verb)
-          ? "active"
-          : ""
+      `<button type="button" title="${verbs[verb].definition}" class="option-toggle verb-toggle ${
+        JSON.parse(localStorage["userData"]).verbs.includes(verb) ? "active" : ""
       } box">${verb}</button>`
     );
   }
   for (let tense of Object.keys(tenses)) {
     $("#tense-toggles").append(
-      `<button id="${tense}" type="button" title="${
-        tenseDefinitions[tense]
-      }" class="option-toggle tense-toggle ${
-        JSON.parse(localStorage["userData"]).tenses.includes(tense)
-          ? "active"
-          : ""
+      `<button id="${tense}" type="button" title="${tenseDefinitions[tense]}" class="option-toggle tense-toggle ${
+        JSON.parse(localStorage["userData"]).tenses.includes(tense) ? "active" : ""
       } box">${tenses[tense]}</button>`
     );
   }
@@ -91,10 +72,7 @@ var newJSON = JSON.parse(localStorage.getItem("userData")),
   updateTimedFunction;
 $(document.body).on("click", ".option-toggle.verb-toggle", (e) => {
   updatedJSON.verbs = [];
-  if (
-    $(".option-toggle.verb-toggle.active").length >= 2 ||
-    !$(e.target).hasClass("active")
-  ) {
+  if ($(".option-toggle.verb-toggle.active").length >= 2 || !$(e.target).hasClass("active")) {
     $(e.target).toggleClass("active");
     $(".option-toggle.verb-toggle.active").each((i, el) => {
       updatedJSON.verbs.push($(el).text());
@@ -109,10 +87,7 @@ $(document.body).on("click", ".option-toggle.verb-toggle", (e) => {
 
 $(document.body).on("click", ".option-toggle.subject-toggle", (e) => {
   updatedJSON.subjects = [];
-  if (
-    $(".option-toggle.subject-toggle.active").length >= 2 ||
-    !$(e.target).hasClass("active")
-  ) {
+  if ($(".option-toggle.subject-toggle.active").length >= 2 || !$(e.target).hasClass("active")) {
     $(e.target).toggleClass("active");
     $(".option-toggle.subject-toggle.active").each((i, el) => {
       updatedJSON.subjects.push($(el).text());
@@ -126,10 +101,7 @@ $(document.body).on("click", ".option-toggle.subject-toggle", (e) => {
 });
 $(document.body).on("click", ".option-toggle.tense-toggle", (e) => {
   updatedJSON.tenses = [];
-  if (
-    $(".option-toggle.tense-toggle.active").length >= 2 ||
-    !$(e.target).hasClass("active")
-  ) {
+  if ($(".option-toggle.tense-toggle.active").length >= 2 || !$(e.target).hasClass("active")) {
     $(e.target).toggleClass("active");
     $(".option-toggle.tense-toggle.active").each((i, el) => {
       updatedJSON.tenses.push(el.id);

@@ -7,11 +7,7 @@ var scoringData = {
 if (scoringData.doSetup == true) {
   window.location.href = "./practice-setup.html";
 }
-if (
-  parseInt(scoringData.target) == NaN ||
-  scoringData.countAll == null ||
-  scoringData.target == Infinity
-) {
+if (parseInt(scoringData.target) == NaN || scoringData.countAll == null || scoringData.target == Infinity) {
   $("header").addClass("infinite");
   $("#progress-fill").css("width", "100%");
 }
@@ -23,13 +19,7 @@ function setScore() {
   $("#results-total").val(score.total);
   $("#results-correct").val(score.correct);
   if (parseInt(scoringData.target) != NaN && scoringData.countAll != null) {
-    $("#progress-fill").css(
-      "width",
-      ((scoringData.countAll == "all" ? score.total : score.correct) /
-        parseInt(scoringData.target)) *
-        100 +
-        "%"
-    );
+    $("#progress-fill").css("width", ((scoringData.countAll == "all" ? score.total : score.correct) / parseInt(scoringData.target)) * 100 + "%");
   }
 }
 
@@ -61,11 +51,7 @@ function split(storageVar) {
   try {
     arr = JSON.parse(localStorage["userData"])[storageVar];
   } catch (err) {
-    console.error(
-      "Could not split var: ",
-      err,
-      " attempting fallback to splitting on ',' "
-    );
+    console.error("Could not split var: ", err, " attempting fallback to splitting on ',' ");
     arr = storageVar.split(",");
   }
   return arr;
@@ -78,13 +64,7 @@ function changeScore(num) {
     let duration = (new Date().getTime() - questionStart) / 1000;
     duration -= problemTime["max-perfect"];
     duration = Math.max(0, duration);
-    score.number += Math.max(
-      0,
-      parseInt(
-        problemTime["max-score"] *
-          ((problemTime.allotted - duration) / problemTime.allotted)
-      )
-    );
+    score.number += Math.max(0, parseInt(problemTime["max-score"] * ((problemTime.allotted - duration) / problemTime.allotted)));
   } else {
     score.incorrect += 1;
     score.number -= problemTime["incorrect-deduction"];

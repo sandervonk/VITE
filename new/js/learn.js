@@ -31,18 +31,14 @@ $(".tree-item").click((e) => {
   target.attr("info", true);
   $(document.body).addClass("showpopup");
   $("#learn-popup-container").append(
-    `<div id="learn-popup" tenseshort="${target.attr(
-      "tenseshort"
-    )}" class="expand-down box center" style="top:${offset.top}px; left:${
+    `<div id="learn-popup" tenseshort="${target.attr("tenseshort")}" class="expand-down box center" style="top:${offset.top}px; left:${
       offset.left
     }px;">
         <div id="tense-name" class="primary">
             ${target.attr("tense")}
         </div>
         <div id="tense-def" class="">
-            Learn the ${tenseDefinitions[
-              target.attr("tenseshort")
-            ].toLowerCase()}
+            Learn the ${tenseDefinitions[target.attr("tenseshort")].toLowerCase()}
         </div>
         <button id="learn-popup-action" class="box-button">PRACTICE</button>
         ${
@@ -50,9 +46,7 @@ $(".tree-item").click((e) => {
             ? "<div id='learn-popup-message-separator'></div><div id='learn-popup-message' style='--badge-color:" +
               target.css("--badge-color") +
               "'>" +
-              (target.attr("message") != undefined
-                ? target.attr("message")
-                : "[message]") +
+              (target.attr("message") != undefined ? target.attr("message") : "[message]") +
               "</div>"
             : ""
         }

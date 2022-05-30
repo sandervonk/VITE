@@ -1,10 +1,7 @@
 class LoadCover {
   constructor() {
     try {
-      if (
-        $("meta[name=waitforload]").prop("content") &&
-        $(".loadcover").length < 1
-      ) {
+      if ($("meta[name=waitforload]").prop("content") && $(".loadcover").length < 1) {
         $(document.body).append(`<div class="loadcover"></div>`);
       }
     } catch (err) {
@@ -81,9 +78,9 @@ class Popup {
       toast.classList.add(classData);
     }
     for (let actionInfo of this.action) {
-      buttons += `<button class="popup-button box-button${
-        actionInfo[2] == undefined ? "" : " " + actionInfo[2]
-      }" onclick="${actionInfo[0]}">${actionInfo[1]}</button>`;
+      buttons += `<button class="popup-button box-button${actionInfo[2] == undefined ? "" : " " + actionInfo[2]}" onclick="${actionInfo[0]}">${
+        actionInfo[1]
+      }</button>`;
     }
     buttons += "</div>";
     toast.innerHTML +=
@@ -91,9 +88,7 @@ class Popup {
       "<div class='popup-text'>" +
       this.message +
       `</div>` +
-      (this.icon != null
-        ? `<img src="${this.icon}" class="popup-icon" alt="Popup Icon"></div>`
-        : "");
+      (this.icon != null ? `<img src="${this.icon}" class="popup-icon" alt="Popup Icon"></div>` : "");
     toast.innerHTML += buttons;
     if (this.action != null) {
       document.body.appendChild(overlay);

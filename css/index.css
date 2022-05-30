@@ -79,8 +79,7 @@ body {
   margin: 0;
   transform: none;
   transform-origin: center center;
-  transition: margin 0.5s ease-in-out, transform 0.5s ease-in-out,
-    box-shadow 0.5s ease-in-out;
+  transition: margin 0.5s ease-in-out, transform 0.5s ease-in-out, box-shadow 0.5s ease-in-out;
 }
 #carousel-desktop {
   margin-left: 0 !important;
@@ -118,7 +117,8 @@ body {
 }
 #desktop-icon,
 #about-icon,
-#mobile-icon, #new-icon {
+#mobile-icon,
+#new-icon {
   width: calc(50% - 1vh);
   height: calc(50% - 1vh);
   display: flex;

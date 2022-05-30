@@ -135,8 +135,7 @@ header {
   box-sizing: border-box;
   border-radius: 15px;
   background-color: var(--progress-fill);
-  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out,
-    width 0.25s ease-in-out;
+  transition: background-color 0.25s ease-in-out, color 0.25s ease-in-out, width 0.25s ease-in-out;
 }
 #progress-fill-accent {
   background-color: var(--progress-fill-accent);

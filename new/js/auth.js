@@ -46,31 +46,16 @@ function authError(error) {
 }
 function providerError(provider, error) {
   // Handle Errors here.
-  new Toast(
-    provider + " auth error: " + error.message,
-    "default",
-    1000 + error.message.length * 50,
-    "img/icon/error-icon.png"
-  );
+  new Toast(provider + " auth error: " + error.message, "default", 1000 + error.message.length * 50, "img/icon/error-icon.png");
 }
 function resetEmail() {
   auth
     .sendPasswordResetEmail($("#email-input").val())
     .then((r) => {
-      new Toast(
-        "Sent password reset email",
-        "default",
-        2000,
-        "img/icon/success-icon.svg"
-      );
+      new Toast("Sent password reset email", "default", 2000, "img/icon/success-icon.svg");
     })
     .catch((err) => {
-      new Toast(
-        "Error sending reset email: " + err.message.replace("Error: ", ""),
-        "default",
-        2000,
-        "img/icon/error-icon.svg"
-      );
+      new Toast("Error sending reset email: " + err.message.replace("Error: ", ""), "default", 2000, "img/icon/error-icon.svg");
     });
 }
 //add listener for verify button
@@ -89,13 +74,7 @@ function verifyButton(userObj) {
             "border-color": "#35BB13",
           });
           $("#send-verification").addClass("ready");
-          new Toast(
-            "Email Verified... Logging in",
-            "default",
-            2000,
-            "img/icon/success-icon.png",
-            "./"
-          );
+          new Toast("Email Verified... Logging in", "default", 2000, "img/icon/success-icon.png", "./");
         }
       }, 1000);
     }
@@ -108,10 +87,7 @@ function verifyButton(userObj) {
         $("#send-verification").css({ opacity: 0.5 });
       },
       function (error) {
-        alert(
-          `Something went wrong sending your verification email, try again later! \n\n` +
-            error
-        );
+        alert(`Something went wrong sending your verification email, try again later! \n\n` + error);
       }
     );
   });
@@ -120,14 +96,14 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("user logged in:");
     console;
-    let authData = auth.currentUser.metadata, 
-        doOnboard = false;
+    let authData = auth.currentUser.metadata,
+      doOnboard = false;
     db.collection("users")
       .doc(auth.getUid())
       .get()
       .then((doc) => {
-        let data = doc.data()
-        if([data.tenses, data.subjects, data.verbs, data.path].includes(undefined)){
+        let data = doc.data();
+        if ([data.tenses, data.subjects, data.verbs, data.path].includes(undefined)) {
           doOnboard = true;
         }
         localStorage.setItem("userData", JSON.stringify(data));
@@ -143,19 +119,19 @@ auth.onAuthStateChanged((user) => {
     ) {
       if (authData.creationTime === authData.lastSignInTime) {
         openOnboard();
-      } else if(doOnboard){
-        new Toast("Some account data is missing, opening onboarding", "default", 1000, "./img/icon/error-icon.svg", "./onboarding.html?showTutorial=false")
+      } else if (doOnboard) {
+        new Toast(
+          "Some account data is missing, opening onboarding",
+          "default",
+          1000,
+          "./img/icon/error-icon.svg",
+          "./onboarding.html?showTutorial=false"
+        );
       } else {
         openApp();
       }
     } else if (auth.currentUser.isAnonymous) {
-      new Toast(
-        "Logged in as guest, your progress will not be saved!",
-        "default",
-        1000,
-        "./img/icon/info-icon.svg",
-        "./onboarding.html"
-      );
+      new Toast("Logged in as guest, your progress will not be saved!", "default", 1000, "./img/icon/info-icon.svg", "./onboarding.html");
     } else {
       secondPage();
       verifyButton(user);
@@ -188,10 +164,8 @@ authForm.on("submit", (e) => {
             {
               joined: new Date().getTime(),
               prefs: { theme: "light", pacing: "no", saves: "yes" },
-              education:
-                params.get("edu-code") != null ? params.get("edu-code") : "",
-              joinCode:
-                params.get("join-code") != null ? params.get("join-code") : "",
+              education: params.get("edu-code") != null ? params.get("edu-code") : "",
+              joinCode: params.get("join-code") != null ? params.get("join-code") : "",
             },
             { merge: true }
           );
@@ -256,10 +230,5 @@ if (params.get("edu-code") != null) {
     $("#education-options").show();
     $("#join-code").val(params.get("join-code"));
   }
-  new Toast(
-    "Continued to signup as a " + params.get("edu-code"),
-    "default",
-    5000,
-    "img/icon/info-icon.svg"
-  );
+  new Toast("Continued to signup as a " + params.get("edu-code"), "default", 5000, "img/icon/info-icon.svg");
 }
