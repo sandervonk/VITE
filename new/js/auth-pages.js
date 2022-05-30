@@ -126,6 +126,9 @@ $("[auth='logout-button']").click((e) => {
     ["auth.signOut(); removePopup()", "Yes", "primary-action"],
   ]);
 });
+$("[auth='menu']").click((e) => {
+  $(".auth-menu").toggleClass("collapsed");
+});
 $("#mascot-slot").click(() => {
   window.location.href = "./";
 });
@@ -167,7 +170,7 @@ $(document.body).on("click", ".clear-sw", (e) => {
     }
   }, 1500);
 });
-$(document.body).on("click", "#delete-acc-button", (e) => {
+$(document.body).on("click", "#delete-acc-button, #account-delete", (e) => {
   new Popup(
     "Are you sure you want to delete your account? <span class='delete-text'>THIS ACTION CANNOT BE REVERSED</span>",
     "box fullborder default",

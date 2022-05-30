@@ -112,12 +112,10 @@
 }
 @keyframes collapseUp {
   from {
-    transform-origin: center top;
     transform: translateX(-50%) scale(1);
     opacity: 1;
   }
   to {
-    transform-origin: center top;
     transform: translateX(-50%) scale(0.25);
     opacity: 0;
   }

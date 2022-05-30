@@ -581,3 +581,64 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 footer {
   box-shadow: none;
 }
+#profile-picture {
+  z-index: 1000001;
+}
+#account-menu {
+  display: flex;
+  z-index: 1000000;
+  position: absolute;
+  box-sizing: border-box;
+  top: 75px;
+  margin-top: 5px;
+  right: 10px;
+  padding: 0;
+  width: 300px;
+  max-width: calc(100vw - 20px);
+  background-color: var(--bg);
+  --divet-bg: var(--bg);
+  --divet-border: var(--box-border);
+  flex-flow: column;
+  flex-grow: 1;
+  max-height: calc(100vh - 90px - 76px - 10px);
+  overflow-y: auto;
+  transform-origin: calc(100% - 45px) 0px;
+}
+
+.menu-title {
+  display: flex;
+  padding: 10px;
+  font-size: 20px;
+  border-bottom: solid 2px var(--box-border);
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  align-items: center;
+}
+.menu-items {
+  display: flex;
+  flex-flow: column;
+}
+.menu-row,
+.action-text {
+  color: var(--action-color);
+  font-weight: 500;
+  font-size: 18px;
+  cursor: pointer;
+}
+.menu-items .menu-row {
+  border-top: solid 2px var(--box-border);
+  padding: 10px 15px;
+  justify-content: start;
+  text-align: left;
+  white-space: nowrap;
+  max-width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.menu-items .menu-row:first-child {
+  border-top: none;
+}
+.delete-action {
+  color: var(--error-border);
+  font-size: 17px;
+}

@@ -63,6 +63,8 @@
   /*items*/
   --dropdown-border: #aeaeae;
   --dropdown-items: #aaaaaa;
+  /*other*/
+  --action-color: #1cb0f6;
 }
 .options-toggles:empty,
 .loadcover {
