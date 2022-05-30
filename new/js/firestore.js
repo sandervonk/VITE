@@ -67,6 +67,10 @@ function setupTheme(jsonIn) {
     $("#theme-light-color").attr("media", "");
   }
 }
+var today = new Date(),
+  updateJSON = {};
+var date = [String(today.getMonth() + 1).padStart(2, "0"), String(today.getDate()).padStart(2, "0"), today.getFullYear()].join("-");
+var dateRef = "xphistory." + date;
 function setupGoal(goalNum, goalXp) {
   console.log("goal:", goalNum);
   console.log("xp:", goalXp);
@@ -91,18 +95,29 @@ function setupSettings(jsonIn) {
   }
   setupTheme(jsonIn);
 }
-function setDefaultSettings() {
+function setupDailyXP(prevGoal) {
+  let updatedJSON = {};
+  updateJSON[dateRef] = 0;
   return new Promise(function (fulfilled, rejected) {
     db.collection("users")
       .doc(auth.getUid())
-      .set(
-        {
-          prefs: { theme: "light", pacing: "no", saves: "yes" },
-          goal: 30,
-          xp: 0,
-        },
-        { merge: true }
-      )
+      .update(updateJSON, { merge: true })
+      .then(() => {
+        setupGoal(prevGoal, 0);
+      });
+  });
+}
+function setDefaultSettings() {
+  updateJSON = {
+    prefs: { theme: "light", pacing: "no", saves: "yes" },
+    goal: 30,
+    xp: 0,
+  };
+  updateJSON[dateRef] = 0;
+  return new Promise(function (fulfilled, rejected) {
+    db.collection("users")
+      .doc(auth.getUid())
+      .update(updateJSON, { merge: true })
       .then(() => {
         setupSettings({ theme: "light", pacing: "no", saves: "yes" });
         setupGoal(30, 0);
@@ -114,15 +129,19 @@ function startSettings() {
     .doc(auth.getUid())
     .get()
     .then((r) => {
+      console.log(r.data());
       settings = r.data().prefs;
       setupSettings(settings);
-      if (settings == undefined || r.data().goal == undefined || r.data().xp == undefined) {
+      if (settings == undefined || r.data().goal == undefined) {
         setDefaultSettings();
+      } else if (r.data().xphistory[date] == undefined) {
+        setupDailyXP(r.data().goal);
       } else {
-        setupGoal(r.data().goal, r.data().xp);
+        setupGoal(r.data().goal, r.data().xphistory[date]);
       }
     })
-    .catch(() => {
+    .catch((err) => {
+      console.warn("Setting Default Settings & Goals; Got Error: ", err);
       setDefaultSettings();
     });
 }

@@ -1,3 +1,7 @@
+var today = new Date(),
+  updateJSON = {};
+var dateRef = "xphistory." + [String(today.getMonth() + 1).padStart(2, "0"), String(today.getDate()).padStart(2, "0"), today.getFullYear()].join("-");
+
 function pad2(n) {
   return (n < 10 ? "0" : "") + n;
 }
@@ -21,14 +25,14 @@ function startApp() {
   return new Promise(function (fulfilled, rejected) {
     if (parseInt(results.correct) != 0 && parseInt(results.correct) / 1 == parseInt(results.correct)) {
       console.log("adding to goals");
+      let incrementFn = firebase.firestore.FieldValue.increment(parseInt(results.correct));
+      let updatedJSON = {
+        xp: incrementFn,
+      };
+      updateJSON[dateRef] = incrementFn;
       db.collection("users")
         .doc(auth.getUid())
-        .set(
-          {
-            xp: firebase.firestore.FieldValue.increment(parseInt(results.correct)),
-          },
-          { merge: true }
-        )
+        .update(updateJSON, { merge: true })
         .then(() => {
           console.log("added to xp");
         });
