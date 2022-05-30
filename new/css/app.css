@@ -606,6 +606,7 @@ footer {
 .menu-content {
   overflow-y: auto;
   z-index: 100000000;
+  border-radius: 10px;
 }
 .menu-title {
   display: flex;
