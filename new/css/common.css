@@ -35,6 +35,10 @@ body {
 .nobackground {
   background-color: rgba(255, 255, 255, 0) !important;
 }
+[notouch] {
+  pointer-events: none !important;
+  user-select: none !important;
+}
 .box,
 button.box,
 .box-button {

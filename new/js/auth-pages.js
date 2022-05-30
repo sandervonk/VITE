@@ -128,6 +128,14 @@ $("[auth='logout-button']").click((e) => {
 });
 $("[auth='menu']").click((e) => {
   $(".auth-menu").toggleClass("collapsed");
+  $(document.body).toggleClass("menuexpanded");
+});
+$(document.body).on("click scroll", (e) => {
+  let target = $(e.target);
+  if ($(document.body).hasClass("menuexpanded") && target.parent(".auth-menu").length == 0 && !target.attr("auth") && !target.hasClass("auth-menu")) {
+    $(".auth-menu").addClass("collapsed");
+    $(document.body).removeClass("menuexpanded");
+  }
 });
 $("#mascot-slot").click(() => {
   window.location.href = "./";
