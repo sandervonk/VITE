@@ -75,9 +75,9 @@
     </script>
     <link rel="stylesheet" href="../css/fonts.css" />
     <link rel="stylesheet" href="../css/theme.css" />
-    <link rel="stylesheet" href="../css/app.css" />
     <link rel="stylesheet" href="../css/theme-dark.css" media="(prefers-color-scheme: unset) and not(print)" id="theme-dark-stylesheet" />
     <link rel="stylesheet" href="../css/app.css" />
+    <link rel="stylesheet" href="../css/streak.css" />
     <script defer src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script defer src="../js/swipe.js"></script>
     <script defer src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
@@ -91,7 +91,7 @@
     <header>
       <div id="mascot-slot"></div>
       <div id="header-readouts">
-        <div id="goal-progress">
+        <div id="goal-progress" streak="calendar">
           <div id="goal-fill" style="width: 0%">
             <div id="goal-fill-accent"></div>
             <div id="goal-text" value="#" goal="##">/</div>
@@ -275,6 +275,7 @@
     </footer>
   </body>
   <script defer src="../js/toast.js"></script>
+  <script defer src="../js/streak.js"></script>
   <script defer src="../js/app.js"></script>
   <script defer src="../js/firestore.js"></script>
   <script defer src="../js/auth-pages.js"></script>

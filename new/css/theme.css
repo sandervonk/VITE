@@ -65,6 +65,18 @@
   --dropdown-items: #aaaaaa;
   /*other*/
   --action-color: #1cb0f6;
+  /*streak calendar*/
+  --cal-head: #3673ce;
+  --cal-head-accent: #ffffff;
+  --cal-button: #6baae3;
+  --cal-button-drop: #4e9ae0;
+  --cal-button-accent: #ffffff;
+  --cal-streak: #ffa438;
+  --cal-streak-accent: #ffffff;
+  --cal-login: #eeeeee;
+  --cal-login-accent: #d4d4d4;
+  --cal-none: #ffffff00;
+  --cal-none-accent: #eeeeee;
 }
 .options-toggles:empty,
 .loadcover {

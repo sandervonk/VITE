@@ -15,7 +15,7 @@
   --text-primary: #f1f7fb;
   --text-secondary: #51646c;
   /*tutorial*/
-  --overlay-bg: #ffffff40;
+  --overlay-bg: #000000cc;
   --tutorial-action-bg: #68952d;
   --tutorial-action-border: #557b24;
   /*learn*/
@@ -59,6 +59,18 @@
   /*items*/
   --dropdown-border: #37464f;
   --dropdown-items: #37464f;
+  /*streak calendar*/
+  --cal-head: #1963a8;
+  --cal-head-accent: #ffffff;
+  --cal-button: #6baae3;
+  --cal-button-drop: #4e9ae0;
+  --cal-button-accent: #ffffff;
+  --cal-streak: #e67e00;
+  --cal-streak-accent: #131f22;
+  --cal-login: #1f3136;
+  --cal-login-accent: #3c4e57;
+  --cal-none: #ffffff00;
+  --cal-none-accent: #1f3136;
 }
 .active-img,
 .option-icon,

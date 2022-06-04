@@ -386,6 +386,7 @@ input.error {
   }
   to {
     opacity: 0;
+    pointer-events: none !important;
   }
 }
 
@@ -543,4 +544,41 @@ input.error {
 }
 .collapsible.collapsed {
   animation: collapseToTop 0.15s ease-out forwards;
+}
+/*common*/
+@keyframes fadeZoomIn {
+  from {
+    opacity: 0;
+    transform: scale(0.25);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+@keyframes fadeZoomOut {
+  from {
+    opacity: 1;
+    transform: scale(1);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.25);
+    pointer-events: none;
+  }
+}
+.fadein {
+  animation: fadein 0.15s ease-out forwards !important;
+}
+.fadezoomin {
+  animation: fadeZoomIn 0.15s ease-out forwards !important;
+}
+
+.fadeout {
+  animation: fadeout 0.15s ease-out forwards !important;
+  pointer-events: none !important;
+}
+.fadezoomout {
+  animation: fadeZoomOut 0.15s ease-out forwards !important;
+  pointer-events: none !important;
 }
