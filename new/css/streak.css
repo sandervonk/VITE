@@ -9,6 +9,7 @@
   transition: transform 0.15s ease-in-out;
 }
 #streak-calendar {
+  user-select: none;
   background-color: var(--bg);
   /* height: 350px; */
   width: 300px;
