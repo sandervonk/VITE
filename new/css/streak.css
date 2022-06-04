@@ -107,3 +107,6 @@
     transform: scale(1.5);
   }
 }
+[streak="calendar"] {
+  cursor: pointer;
+}
