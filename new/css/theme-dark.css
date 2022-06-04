@@ -1,9 +1,9 @@
 :root {
-  --bg: #131f22;
+  --bg: #141f23;
   --menu-accent: #52656d;
   --box-border: #37464f;
-  --box-bg: #131f22;
-  --button-bg: #131f22;
+  --box-bg: #141f23;
+  --button-bg: #141f23;
   --secondary: #1f3136;
   --secondary-alt: #37464f; /*need to fix these*/
   --button-border: #37464f;
@@ -47,7 +47,7 @@
   --check-fill-skipped-accent: #ca8b16;
   --check-fill-incorrect: #ff4b4c;
   --check-fill-incorrect-accent: #e82e2b;
-  --check-button-accent: #131f22;
+  --check-button-accent: #141f23;
   --result-correct-bg: #1f3136;
   --result-incorrect-bg: #1f3136;
   /*toast*/
@@ -66,11 +66,13 @@
   --cal-button-drop: #4e9ae0;
   --cal-button-accent: #ffffff;
   --cal-streak: #e67e00;
-  --cal-streak-accent: #131f22;
+  --cal-streak-accent: #141f23;
   --cal-login: #1f3136;
   --cal-login-accent: #3c4e57;
   --cal-none: #ffffff00;
   --cal-none-accent: #1f3136;
+  /**/
+  --announcement-link: #53b8f4;
 }
 .active-img,
 .option-icon,

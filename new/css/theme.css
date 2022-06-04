@@ -77,6 +77,9 @@
   --cal-login-accent: #d4d4d4;
   --cal-none: #ffffff00;
   --cal-none-accent: #eeeeee;
+  /**/
+  --announcement-link: #53b8f4;
+  -webkit-link: #53b8f4;
 }
 .options-toggles:empty,
 .loadcover {

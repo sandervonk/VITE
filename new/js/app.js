@@ -121,3 +121,12 @@ $("#page-content")
       //open menu
     }
   });
+function calcDays(date1, date2) {
+  return Math.round(Math.abs(date2.getTime() - date1.getTime()) / (24 * 60 * 60 * 1000));
+}
+try {
+  $(".announcement-date").each((i, e) => {
+    let daysSince = calcDays(new Date(), new Date($(e).text()));
+    $(e).text(daysSince + (daysSince == 1 ? " day" : " days") + " ago");
+  });
+} catch (e) {}

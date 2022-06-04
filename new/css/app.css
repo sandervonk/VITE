@@ -456,28 +456,42 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 #learn-type-input {
   display: none;
 }
-.announcment-card {
+.announcement-card {
   overflow: hidden;
   min-height: fit-content;
   flex-shrink: 0;
   margin-bottom: 16px;
-}
-.announcment-card .card-lower,
-.announcment-card {
+  border: solid 2px var(--box-border);
   border-radius: 14px;
+}
+.announcement-card .card-lower,
+.announcement-card {
   background-color: var(--bg);
 }
-.announcment-card .card-upper {
+.announcement-card .card-upper {
   margin-bottom: -28px;
   width: 100%;
   height: auto;
 }
-.announcment-card .card-lower {
+.announcement-card .card-lower {
   padding: 10px;
-  background-color: var(--secondary);
+  /* background-color: var(--secondary); */
   position: relative;
   width: 100%;
   box-sizing: border-box;
+  color: var(--text-primary);
+  font-weight: 400 !important;
+}
+.announcement-card a:-webkit-any-link,
+.announcement-card a[href] {
+  -webkit-link: #53b8f4;
+  color: var(--announcement-link);
+  text-decoration: none;
+  font-weight: 500 !important;
+}
+.announcement-date {
+  color: var(--secondary-alt);
+  margin-bottom: 5px;
 }
 #announce-filler {
   height: 150px;
