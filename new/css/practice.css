@@ -131,7 +131,6 @@ body:not([showanswer]) #next-button:not(.avaliable) {
 }
 /*for extended keyboard*/
 @media (min-device-height: 140vh) and (max-device-width: 768px) {
-  #next-button,
   #skip-button {
     display: none !important;
   }
