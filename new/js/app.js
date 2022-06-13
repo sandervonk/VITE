@@ -59,9 +59,7 @@ if (showTutorial == "true") {
   tutorialClass = new tutorialObject();
 }
 $(".footer-item").click((e) => {
-  $(".footer-item").removeClass("active");
-  $(e.target).addClass("active");
-  $("#page-content, body").attr("activetab", e.target.id.replace("-tab", ""));
+  setTab(e.target.id, true);
   try {
     tutorialClass.setText(e.target.id.replace("-tab", ""));
   } catch (err) {}
@@ -83,44 +81,25 @@ $("#settings-tab .switch-toggle").click((e) => {
 $(".learn-card").click((e) => {
   window.location.href = $(e.target).closest(".learn-card").attr("page") + "?type=" + $(e.target).closest(".learn-card").attr("name");
 });
-function setTab(tab) {
-  tab = tab.replace("-tab", "");
+function setTab(tabFull, scroll) {
+  let tab = tabFull.replace("-tab", "");
+  tabElement = $("#" + tabFull);
   $(".footer-item").removeClass("active");
   $(`.footer-item#${tab}-tab`).addClass("active");
   $("#page-content, body").attr("activetab", tab);
+  if (scroll) {
+    tabElement[0].scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+      inline: "start",
+    });
+  }
 }
-$("#page-content")
-  .swipeDetector({
-    swipeThreshold: Math.min(150, $("#page-content").width() * 0.75),
-    useOnlyTouch: true,
-  })
-  .on("swipeLeft.sd swipeRight.sd swipeUp.sd swipeDown.sd", function (event) {
-    let active = $(document.body).attr("activetab");
-    if (event.type == "swipeLeft") {
-      if (active == "learn") {
-        setTab("settings");
-      } else if (active == "settings") {
-        setTab("announcements");
-      }
-    } else if (event.type == "swipeRight") {
-      if (active == "settings") {
-        setTab("learn");
-      } else if (active == "announcements") {
-        setTab("settings");
-      }
-    } else if (event.type == "swipeUp") {
-      //close menu
-    }
-  });
-$("#page-content")
-  .swipeDetector({
-    swipeThreshold: Math.min(400, $("#page-content").height() * 0.7),
-  })
-  .on("swipeLeft.sd swipeRight.sd swipeUp.sd swipeDown.sd", function (event) {
-    if (event.type == "swipeDown") {
-      //open menu
-    }
-  });
+$("#tab-container").scroll((e) => {
+  let left = Math.round($("#tab-container").scrollLeft() / $("#tab-container").width()),
+    tabs = ["learn-tab", "settings-tab", "announcements-tab"];
+  setTab(tabs[left]);
+});
 function calcDays(date1, date2) {
   return Math.round(Math.abs(date2.getTime() - date1.getTime()) / (24 * 60 * 60 * 1000));
 }

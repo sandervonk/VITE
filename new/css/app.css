@@ -128,12 +128,26 @@ footer {
   padding: 0;
 }
 #tab-container {
-  width: 300vw;
+  width: 100%;
   display: flex;
   flex-flow: row nowrap;
   position: relative;
   transition: left 0.3s ease-in-out;
   height: 100%;
+  overflow: hidden;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+}
+#tab-container > .tab {
+  width: 100%;
+  flex-shrink: 0;
+  padding: 16px;
+  box-sizing: border-box;
+  height: 100%;
+  overflow-y: auto;
+  top: 0;
+  position: relative;
+  scroll-snap-align: start;
 }
 #tab-content {
   height: fit-content;
@@ -146,42 +160,26 @@ footer {
   flex-shrink: 0;
   width: 100%;
 }
-#page-content[activetab="learn"] #tab-container {
-  left: 0;
-}
-#page-content[activetab="settings"] #tab-container {
-  left: -100vw;
-}
-#page-content[activetab="announcements"] #tab-container {
-  left: -200vw;
-}
-#tab-container > .tab {
-  width: calc(100% / 3);
-  flex-shrink: 0;
-  padding: 16px;
-  box-sizing: border-box;
-  height: 100%;
-  overflow-y: auto;
-  top: 0;
-  position: relative;
-}
-
 @media (min-width: 500px) {
-  #tab-container {
-    width: 1500px;
-    transition: none;
+  ::-webkit-scrollbar-track {
+    opacity: 0 !important;
+    background: var(--bg);
+    display: none !important;
+    width: 16px;
+    height: 16px;
   }
-  #tab-container > .tab {
-    width: 500px;
+  ::-webkit-scrollbar-thumb {
+    border-radius: 16px;
+    background: var(--secondary-alt);
+    border: solid 4px var(--bg);
   }
-  #page-content[activetab="learn"] #tab-container {
-    left: 0;
+  ::-webkit-scrollbar {
+    width: 16px !important;
+    height: 16px !important;
   }
-  #page-content[activetab="settings"] #tab-container {
-    left: -500px;
-  }
-  #page-content[activetab="announcements"] #tab-container {
-    left: -1000px;
+  ::-webkit-scrollbar-corner {
+    opacity: 0;
+    background: transparent;
   }
 }
 #tutorial-overlay {
@@ -380,6 +378,7 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 }
 #pacing-section {
   opacity: 0.5;
+  user-select: none;
 }
 #prior-section,
 #clear-sw-button {
