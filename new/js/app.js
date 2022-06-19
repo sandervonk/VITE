@@ -72,7 +72,7 @@ function saveSettings(form) {
   });
   setupTheme(object);
   let settingsJSON = JSON.stringify(object);
-  db.collection("users").doc(auth.getUid()).set({ prefs: object }, { merge: true });
+  userDoc().set({ prefs: object }, { merge: true });
   localStorage["settings"] = settingsJSON;
 }
 $("#settings-tab .switch-toggle").click((e) => {

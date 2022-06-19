@@ -1,27 +1,24 @@
 //listen for changes
 function initChangeListeners() {
   //console.info("initializing change listeners");
-  db.collection("users")
-    .doc(auth.getUid())
-    .onSnapshot(function (snapshot) {
-      if (JSON.stringify(snapshot.data()) != localStorage.getItem("userData")) {
-        //console.info("changes detected, reloading prefs");
-        try {
-          updatedJSON = JSON.parse(localStorage.getItem("userData"));
-          clearTimeout(updateTimedFunction);
-        } catch (err) {
-          console.warn("could not clear timed updates");
-        }
-        loadCookies();
+  userDoc().onSnapshot(function (snapshot) {
+    if (JSON.stringify(snapshot.data()) != localStorage.getItem("userData")) {
+      //console.info("changes detected, reloading prefs");
+      try {
+        updatedJSON = JSON.parse(localStorage.getItem("userData"));
+        clearTimeout(updateTimedFunction);
+      } catch (err) {
+        console.warn("could not clear timed updates");
       }
-    });
+      loadCookies();
+    }
+  });
 }
 
 function loadCookies() {
   //load user data from db
   return new Promise(function (fulfilled, rejected) {
-    db.collection("users")
-      .doc(auth.getUid())
+    userDoc()
       .get()
       .then((prefJSON) => {
         localStorage.setItem("userData", JSON.stringify(prefJSON.data()));
@@ -33,8 +30,7 @@ function loadCookies() {
 function stealCookies() {
   //setup user data from template ('custom' has all enabled)
   return new Promise(function (fulfilled, rejected) {
-    db.collection("users")
-      .doc(auth.getUid())
+    userDoc()
       .get()
       .then((r) => {
         let path = r.data().path;
@@ -45,8 +41,7 @@ function stealCookies() {
           .doc(path)
           .get()
           .then((levelJSON) => {
-            db.collection("users")
-              .doc(auth.getUid())
+            userDoc()
               .set(levelJSON.data(), { merge: true })
               .then(() => {
                 loadCookies().then(() => {
@@ -99,8 +94,7 @@ function setupDailyXP(prevGoal) {
   let updatedJSON = {};
   updateJSON[dateRef] = 0;
   return new Promise(function (fulfilled, rejected) {
-    db.collection("users")
-      .doc(auth.getUid())
+    userDoc()
       .update(updateJSON, { merge: true })
       .then(() => {
         setupGoal(prevGoal, 0);
@@ -115,8 +109,7 @@ function setDefaultSettings() {
   };
   updateJSON[dateRef] = 0;
   return new Promise(function (fulfilled, rejected) {
-    db.collection("users")
-      .doc(auth.getUid())
+    userDoc()
       .update(updateJSON, { merge: true })
       .then(() => {
         setupSettings({ theme: "light", pacing: "no", saves: "yes" });
@@ -125,8 +118,7 @@ function setDefaultSettings() {
   });
 }
 function startSettings() {
-  db.collection("users")
-    .doc(auth.getUid())
+  userDoc()
     .get()
     .then((r) => {
       console.log(r.data());
@@ -178,6 +170,6 @@ function sendUpdate(newData) {
     clearTimeout(updateTimedFunction);
   } catch (err) {}
   updateTimedFunction = setTimeout(function () {
-    db.collection("users").doc(auth.getUid()).set(filteredJSON, { merge: true });
+    userDoc().set(filteredJSON, { merge: true });
   }, 2000);
 }

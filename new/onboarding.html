@@ -101,8 +101,7 @@
           .doc(e.target.getAttribute("name"))
           .get()
           .then((levelJSON) => {
-            db.collection("users")
-              .doc(auth.getUid())
+            userDoc()
               .set(levelJSON.data(), { merge: true })
               .then(() => {
                 document.getElementById("path-input").value = e.target.getAttribute("name");

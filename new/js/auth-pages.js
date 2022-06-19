@@ -28,7 +28,9 @@ const db = firebase.firestore();
 //const messaging = firebase.messaging();
 // update firestore settings
 db.settings({ timestampsInSnapshots: true });
-
+var userDoc = function () {
+  return db.collection("users").doc(auth.getUid());
+};
 //!code
 auth.onAuthStateChanged((user) => {
   if (user) {
@@ -39,8 +41,7 @@ auth.onAuthStateChanged((user) => {
       setPhoto("../img/icon/guest.png");
     }
     let authData = auth.currentUser.metadata;
-    db.collection("users")
-      .doc(auth.getUid())
+    userDoc()
       .get()
       .then((doc) => {
         let data = doc.data();

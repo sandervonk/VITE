@@ -394,7 +394,8 @@ select {
 
 #settings-button.active,
 #print-button.active,
-button.disabled button[disabled],
+button.disabled,
+button[disabled],
 #print-button.disabled,
 #answers-button.disabled {
   --button-bg: var(--check-button-blank) !important;
@@ -402,6 +403,14 @@ button.disabled button[disabled],
   margin-top: 4px !important;
   height: 40px !important;
   --button-accent: var(--check-button-blank-accent) !important;
+}
+
+button.disabled,
+button[disabled],
+#print-button.disabled,
+#answers-button.disabled {
+  user-select: none;
+  pointer-events: none;
 }
 #verbs-settings::before,
 #subjects-settings::before {

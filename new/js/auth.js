@@ -98,8 +98,7 @@ auth.onAuthStateChanged((user) => {
     console;
     let authData = auth.currentUser.metadata,
       doOnboard = false;
-    db.collection("users")
-      .doc(auth.getUid())
+    userDoc()
       .get()
       .then((doc) => {
         let data = doc.data();
@@ -158,17 +157,15 @@ authForm.on("submit", (e) => {
         $("#password-input, #email-input").removeClass("error");
         //switch to verification page
         secondPage();
-        db.collection("users")
-          .doc(auth.getUid())
-          .set(
-            {
-              joined: new Date().getTime(),
-              prefs: { theme: "light", pacing: "no", saves: "yes" },
-              education: params.get("edu-code") != null ? params.get("edu-code") : "",
-              joinCode: params.get("join-code") != null ? params.get("join-code") : "",
-            },
-            { merge: true }
-          );
+        userDoc().set(
+          {
+            joined: new Date().getTime(),
+            prefs: { theme: "light", pacing: "no", saves: "yes" },
+            education: params.get("edu-code") != null ? params.get("edu-code") : "",
+            joinCode: params.get("join-code") != null ? params.get("join-code") : "",
+          },
+          { merge: true }
+        );
 
         authForm[0].reset();
       })
@@ -192,7 +189,7 @@ $("#oauth-login").click((e) => {
   firebase
     .auth()
     .signInWithPopup(provider)
-    .catch((err) => providerError("Github", err));
+    .catch((err) => providerError("Google", err));
 });
 $("#github-login").click((e) => {
   e.preventDefault();
@@ -203,10 +200,6 @@ $("#github-login").click((e) => {
     .auth()
     .signInWithPopup(provider)
     .catch((err) => providerError("Github", err));
-  /*
-  things that can be called on this:
-  https://firebase.google.com/docs/auth/web/github-auth#:~:text=.signInWithPopup(provider)-,.then((result)
-  */
 });
 $("#facebook-login").click((e) => {
   e.preventDefault();

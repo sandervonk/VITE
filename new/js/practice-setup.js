@@ -121,8 +121,7 @@ $("form").on("submit", (e) => {
   } catch (err) {
     console.warn("could not clear previous update");
   }
-  db.collection("users")
-    .doc(auth.getUid())
+  userDoc()
     .set(newJSON, { merge: true })
     .then(() => {
       if (params.has("resolveto")) {

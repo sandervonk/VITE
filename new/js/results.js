@@ -30,8 +30,7 @@ function startApp() {
         xp: incrementFn,
       };
       updateJSON[dateRef] = incrementFn;
-      db.collection("users")
-        .doc(auth.getUid())
+      userDoc()
         .update(updateJSON, { merge: true })
         .then(() => {
           console.log("added to xp");

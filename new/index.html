@@ -161,6 +161,9 @@
     const auth = firebase.auth(),
       db = firebase.firestore();
     db.settings({ timestampsInSnapshots: !0 });
+    var userDoc = function () {
+      return db.collection("users").doc(auth.getUid());
+    };
   </script>
   <script src="js/toast.js"></script>
   <script src="js/stars.js"></script>

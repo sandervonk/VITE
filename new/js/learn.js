@@ -76,8 +76,7 @@ $(window).on("resize", (e) => {
 });
 //action button listener
 $(document.body).on("click", "#learn-popup-action", (e) => {
-  db.collection("users")
-    .doc(auth.getUid())
+  userDoc()
     .set({ tenses: [$("#learn-popup").attr("tenseshort")] }, { merge: true })
     .then(() => {
       window.location.href = "./practice.html";
