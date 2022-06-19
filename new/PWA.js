@@ -6,6 +6,6 @@ if ("serviceWorker" in navigator) {
         console.log("service worker registered");
         //firebase.messaging().useServiceWorker(res);
       })
-      .catch((err) => console.log("service worker not registered", err));
+      .catch((err) => console.warn("Service worker not registered w/ error:", err));
   });
 }

@@ -15,7 +15,6 @@ function getCalendarHTML(date, streakDays, goalNum) {
       [0, "empty", ""],
       [0, "empty", ""],
       [0, "empty", ""],
-      [0, "empty", ""],
     ];
   outputHTML += `<div id="streak-calendar-head"> <button class="calendar-button" id="cal-month-prev"></button> <div id="streak-month">${
     firstOfMonth.toLocaleString("en-us", { month: "long" }) +

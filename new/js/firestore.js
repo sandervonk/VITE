@@ -67,8 +67,6 @@ var today = new Date(),
 var date = [String(today.getMonth() + 1).padStart(2, "0"), String(today.getDate()).padStart(2, "0"), today.getFullYear()].join("-");
 var dateRef = "xphistory." + date;
 function setupGoal(goalNum, goalXp) {
-  console.log("goal:", goalNum);
-  console.log("xp:", goalXp);
   $("#goal-text").attr({
     value: goalXp,
     goal: goalNum + " xp",
@@ -76,7 +74,6 @@ function setupGoal(goalNum, goalXp) {
   $("#goal-fill").css({
     width: `${(100 * goalXp) / goalNum}%`,
   });
-  console.log(goalXp >= goalNum);
   if (goalXp >= goalNum) {
     $("#mascot-slot").css({
       "background-image": "url(../img/mascot/mood=Excited.svg)",
@@ -121,7 +118,6 @@ function startSettings() {
   userDoc()
     .get()
     .then((r) => {
-      console.log(r.data());
       settings = r.data().prefs;
       setupSettings(settings);
       if (settings == undefined || r.data().goal == undefined) {

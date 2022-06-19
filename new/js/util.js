@@ -1,3 +1,10 @@
+/** URI SEARCH TERMS **/
+
+var params = new URLSearchParams(window.location.search);
+history.replaceState({}, "", window.location.href.substr(0, window.location.href.length - window.location.search.length));
+
+/** LOADCOVER **/
+
 class LoadCover {
   constructor() {
     try {
@@ -20,7 +27,9 @@ class LoadCover {
     $(".theme-load-color").remove();
   }
 }
-var loadElement = new LoadCover();
+
+/** TOAST **/
+
 class Toast {
   constructor(message, type, duration, iconPath, action) {
     this.message = message;
@@ -57,6 +66,9 @@ class Toast {
     }, this.duration + 500);
   }
 }
+
+/** POPUP **/
+
 class Popup {
   constructor(message, type, duration, iconPath, action) {
     this.message = message;
@@ -115,3 +127,25 @@ function removePopup() {
 $(document.body).on("click", ".popup-overlay", function () {
   removePopup();
 });
+
+var loadElement = new LoadCover();
+
+/** THEME **/
+try {
+  if (JSON.parse(localStorage["userData"]).prefs.theme == "dark") {
+    document.getElementById("theme-dark-stylesheet").setAttribute("media", "not print");
+    for (darkColor of document.querySelectorAll("#theme-dark-color")) {
+      darkColor.setAttribute("media", "not print");
+    }
+    for (lightColor of document.querySelectorAll("#theme-light-color")) {
+      lightColor.setAttribute("media", "(prefers-color-scheme: unset) and not(print)");
+    }
+  } else {
+    document;
+    for (lightColor of document.querySelectorAll("#theme-light-color")) {
+      lightColor.setAttribute("media", "not print");
+    }
+  }
+} catch (err) {
+  console.error("Error setting theme: ", err);
+}

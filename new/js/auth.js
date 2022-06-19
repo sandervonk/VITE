@@ -1,6 +1,3 @@
-let url = window.location.href,
-  params = new URL(url).searchParams;
-
 history.replaceState({}, "", "./");
 var verificationInterval;
 //control pages of auth (for verification)

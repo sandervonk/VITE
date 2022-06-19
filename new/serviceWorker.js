@@ -181,10 +181,7 @@ const assets = [
   "js/practice-setup.js",
   "js/results.js",
   "js/sheetify.js",
-  "js/stars.js",
-  "js/theme.js",
-  "js/toast.js",
-  "js/vite-util.js",
+  "js/util.js",
 ];
 try {
   var messagechannelBroadcast = new BroadcastChannel("messagechannel");

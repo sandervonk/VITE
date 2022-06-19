@@ -27,7 +27,7 @@ const auth = firebase.auth();
 const db = firebase.firestore();
 //const messaging = firebase.messaging();
 // update firestore settings
-db.settings({ timestampsInSnapshots: true });
+db.settings({ timestampsInSnapshots: true, merge: true });
 var userDoc = function () {
   return db.collection("users").doc(auth.getUid());
 };

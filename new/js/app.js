@@ -47,9 +47,7 @@ class tutorialObject {
     $("#tutorial-description").text(tutorialTabs[tabName].description);
   }
 }
-let url = window.location.href,
-  params = new URL(url).searchParams,
-  path = params.get("path"),
+let path = params.get("path"),
   showTutorial = params.get("showTutorial");
 var tutorialClass;
 if (path != null) {
