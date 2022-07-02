@@ -24,6 +24,81 @@ body {
   max-width: 500px;
   margin: 0 auto;
 }
+
+/** BOXES **/
+.box,
+.box-button {
+  border: solid var(--box-border) 2px;
+  border-bottom-width: 4px;
+  padding: 10px;
+  border-radius: 11px;
+}
+
+/** BUTTONS **/
+button.box,
+.box-button {
+  background-color: var(--button-bg);
+  border-color: var(--button-border);
+  color: var(--button-accent);
+  box-sizing: border-box;
+  height: 44px;
+  margin-top: 0;
+  border-width: 2px 2px 4px 2px;
+}
+.box-button:not(.fullborder) {
+  border-width: 0px 0px 4px 0px;
+}
+
+/* Animation */
+.box-button:active {
+  margin-top: 2px;
+  border-width: 2px 2px 2px 2px;
+  height: 42px;
+}
+.box-button:not(.fullborder):active {
+  margin-top: 4px;
+  border-width: 0px 0px 0px 0px;
+  height: 40px;
+}
+
+/** UTIL **/
+
+@media print {
+  [noprint],
+  [noprint] *,
+  .toast {
+    display: none !important;
+  }
+}
+/* Page Load */
+
+.loadcover {
+  z-index: 100000000;
+  position: fixed;
+  top: 0px;
+  left: 0px;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  pointer-events: all;
+  user-select: none;
+  -webkit-touch-callout: none;
+  background-color: var(--bg);
+  background-repeat: no-repeat;
+  background-size: 200px auto;
+  background-position: center center;
+  animation: load 1.75s infinite linear;
+}
+.loadcover.hide {
+  animation: fadeout forwards 0.25s;
+  pointer-events: none;
+}
+input.error {
+  border-color: var(--error-border) !important;
+  background-color: var(--error-bg) !important;
+  opacity: 1 !important;
+  color: var(--error-border) !important;
+}
 .center {
   display: flex;
   justify-content: center;
@@ -35,46 +110,34 @@ body {
 .nobackground {
   background-color: rgba(255, 255, 255, 0) !important;
 }
+
+/** INTERACTION CONTROLS **/
+
 [notouch] {
   pointer-events: none !important;
   user-select: none !important;
 }
-.box,
-button.box,
-.box-button {
-  border: solid var(--box-border) 2px;
-  border-bottom-width: 4px !important;
-  padding: 10px;
-  border-radius: 11px;
+#back-button,
+#mascot-slot,
+input[type="button"],
+[auth="logout-button"],
+[onclick],
+.box.option {
+  cursor: pointer;
 }
 
-button.box,
-.box-button {
-  background-color: var(--button-bg);
-  border-color: var(--button-border);
-  color: var(--button-accent);
-  height: 44px;
-}
-.box.thick-border,
-.box-button.thick-border {
-  border-width: 4px !important;
-  border-bottom-width: 8px !important;
-}
-.box-button:not(.fullborder) {
-  border-width: 0px !important;
-  border-bottom-width: 4px !important;
+*[onclick],
+a[href],
+*[form-action],
+.box.option,
+label[for],
+.footer-item,
+button {
+  user-select: none;
 }
 
-button.box:active,
-.box-button:active {
-  /*transform: translateY(2px);*/
-  margin-bottom: 2px !important;
-  border-bottom-width: 2px !important;
-  height: 42px;
-}
-.box-button:active:not(.fullborder) {
-  border-bottom-width: 0px !important;
-}
+/** HEADER **/
+
 #title-text {
   color: var(--on-bg);
   font-family: "Next", sans-serif;
@@ -128,6 +191,9 @@ header {
   -webkit-mask-image: url(../img/icon/close.svg);
   transform: scale(0.8);
 }
+
+/** PROGRESS BAR **/
+
 #progress-bar {
   height: 15px;
   flex-grow: 1;
@@ -153,6 +219,9 @@ header {
   margin: 0 2px 2px 1px;
   border-radius: 5px;
 }
+
+/** TEXT STYLES **/
+
 .bold {
   font-family: "Next", sans-serif;
   font-weight: 600;
@@ -173,21 +242,13 @@ header {
 .uppercase {
   text-transform: uppercase;
 }
-*[onclick],
-a[href],
-*[form-action],
-.box.option,
-label[for],
-.footer-item,
-button {
-  user-select: none;
-}
 .section-title,
 .switch-label {
   font-size: 24px;
   font-weight: 700;
 }
-/*settings*/
+
+/** SETTINGS PANEL **/
 .hidden-radio {
   width: 0;
   padding: 0;
@@ -230,16 +291,8 @@ input:checked + .switch-label {
   color: var(--text-secondary);
   margin-bottom: 7px;
 }
-#back-button,
-#mascot-slot,
-input[type="button"],
-[auth="logout-button"],
-[onclick],
-.box.option {
-  cursor: pointer;
-}
 
-/* TOAST */
+/** TOAST **/
 @keyframes slideIn {
   from {
     transform: translateX(-50%) translateY(100%);
@@ -354,12 +407,8 @@ input[type="button"],
     left: unset;
   }
 }
-input.error {
-  border-color: var(--error-border) !important;
-  background-color: var(--error-bg) !important;
-  opacity: 1 !important;
-  color: var(--error-border) !important;
-}
+
+/** POPUP **/
 .popup {
   width: calc(100% - 40px);
   border-radius: 20px;
@@ -448,13 +497,6 @@ input.error {
   margin-bottom: 0px !important;
   height: 40px;
 }
-@media print {
-  [noprint],
-  [noprint] *,
-  .toast {
-    display: none !important;
-  }
-}
 .flex-row-nowrap {
   display: flex;
   flex-flow: row nowrap;
@@ -468,84 +510,10 @@ input.error {
 .delete-text {
   color: var(--error-border) !important;
 }
-.loadcover {
-  z-index: 100000000;
-  position: fixed;
-  top: 0px;
-  left: 0px;
-  width: 100vw;
-  height: 100vh;
-  box-sizing: border-box;
-  pointer-events: all;
-  user-select: none;
-  -webkit-touch-callout: none;
-  background-color: var(--bg);
-  background-repeat: no-repeat;
-  background-size: 200px auto;
-  background-position: center center;
-  animation: load 1.75s infinite linear;
-}
-.loadcover.hide {
-  animation: fadeout forwards 0.25s;
-  pointer-events: none;
-}
-.divet {
-  z-index: inherit;
-  position: absolute;
-  right: 25px;
-  top: -8px;
-  background-color: var(--divet-bg);
-  border: solid 2px var(--divet-border);
-  height: 16px;
-  width: 16px;
-  border-radius: 50%;
-  flex-grow: 0;
-  box-sizing: border-box;
-  pointer-events: none;
-}
-.divet::before {
-  content: "-";
-  font-size: 0;
-  color: transparent;
-  background-color: var(--divet-bg);
-  position: inherit;
-  width: 18px;
-  height: 8px;
-  z-index: 10;
-  bottom: -2px;
-  left: -2px;
-}
-.menu-row {
-  border: none;
-  background-color: var(--bg);
-}
-@keyframes expandFromTop {
-  from {
-    transform: scale(0.25);
-    opacity: 0;
-  }
-  to {
-    transform: scale(1);
-    opacity: 1;
-  }
-}
-@keyframes collapseToTop {
-  from {
-    transform: scale(1);
-    opacity: 1;
-  }
-  to {
-    transform: scale(0.25);
-    opacity: 0;
-  }
-}
-.collapsible:not(.collapsed) {
-  animation: expandFromTop 0.15s ease-out forwards;
-}
-.collapsible.collapsed {
-  animation: collapseToTop 0.15s ease-out forwards;
-}
-/*common*/
+
+/** ANIMATION **/
+
+/* Keyframes */
 @keyframes fadeZoomIn {
   from {
     opacity: 0;
@@ -567,13 +535,39 @@ input.error {
     pointer-events: none;
   }
 }
+@keyframes expandFromTop {
+  from {
+    transform: scale(0.25);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+@keyframes collapseToTop {
+  from {
+    transform: scale(1);
+    opacity: 1;
+  }
+  to {
+    transform: scale(0.25);
+    opacity: 0;
+  }
+}
+/* Classes */
+.collapsible:not(.collapsed) {
+  animation: expandFromTop 0.15s ease-out forwards;
+}
+.collapsible.collapsed {
+  animation: collapseToTop 0.15s ease-out forwards;
+}
 .fadein {
   animation: fadein 0.15s ease-out forwards !important;
 }
 .fadezoomin {
   animation: fadeZoomIn 0.15s ease-out forwards !important;
 }
-
 .fadeout {
   animation: fadeout 0.15s ease-out forwards !important;
   pointer-events: none !important;

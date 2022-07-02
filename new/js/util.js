@@ -20,8 +20,8 @@ class LoadCover {
     this.removeTheme();
   }
   remove() {
+    this.hide();
     $(".loadcover").remove();
-    this.removeTheme();
   }
   removeTheme() {
     $(".theme-load-color").remove();
@@ -79,8 +79,7 @@ class Popup {
     this.showPopup();
   }
   showPopup() {
-    $(".popup").remove();
-    $(".popup-overlay").remove();
+    $(".popup, .popup-overlay").remove();
     let overlay = document.createElement("div"),
       toast = document.createElement("div"),
       buttons = "<div id='popup-buttons'>";
