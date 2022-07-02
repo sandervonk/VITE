@@ -17,8 +17,9 @@ if (Object.values(results).includes(null)) {
 history.replaceState({}, "", "results.html");
 console.log(results);
 $("#total .result-number").text(results.total);
-
-$("#correct .result-number").text(parseInt((results.correct / results.total) * 100) + "%");
+let percentage_correct = parseInt((results.correct / results.total) * 100);
+percentage_correct = percentage_correct.toString() == "NaN" ? "-" : percentage_correct;
+$("#correct .result-number").text(percentage_correct + "%");
 $("#time .result-number").text(Math.floor((results.duration / 1000 / 60) << 0) + ":" + pad2(Math.floor((results.duration / 1000) % 60)));
 $("#xp .result-number").text(results.correct);
 function startApp() {
