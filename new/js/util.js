@@ -60,7 +60,7 @@ class Toast {
     setTimeout(() => {
       overlay.remove();
       toast.remove();
-      if (this.action != null) {
+      if (this.action != null && this.action != "") {
         window.location.href = this.action;
       }
     }, this.duration + 500);
