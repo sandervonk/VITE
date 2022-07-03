@@ -34,8 +34,8 @@ function setupApp() {
         }
         if (params && params.get("tense") && $("#conjugator-tense").has(`option[value="${params.get("tense")}"]`)) {
           $("#conjugator-tense").val(params.get("tense"));
-          fillConjugations();
         }
+        fillConjugations();
         resolved();
       })
       .catch((err) => {
