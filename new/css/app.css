@@ -370,16 +370,10 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   opacity: 0.5;
   user-select: none;
 }
-#prior-section,
-#clear-sw-button {
-  --button-bg: var(--prior-button-bg);
-  --button-border: var(--prior-button-border);
-  --button-accent: var(--prior-button-accent);
-}
 #delete-acc-button {
   --button-bg: var(--check-fill-incorrect);
   --button-border: var(--check-fill-incorrect-accent);
-  --button-accent: var(--prior-button-accent);
+  --button-accent: var(--blue-button-accent);
 }
 #retake-prior-button,
 #clear-sw-button,

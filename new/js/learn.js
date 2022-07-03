@@ -40,7 +40,7 @@ $(".tree-item").click((e) => {
         <div id="tense-def" class="">
             Learn the ${tenseDefinitions[target.attr("tenseshort")].toLowerCase()}
         </div>
-        <button id="learn-popup-action" class="box-button">PRACTICE</button>
+        <button id="learn-popup-action" class="box-button blue-button">PRACTICE</button>
         ${
           target[0].hasAttribute("badged")
             ? "<div id='learn-popup-message-separator'></div><div id='learn-popup-message' style='--badge-color:" +

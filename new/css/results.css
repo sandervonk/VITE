@@ -1,17 +1,5 @@
-#save-icon {
-  mask-image: url(../img/icon/save-icon.png);
-  mask-image: url(../img/icon/save-icon.svg);
-  -webkit-mask-image: url(../img/icon/save-icon.png);
-  -webkit-mask-image: url(../img/icon/save-icon.svg);
-  background-color: var(--box-border);
-  height: 100%;
-  width: 100%;
-}
 #next-button {
-  --button-accent: var(--prior-button-accent);
   color: var(--button-accent);
-  --button-border: var(--prior-button-border);
-  --button-bg: var(--prior-button-bg);
   height: 47px;
 }
 #reset-button {

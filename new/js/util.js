@@ -89,9 +89,9 @@ class Popup {
       toast.classList.add(classData);
     }
     for (let actionInfo of this.action) {
-      buttons += `<button class="popup-button box-button${actionInfo[2] == undefined ? "" : " " + actionInfo[2]}" onclick="${actionInfo[0]}">${
-        actionInfo[1]
-      }</button>`;
+      buttons += `<button class="popup-button blue-button box-button${actionInfo[2] == undefined ? "" : " " + actionInfo[2]}" onclick="${
+        actionInfo[0]
+      }">${actionInfo[1]}</button>`;
     }
     buttons += "</div>";
     toast.innerHTML +=

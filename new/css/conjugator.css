@@ -1,0 +1,20 @@
+.conjugated-rows {
+  display: flex;
+  flex-flow: column;
+  justify-content: center;
+  align-items: stretch;
+}
+#conjugated-rows > .conjugate-box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  margin: 10px 0;
+  height: 45px;
+  box-sizing: border-box;
+}
+#explanation-button {
+  margin-left: 10px;
+  margin-right: 10px;
+  flex-grow: 1;
+}

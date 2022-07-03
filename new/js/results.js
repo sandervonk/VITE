@@ -42,3 +42,6 @@ function startApp() {
     fulfilled();
   });
 }
+$("#save-button").on("click", (e) => {
+  console.log("implement save");
+});

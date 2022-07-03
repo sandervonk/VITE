@@ -63,7 +63,7 @@ function setupSetup() {
     $("#tense-toggles").append(
       `<button id="${tense}" type="button" title="${tenseDefinitions[tense]}" class="option-toggle tense-toggle ${
         JSON.parse(localStorage["userData"]).tenses.includes(tense) ? "active" : ""
-      } box">${tenses[tense]}</button>`
+      } box-button fullborder">${tenses[tense]}</button>`
     );
   }
 }

@@ -328,18 +328,10 @@ select.options-item {
   }
 }
 
-#open-saved,
-#settings-button,
-#print-button,
-#edit-button {
-  --button-bg: var(--prior-button-bg);
-  --button-border: var(--prior-button-border);
-  --button-accent: var(--prior-button-accent);
-}
 #answers-button {
   --button-bg: var(--check-fill-incorrect);
   --button-border: var(--check-fill-incorrect-accent);
-  --button-accent: var(--prior-button-accent);
+  --button-accent: var(--blue-button-accent);
 }
 #settings-button,
 #print-button,

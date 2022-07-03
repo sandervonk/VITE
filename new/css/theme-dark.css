@@ -30,9 +30,9 @@
   /*settings*/
   --switch-bg: var(--box-border);
   --switch-selected: #828282;
-  --prior-button-bg: #2b659c;
-  --prior-button-border: #184977;
-  --prior-button-accent: #ffffff;
+  --blue-button-bg: #2b659c;
+  --blue-button-border: #184977;
+  --blue-button-accent: #ffffff;
   /*practice*/
   --info-button-bg: #28bdec;
   --info-button-border: #119ac5;

@@ -116,7 +116,7 @@
               <option value="irregular">Irregular Only</option>
             </select>
           </form>
-          <button id="open-saved" class="options-item box-button bold disabled">Saved Sheets</button>
+          <button id="open-saved" class="options-item box-button bold blue-button disabled">Saved Sheets</button>
         </div>
         <div id="options-overlay"></div>
         <div id="results-container">
@@ -152,7 +152,7 @@
               <div class="settings-item secondary" id="verbs-settings" style="margin-bottom: 10px">[verbs]</div>
               <button
                 id="edit-button"
-                class="box-button fullborder center bold fill-width"
+                class="box-button fullborder center bold fill-width blue-button"
                 onclick="window.location.href=`./practice-setup.html?hide=%23scoring%2C%20%23tenses&resolveto=.%2Fsheetify.html%3Fright%3Dtrue%26template%3D${encodeURIComponent($('#print-name').text())}`"
               >
                 EDIT
@@ -186,7 +186,7 @@
           </div>
           <div
             id="print-button"
-            class="box-button center bold disabled"
+            class="box-button center bold blue-button disabled"
             onclick="$('.question-answer').css({color: 'transparent'}); new Toast('Opening prompt to print worksheet', 'default', 1000, '../img/icon/print-icon.svg'); window.print();"
           >
             PRINT
@@ -194,7 +194,7 @@
         </div>
       </div>
       <div class="bottom-container">
-        <div id="settings-button" class="box-button center bold">SETTINGS</div>
+        <div id="settings-button" class="box-button center bold blue-button">SETTINGS</div>
       </div>
     </div>
   </body>

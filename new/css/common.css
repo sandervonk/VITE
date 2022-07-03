@@ -44,9 +44,14 @@ button.box,
   height: 44px;
   margin-top: 0;
   border-width: 2px 2px 4px 2px;
+  transition: border-bottom-width 0.05s ease-in-out, height 0.05s ease-in-out, margin 0.05s ease-in-out;
+}
+button.box.tall,
+.box-button.tall {
+  height: 46px;
 }
 .box-button:not(.fullborder) {
-  border-width: 0px 0px 4px 0px;
+  border-width: 0px 0px 2px 0px;
 }
 
 /* Animation */
@@ -55,10 +60,16 @@ button.box,
   border-width: 2px 2px 2px 2px;
   height: 42px;
 }
+.box-button.tall:active {
+  height: 44px;
+}
 .box-button:not(.fullborder):active {
-  margin-top: 4px;
+  margin-top: 2px;
   border-width: 0px 0px 0px 0px;
   height: 40px;
+}
+.box-button.tall:not(.fullborder):active {
+  height: 42px;
 }
 
 /** UTIL **/
@@ -69,6 +80,10 @@ button.box,
   .toast {
     display: none !important;
   }
+}
+.flex-row {
+  display: flex;
+  flex-flow: row nowrap;
 }
 /* Page Load */
 
@@ -122,8 +137,10 @@ input.error {
 input[type="button"],
 [auth="logout-button"],
 [onclick],
-.box.option {
+.box.option,
+.box-button button {
   cursor: pointer;
+  user-select: none;
 }
 
 *[onclick],
@@ -139,9 +156,9 @@ button {
 /** HEADER **/
 
 #title-text {
-  color: var(--on-bg);
+  color: var(--text-primary);
   font-family: "Next", sans-serif;
-  font-weight: 500;
+  font-weight: bold;
   font-size: 24px;
   margin-top: 26px;
 }
@@ -438,20 +455,20 @@ input:checked + .switch-label {
     pointer-events: none !important;
   }
 }
-
+.blue-button {
+  font-size: 20px;
+  font-weight: 500;
+  white-space: nowrap;
+  text-align: center;
+  --button-bg: var(--blue-button-bg);
+  --button-border: var(--blue-button-border);
+  --button-accent: var(--blue-button-accent);
+}
 .popup-button {
-  --button-bg: var(--prior-button-bg);
-  --button-border: var(--prior-button-border);
-  --button-accent: var(--prior-button-accent);
   font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-.primary-action {
-  --button-bg: var(--prior-button-bg);
-  --button-border: var(--prior-button-border);
-  --button-accent: var(--prior-button-accent);
 }
 .secondary-action {
   --button-bg: var(--check-button-blank);
@@ -504,7 +521,7 @@ input:checked + .switch-label {
 .delete-user {
   --button-bg: var(--check-fill-incorrect) !important;
   --button-border: var(--check-fill-incorrect-accent) !important;
-  --button-accent: var(--prior-button-accent) !important;
+  --button-accent: var(--blue-button-accent) !important;
   font-weight: bold;
 }
 .delete-text {
@@ -575,4 +592,63 @@ input:checked + .switch-label {
 .fadezoomout {
   animation: fadeZoomOut 0.15s ease-out forwards !important;
   pointer-events: none !important;
+}
+
+/** ACTIONS **/
+#bottom-actions {
+  position: fixed;
+  bottom: 0px;
+  left: 50%;
+  transform: translateX(-50%) translateX(-16px);
+  /* margin: 30px calc(30px - 16px) !important;
+  width: calc(100vw - 60px);
+  max-width: calc(500px - 60px); 
+  
+  new:*/
+  margin: 16px !important;
+  width: calc(100vw - 32px);
+  max-width: calc(500px - 32px);
+  /*end new*/
+
+  flex-grow: 0;
+  z-index: 2048;
+  display: flex;
+  flex-flow: row;
+}
+#bottom-actions * {
+  flex-basis: 42px;
+}
+#reload-icon,
+#next-icon,
+#prev-icon,
+#save-icon {
+  background-color: var(--box-border);
+  height: 100%;
+  width: 100%;
+}
+#reload-icon {
+  mask-image: url(../img/icon/reset-icon.png);
+  mask-image: url(../img/icon/reset-icon.svg);
+  -webkit-mask-image: url(../img/icon/reset-icon.png);
+  -webkit-mask-image: url(../img/icon/reset-icon.svg);
+}
+#save-icon {
+  mask-image: url(../img/icon/save-icon.png);
+  mask-image: url(../img/icon/save-icon.svg);
+  -webkit-mask-image: url(../img/icon/save-icon.png);
+  -webkit-mask-image: url(../img/icon/save-icon.svg);
+}
+
+#prev-icon {
+  mask-image: url(../img/icon/prev-icon.png);
+  mask-image: url(../img/icon/prev-icon.svg);
+  -webkit-mask-image: url(../img/icon/prev-icon.png);
+  -webkit-mask-image: url(../img/icon/prev-icon.svg);
+}
+
+#next-icon {
+  mask-image: url(../img/icon/next-icon.png);
+  mask-image: url(../img/icon/next-icon.svg);
+  -webkit-mask-image: url(../img/icon/next-icon.png);
+  -webkit-mask-image: url(../img/icon/next-icon.svg);
 }

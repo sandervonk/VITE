@@ -159,12 +159,9 @@
 }
 #learn-popup-action {
   width: 100%;
-  font-size: 18px;
   height: 44px;
   font-weight: bold;
-  --button-bg: var(--prior-button-bg);
-  --button-border: var(--prior-button-border);
-  --button-accent: var(--prior-button-accent);
+  font-size: 18px;
 }
 #learn-popup-action:active {
   margin-top: 4px !important;
@@ -187,10 +184,4 @@
   #page-content::-webkit-scrollbar {
     display: none;
   }
-}
-#learn-popup-action {
-  width: 100%;
-  --button-bg: var(--prior-button-bg);
-  --button-border: var(--prior-button-border);
-  --button-accent: var(--prior-button-accent);
 }

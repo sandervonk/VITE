@@ -61,21 +61,22 @@ body {
   --button-bg: var(--check-fill);
   color: var(--check-button-accent);
   text-align: center;
-  height: 43px;
   width: calc(100% - 20px);
-  margin: 10px 10px 0 10px !important;
   padding: 0;
   flex-shrink: 0;
   font-size: 20px;
-  transition: border-bottom-width 0.05s ease-in-out;
   user-select: none;
   z-index: 1000;
+}
+#next-button-spacer {
+  margin-top: 10px;
 }
 body:not([showanswer]) #next-button:not(.avaliable) {
   --button-bg: var(--check-button-blank);
   color: var(--check-button-blank-accent);
   border-bottom-width: 0px !important;
   border-bottom-color: transparent !important;
+  pointer-events: none;
 }
 #question-data {
   display: flex;

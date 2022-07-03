@@ -359,7 +359,7 @@ $(document.body).on("click", "#delete-acc-button, #account-delete", (e) => {
     "../img/icon/info-icon.svg",
     [
       ["removePopup()", "Cancel", "secondary-action fullborder"],
-      ["auth.currentUser.delete(); removePopup()", "Yes", "primary-action delete-user"],
+      ["auth.currentUser.delete(); removePopup()", "Yes", "primary-action blue-button delete-user"],
     ]
   );
 });
