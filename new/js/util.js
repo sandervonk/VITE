@@ -11,6 +11,15 @@ class LoadCover {
       if ($("meta[name=waitforload]").prop("content") && $(".loadcover").length < 1) {
         $(document.body).append(`<div class="loadcover"></div>`);
       }
+      this.timeoutId = setTimeout(() => {
+        new Toast(
+          "Loading took too long. Please wait a bit and try again.",
+          "default",
+          5000,
+          "../img/icon/error-icon.svg",
+          "https://sander.vonk.one/VITE/new/"
+        );
+      }, 10000);
     } catch (err) {
       console.warn("could not setup loading animation, error:", err);
     }
@@ -25,6 +34,14 @@ class LoadCover {
   }
   removeTheme() {
     $(".theme-load-color").remove();
+    removeTimer();
+  }
+  removeTimer() {
+    try {
+      clearTimeout(this.timeoutId);
+    } catch (err) {
+      console.warn("No timeout to cancel:", err);
+    }
   }
 }
 
