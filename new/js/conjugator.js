@@ -52,6 +52,13 @@ $("#explanation-button").click(() => {
   }
   newStorage.verbs = [$("#conjugator-verb").val()];
   newStorage.tense = [$("#conjugator-tense").val()];
+  newStorage.subjects = ["Je", "Tu", "Il / Elle / On", "Nous", "Vous", "Ils / Elles"];
   localStorage.setItem("userData", JSON.stringify(newStorage));
-  new Toast("Creating a worksheet!", "default", 1000, "../img/icon/info-icon.svg", "./sheetify.html?right=true&template=VITE!%20Classic");
+  new Toast(
+    "Creating a worksheet!",
+    "default",
+    1000,
+    "../img/icon/info-icon.svg",
+    "./sheetify.html?right=true&template=VITE!%20Classic&tense=" + $("#conjugator-tense").val()
+  );
 });

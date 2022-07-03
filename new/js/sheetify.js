@@ -4,6 +4,10 @@ var verbs;
 $.getJSON("../verbs.json")
   .done(function (response) {
     verbs = response;
+    if ($("#print-tense-select").val() != "" && $("#print-tense-select").val() != null) {
+      $("#print-button, #answers-button").removeClass("disabled");
+      makePrint($("#print-name").text());
+    }
   })
   .fail(function (err) {
     console.error("error: could not load verbs.json :(");
@@ -11,9 +15,12 @@ $.getJSON("../verbs.json")
   });
 
 try {
-  if (params.get("right") == "true" && params.has("template")) {
+  if (params && params.get("right") == "true" && params.has("template")) {
     $(document.body).addClass("right");
     $("#print-name, .template-name").text(params.get("template"));
+  }
+  if (params && params.has("tense") && $("#print-tense-select").has(`option[value="${params.get("tense")}"]`)) {
+    $("#print-tense-select, #tense-select").val(params.get("tense"));
   }
 } catch (err) {}
 function startApp() {
@@ -66,7 +73,7 @@ function setupTemplates(templateArr) {
   }
 }
 setupTemplates(templates);
-$("#filters-from").on("change", () => {
+$("#filters-from").on("change input", () => {
   let matchings = templates,
     filters = [],
     filterText = [];
@@ -106,7 +113,7 @@ function makePrint(name) {
   $("#sheet-css").attr("href", "../css/templates/" + template.html.css);
   $("#template-print").html("[Template HTML]");
   let templateContent = "";
-  for (let questionNum = 0; questionNum <= numQuestions; questionNum++) {
+  for (let questionNum = 0; questionNum < numQuestions; questionNum++) {
     let options = {
       verb: random(JSON.parse(localStorage.getItem("userData")).verbs),
       subject: random(JSON.parse(localStorage.getItem("userData")).subjects),

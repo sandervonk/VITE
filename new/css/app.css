@@ -333,6 +333,9 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 #create-card {
   background-image: var(--create-card-bg);
 }
+#find-card {
+  background-image: var(--find-card-bg);
+}
 .card-description {
   opacity: 0.8;
   font-size: 16px;
@@ -531,6 +534,9 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 }
 #learn-card {
   --card-glow: #3950b8aa;
+}
+#find-card {
+  --card-glow: #2da480aa;
 }
 #header-readouts {
   flex-shrink: 0;
