@@ -600,14 +600,14 @@ input:checked + .switch-label {
   bottom: 0px;
   left: 50%;
   transform: translateX(-50%) translateX(-16px);
-  /* margin: 30px calc(30px - 16px) !important;
+  margin: 30px calc(30px - 16px) !important;
   width: calc(100vw - 60px);
-  max-width: calc(500px - 60px); 
-  
-  new:*/
+  max-width: calc(500px - 60px);
+
+  /* new:
   margin: 16px !important;
   width: calc(100vw - 32px);
-  max-width: calc(500px - 32px);
+  max-width: calc(500px - 32px); */
   /*end new*/
 
   flex-grow: 0;
