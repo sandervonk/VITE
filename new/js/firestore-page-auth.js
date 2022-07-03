@@ -136,21 +136,18 @@ function startApp() {
   //load verb json with promise
   return new Promise(function (fulfilled, rejected) {
     initChangeListeners();
-    $.ajax({
-      url: "../verbs.json",
-      dataType: "json",
-      success: (response) => {
+    $.getJSON("../verbs.json")
+      .done(function (response) {
         verbs = response;
         //temporarily removed custom verbs
         loadCookies().then((r) => {
           fulfilled();
         });
-      },
-      error: function (err) {
+      })
+      .fail(function (err) {
         console.error("Could not load verbs.json :(", err);
         rejected(err);
-      },
-    });
+      });
   });
 }
 function sendUpdate(newData) {
@@ -257,7 +254,7 @@ auth.onAuthStateChanged((user) => {
           if ($("meta[name=runapp]").prop("content")) {
             showQuestion(new Question());
           } else if ($("meta[name=runsetup]").prop("content")) {
-            setupSetup();
+            setupApp();
           } else if ($("meta[name=runsettings]").prop("content")) {
             startSettings();
           }

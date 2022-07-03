@@ -43,7 +43,7 @@ var verbs,
   };
 updatedJSON = {};
 
-function setupSetup() {
+function setupApp() {
   $(".options-toggles > .option-toggle").remove();
   for (let subject of ["Je", "Tu", "Il / Elle / On", "Nous", "Vous", "Ils / Elles"]) {
     $("#subject-toggles").append(
@@ -133,6 +133,6 @@ $("form").on("submit", (e) => {
 });
 $("#reset-button").on("click", (e) => {
   stealCookies().then(() => {
-    setupSetup();
+    setupApp();
   });
 });

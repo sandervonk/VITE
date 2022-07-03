@@ -1,0 +1,57 @@
+function setupVerbDropdown(verbsJSON) {
+  return new Promise((resolved, rejected) => {
+    try {
+      for (verb of Object.keys(verbsJSON)) {
+        $("#conjugator-verb").append(`<option value="${verb}">${verb}</option>`);
+      }
+      resolved();
+    } catch (err) {
+      rejected(err);
+    }
+  });
+}
+function fillConjugations() {
+  let conjugation_verb = $("#conjugator-verb").val(),
+    conjugation_tense = $("#conjugator-tense").val();
+  if (conjugation_tense && conjugation_verb) {
+    $("#bottom-actions > div").removeClass("disabled");
+    $(".conjugate-verb").each(function (i, el) {
+      el = $(el);
+      let options = { tense: conjugation_tense, verb: conjugation_verb, subject: el.attr("subject") };
+      conjugation = new Question(options);
+      el.text(conjugation.answer.alt);
+    });
+  }
+}
+$("#search-options").on("change", fillConjugations);
+
+function setupApp() {
+  return new Promise((resolved, rejected) => {
+    setupVerbDropdown(verbs)
+      .then(() => {
+        if (params && params.get("verb") && $("#conjugator-verb").has(`option[value="${params.get("verb")}"]`)) {
+          $("#conjugator-verb").val(params.get("verb"));
+        }
+        if (params && params.get("tense") && $("#conjugator-tense").has(`option[value="${params.get("tense")}"]`)) {
+          $("#conjugator-tense").val(params.get("tense"));
+          fillConjugations();
+        }
+        resolved();
+      })
+      .catch((err) => {
+        rejected(err);
+      });
+  });
+}
+$("#explanation-button").click(() => {
+  let newStorage;
+  try {
+    newStorage = JSON.parse(localStorage.getItem("userData"));
+  } catch (err) {
+    newStorage = {};
+  }
+  newStorage.verbs = [$("#conjugator-verb").val()];
+  newStorage.tense = [$("#conjugator-tense").val()];
+  localStorage.setItem("userData", JSON.stringify(newStorage));
+  new Toast("Creating a worksheet!", "default", 1000, "./sheetify.html?right=true&template=VITE!%20Classic", "../img/icon/info-icon.svg");
+});

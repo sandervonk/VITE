@@ -73,18 +73,12 @@ function changeScore(num) {
   score.total += 1;
   setScore();
 }
-
-$.ajax({
-  url: "../verbs.json",
-  dataType: "json",
-  success: (response) => {
+$.getJSON("../verbs.json")
+  .done(function (response) {
     verbs = response;
     //temporarily removed custom verbs
     showQuestion(new Question());
-
-    //console.log(verbs)
-  },
-  error: function (err) {
+  })
+  .fail(function (err) {
     console.error("Could not load verbs.json :(", err);
-  },
-});
+  });

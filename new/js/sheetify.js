@@ -1,19 +1,15 @@
 $("#subjects-settings").text("[" + JSON.parse(localStorage.getItem("userData")).subjects.join("], [") + "]");
 $("#verbs-settings").text(JSON.parse(localStorage.getItem("userData")).verbs.join(", "));
 var verbs;
-$.ajax({
-  url: "../verbs.json",
-  dataType: "json",
-  success: (response) => {
+$.getJSON("../verbs.json")
+  .done(function (response) {
     verbs = response;
-
-    //console.log(verbs)
-  },
-  error: function (err) {
+  })
+  .fail(function (err) {
     console.error("error: could not load verbs.json :(");
     console.log(err);
-  },
-});
+  });
+
 try {
   if (params.get("right") == "true" && params.has("template")) {
     $(document.body).addClass("right");

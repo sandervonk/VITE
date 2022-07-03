@@ -391,10 +391,10 @@ button[disabled],
 #print-button.disabled,
 #answers-button.disabled {
   --button-bg: var(--check-button-blank) !important;
+  --button-accent: var(--check-button-blank-accent) !important;
   border-bottom: none !important;
   margin-top: 4px !important;
   height: 40px !important;
-  --button-accent: var(--check-button-blank-accent) !important;
 }
 
 button.disabled,

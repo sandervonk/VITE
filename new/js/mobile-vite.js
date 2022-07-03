@@ -120,7 +120,6 @@ class Question {
       this.subject = this.random(split("subjects"));
       this.verb = this.random(split("verbs"));
     } else {
-      console.log("tense:", options.tense);
       this.tense = options.tense;
       this.subject = options.subject;
       this.verb = options.verb;
