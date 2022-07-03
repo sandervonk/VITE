@@ -3,11 +3,14 @@ body {
   flex-flow: column;
 }
 #level-form {
-  margin-top: 26px;
+  padding-top: 26px;
   flex-grow: 1;
   justify-content: center;
   display: flex;
   flex-flow: column;
+  box-sizing: border-box;
+  max-height: calc(100vh - 21px - 16px);
+  overflow-y: auto;
 }
 #level-form .option {
   display: flex;

@@ -24,9 +24,41 @@
     <title>VITE! - Customize Practice</title>
   </head>
   <body>
+    <header>
+      <button id="close-button" class="progress-button" type="button" onclick="window.location.href='./'"></button>
+      <div id="progress-bar" style="display: none">
+        <div id="progress-fill">
+          <div id="progress-fill-accent"></div>
+        </div>
+      </div>
+    </header>
+
+    <div id="fade-bars">
+      <div class="fade-down"></div>
+      <div class="fade-up tall"></div>
+    </div>
+    <div id="title-text">VITE! Conjugator</div>
     <div id="page-content">
-      <div id="title-text">VITE! Conjugator</div>
       <div id="info-rows">
+        <form id="search-options" class="box flex-row">
+          <select name="conjugate-verb" id="conjugate-verb" class="center">
+            <option hidden disabled selected value="">Verb</option>
+          </select>
+          <div id="search-separator" class="center">in the</div>
+          <select name="conjugate-tense" id="conjugate-tense" class="center">
+            <option hidden disabled selected value="">Tense</option>
+            <option value="pr">Présent</option>
+            <option value="pc">Passé Composé</option>
+            <option value="im">Imparfait</option>
+            <option value="co">Conditionnel</option>
+            <option value="ps">Passé Simple</option>
+            <option value="fs">Futur Simple</option>
+            <option value="fa">Futur Antérieur</option>
+            <option value="cp">Conditionnel Passé</option>
+            <option value="su">Subjonctif</option>
+            <option value="sp">Subjonctif Passé</option>
+          </select>
+        </form>
         <div id="conjugated-rows">
           <div class="box conjugate-box">
             <div class="conjugate-subject"></div>
@@ -35,15 +67,11 @@
         </div>
       </div>
     </div>
-    <div id="fade-bars">
-      <div class="fade-down"></div>
-      <div class="fade-up tall"></div>
-    </div>
     <div id="bottom-actions">
       <div id="prev-button" class="box-button fullborder primary center">
         <div id="prev-icon" class="color-mask"></div>
       </div>
-      <div id="explanation-button" class="box-button blue-button">SHOW ME HOW</div>
+      <div id="explanation-button" class="box-button blue-button">LEARN IT</div>
       <div id="next-button" class="box-button fullborder primary center">
         <div id="next-icon" class="color-mask"></div>
       </div>

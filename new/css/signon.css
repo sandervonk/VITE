@@ -288,9 +288,9 @@ input[type="button"]#change-email:active {
   box-sizing: border-box;
   margin-left: 10px;
   background-image: url(../img/icon/group-icon.svg);
-  background-size: contain;
+  background-size: 30px;
   background-repeat: no-repeat;
-  background-position: left center;
+  background-position: 7px center;
   transition: padding-left 0.5s 0s ease-out, padding-right 0.5s 0s ease-out, width 0.5s 0s ease-out, color 0.5s 0s ease-in-out;
   color: transparent;
 }

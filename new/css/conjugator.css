@@ -18,3 +18,43 @@
   margin-right: 10px;
   flex-grow: 1;
 }
+#title-text {
+  z-index: 1;
+  position: relative;
+}
+#search-options {
+  height: 51px;
+  box-sizing: border-box;
+  padding: 0px;
+  overflow: hidden;
+}
+#search-options > select,
+#search-options > #search-separator {
+  font-weight: bold;
+  font-size: 20px;
+}
+#search-options > select {
+  background-color: var(--bg);
+  border: none;
+  flex-grow: 5;
+  flex-shrink: 1;
+  flex-basis: 40%;
+  width: 40%;
+  color: var(--switch-selected);
+  text-align: center;
+  border-radius: 8px;
+  overflow-x: hidden !important;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0px 10px;
+}
+#search-options > #search-separator {
+  color: var(--secondary);
+  border: solid 3px var(--secondary);
+  border-width: 0 3px;
+  padding: 0 15px;
+  flex-grow: 1;
+  white-space: nowrap;
+  flex-shrink: 0;
+  justify-self: center;
+}

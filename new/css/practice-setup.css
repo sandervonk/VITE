@@ -84,35 +84,6 @@ button.option-toggle:active {
   margin-top: 7px !important;
   margin-bottom: 5px !important;
 }
-#fade-bars {
-  display: flex;
-  position: fixed;
-  width: calc(100% - 32px);
-  height: calc(100% - 32px);
-  flex-flow: column;
-  justify-content: space-between;
-  pointer-events: none !important;
-  z-index: 1;
-}
-#fade-bars > div {
-  width: 100%;
-  flex-shrink: 0;
-  height: 48px;
-}
-.fade-up {
-  background: linear-gradient(0deg, var(--bg) 0%, var(--bg) 70%, rgba(255, 255, 255, 0) 100%);
-
-  box-shadow: 0px 2px 0px 2px var(--bg);
-}
-.fade-down {
-  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0, var(--bg) 30%, var(--bg) 100%);
-  box-shadow: 0px -2px 0px 2px var(--bg);
-}
-.fade-up.tall {
-  height: calc(47px + 30px - 16px + 30px) !important;
-  background: linear-gradient(0deg, var(--bg) 0%, var(--bg) 80%, rgba(255, 255, 255, 0) 100%);
-}
-
 .switch-toggle {
   flex-grow: 1;
 }
