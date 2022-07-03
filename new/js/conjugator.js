@@ -36,6 +36,25 @@ function setupApp() {
           $("#conjugator-tense").val(params.get("tense"));
         }
         fillConjugations();
+        function changeVerb(change) {
+          let verbNames = Object.keys(verbs);
+
+          return function () {
+            let index = verbNames.indexOf($("#conjugator-verb").val());
+            let nextIndex = verbNames.indexOf($("#conjugator-verb").val()) + change;
+            if (nextIndex < 0) {
+              nextIndex = verbNames.length - 1;
+            } else if (nextIndex > verbNames.length - 1) {
+              nextIndex = 0;
+            }
+            $("#conjugator-verb").val(verbNames[nextIndex]);
+            fillConjugations();
+          };
+        }
+
+        $("#prev-button").click(changeVerb(-1));
+        $("#next-button").click(changeVerb(1));
+
         resolved();
       })
       .catch((err) => {
