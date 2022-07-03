@@ -1,3 +1,6 @@
+body {
+  font-family: "Next", sans-serif !important;
+}
 .conjugated-rows {
   display: flex;
   flex-flow: column;
@@ -57,4 +60,13 @@
   white-space: nowrap;
   flex-shrink: 0;
   justify-self: center;
+}
+#column-separator {
+  height: 3px;
+  border: none;
+  background-color: var(--box-border);
+  border-radius: 3px;
+  width: 70%;
+  margin: 40px auto;
+  opacity: 0.5;
 }
