@@ -9,14 +9,14 @@ class LoadCover {
   constructor() {
     try {
       if ($("meta[name=waitforload]").prop("content") && $(".loadcover").length < 1) {
-        $(document.body).append(`<div class="loadcover"></div>`);
+        $(document.body).append(`<div class="loadcover" style="z-index: 1000;"></div>`);
       }
       this.timeoutId = setTimeout(() => {
         new Toast(
           "Loading took too long. Please wait a bit and try again.",
           "default",
           5000,
-          "../img/icon/error-icon.svg",
+          "https://sander.vonk.one/VITE/new/img/icon/error-icon.svg",
           "https://sander.vonk.one/VITE/new/"
         );
       }, 10000);

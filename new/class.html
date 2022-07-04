@@ -66,9 +66,18 @@
 
       gtag("config", "G-5GF8MRX85G");
     </script>
-    <title>VITE! - Login</title>
+    <title>VITE! - Class Management</title>
   </head>
-  <body></body>
+  <body>
+    <header>
+      <button id="back-button" class="progress-button" type="button" onclick="window.history.go(-1)"></button>
+      <div id="progress-bar" style="display: none">
+        <div id="progress-fill">
+          <div id="progress-fill-accent"></div>
+        </div>
+      </div>
+    </header>
+  </body>
   <script src="js/util.js"></script>
   <script src="js/class.js"></script>
   <script src="js/firestore-page-auth.js"></script>
