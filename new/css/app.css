@@ -351,6 +351,7 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 #tutorial-title,
 .card-title,
 #retake-prior-button,
+#class-dashboard-button,
 #clear-sw-button,
 #delete-acc-button {
   font-size: 24px;
@@ -378,12 +379,16 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   --button-border: var(--check-fill-incorrect-accent);
   --button-accent: var(--blue-button-accent);
 }
-#retake-prior-button,
 #clear-sw-button,
 #delete-acc-button {
+  width: 100%;
+}
+#clear-sw-button,
+#delete-acc-button,
+#retake-prior-button,
+#class-dashboard-button {
   line-height: 40px;
   padding: 0;
-  width: 100%;
   font-family: "Next";
 }
 .footer-tab-img {

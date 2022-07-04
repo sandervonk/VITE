@@ -200,6 +200,10 @@ db.settings({ timestampsInSnapshots: true, merge: true });
 var userDoc = function () {
   return db.collection("users").doc(auth.getUid());
 };
+var classDoc = function (idIn) {
+  return db.collection("classes").doc(idIn);
+};
+
 //!code
 auth.onAuthStateChanged((user) => {
   if (user) {

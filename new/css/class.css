@@ -1,0 +1,109 @@
+#title-text {
+  margin-bottom: 20px;
+}
+#class-title {
+  font-size: 24px;
+  font-weight: 500;
+  align-items: center;
+  color: var(--text-primary);
+}
+#lock-icon {
+  height: 15px;
+  width: 15px;
+  background-color: var(--text-primary);
+  margin-left: 7px;
+  margin-bottom: 4px;
+}
+#class-preview-pane {
+  margin-bottom: 20px;
+}
+#class-description {
+  font-size: 18px;
+  color: var(--text-secondary);
+  padding-left: 5px;
+  margin-left: 5px;
+  border-left: 2px solid var(--secondary-alt);
+  white-space: pre-line;
+  text-overflow: ellipsis;
+  overflow-y: hidden;
+}
+#invites-list {
+  color: var(--text-secondary);
+}
+.input-row > hr,
+#invites-list > hr {
+  border: none;
+  flex-shrink: 0;
+  opacity: 0.5;
+  background-color: var(--box-border);
+  border-radius: 3px;
+}
+.input-row > hr {
+  width: 3px;
+  height: 70%;
+  margin: 0 10px;
+}
+#invites-list > hr {
+  width: 70%;
+  height: 3px;
+  margin: 20px auto;
+}
+
+.input-row > label {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: var(--box-border);
+  width: 35%;
+  min-width: 150px;
+  flex-grow: 0;
+  text-align: center;
+}
+.input-row {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: stretch;
+  padding: 0px;
+  height: 45px;
+  box-sizing: border-box;
+  font-family: "Next", sans-serif !important;
+  overflow: hidden;
+  margin-bottom: 20px;
+}
+.input-row > label,
+.input-row > input {
+  padding: 0 10px;
+  font-size: 18px;
+  font-weight: 500;
+  font-family: inherit;
+  border-radius: 0 10px 10px 0;
+  overflow-y: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  box-sizing: border-box;
+  border: none;
+  background-color: var(--box-bg);
+}
+label[for="join-code"] > #lock-icon {
+  height: 14px;
+  width: 14px;
+  flex-grow: 0;
+  margin-left: 10px;
+}
+input[type="text"] {
+  color: var(--text-primary);
+}
+input[disabled],
+input::placeholder {
+  color: var(--box-border);
+}
+
+#join-code {
+  text-align: center;
+  flex-grow: 1;
+}
+
+label[for="join-code"] ~ hr {
+  margin-right: 0 !important;
+}

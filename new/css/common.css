@@ -1,3 +1,33 @@
+/** ANIMATION **/
+
+@keyframes slideIn {
+  from {
+    transform: translateX(-50%) translateY(100%);
+  }
+  to {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+}
+@keyframes slideOut {
+  from {
+    transform: translateX(-50%) translateY(0);
+    opacity: 1;
+  }
+  to {
+    transform: translateX(-50%) translateY(100%);
+    opacity: 0;
+  }
+}
+@keyframes fadeIn {
+  from {
+    opacity: 0 !important;
+  }
+  to {
+    opacity: 0.5 !important;
+  }
+}
+
 /** FONTS **/
 /*nunito*/
 @import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap");
@@ -354,33 +384,7 @@ input:checked + .switch-label {
 }
 
 /** TOAST **/
-@keyframes slideIn {
-  from {
-    transform: translateX(-50%) translateY(100%);
-  }
-  to {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-  }
-}
-@keyframes slideOut {
-  from {
-    transform: translateX(-50%) translateY(0);
-    opacity: 1;
-  }
-  to {
-    transform: translateX(-50%) translateY(100%);
-    opacity: 0;
-  }
-}
-@keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 0.5;
-  }
-}
+
 .toast {
   z-index: 100000001;
   pointer-events: none;
@@ -437,7 +441,8 @@ input:checked + .switch-label {
   width: 100%;
   height: 100%;
   background: #000000;
-  animation: fadeIn 0.25s forwards;
+  opacity: 0.5;
+  animation: fadeIn 0.25s forwards infinite;
 }
 @media (min-width: 500px) {
   @keyframes slideIn {
@@ -499,17 +504,27 @@ input:checked + .switch-label {
     pointer-events: none !important;
   }
 }
-.blue-button {
+.blue-button,
+.green-button {
   font-size: 20px;
   font-weight: 500;
   white-space: nowrap;
   text-align: center;
+}
+.blue-button {
   --button-bg: var(--blue-button-bg);
   --button-border: var(--blue-button-border);
   --button-accent: var(--blue-button-accent);
 }
+.green-button {
+  --button-bg: var(--check-fill);
+  --button-border: var(--check-fill-accent);
+  --button-accent: var(--check-button-accent);
+}
 .blue-button.disabled,
-.blue-button[disabled] {
+.green-button.disabled,
+.blue-button[disabled],
+.green-button[disabled] {
   --button-bg: var(--check-button-blank) !important;
   --button-accent: var(--check-button-blank-accent) !important;
   --button-border: var(--check-button-blank-accent) !important;
@@ -568,7 +583,8 @@ input:checked + .switch-label {
   display: flex;
   flex-flow: row nowrap;
 }
-.delete-user {
+.delete-user,
+.delete-document {
   --button-bg: var(--check-fill-incorrect) !important;
   --button-border: var(--check-fill-incorrect-accent) !important;
   --button-accent: var(--blue-button-accent) !important;
@@ -672,10 +688,16 @@ input:checked + .switch-label {
 #reload-icon,
 #next-icon,
 #prev-icon,
-#save-icon {
+#save-icon,
+#visibility-icon,
+#lock-icon {
   background-color: var(--box-border);
   height: 100%;
   width: 100%;
+  mask-position: center center;
+  -webkit-mask-position: center center;
+  mask-size: contain;
+  -webkit-mask-size: contain;
 }
 #reload-icon {
   mask-image: url(../img/icon/reset-icon.png);
@@ -710,7 +732,32 @@ input:checked + .switch-label {
   -webkit-mask-image: url(../img/icon/group-icon.png);
   -webkit-mask-image: url(../img/icon/group-icon.svg);
 }
+#visibility-icon {
+  mask-image: url(../img/icon/eye-icon.png);
+  mask-image: url(../img/icon/eye-icon.svg);
+  -webkit-mask-image: url(../img/icon/eye-icon.png);
+  -webkit-mask-image: url(../img/icon/eye-icon.svg);
+}
 
+#visibility-icon.alt {
+  mask-image: url(../img/icon/eye-crossed-icon.png);
+  mask-image: url(../img/icon/eye-crossed-icon.svg);
+  -webkit-mask-image: url(../img/icon/eye-crossed-icon.png);
+  -webkit-mask-image: url(../img/icon/eye-crossed-icon.svg);
+}
+#lock-icon {
+  mask-image: url(../img/icon/lock-open-icon.png);
+  mask-image: url(../img/icon/lock-open-icon.svg);
+  -webkit-mask-image: url(../img/icon/lock-open-icon.png);
+  -webkit-mask-image: url(../img/icon/lock-open-icon.svg);
+}
+
+#lock-icon.alt {
+  mask-image: url(../img/icon/lock-closed-icon.png);
+  mask-image: url(../img/icon/lock-closed-icon.svg);
+  -webkit-mask-image: url(../img/icon/lock-closed-icon.png);
+  -webkit-mask-image: url(../img/icon/lock-closed-icon.svg);
+}
 /** DECOR **/
 
 #fade-bars {

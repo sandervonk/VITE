@@ -10,16 +10,18 @@ class LoadCover {
     try {
       if ($("meta[name=waitforload]").prop("content") && $(".loadcover").length < 1) {
         $(document.body).append(`<div class="loadcover" style="z-index: 1000;"></div>`);
+        // this.timeoutId = setTimeout(() => {
+        //   if ($(document.body).has(".loadcover:not(.hide)")) {
+        //     new Toast(
+        //       "Loading took too long. Please wait a bit and try again.",
+        //       "default",
+        //       5000,
+        //       "https://sander.vonk.one/VITE/new/img/icon/error-icon.svg",
+        //       "https://sander.vonk.one/VITE/new/"
+        //     );
+        //   }
+        // }, 10000);
       }
-      this.timeoutId = setTimeout(() => {
-        new Toast(
-          "Loading took too long. Please wait a bit and try again.",
-          "default",
-          5000,
-          "https://sander.vonk.one/VITE/new/img/icon/error-icon.svg",
-          "https://sander.vonk.one/VITE/new/"
-        );
-      }, 10000);
     } catch (err) {
       console.warn("could not setup loading animation, error:", err);
     }
@@ -27,10 +29,12 @@ class LoadCover {
   hide() {
     $(".loadcover").addClass("hide");
     this.removeTheme();
+    removeTimer();
   }
   remove() {
     this.hide();
     $(".loadcover").remove();
+    removeTimer();
   }
   removeTheme() {
     $(".theme-load-color").remove();

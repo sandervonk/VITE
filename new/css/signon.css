@@ -73,29 +73,34 @@ body * {
 }
 #signup-box input,
 #verification-box input {
-  border: solid var(--input);
+  border-style: solid;
+  border-color: var(--input);
   border-radius: 5px;
   color: var(--input);
   width: 100%;
-  height: 44px;
+  /* height: 44px; */
   box-sizing: border-box;
   font-family: "Next", sans-serif;
   padding: 0 12px;
   font-size: 20px;
+}
+#email-input,
+#password-input {
+  height: 44px;
 }
 #verification-box input[type="button"] {
   color: white;
   border-color: var(--button-border);
   border-radius: 11px;
 }
-#signup-box input[type="submit"].box-button:active,
+/* #signup-box input[type="submit"].box-button:active,
 #verification-box input[type="button"]:active,
 #edu-back:active,
 #extended-options > *:active {
   height: 48px;
   margin-bottom: 0 !important;
   margin-top: 2px;
-}
+} */
 #signup-box input[type="date"] {
   text-align: center;
 }

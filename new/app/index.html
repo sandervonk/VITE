@@ -58,7 +58,7 @@
       content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
     />
     <meta name="og:image" content="https://sander.vonk.one/VITE/img/social-img/new/social-og.png" />
-    <meta name="og:url" content="https://sander.vonk.one/VITE/mobile/" />
+    <meta name="og:url" content="https://sander.vonk.one/VITE/new/" />
     <meta name="og:site_name" content="VITE! French Conjugation Practice" />
     <meta name="og:type" content="website" />
     <!-- Analytics!! -->
@@ -190,14 +190,29 @@
               </div>
             </form>
             <div class="settings-section" id="prior-section blue-button">
-              <div class="section-title">Prior Knowledge</div>
+              <div class="section-title">Level and Groups</div>
               <div class="section-content box">
                 <div class="section-description">
-                  Click below to re-open the starting level chooser. This will let you start at an easier or harder level than before!
+                  Re-open the starting prior knowledge panel to chose a new starting level. Create or join a class to keep track of your progress
                 </div>
-                <button class="box-button blue-button" id="retake-prior-button" onclick="window.location.href = '../onboarding.html?showTutorial=false' ">
-                  Open
-                </button>
+                <div class="flex-row">
+                  <button
+                    class="box-button blue-button"
+                    id="retake-prior-button"
+                    style="flex-grow: 1"
+                    onclick="window.location.href = '../onboarding.html?showTutorial=false' "
+                  >
+                    Open
+                  </button>
+                  <button
+                    class="box-button green-button"
+                    id="class-dashboard-button"
+                    style="margin-left: 10px; flex-grow: 1; color: white"
+                    onclick="window.location.href = '../class/' "
+                  >
+                    Join
+                  </button>
+                </div>
               </div>
             </div>
             <div class="settings-section" id="other-section" style="margin-bottom: 0">
