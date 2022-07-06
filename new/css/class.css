@@ -1,7 +1,12 @@
+.codebox-row,
+.codebox-row * {
+  cursor: pointer;
+}
 #title-text {
   margin-bottom: 20px;
 }
-#class-title {
+#class-title,
+#student-class-title {
   font-size: 24px;
   font-weight: 500;
   align-items: center;
@@ -13,11 +18,14 @@
   background-color: var(--text-primary);
   margin-left: 7px;
   margin-bottom: 4px;
+  flex-grow: 0 !important;
 }
-#class-preview-pane {
+#class-preview-pane,
+#student-class-pane {
   margin-bottom: 20px;
 }
-#class-description {
+#class-description,
+#student-class-description {
   font-size: 18px;
   color: var(--text-secondary);
   padding-left: 5px;
@@ -99,7 +107,8 @@ input::placeholder {
   color: var(--box-border);
 }
 
-#join-code {
+#join-code,
+#student-info-code {
   text-align: center;
   flex-grow: 1;
 }
@@ -122,9 +131,14 @@ label[for="join-code"] ~ hr {
   flex-basis: 20px;
   flex-shrink: 1;
 }
-#student-join-class {
+#student-join-class,
+#student-leave-class {
   display: flex;
   flex-flow: column;
   box-sizing: border-box;
   max-width: 100%;
+}
+#student-info-code-row {
+  margin-bottom: 0;
+  margin-top: 10px;
 }

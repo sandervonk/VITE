@@ -174,3 +174,7 @@ hr.separator {
   margin: 6px 10px;
   height: unset;
 }
+.codebox-row,
+.codebox-row * {
+  cursor: pointer;
+}

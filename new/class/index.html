@@ -70,19 +70,34 @@
           <hr />
         </div>
       </div>
-      <div id="class-code" class="input-row box" classload>
+      <div id="class-code" class="input-row box codebox-row" classload>
         <label for="join-code">Join Code</label>
         <hr />
-        <input type="text" disabled id="join-code" placeholder="—" />
+        <input type="text" class="codebox" disabled id="join-code" placeholder="—" />
       </div>
       <div id="actions-row" class="flex-row">
         <div id="delete-button" style="flex-grow: 1" class="box-button blue-button disabled delete-document" classload>DELETE</div>
-        <div id="manage-button" style="flex-grow: 1; margin-left: 10px" class="box-button blue-button disabled" classload>MANAGE</div>
+        <div id="manage-button" placeholdaction style="flex-grow: 1; margin-left: 10px" class="box-button blue-button disabled" classload>MANAGE</div>
       </div>
       <div id="student-join-options" forstudent>
-        <div class="section-title secondary">Student options</div>
+        <div class="section-title secondary">Your Class:</div>
         <div id="student-class-actions" class="flex-row" style="margin-top: 10px;">
-          <div id="student-leave-class" class="box-button red-button disabled"  style="display: none;">Leave</div>
+          <div id="student-leave-class" style="display: none;">
+            <div id="student-class-pane" class="box">
+              <div id="student-class-title" class="flex-row">
+                <div id="student-class-name">Name</div>
+                <div id="lock-icon"></div>
+              </div>
+              <div id="student-class-description">Description</div>
+              <div id="student-info-code-row" class="input-row box codebox-row">
+                <label for="student-class-code">Class Code</label>
+                <hr />
+                <input type="text" disabled id="student-class-code" class="codebox" placeholder="—" />
+              </div>
+            </div>
+            <div id="student-leave-button" class="box-button red-button disabled">Leave</div>
+          </div>
+          
           <div id="student-join-class" style="display: none;">
             <div id="student-class-code" class="input-row box">
               <label for="student-join-code">Join Code</label>

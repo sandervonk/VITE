@@ -1,11 +1,13 @@
 var userClasses = {},
-  studentClass;
+  studentClass,
+  studentClassID;
 $("[classload], [forstudent]").hide();
 function setupApp() {
   return new Promise(function (fulfilled, rejected) {
     userDoc()
       .get()
       .then((doc) => {
+        let userDocument = doc.data();
         userClasses = doc.data().classes;
         $("#class-index").text((userClasses.length > 0 ? "1" : "0") + "/" + userClasses.length);
         currentClass = userClasses[0];
@@ -27,13 +29,7 @@ function setupApp() {
                 rejected(error);
               });
           } else {
-            new Toast(
-              "Looks like you dont have a class yet, lets get you started creating one. Try clicking the 'add' button below",
-              "default",
-              2000,
-              "../img/icon/warning-icon.svg"
-            );
-            studentJoin();
+            studentJoin(userDocument);
           }
         }
       })
@@ -43,40 +39,85 @@ function setupApp() {
       });
   });
 }
+function removeSavedClassCode() {
+  userDoc()
+    .update({ classcode: "" }, { merge: true })
+    .then(() => {
+      window.location.reload();
+    })
+    .catch((err) => {
+      new Toast("Error removing saved class code: " + err.code, "default", 2000, "../img/icon/error-icon.svg");
+    });
+}
+function studentInClass() {
+  $("#student-leave-class").show();
+  $("#student-join-class, #bottom-actions").hide();
+  $("#student-leave-class, #student-leave-class *").removeClass("disabled");
+  $("#student-join-class, #student-join-class *").addClass("disabled");
+  $("#title-text").text("Student Class Dashboard");
+  $("#student-class-name").text(studentClass.name);
+  $("#student-class-description").text(studentClass.description);
+  $("#student-class-code").val(studentClassID);
+  if (studentClass.visibility == "private") {
+    $("#lock-icon").addClass("alt");
+  }
+}
 function studentNotInClass() {
   $("#student-leave-class").hide();
   $("#student-join-class").show();
   $("#student-leave-class, #student-leave-class *").addClass("disabled");
   $("#student-join-class, #student-join-class *").removeClass("disabled");
-  console.warn("Not currently in a class");
+  new Toast(
+    "Looks like you dont have a class yet, lets get you started creating one. Try clicking the 'add' button below",
+    "default",
+    2000,
+    "../img/icon/warning-icon.svg"
+  );
 }
-function studentJoin() {
+function studentJoin(userDocData) {
   $("[forstudent]").show();
-  // $("#student-class-actions .box-button").removeClass("disabled");
-  userDoc()
-    .get()
-    .then((doc) => {
-      classDoc(doc.data().classcode)
-        .get()
-        .then((classDocument) => {
-          if (classDocument.exists) {
-            studentClass = classDocument.data();
-            $("#student-leave-class").show();
-            $("#student-join-class").hide();
-            $("#student-leave-class, #student-leave-class *").removeClass("disabled");
-            $("#student-join-class, #student-join-class *").addClass("disabled");
-            console.warn("In a class, loaded with data:");
+  if (userDocData.classcode) {
+    classDoc(userDocData.classcode)
+      .get()
+      .then((classDocument) => {
+        if (classDocument.exists && classDocument.data().members.includes(auth.getUid())) {
+          studentClass = classDocument.data();
+          studentClassID = userDocData.classcode;
+          studentInClass(classDocument);
+        } else if (classDocument.exists) {
+          studentClass = classDocument.data();
+          studentClassID = userDocData.classcode;
+          if (
+            studentClass.visibility == "public" ||
+            studentClass.invited.includes(auth.getUid()) ||
+            studentClass.invited.includes(auth.currentUser.email)
+          ) {
+            new Toast("Looks like you're in a class, but not its member's list, adding you now...", "default", 2000, "../img/icon/warning-icon.svg");
+            classDoc(doc.data().classcode)
+              .update({ members: firebase.firestore.FieldValue.arrayUnion(auth.getUid()) })
+              .then(() => {
+                window.location.reload();
+              });
           } else {
-            studentNotInClass();
+            new Toast(
+              "You're a saved member of a class, but it looks like it's private and you weren't invited, removing saved value",
+              "default",
+              2000,
+              "../img/icon/warning-icon.svg"
+            );
+            removeSavedClassCode();
           }
-        })
-        .catch((err) => {
-          studentNotInClass();
-        });
-    })
-    .catch((err) => {
-      new Toast("Error loading user document: " + err.code, "default", 2000, "../img/icon/error-icon.svg");
-    });
+        } else {
+          new Toast("Found saved class code, but did not match any classes, removing", "default", 2000, "../img/icon/warning-icon.svg");
+          removeSavedClassCode();
+        }
+      })
+      .catch((err) => {
+        studentNotInClass();
+      });
+  } else {
+    studentNotInClass();
+  }
 }
 //non-action setup functions
 function createClass() {
@@ -146,8 +187,64 @@ function deleteClass() {
       $("#delete-button").removeClass("disabled");
     });
 }
-$("#class-code").click(function () {
-  el = $("#join-code")[0];
+/*student*/
+function joinClass(attemptedCode) {
+  classDoc(attemptedCode)
+    .get()
+    .then((classDocument) => {
+      prospectiveClass = classDocument.data();
+      if (
+        prospectiveClass.visibility == "public" ||
+        prospectiveClass.invited.includes(auth.getUid()) ||
+        prospectiveClass.invited.includes(auth.currentUser.email)
+      ) {
+        classDoc(attemptedCode)
+          .update({ members: firebase.firestore.FieldValue.arrayUnion(auth.getUid()) })
+          .then(() => {
+            userDoc()
+              .update({ classcode: attemptedCode })
+              .then(() => {
+                new Toast("Joined class successfully!", "default", 2000, "../img/icon/success-icon.svg", "./index.html");
+              })
+              .catch((err) => {
+                new Toast("Could not save class code to user data: " + err.code, "default", 2000, "../img/icon/warning-icon.svg");
+              });
+          })
+          .catch((err) => {
+            new Toast("Something went wrong adding you to the members list: " + err.code, "default", 2000, "../img/icon/error-icon.svg");
+          });
+      } else {
+        new Toast("Sorry, this class is private, and you haven't been invited yet", "default", 2000, "../img/icon/warning-icon.svg");
+      }
+    })
+    .catch((err) => {
+      new Toast("Could not find a class for this code: ", err, "default", 2000, "../img/icon/warning-icon.svg");
+    });
+}
+
+function leaveClass() {
+  $("#student-leave-class, #student-leave-class *").removeClass("disabled");
+  classDoc(studentClassID)
+    .update({ members: firebase.firestore.FieldValue.arrayRemove(auth.getUid()) })
+    .then(() => {
+      userDoc()
+        .update({ classcode: "" })
+        .then(() => {
+          new Toast("Left class successfully!", "default", 2000, "../img/icon/success-icon.svg", "./index.html");
+        })
+        .catch((err) => {
+          new Toast("Could not remove class code from user data: " + err.code, "default", 2000, "../img/icon/warning-icon.svg");
+        });
+    })
+    .catch((err) => {
+      new Toast("Something went wrong removing you from the members list: " + err.code, "default", 2000, "../img/icon/error-icon.svg");
+    });
+  removePopup();
+}
+
+/*listeners*/
+$("#class-code, #student-info-code-row").click(function () {
+  el = $(this).children(".codebox")[0];
   if (el.value == "") {
     new Toast("Make sure you've created a class to get your code, then tap here again to copy it", "default", 2000, "../img/icon/warning-icon.svg");
   } else {
@@ -161,7 +258,7 @@ $("#class-code").click(function () {
       })
       .catch((err) => {
         new Toast("Error copying class code: " + err.toString(), "default", 2000, "../img/icon/warning-icon.svg");
-        $("#join-code").removeAttr("disabled");
+        $("#join-code, #student-class-code").removeAttr("disabled");
       });
   }
 });
@@ -172,6 +269,23 @@ $("#delete-button").click(function () {
     ["deleteClass()", "Yes", "primary-action blue-button delete-document"],
   ]);
 });
-$("#manage-button, #student-join-button").click(function () {
+$("#student-leave-button").click(function () {
+  $(this).addClass("disabled");
+  new Popup("Are you sure you want to leave this class?", "box fullborder default", 10000, "../img/icon/info-icon.svg", [
+    ["removePopup(); $('#student-leave-class, #student-leave-class *').removeClass('disabled')", "Cancel", "secondary-action fullborder"],
+    ["leaveClass()", "Yes", "primary-action blue-button delete-document"],
+  ]);
+});
+
+$("#student-join-button").click(function () {
+  let attemptedCode = $("#student-join-code").val();
+  if (attemptedCode == "") {
+    new Toast("Please enter a class code", "default", 2000, "../img/icon/warning-icon.svg");
+  } else {
+    joinClass(attemptedCode);
+  }
+});
+
+$("[placeholdaction]").click(function () {
   new Toast("Shhhhh dw about it I'm definitely not too lazy to implement this rn", "default", 1500, "../img/icon/concern-icon.svg");
 });
