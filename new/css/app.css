@@ -366,11 +366,12 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 .settings-section {
   margin-bottom: 30px;
 }
-#saves-section,
-#pacing-section {
+#saves-section > *,
+#pacing-section > * {
   pointer-events: none;
 }
-#pacing-section {
+#pacing-section,
+#saves-section {
   opacity: 0.5;
   user-select: none;
 }

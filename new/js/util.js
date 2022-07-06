@@ -169,3 +169,8 @@ try {
 } catch (err) {
   console.error("Error setting theme: ", err);
 }
+
+//other
+$("[placeholdaction]").click(function () {
+  new Toast("This feature hasn't been implemented yet, sorry! 🤫", "default", 1500, "../img/icon/concern-icon.svg");
+});

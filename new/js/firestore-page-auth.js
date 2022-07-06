@@ -79,12 +79,20 @@ function setupGoal(goalNum, goalXp) {
     });
   }
 }
-function setupSettings(jsonIn) {
+function setupSettings(jsonIn, ownsClass, inClass) {
   for (let key of Object.keys(jsonIn)) {
     let switchSel = "[name=" + key + "][value=" + jsonIn[key] + "]";
     $(switchSel).attr("checked", true);
   }
   setupTheme(jsonIn);
+  if (ownsClass) {
+    $("#class-dashboard-button").text("Manage");
+  } else if (inClass) {
+    $("#class-dashboard-button").text("Options");
+  }
+  if (auth.currentUser.isAnonymous) {
+    $('[for="saves-yes"].switch-label').text("No");
+  }
 }
 function setupDailyXP(prevGoal) {
   let updatedJSON = {};
@@ -108,7 +116,7 @@ function setDefaultSettings() {
     userDoc()
       .update(updateJSON, { merge: true })
       .then(() => {
-        setupSettings({ theme: "light", pacing: "no", saves: "yes" });
+        setupSettings({ theme: "light", pacing: "no", saves: "yes" }, false, false);
         setupGoal(30, 0);
       });
   });
@@ -118,7 +126,7 @@ function startSettings() {
     .get()
     .then((r) => {
       settings = r.data().prefs;
-      setupSettings(settings);
+      setupSettings(settings, r.data().classes && r.data().classes.length > 0, r.data().classcode) && r.data().classcode.length > 0;
       if (settings == undefined || r.data().goal == undefined) {
         setDefaultSettings();
       } else if (r.data().xphistory[date] == undefined) {

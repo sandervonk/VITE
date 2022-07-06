@@ -298,7 +298,3 @@ $("#student-join-button").click(function () {
     joinClass(attemptedCode);
   }
 });
-
-$("[placeholdaction]").click(function () {
-  new Toast("Shhhhh dw about it I'm definitely not too lazy to implement this rn", "default", 1500, "../img/icon/concern-icon.svg");
-});
