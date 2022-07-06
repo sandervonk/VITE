@@ -55,6 +55,7 @@ function studentInClass() {
   $("#student-leave-class, #student-leave-class *").removeClass("disabled");
   $("#student-join-class, #student-join-class *").addClass("disabled");
   $("#title-text").text("Student Class Dashboard");
+  $("#student-join-options .section-title").text("Your Class:");
   $("#student-class-name").text(studentClass.name);
   $("#student-class-description").text(studentClass.description);
   $("#student-class-code").val(studentClassID);
@@ -65,10 +66,11 @@ function studentInClass() {
 function studentNotInClass() {
   $("#student-leave-class").hide();
   $("#student-join-class").show();
+  $("#add-button").text("CREATE CLASS");
   $("#student-leave-class, #student-leave-class *").addClass("disabled");
   $("#student-join-class, #student-join-class *").removeClass("disabled");
   new Toast(
-    "Looks like you dont have a class yet, lets get you started creating one. Try clicking the 'add' button below",
+    "Looks like you dont have a class yet, lets get you started creating one. Try clicking the 'create class' button below",
     "default",
     2000,
     "../img/icon/warning-icon.svg"
