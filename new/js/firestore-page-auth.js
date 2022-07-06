@@ -239,17 +239,18 @@ auth.onAuthStateChanged((user) => {
         $("meta[name=noauthenforce]").prop("content") ? "" : "https://sander.vonk.one/VITE/new/app/"
       );
     } else {
-      if (auth.currentUser.isAnonymous) {
+      if (auth.currentUser.isAnonymous || auth.currentUser.email == null) {
         if ($("meta[name=guestprompt]").prop("content")) {
           new Toast("Logged in as guest, your progress will not be saved!", "transparent", 1500, "../img/icon/warning-icon.svg");
         } else if ($("meta[name=requireemail]").prop("content")) {
           new Toast(
-            "You need to be signed in with a non-anonymous provider and have your email verified to use this app, sorry!",
+            "You need to be signed in with a non-anonymous provider that provides an email use this feature, sorry!",
             "transparent",
             4000,
             "../img/icon/error-icon.svg",
             "https://sander.vonk.one/VITE/new/app/"
           );
+          throw "cannot use this page as a guest";
         } else {
           console.warn("Signed in as guest");
         }
