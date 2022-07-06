@@ -301,12 +301,29 @@ auth.onAuthStateChanged((user) => {
     );
   }
 });
-
+function signOut() {
+  if (auth.currentUser.isAnonymous == true) {
+    userDoc()
+      .delete()
+      .then(() => {
+        console.log("deleted user document");
+        auth.currentUser.delete().catch((error) => {
+          console.error("couldn't delete user account", error);
+        });
+      })
+      .catch((err) => {
+        new Toast("Could not delete guest data, Error: " + err, "default", 3000, "../img/icon/error-icon.svg");
+        setTimeout(auth.currentUser.delete, 100000);
+      });
+  } else {
+    auth.signOut();
+  }
+}
 //! listeners
 $("[auth='logout-button']").click((e) => {
   new Popup("Are you sure you want to sign out?", "box fullborder default", 10000, "../img/icon/info-icon.svg", [
     ["removePopup()", "Cancel", "secondary-action fullborder"],
-    ["auth.signOut(); removePopup()", "Yes", "primary-action"],
+    ["signOut(); removePopup()", "Yes", "primary-action"],
   ]);
 });
 $("[auth='menu']").click((e) => {
