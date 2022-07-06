@@ -370,7 +370,7 @@ function deleteUser() {
       window.location.reload(true);
     })
     .catch(function (error) {
-      new Toast("Could not delete user, got error: " + error.toString(), "default", 1000, "../img/icon/error-icon.svg");
+      new Toast("Could not delete user, got error: " + error.toString(), "default", 2000, "../img/icon/error-icon.svg", ".");
     });
 }
 $(document.body).on("click", "#delete-acc-button, #account-delete", (e) => {
