@@ -14,7 +14,7 @@ $("#visibility-icon").click(function () {
     `Set class visibility to ${$(this).attr("private") == "true" ? "private" : "public"}`,
     "transparent",
     500,
-    `img/icon/info-${$(this).attr("private") == "true" ? "" : "un"}locked-icon.svg`
+    `../img/icon/info-${$(this).attr("private") == "true" ? "" : "un"}locked-icon.svg`
   );
 });
 $("#code-row").click(function () {
@@ -38,9 +38,9 @@ $("#code-row").click(function () {
 });
 $("#class-settings").on("input change", function () {
   if ($("#class-name").val().length >= 4) {
-    $("#bottom-actions > .box-button").removeClass("disabled");
+    $("#create-button").removeClass("disabled");
   } else {
-    $("#bottom-actions > .box-button").addClass("disabled");
+    $("#create-button").addClass("disabled");
   }
 });
 $("#invites-add").submit(function (e) {

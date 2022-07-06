@@ -115,12 +115,15 @@ hr.separator {
 #invites-add > input[type="email"] {
   margin-right: 10px;
   flex-basis: 30px;
-  flex-grow: 1;
+  flex-grow: 3;
   color: var(--text-primary);
   border: none;
   background-color: var(--secondary);
   height: 40px;
   box-sizing: border-box;
+}
+#invites-add > input[type="submit"] {
+  flex-grow: 1;
 }
 #invites-list {
   max-height: 200px;

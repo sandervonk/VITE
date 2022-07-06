@@ -1,4 +1,6 @@
-var userClasses = {};
+var userClasses = {},
+  studentClass;
+$("[classload], [forstudent]").hide();
 function setupApp() {
   return new Promise(function (fulfilled, rejected) {
     userDoc()
@@ -7,7 +9,6 @@ function setupApp() {
         userClasses = doc.data().classes;
         $("#class-index").text((userClasses.length > 0 ? "1" : "0") + "/" + userClasses.length);
         currentClass = userClasses[0];
-        $("[classload]").hide();
         if (params && params.has("class")) {
           HTMLFromID(params.get("class"))
             .then(() => {
@@ -32,6 +33,7 @@ function setupApp() {
               2000,
               "../img/icon/warning-icon.svg"
             );
+            studentJoin();
           }
         }
       })
@@ -40,6 +42,41 @@ function setupApp() {
         rejected(error);
       });
   });
+}
+function studentNotInClass() {
+  $("#student-leave-class").hide();
+  $("#student-join-class").show();
+  $("#student-leave-class, #student-leave-class *").addClass("disabled");
+  $("#student-join-class, #student-join-class *").removeClass("disabled");
+  console.warn("Not currently in a class");
+}
+function studentJoin() {
+  $("[forstudent]").show();
+  // $("#student-class-actions .box-button").removeClass("disabled");
+  userDoc()
+    .get()
+    .then((doc) => {
+      classDoc(doc.data().classcode)
+        .get()
+        .then((classDocument) => {
+          if (classDocument.exists) {
+            studentClass = classDocument.data();
+            $("#student-leave-class").show();
+            $("#student-join-class").hide();
+            $("#student-leave-class, #student-leave-class *").removeClass("disabled");
+            $("#student-join-class, #student-join-class *").addClass("disabled");
+            console.warn("In a class, loaded with data:");
+          } else {
+            studentNotInClass();
+          }
+        })
+        .catch((err) => {
+          studentNotInClass();
+        });
+    })
+    .catch((err) => {
+      new Toast("Error loading user document: " + err.code, "default", 2000, "../img/icon/error-icon.svg");
+    });
 }
 //non-action setup functions
 function createClass() {
@@ -135,6 +172,6 @@ $("#delete-button").click(function () {
     ["deleteClass()", "Yes", "primary-action blue-button delete-document"],
   ]);
 });
-$("#manage-button").click(function () {
+$("#manage-button, #student-join-button").click(function () {
   new Toast("Shhhhh dw about it I'm definitely not too lazy to implement this rn", "default", 1500, "../img/icon/concern-icon.svg");
 });

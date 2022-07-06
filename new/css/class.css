@@ -107,3 +107,24 @@ input::placeholder {
 label[for="join-code"] ~ hr {
   margin-right: 0 !important;
 }
+.flex-row > div {
+  flex-grow: 1;
+}
+/* #student-class-actions > .box-button {
+  --button-accent: var(--blue-button-accent);
+} */
+#student-class-actions {
+  box-sizing: border-box;
+}
+#student-class-actions .box-button {
+  flex-grow: 1;
+  max-width: 100%;
+  flex-basis: 20px;
+  flex-shrink: 1;
+}
+#student-join-class {
+  display: flex;
+  flex-flow: column;
+  box-sizing: border-box;
+  max-width: 100%;
+}

@@ -79,6 +79,19 @@
         <div id="delete-button" style="flex-grow: 1" class="box-button blue-button disabled delete-document" classload>DELETE</div>
         <div id="manage-button" style="flex-grow: 1; margin-left: 10px" class="box-button blue-button disabled" classload>MANAGE</div>
       </div>
+      <div id="student-join-options" forstudent>
+        <div class="section-title secondary">Student options</div>
+        <div id="student-class-actions" class="flex-row" style="margin-top: 10px;">
+          <div id="student-leave-class" class="box-button red-button disabled"  style="display: none;">Leave</div>
+          <div id="student-join-class" style="display: none;">
+            <div id="student-class-code" class="input-row box">
+              <label for="student-join-code">Join Code</label>
+              <hr />
+              <input type="text" id="student-join-code" placeholder="Enter Code Here" />
+            </div>
+            <div id="student-join-button" class="box-button green-button disabled">Join</div>
+          </div>
+      </div>
     </div>
     <div id="bottom-actions">
       <div id="prev-button" class="box-button fullborder primary center disabled" onclick="HTMLFromID(cycleClasses(-1))">
