@@ -38,6 +38,8 @@ class tutorialObject {
       $(nextTab).addClass("active");
       $("#page-content, body").attr("activetab", next);
       this.setText(next);
+    } else if (next == "none" && params.get("classPanel") == "true") {
+      new Toast("Opening the class panel", "default", 750, "../img/icon/group-info-icon.svg", "../class/");
     } else if (next == "none") {
       window.location.href = "./";
     }
@@ -55,6 +57,8 @@ if (path != null) {
 }
 if (showTutorial == "true") {
   tutorialClass = new tutorialObject();
+} else if (params.get("classPanel") == "true") {
+  new Toast("Opening the class panel", "default", 750, "./img/icon/group-info-icon.svg", "../class/");
 }
 $(".footer-item").click((e) => {
   setTab(e.target.id, true);

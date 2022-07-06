@@ -1,4 +1,3 @@
-history.replaceState({}, "", "./");
 var verificationInterval;
 //control pages of auth (for verification)
 function firstPage() {
@@ -21,10 +20,10 @@ $(document.body).on("click", "#send-verification.ready", function () {
 });
 //redirects
 function openOnboard() {
-  window.location.href = "./onboarding.html";
+  window.location.href = "./onboarding.html" + (params.get("classPanel") == "true" ? "?classPanel=true" : "");
 }
 function openApp() {
-  window.location.href = "./app/";
+  window.location.href = "./app/" + (params.get("classPanel") == "true" ? "?classPanel=true" : "");
 }
 //catch errors
 function authError(error) {
@@ -92,7 +91,6 @@ function verifyButton(userObj) {
 auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("user logged in:");
-    console;
     let authData = auth.currentUser.metadata,
       doOnboard = false;
     userDoc()
@@ -158,8 +156,6 @@ authForm.on("submit", (e) => {
           {
             joined: new Date().getTime(),
             prefs: { theme: "light", pacing: "no", saves: "yes" },
-            education: params.get("edu-code") != null ? params.get("edu-code") : "",
-            joinCode: params.get("join-code") != null ? params.get("join-code") : "",
           },
           { merge: true }
         );
@@ -214,11 +210,11 @@ $("#twitter-login").click((e) => {
     .signInWithPopup(provider)
     .catch((err) => providerError("Twitter", err));
 });
-if (params.get("edu-code") != null) {
-  $("#extended-options, #provider-login").hide();
-  if (params.get("edu-code") == "student") {
-    $("#education-options").show();
-    $("#join-code").val(params.get("join-code"));
-  }
-  new Toast("Continued to signup as a " + params.get("edu-code"), "default", 5000, "img/icon/info-icon.svg");
+function eduSignup() {
+  $("#extended-options").hide();
+  params.set("classPanel", true);
+  new Toast("You'll be redirected to the class dashboard after completing the tutorial!", "default", 5000, "img/icon/group-info-icon.svg");
+}
+if (params.get("classPanel") == "true") {
+  eduSignup();
 }

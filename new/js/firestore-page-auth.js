@@ -232,16 +232,24 @@ auth.onAuthStateChanged((user) => {
       });
     if (!auth.currentUser.emailVerified && !auth.currentUser.isAnonymous && !auth.currentUser.email == null) {
       new Toast(
-        "Please verify your email to use the app!",
+        "Please verify your email to use this app!",
         "default",
         3000,
         "../img/icon/info-icon.svg",
-        $("meta[name=noauthenforce]").prop("content") ? "" : "../"
+        $("meta[name=noauthenforce]").prop("content") ? "" : "https://sander.vonk.one/VITE/new/app/"
       );
     } else {
       if (auth.currentUser.isAnonymous) {
         if ($("meta[name=guestprompt]").prop("content")) {
-          new Toast("Logged in as guest, your progress will not be saved!", "transparent", 1500, "../img/icon/info-icon.svg");
+          new Toast("Logged in as guest, your progress will not be saved!", "transparent", 1500, "../img/icon/warning-icon.svg");
+        } else if ($("meta[name=requireemail]").prop("content")) {
+          new Toast(
+            "You need to be signed in with a non-anonymous provider and have your email verified to use this app, sorry!",
+            "transparent",
+            4000,
+            "../img/icon/error-icon.svg",
+            "https://sander.vonk.one/VITE/new/app/"
+          );
         } else {
           console.warn("Signed in as guest");
         }
@@ -287,7 +295,7 @@ auth.onAuthStateChanged((user) => {
       "Please login to use the app!",
       "default",
       1000,
-      "../img/icon/info-icon.svg",
+      "https://sander.vonk.one/VITE/new/img/icon/info-icon.svg",
       $("meta[name=noauthenforce]").prop("content") ? "" : window.location.href.split("new/")[0] + "new/"
     );
   }
@@ -352,6 +360,19 @@ $(document.body).on("click", ".clear-sw", (e) => {
     }
   }, 1500);
 });
+function deleteUser() {
+  auth.currentUser
+    .delete()
+    .then(() => {
+      new Toast("User deleted", "default", 1000, "../img/icon/info-icon.svg");
+      localStorage.setItem("userData", "");
+      localStorage.setItem("userId", "");
+      window.location.reload(true);
+    })
+    .catch(function (error) {
+      new Toast("Could not delete user, got error: " + error.toString(), "default", 1000, "../img/icon/error-icon.svg");
+    });
+}
 $(document.body).on("click", "#delete-acc-button, #account-delete", (e) => {
   new Popup(
     "Are you sure you want to delete your account? <span class='delete-text'>THIS ACTION CANNOT BE REVERSED</span>",
@@ -360,7 +381,7 @@ $(document.body).on("click", "#delete-acc-button, #account-delete", (e) => {
     "../img/icon/info-icon.svg",
     [
       ["removePopup()", "Cancel", "secondary-action fullborder"],
-      ["auth.currentUser.delete(); removePopup()", "Yes", "primary-action blue-button delete-user"],
+      ["deleteUser(); removePopup()", "Yes", "primary-action blue-button delete-user"],
     ]
   );
 });

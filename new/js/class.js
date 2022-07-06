@@ -9,6 +9,16 @@ function setupApp() {
       .then((doc) => {
         let userDocument = doc.data();
         userClasses = doc.data().classes;
+        if (!userClasses || (!doc.data().classcode && doc.data().classcode != "")) {
+          userDoc()
+            .set({ classes: [], classcode: "" }, { merge: true })
+            .then(() => {
+              window.location.reload();
+            })
+            .catch((err) => {
+              new Toast("Error setting up default class data: " + err.toString(), "default", 2000, "../img/icon/error-icon.svg", ".");
+            });
+        }
         $("#class-index").text((userClasses.length > 0 ? "1" : "0") + "/" + userClasses.length);
         currentClass = userClasses[0];
         if (params && params.has("class")) {
@@ -77,6 +87,7 @@ function studentNotInClass() {
   );
 }
 function studentJoin(userDocData) {
+  console.log("setting up student join options");
   $("[forstudent]").show();
   if (userDocData.classcode) {
     classDoc(userDocData.classcode)

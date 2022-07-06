@@ -33,6 +33,7 @@
     <form id="level-form" action="./app/" method="get">
       <input type="text" id="path-input" name="path" style="display: none" />
       <input type="text" id="tutorial-input" name="showTutorial" style="display: none" value="true" />
+      <input type="text" id="classPanel" name="classPanel" style="display: none" value="false" />
       <div class="box option" name="beginner">
         <div class="option-icon">
           <img src="img/icon/onboard/Egg.svg" alt="Beginner Path" />
@@ -74,7 +75,10 @@
   <script src="js/util.js"></script>
   <script src="js/firestore-page-auth.js"></script>
   <script>
-    if (window.location.href.includes("?showTutorial=false")) {
+    if (params.get("classPanel") == "true") {
+      $("#classPanel").val("true");
+    }
+    if (params.get("showTutorial") == "false") {
       document.getElementById("tutorial-input").value = "false";
       document.getElementById("back-button").addEventListener("click", (e) => {
         window.history.go(-1);
