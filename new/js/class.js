@@ -27,11 +27,10 @@ function setupApp() {
               });
           } else {
             new Toast(
-              "Looks like you dont have a class yet, lets get you started creating one!",
+              "Looks like you dont have a class yet, lets get you started creating one. Try clicking the 'add' button below",
               "default",
               2000,
-              "../img/icon/warning-icon.svg",
-              "./create.html"
+              "../img/icon/warning-icon.svg"
             );
           }
         }
