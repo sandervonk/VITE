@@ -5,44 +5,50 @@ var userClasses = {},
 $("[classload], [forstudent]").hide();
 function setupApp() {
   return new Promise(function (fulfilled, rejected) {
-    userDoc()
+    db.collection("users")
+      .doc("names")
       .get()
       .then((doc) => {
-        let userDocument = doc.data();
-        userClasses = doc.data().classes;
-        if (!userClasses || (!doc.data().classcode && doc.data().classcode != "")) {
-          userDoc()
-            .set({ classes: [], classcode: "" }, { merge: true })
-            .then(() => {
-              window.location.reload();
-            })
-            .catch((err) => {
-              new Toast("Error setting up default class data: " + err.toString(), "default", 2000, "../img/icon/error-icon.svg", ".");
-            });
-        }
-        $("#class-index").text((userClasses.length > 0 ? "1" : "0") + "/" + userClasses.length);
-        currentClass = userClasses[0];
-        if (params && params.has("class")) {
-          HTMLFromID(params.get("class"))
-            .then(() => {
-              fulfilled();
-            })
-            .catch((error) => {
-              rejected(error);
-            });
-        } else {
-          if (userClasses.length > 0) {
-            HTMLFromID(currentClass)
-              .then(() => {
-                fulfilled();
-              })
-              .catch((error) => {
-                rejected(error);
-              });
-          } else {
-            studentJoin(userDocument);
-          }
-        }
+        userNamesJSON = doc.data();
+        userDoc()
+          .get()
+          .then((doc) => {
+            let userDocument = doc.data();
+            userClasses = doc.data().classes;
+            if (!userClasses || (!doc.data().classcode && doc.data().classcode != "")) {
+              userDoc()
+                .set({ classes: [], classcode: "" }, { merge: true })
+                .then(() => {
+                  window.location.reload();
+                })
+                .catch((err) => {
+                  new Toast("Error setting up default class data: " + err.toString(), "default", 2000, "../img/icon/error-icon.svg", ".");
+                });
+            }
+            $("#class-index").text((userClasses.length > 0 ? "1" : "0") + "/" + userClasses.length);
+            currentClass = userClasses[0];
+            if (params && params.has("class")) {
+              HTMLFromID(params.get("class"))
+                .then(() => {
+                  fulfilled();
+                })
+                .catch((error) => {
+                  rejected(error);
+                });
+            } else {
+              if (userClasses.length > 0) {
+                HTMLFromID(currentClass)
+                  .then(() => {
+                    fulfilled();
+                  })
+                  .catch((error) => {
+                    rejected(error);
+                  });
+              } else {
+                studentJoin(userDocument);
+              }
+            }
+          });
       })
       .catch((error) => {
         new Toast("Error loading classes from user document: " + error.toString(), "default", 2000, "../img/icon/warning-icon.svg");
@@ -72,6 +78,14 @@ function studentInClass() {
   $("#student-class-code").val(studentClassID);
   if (studentClass.visibility == "private") {
     $("#lock-icon").addClass("alt");
+  }
+  $("[memberlist] > li").remove();
+  studentClass.members.forEach(function (memberID) {
+    console.log("member");
+    $("[memberlist]").append(`<li class='class-member' memberid='${memberID}'>${userNamesJSON[memberID][0]}</li>`);
+  });
+  if (studentClass.members.length < 1) {
+    $("[memberlist]").append("<li class='class-member'>No members yet</li>");
   }
 }
 function studentNotInClass() {

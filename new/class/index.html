@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="runsetup" content="true" />
     <meta name="waitforload" content="true" />
-    <meta name="requireemail" content="true">
+    <meta name="requireemail" content="true" />
     <link rel="stylesheet" href="../css/theme.css" />
     <link rel="stylesheet" href="../css/common.css" />
     <link rel="stylesheet" href="../css/class.css" />
@@ -67,13 +67,13 @@
           <div id="lock-icon"></div>
         </div>
         <div id="class-description">Description</div>
-        <div id="members-list" style="display: none" classload>
+        <div id="members-list" memberlist style="display: none" classload>
           <hr />
         </div>
       </div>
       <div id="invites-list" class="box" style="display: none">
         <div class="section-title">Invited:</div>
-      </div>      
+      </div>
       <div id="class-code" class="input-row box codebox-row" classload>
         <label for="join-code">Join Code</label>
         <hr />
@@ -85,8 +85,8 @@
       </div>
       <div id="student-join-options" forstudent>
         <div class="section-title secondary">Join a class:</div>
-        <div id="student-class-actions" class="flex-row" style="margin-top: 10px;">
-          <div id="student-leave-class" style="display: none;">
+        <div id="student-class-actions" class="flex-row" style="margin-top: 10px">
+          <div id="student-leave-class" style="display: none">
             <div id="student-class-pane" class="box">
               <div id="student-class-title" class="flex-row">
                 <div id="student-class-name">Name</div>
@@ -98,11 +98,15 @@
                 <hr />
                 <input type="text" disabled id="student-class-code" class="codebox" placeholder="—" />
               </div>
+
+              <div id="members-list" memberlist style="display: none" forstudent>
+                <hr />
+              </div>
             </div>
             <div id="student-leave-button" class="box-button red-button disabled">Leave</div>
           </div>
-          
-          <div id="student-join-class" style="display: none;">
+
+          <div id="student-join-class" style="display: none">
             <div id="student-class-code" class="input-row box">
               <label for="student-join-code">Join Code</label>
               <hr />
@@ -110,6 +114,7 @@
             </div>
             <div id="student-join-button" class="box-button green-button disabled">Join</div>
           </div>
+        </div>
       </div>
     </div>
     <div id="bottom-actions">
