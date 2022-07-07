@@ -151,3 +151,11 @@ label[for="join-code"] ~ hr {
   margin-bottom: 0;
   margin-top: 10px;
 }
+#student-class-code {
+  flex-grow: 1;
+}
+#student-class-code[disabled] {
+  overflow: hidden;
+  box-sizing: border-box;
+  pointer-events: none;
+}
