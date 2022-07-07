@@ -185,9 +185,8 @@ function HTMLFromID(id) {
         $("#members-list > li").remove();
         $("#members-list").show();
         doc.members.forEach(function (memberID) {
-          $("#members-list").append(
-            `<li class='class-member' memberid='${memberID}'>${userNamesJSON[memberID][0]} (${userNamesJSON[memberID][1]})</li>`
-          );
+          memberText = memberID == auth.currentUser.uid ? "[You]" : userNamesJSON[memberID][0] + " (" + userNamesJSON[memberID][1] + ")";
+          $("#members-list").append(`<li class='class-member' memberid='${memberID}'>${memberText}</li>`);
         });
         $("[classload]").show();
         if (userClasses.length > 1) {
