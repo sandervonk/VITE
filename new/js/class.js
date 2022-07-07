@@ -163,15 +163,6 @@ function cycleClasses(change) {
   return userClasses[nextIndex];
 }
 function HTMLFromID(id) {
-  if (typeof userNamesJSON != "object") {
-    db.collection("users")
-      .doc("names")
-      .get()
-      .then((doc) => {
-        userNamesJSON = doc.data();
-        HTMLFromID(id);
-      });
-  }
   return new Promise(function (fulfilled, rejected) {
     classDoc(id)
       .get()
