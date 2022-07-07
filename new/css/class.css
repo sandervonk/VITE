@@ -35,11 +35,19 @@
   text-overflow: ellipsis;
   overflow-y: hidden;
 }
-#invites-list {
+#invites-list,
+#members-list {
   color: var(--text-secondary);
 }
+#invites-list {
+  margin-bottom: 20px;
+}
+#invites-list .section-title {
+  font-size: 20px;
+}
 .input-row > hr,
-#invites-list > hr {
+#invites-list > hr,
+#members-list > hr {
   border: none;
   flex-shrink: 0;
   opacity: 0.5;
@@ -51,7 +59,8 @@
   height: 70%;
   margin: 0 10px;
 }
-#invites-list > hr {
+#invites-list > hr,
+#members-list > hr {
   width: 70%;
   height: 3px;
   margin: 20px auto;

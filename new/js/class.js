@@ -1,6 +1,7 @@
 var userClasses = {},
   studentClass,
-  studentClassID;
+  studentClassID,
+  userNamesJSON;
 $("[classload], [forstudent]").hide();
 function setupApp() {
   return new Promise(function (fulfilled, rejected) {
@@ -148,6 +149,15 @@ function cycleClasses(change) {
   return userClasses[nextIndex];
 }
 function HTMLFromID(id) {
+  if (typeof userNamesJSON != "object") {
+    db.collection("users")
+      .doc("names")
+      .get()
+      .then((doc) => {
+        userNamesJSON = doc.data();
+        HTMLFromID(id);
+      });
+  }
   return new Promise(function (fulfilled, rejected) {
     classDoc(id)
       .get()
@@ -167,6 +177,13 @@ function HTMLFromID(id) {
           $("#lock-icon").removeClass("alt");
           $("#invites-list").hide();
         }
+        $("#members-list > li").remove();
+        $("#members-list").show();
+        doc.members.forEach(function (memberID) {
+          $("#members-list").append(
+            `<li class='class-member' memberid='${memberID}'>${userNamesJSON[memberID][0]} (${userNamesJSON[memberID][1]})</li>`
+          );
+        });
         $("[classload]").show();
         if (userClasses.length > 1) {
           $("#bottom-actions > *").removeClass("disabled");

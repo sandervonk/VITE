@@ -88,6 +88,22 @@ function verifyButton(userObj) {
     );
   });
 }
+function addDisplayName() {
+  let nameDocRef = db.collection("users").doc("names"),
+    displayUserID = auth.currentUser.uid;
+  return db.runTransaction((transaction) => {
+    return transaction.get(nameDocRef).then((nameDoc) => {
+      if (
+        !Object.keys(nameDoc.data()).includes(displayUserID) ||
+        nameDoc.data()[displayUserID] != [auth.currentUser.displayName, auth.currentUser.email]
+      ) {
+        let userJSON = {};
+        userJSON[displayUserID] = [auth.currentUser.displayName, auth.currentUser.email];
+        transaction.update(nameDocRef, userJSON, { merge: true });
+      }
+    });
+  });
+}
 auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("user logged in:");
@@ -112,7 +128,17 @@ auth.onAuthStateChanged((user) => {
           auth.currentUser.providerData[0].providerId == "twitter.com"))
     ) {
       if (authData.creationTime === authData.lastSignInTime) {
-        openOnboard();
+        let userJSON = {};
+        userJSON[auth.getUid] = auth.currentUser.displayName;
+        db.collection("users")
+          .doc("names")
+          .update(userJSON, { merge: true })
+          .then(() => {
+            openOnboard();
+          })
+          .catch((err) => {
+            openOnboard();
+          });
       } else if (doOnboard) {
         new Toast(
           "Some account data is missing, opening onboarding",
@@ -122,7 +148,14 @@ auth.onAuthStateChanged((user) => {
           "./onboarding.html?showTutorial=false"
         );
       } else {
-        openApp();
+        addDisplayName()
+          .then(() => {
+            openApp();
+          })
+          .catch((err) => {
+            console.error("error adding name", err);
+            openApp();
+          });
       }
     } else if (auth.currentUser.isAnonymous) {
       new Toast("Logged in as guest, your progress will not be saved!", "default", 1000, "./img/icon/info-icon.svg", "./onboarding.html");
