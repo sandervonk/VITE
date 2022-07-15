@@ -31,7 +31,7 @@ $("#code-row").click(function () {
         new Toast("Copied class code to clipboard", "transparent", 750, "../img/icon/clipboard-icon.svg");
       })
       .catch((err) => {
-        new Toast("Error copying class code: " + err.toString(), "default", 2000, "../img/icon/warning-icon.svg");
+        new ErrorToast("Could not copy class code", err.toString(), 2000);
         $("#join-code").removeAttr("disabled");
       });
   }
@@ -101,6 +101,6 @@ $("#bottom-actions").on("click", "#create-button:not(.disabled)", function () {
     })
     .catch((error) => {
       console.error(error);
-      new Toast("Error creating class:" + error.toString().replace("FirebaseError:", "database:"), "default", 4000, "../img/icon/error-icon.svg");
+      new ErrorToast("Something went wrong creating this class", error.toString().replace("FirebaseError:", "database:"), 4000);
     });
 });

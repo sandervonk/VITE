@@ -320,7 +320,7 @@ function signOut() {
         });
       })
       .catch((err) => {
-        new Toast("Could not delete guest data, Error: " + err, "default", 3000, "../img/icon/error-icon.svg");
+        new ErrorToast("Could not delete guest data", err, 3000);
         setTimeout(auth.currentUser.delete, 100000);
       });
   } else {
@@ -396,7 +396,7 @@ function deleteUser() {
       window.location.reload(true);
     })
     .catch(function (error) {
-      new Toast("Could not delete user, got error: " + error.toString(), "default", 2000, "../img/icon/error-icon.svg", ".");
+      new ErrorToast("Could not delete user", error.toString(), 2000, ".");
     });
 }
 $(document.body).on("click", "#delete-acc-button, #account-delete", (e) => {

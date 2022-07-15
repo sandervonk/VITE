@@ -3,6 +3,25 @@
 var params = new URLSearchParams(window.location.search);
 history.replaceState({}, "", window.location.href.substr(0, window.location.href.length - window.location.search.length));
 
+/** **/
+class ContextMenu {
+  constructor(e) {
+    $(".context-menu").remove();
+    this.x = e.clientX;
+    this.y = e.clientY;
+    this.build(this.x, this.y);
+  }
+  build(x, y) {
+    console.log("build");
+    this.menu = $("<div class='context-menu'></div>");
+    this.menu.css({
+      top: y,
+      left: x,
+    });
+    $(document.body).append(this.menu);
+  }
+}
+
 /** LOADCOVER **/
 
 class LoadCover {
@@ -52,7 +71,7 @@ class LoadCover {
 /** TOAST **/
 
 class Toast {
-  constructor(message, type, duration, iconPath, action) {
+  constructor(message, type, duration, iconPath = "", action = "") {
     this.message = message;
     this.type = type;
     this.duration = duration;
@@ -67,11 +86,11 @@ class Toast {
     toast.classList.add("toast");
     overlay.classList.add("toast-overlay");
     toast.classList.add(this.type);
-    if (this.icon != null) {
+    if (this.icon != "") {
       toast.innerHTML += `<img src="${this.icon}" class="toast-icon" alt="Toast Popup Icon">`;
     }
     toast.innerHTML += this.message;
-    if (this.action != null) {
+    if (this.action != "") {
       document.body.appendChild(overlay);
     }
     document.body.appendChild(toast);
@@ -81,17 +100,22 @@ class Toast {
     setTimeout(() => {
       overlay.remove();
       toast.remove();
-      if (this.action != null && this.action != "") {
+      if (this.action != "" && this.action != "") {
         window.location.href = this.action;
       }
     }, this.duration + 500);
   }
 }
-
+class ErrorToast extends Toast {
+  constructor(message, err, duration, action = "") {
+    message += ": " + err;
+    super(message, "default", duration, "https://sander.vonk.one/VITE/new/img/icon/error-icon.svg", action);
+  }
+}
 /** POPUP **/
 
 class Popup {
-  constructor(message, type, duration, iconPath, action) {
+  constructor(message, type, duration, iconPath = "", action = "") {
     this.message = message;
     this.type = type;
     this.duration = duration;
@@ -116,13 +140,13 @@ class Popup {
     }
     buttons += "</div>";
     toast.innerHTML +=
-      (this.icon != null ? `<div class="popup-top-bar">` : "") +
+      (this.icon != "" ? `<div class="popup-top-bar">` : "") +
       "<div class='popup-text'>" +
       this.message +
       `</div>` +
-      (this.icon != null ? `<img src="${this.icon}" class="popup-icon" alt="Popup Icon"></div>` : "");
+      (this.icon != "" ? `<img src="${this.icon}" class="popup-icon" alt="Popup Icon"></div>` : "");
     toast.innerHTML += buttons;
-    if (this.action != null) {
+    if (this.action != "") {
       document.body.appendChild(overlay);
     }
     document.body.appendChild(toast);

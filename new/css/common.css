@@ -797,3 +797,27 @@ input:checked + .switch-label {
   height: calc(47px + 30px - 16px + 30px) !important;
   background: linear-gradient(0deg, var(--bg) 0%, var(--bg) 80%, rgba(255, 255, 255, 0) 100%);
 }
+
+.context-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 300px;
+  height: 100px;
+  background: var(--toast-bg-transparent);
+  backdrop-filter: blur(7px);
+  border-radius: 5px;
+  z-index: 16384;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: flex-start;
+  box-shadow: 0 0 10px #00000010;
+}
+.context-menu > .cm-item {
+  cursor: pointer;
+  width: 100%;
+}
+.context-menu > hr {
+  width: 70%;
+}

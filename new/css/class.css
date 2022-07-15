@@ -63,7 +63,7 @@
 #members-list > hr {
   width: 70%;
   height: 3px;
-  margin: 20px auto;
+  margin: 20px 15%;
 }
 
 .input-row > label {
@@ -158,4 +158,81 @@ label[for="join-code"] ~ hr {
   overflow: hidden;
   box-sizing: border-box;
   pointer-events: none;
+}
+#members-list {
+  max-height: 200px;
+  overflow-y: auto;
+  padding: 30px 20px;
+}
+#members-list > hr {
+  margin-top: 0px;
+  margin-bottom: 10px;
+}
+#page-content .fade-up,
+#page-content .fade-down {
+  height: 30px;
+  z-index: 10000;
+  position: relative;
+  box-shadow: none;
+}
+#page-content .fade-up {
+  margin-top: -30px;
+}
+#page-content .fade-down {
+  margin-bottom: -30px;
+}
+.fade-up {
+  background: linear-gradient(0deg, var(--bg) 0%, var(--bg) 30%, rgba(255, 255, 255, 0) 100%);
+}
+.fade-down {
+  background: linear-gradient(0deg, rgba(255, 255, 255, 0) 0%, var(--bg) 30%, var(--bg) 100%);
+}
+@media (min-width: 500px) {
+  ::-webkit-scrollbar-track {
+    opacity: 0 !important;
+    background: var(--bg);
+    display: none !important;
+    width: 16px;
+    height: 16px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 16px;
+    background: var(--secondary-alt);
+    border: solid 4px var(--bg);
+  }
+  ::-webkit-scrollbar {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  ::-webkit-scrollbar-corner {
+    opacity: 0;
+    background: transparent;
+  }
+}
+#members-list {
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+}
+.class-member {
+  margin: 5px;
+  width: 48px;
+  height: 48px;
+  flex-grow: 0;
+  flex-shrink: 0;
+  list-style: none;
+  background-position: center center;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-color: var(--secondary);
+  background-image: url(../img/icon/pfp.webp);
+  box-shadow: 0px 0px 0px var(--secondary);
+  transition: box-shadow 0.25s ease-in-out;
+  border-radius: 48px;
+  border: solid 2px var(--box-border);
+}
+#class-preview-pane .class-member:not([title="[You]"]):hover,
+#class-preview-pane .class-member:not([title="[You]"]):active {
+  box-shadow: 0px 0px 10px var(--secondary-alt);
+  cursor: pointer;
 }

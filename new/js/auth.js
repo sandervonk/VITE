@@ -1,3 +1,4 @@
+const DEFAULT_PFP = "http://sander.vonk.one/VITE/new/img/icon/pfp.png";
 var verificationInterval;
 //control pages of auth (for verification)
 function firstPage() {
@@ -42,7 +43,7 @@ function authError(error) {
 }
 function providerError(provider, error) {
   // Handle Errors here.
-  new Toast(provider + " auth error: " + error.message, "default", 1000 + error.message.length * 50, "img/icon/error-icon.png");
+  new ErrorToast(provider + " auth error", error.message, 1000 + error.message.length * 50);
 }
 function resetEmail() {
   auth
@@ -51,7 +52,7 @@ function resetEmail() {
       new Toast("Sent password reset email", "default", 2000, "img/icon/success-icon.svg");
     })
     .catch((err) => {
-      new Toast("Error sending reset email: " + err.message.replace("Error: ", ""), "default", 2000, "img/icon/error-icon.svg");
+      new ErrorToast("Error sending reset email", err.message.replace("Error: ", ""), 2000);
     });
 }
 //add listener for verify button
@@ -95,10 +96,15 @@ function addDisplayName() {
     return transaction.get(nameDocRef).then((nameDoc) => {
       if (
         !Object.keys(nameDoc.data()).includes(displayUserID) ||
-        nameDoc.data()[displayUserID] != [auth.currentUser.displayName, auth.currentUser.email]
+        nameDoc.data()[displayUserID] !=
+          [auth.currentUser.displayName, auth.currentUser.email, auth.currentUser.photoURL ? auth.currentUser.photoURL : DEFAULT_PFP]
       ) {
         let userJSON = {};
-        userJSON[displayUserID] = [auth.currentUser.displayName, auth.currentUser.email];
+        userJSON[displayUserID] = [
+          auth.currentUser.displayName,
+          auth.currentUser.email,
+          auth.currentUser.photoURL ? auth.currentUser.photoURL : DEFAULT_PFP,
+        ];
         transaction.update(nameDocRef, userJSON, { merge: true });
       }
     });

@@ -22,7 +22,7 @@ function setupApp() {
                   window.location.reload();
                 })
                 .catch((err) => {
-                  new Toast("Error setting up default class data: " + err.toString(), "default", 2000, "../img/icon/error-icon.svg", ".");
+                  new ErrorToast("Error setting up default class data", err.toString(), 2000, ".");
                 });
             }
             $("#class-index").text((userClasses.length > 0 ? "1" : "0") + "/" + userClasses.length);
@@ -51,7 +51,7 @@ function setupApp() {
           });
       })
       .catch((error) => {
-        new Toast("Error loading classes from user document: " + error.toString(), "default", 2000, "../img/icon/warning-icon.svg");
+        new ErrorToast("Error loading classes from user document", error.toString(), 2000);
         rejected(error);
       });
   });
@@ -63,7 +63,7 @@ function removeSavedClassCode() {
       window.location.reload();
     })
     .catch((err) => {
-      new Toast("Error removing saved class code: " + err.code, "default", 2000, "../img/icon/error-icon.svg");
+      new ErrorToast("Error removing saved class code", err.code, 2000);
     });
 }
 function studentInClass() {
@@ -79,11 +79,8 @@ function studentInClass() {
   if (studentClass.visibility == "private") {
     $("#lock-icon").addClass("alt");
   }
-  $("[memberlist] > li").remove();
-  studentClass.members.forEach(function (memberID) {
-    console.log("member");
-    $("[memberlist]").append(`<li class='class-member' memberid='${memberID}'>${userNamesJSON[memberID][0]}</li>`);
-  });
+  $("[memberlist] > .class-member").remove();
+  studentClass.members.forEach((memberID) => setupMember(memberID));
   if (studentClass.members.length < 1) {
     $("[memberlist]").append("<li class='class-member'>No members yet</li>");
   }
@@ -151,6 +148,11 @@ function studentJoin(userDocData) {
 function createClass() {
   new Toast("Creating a new class", "default", 750, "../img/icon/info-icon.svg", "./create.html");
 }
+function setupMember(memberID) {
+  memberText = memberID == auth.currentUser.uid ? "[You]" : userNamesJSON[memberID][0] + " (" + userNamesJSON[memberID][1] + ")";
+  memberStyle = userNamesJSON[memberID][2] ? `style='background-image: url(${userNamesJSON[memberID][2]})'` : "";
+  $("[memberlist]").append(`<li class='class-member' memberid='${memberID}' title='${memberText}' ${memberStyle}></li>`);
+}
 function cycleClasses(change) {
   let nextIndex = userClasses.indexOf(currentClass) + change;
   if (nextIndex < 0) {
@@ -182,12 +184,9 @@ function HTMLFromID(id) {
           $("#lock-icon").removeClass("alt");
           $("#invites-list").hide();
         }
-        $("#members-list > li").remove();
-        $("#members-list").show();
-        doc.members.forEach(function (memberID) {
-          memberText = memberID == auth.currentUser.uid ? "[You]" : userNamesJSON[memberID][0] + " (" + userNamesJSON[memberID][1] + ")";
-          $("#members-list").append(`<li class='class-member' memberid='${memberID}'>${memberText}</li>`);
-        });
+        $("[memberlist] > .class-member").remove();
+        $(".member-list-ui").show();
+        doc.members.forEach((memberID) => setupMember(memberID));
         $("[classload]").show();
         if (userClasses.length > 1) {
           $("#bottom-actions > *").removeClass("disabled");
@@ -197,7 +196,7 @@ function HTMLFromID(id) {
         fulfilled();
       })
       .catch((error) => {
-        new Toast("Error loading class: " + error.toString(), "default", 2000, "../img/icon/warning-icon.svg");
+        new ErrorToast("Error loading class", error.toString(), 2000);
         $("[classload]").hide();
         $("#bottom-actions > *:not(#add-button)").addClass("disabled");
         $("#delete-button, #manage-button").addClass("disabled");
@@ -217,7 +216,7 @@ function deleteClass() {
         });
     })
     .catch((err) => {
-      new Toast("Error deleting class: " + err.code, "default", 2000, "../img/icon/error-icon.svg");
+      new ErrorToast("Error deleting class", err.code, 2000);
       $("#delete-button").removeClass("disabled");
     });
 }
@@ -241,18 +240,18 @@ function joinClass(attemptedCode) {
                 new Toast("Joined class successfully!", "default", 2000, "../img/icon/success-icon.svg", "./index.html");
               })
               .catch((err) => {
-                new Toast("Could not save class code to user data: " + err.code, "default", 2000, "../img/icon/warning-icon.svg");
+                new ErrorToast("Could not save class code to user data", err.code, 2000);
               });
           })
           .catch((err) => {
-            new Toast("Something went wrong adding you to the members list: " + err.code, "default", 2000, "../img/icon/error-icon.svg");
+            new ErrorToast("Something went wrong adding you to the members list", err.code, 2000);
           });
       } else {
         new Toast("Sorry, this class is private, and you haven't been invited yet", "default", 2000, "../img/icon/warning-icon.svg");
       }
     })
-    .catch((err) => {
-      new Toast("Could not find a class for this code: ", err, "default", 2000, "../img/icon/warning-icon.svg");
+    .catch((classErr) => {
+      new Toast("Could not find a class for this code: ", classErr.toString(), "default", 2000, "../img/icon/warning-icon.svg");
     });
 }
 
@@ -267,11 +266,11 @@ function leaveClass() {
           new Toast("Left class successfully!", "default", 2000, "../img/icon/success-icon.svg", "./index.html");
         })
         .catch((err) => {
-          new Toast("Could not remove class code from user data: " + err.code, "default", 2000, "../img/icon/warning-icon.svg");
+          new ErrorToast("Could not remove class code from user data", err.code, 2000);
         });
     })
     .catch((err) => {
-      new Toast("Something went wrong removing you from the members list: " + err.code, "default", 2000, "../img/icon/error-icon.svg");
+      new ErrorToast("Something went wrong removing you from the members list", err.code, 2000);
     });
   removePopup();
 }
@@ -291,7 +290,7 @@ $("#class-code, #student-info-code-row").click(function () {
         new Toast("Copied class code to clipboard", "transparent", 750, "../img/icon/clipboard-icon.svg");
       })
       .catch((err) => {
-        new Toast("Error copying class code: " + err.toString(), "default", 2000, "../img/icon/warning-icon.svg");
+        new ErrorToast("Error copying class code" + err.toString(), 2000);
         $("#join-code, #student-class-code").removeAttr("disabled");
       });
   }
@@ -318,4 +317,32 @@ $("#student-join-button").click(function () {
   } else {
     joinClass(attemptedCode);
   }
+});
+function removeStudent(studentID) {
+  classDoc(currentClass)
+    .update({ members: firebase.firestore.FieldValue.arrayRemove(studentID) })
+    .then(() => {
+      new Toast("Removed student successfully!", "default", 2000, "../img/icon/success-icon.svg");
+      removePopup();
+    })
+    .catch((err) => {
+      new ErrorToast("Error removing student", err.code, 2000);
+      removePopup();
+    });
+}
+$("#class-preview-pane").on("click", ".class-member:not([title='[You]'])", function () {
+  new Popup(
+    `Are you sure you want to remove ${$(this).attr("title")} from this class?`,
+    "box fullborder default",
+    10000,
+    "../img/icon/info-icon.svg",
+    [
+      ["removePopup()", "Cancel", "secondary-action fullborder"],
+      [`removeStudent('${$(this).attr("memberID")}')`, "Remove", "primary-action blue-button delete-document"],
+    ]
+  );
+});
+$("#class-preview-pane").on("contextmenu", ".class-member:not([title='[You]'])", function (e) {
+  e.preventDefault();
+  console.log("right click");
 });

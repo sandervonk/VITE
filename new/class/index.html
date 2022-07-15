@@ -67,9 +67,11 @@
           <div id="lock-icon"></div>
         </div>
         <div id="class-description">Description</div>
+        <div class="fade-down member-list-ui" style="display: none"></div>
         <div id="members-list" memberlist style="display: none" classload>
           <hr />
         </div>
+        <div class="fade-up member-list-ui" style="display: none"></div>
       </div>
       <div id="invites-list" class="box" style="display: none">
         <div class="section-title">Invited:</div>
@@ -98,10 +100,11 @@
                 <hr />
                 <input type="text" disabled id="student-class-code" class="codebox" placeholder="—" />
               </div>
-
-              <div id="members-list" memberlist style="display: none" forstudent>
+              <div class="fade-down member-list-ui" style="display: none" forstudent></div>
+              <div id="members-list" class="member-list-ui" memberlist style="display: none" forstudent>
                 <hr />
               </div>
+              <div class="fade-up member-list-ui" style="display: none" forstudent></div>
             </div>
             <div id="student-leave-button" class="box-button red-button disabled">Leave</div>
           </div>
