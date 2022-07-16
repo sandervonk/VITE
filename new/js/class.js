@@ -151,7 +151,11 @@ function createClass() {
 function setupMember(memberID) {
   memberText = memberID == auth.currentUser.uid ? "[You]" : userNamesJSON[memberID][0] + " (" + userNamesJSON[memberID][1] + ")";
   memberStyle = userNamesJSON[memberID][2] ? `style='background-image: url(${userNamesJSON[memberID][2]})'` : "";
-  $("[memberlist]").append(`<li class='class-member' memberid='${memberID}' title='${memberText}' ${memberStyle}></li>`);
+  cm_options =
+    memberID == auth.currentUser.uid || studentClass
+      ? ""
+      : '{ "icon": "cm-remove", "text": "Remove Student", "onclick": "removeStudentPopup(' + ` \`${memberText}\`, \`${memberID}\` ` + ')"}';
+  $("[memberlist]").append(`<li class='class-member' cm-options='${cm_options}' memberid='${memberID}' title='${memberText}' ${memberStyle}></li>`);
 }
 function cycleClasses(change) {
   let nextIndex = userClasses.indexOf(currentClass) + change;
@@ -274,10 +278,8 @@ function leaveClass() {
     });
   removePopup();
 }
-
-/*listeners*/
-$("#class-code, #student-info-code-row").click(function () {
-  el = $(this).children(".codebox")[0];
+function copyJoinCode() {
+  el = $(this).children(".codebox")[0] ? $(this).children(".codebox")[0] : $(".codebox")[0];
   if (el.value == "") {
     new Toast("Make sure you've created a class to get your code, then tap here again to copy it", "default", 2000, "../img/icon/warning-icon.svg");
   } else {
@@ -294,7 +296,9 @@ $("#class-code, #student-info-code-row").click(function () {
         $("#join-code, #student-class-code").removeAttr("disabled");
       });
   }
-});
+}
+/*listeners*/
+$("#class-code, #student-info-code-row").click(copyJoinCode);
 $("#delete-button").click(function () {
   $(this).addClass("disabled");
   new Popup("Do you want to delete this class?", "box fullborder default", 10000, "../img/icon/info-icon.svg", [
@@ -324,25 +328,38 @@ function removeStudent(studentID) {
     .then(() => {
       new Toast("Removed student successfully!", "default", 2000, "../img/icon/success-icon.svg");
       removePopup();
+      $(`.class-member[member-id="${studentID}"]`).remove();
     })
     .catch((err) => {
       new ErrorToast("Error removing student", err.code, 2000);
       removePopup();
     });
 }
-$("#class-preview-pane").on("click", ".class-member:not([title='[You]'])", function () {
-  new Popup(
-    `Are you sure you want to remove ${$(this).attr("title")} from this class?`,
-    "box fullborder default",
-    10000,
-    "../img/icon/info-icon.svg",
-    [
-      ["removePopup()", "Cancel", "secondary-action fullborder"],
-      [`removeStudent('${$(this).attr("memberID")}')`, "Remove", "primary-action blue-button delete-document"],
-    ]
-  );
-});
-$("#class-preview-pane").on("contextmenu", ".class-member:not([title='[You]'])", function (e) {
-  e.preventDefault();
-  console.log("right click");
-});
+// $("#class-preview-pane").on("click", ".class-member:not([title='[You]'])", function () {
+//   removeStudentPopup($(this).attr("title"), $(this).attr("memberid"));
+// });
+function removeStudentPopup(name, id) {
+  new Popup(`Are you sure you want to remove ${name} from this class?`, "box fullborder default", 10000, "../img/icon/info-icon.svg", [
+    ["removePopup()", "Cancel", "secondary-action fullborder"],
+    [`removeStudent('${id}')`, "Remove", "primary-action blue-button delete-document"],
+  ]);
+}
+function getCMOptions() {
+  let added_options = [];
+  if (currentClass || studentClass) {
+    added_options.push({
+      icon: "cm-copy",
+      text: "Copy class code",
+      onclick: (!studentClass ? `$("#class-code").click();` : `$("#student-info-code-row").click();`) + "closeContextMenu()",
+    });
+  }
+  if (!studentClass) {
+    added_options.push({
+      icon: "cm-class",
+      text: "Create Class",
+      onclick: 'window.location.href = "./create.html"',
+    });
+  }
+
+  return added_options.length ? added_options : false;
+}

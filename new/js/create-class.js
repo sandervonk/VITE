@@ -104,3 +104,14 @@ $("#bottom-actions").on("click", "#create-button:not(.disabled)", function () {
       new ErrorToast("Something went wrong creating this class", error.toString().replace("FirebaseError:", "database:"), 4000);
     });
 });
+function getCMOptions() {
+  let added_options = [
+    {
+      icon: "cm-class",
+      text: "Manage Classes",
+      onclick: `window.location.href="./";closeContextMenu();`,
+    },
+  ];
+
+  return added_options.length ? added_options : false;
+}

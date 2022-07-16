@@ -1,24 +1,181 @@
 /** URI SEARCH TERMS **/
 
 var params = new URLSearchParams(window.location.search);
+params.set("home_page", window.location.href.split("/new")[0] + "/new");
 history.replaceState({}, "", window.location.href.substr(0, window.location.href.length - window.location.search.length));
+var lastMousePos = { x: 0, y: 0 };
+touchHandler = function (e) {
+  if (e.clientX && e.clientY) {
+    x = e.clientX;
+    y = e.clientY;
+  } else if (e.touches && e.touches[0]) {
+    x = e.touches[0].clientX;
+    y = e.touches[0].clientY;
+  } else if (e.originalEvent && e.originalEvent.changedTouches[0]) {
+    x = e.originalEvent.changedTouches[0].clientX;
+    y = e.originalEvent.changedTouches[0].clientY;
+  }
+  return { x: x, y: y };
+};
 
+$(window).on("touchdown touchstart touchstop click", function (e) {
+  lastMousePos = touchHandler(e);
+});
 /** **/
+$(document).on("contextmenu", function (e) {
+  e.preventDefault();
+  if ((e.clientX == e.clientY) == 1) {
+    e.clientX = lastMousePos.x;
+    e.clientY = lastMousePos.y;
+  }
+  e.target = document.elementFromPoint(e.clientX, e.clientY);
+  if (!$(e.target).hasClass("context-overlay") || window.matchMedia("(min-width: 50px)").matches) {
+    $(".context-menu, .context-overlay").remove();
+    e.target = document.elementFromPoint(e.clientX, e.clientY);
+    let menu_items = $("meta[name='cm-options']").attr("content"),
+      target_options = $(e.target).attr("cm-options");
+    menu_items = menu_items != undefined ? menu_items + "," : "";
+    menu_items = target_options ? menu_items + target_options : menu_items;
+    try {
+      menu_items = menu_items != "undefined" ? JSON.parse("[" + menu_items + "]") : menu_items;
+    } catch (err) {
+      console.warn("Something went wrong applying context menu options from the <meta> tag!\n\n", menu_items, "\n\n", err);
+      menu_items = [];
+    }
+    create_context_menu_extras = function () {
+      try {
+        let result = getCMOptions();
+        return result ? result : false;
+      } catch (err) {
+        console.error("Could not run getCMOptions()", "\n\n", err);
+        return false;
+      }
+    };
+    let menu_options = {
+      width: 300,
+      extras_callback: create_context_menu_extras,
+    };
+    new ContextMenu(e, this, menu_items, menu_options);
+  }
+});
+function closeContextMenu() {
+  $(document.body).removeAttr("contextmenu");
+  $(".context-menu, .context-overlay").addClass("close");
+  setTimeout(function () {
+    $(".context-menu, .context-overlay").remove();
+  }, 200);
+}
+
+$(window).on("click", "body[contextmenu] > *:not(.context-menu)", closeContextMenu);
+$(document).on("click", ".context-overlay", closeContextMenu);
+$(window).on("keydown blur resize", function (event) {
+  if (event.key === "Escape" || !event.key) {
+    event.preventDefault();
+    closeContextMenu();
+  }
+});
 class ContextMenu {
-  constructor(e) {
-    $(".context-menu").remove();
+  constructor(e, item_ref, menuItems = [], options = { width: 300 }) {
+    this.defaults = [
+      {
+        icon: "cm-home",
+        text: "Go to home",
+        onclick: `window.location.href = "${params.get("home_page")}/app"`,
+        button: true,
+      },
+      {
+        icon: "cm-back",
+        text: "Go back a page",
+        onclick: `window.history.go(-1)`,
+        button: true,
+      },
+      {
+        icon: "cm-link",
+        text: "Copy link to this page",
+        onclick: `copyToClipboard("${window.location.href}", closeContextMenu)`,
+        button: true,
+      },
+      {
+        icon: "cm-share",
+        text: "Share this page",
+        onclick: `sharePage(closeContextMenu)`,
+        button: true,
+      },
+      {
+        icon: "cm-close",
+        text: "Use system menu",
+        onclick: `$(document).off("contextmenu");closeContextMenu();`,
+      },
+    ];
+    this.options = options;
+    this.windowPadding = 10;
+    this.menuItems = menuItems;
+    if (options.extras_callback) {
+      let result = options.extras_callback();
+      if (result.length) {
+        this.menuItems = this.menuItems.concat(result);
+      }
+    }
     this.x = e.clientX;
     this.y = e.clientY;
     this.build(this.x, this.y);
   }
+  makeMenuItem(item) {
+    return $(
+      `<div class='cm-item' onclick='${item.onclick ? item.onclick : ""}'><img class='cm-icon' src='https://sander.vonk.one/VITE/new/img/icon/cm/${
+        item.icon
+      }.svg' /><span>${item.text}</span></div>`
+    );
+  }
+  makeMenuButton(item) {
+    return $(
+      `<div class='cm-item cm-button' title='${item.text}' onclick='${
+        item.onclick ? item.onclick : ""
+      }'><img class='cm-icon' src='https://sander.vonk.one/VITE/new/img/icon/cm/${item.icon}.svg'/></div>`
+    );
+  }
   build(x, y) {
-    console.log("build");
     this.menu = $("<div class='context-menu'></div>");
     this.menu.css({
       top: y,
       left: x,
+      width: this.options.width ? this.options.width : "",
     });
-    $(document.body).append(this.menu);
+    this.actionButtons = $("<div id='cm-buttons'></div>");
+    this.defaults.forEach((item) => {
+      if (item.button) {
+        this.actionButtons.append(this.makeMenuButton(item));
+      }
+    });
+    this.pageItems = $("<div id='cm-page-items'></div>");
+    this.menuItems.forEach((item) => {
+      if (!item.button) {
+        this.pageItems.append(this.makeMenuItem(item));
+      } else {
+        this.actionButtons.append(this.makeMenuButton(item));
+      }
+    });
+    this.defaultItems = $("<div id='cm-default-items'><hr class='cm-separator' /></div>");
+    this.defaults.forEach((item) => {
+      if (!item.button) {
+        this.defaultItems.append(this.makeMenuItem(item));
+      }
+    });
+    this.scrollableItems = $("<div id='cm-scrollable'></div>");
+    this.scrollableItems.append(this.pageItems, this.defaultItems);
+    $(this.menu).append(this.actionButtons, this.scrollableItems);
+    $(document.body).append(`<div class='context-overlay'></div>`, this.menu);
+    $(document.body).attr("contextmenu", "");
+    this.realign(x, y);
+  }
+  realign(x, y) {
+    this.menu.css({
+      top: Math.max(this.windowPadding, Math.min(y, $(window).height() - this.menu.outerHeight() - this.windowPadding)),
+      left: Math.max(this.windowPadding, Math.min(x, $(window).width() - this.menu.outerWidth() - this.windowPadding)),
+    });
+    if ($("#cm-page-items:empty").length) {
+      $(".context-menu").css("height", "fit-content");
+    }
   }
 }
 
@@ -196,5 +353,37 @@ try {
 
 //other
 $("[placeholdaction]").click(function () {
-  new Toast("This feature hasn't been implemented yet, sorry! 🤫", "default", 1500, "../img/icon/concern-icon.svg");
+  new Toast("This feature hasn't been implemented yet, sorry! 🤫", "default", 1500, "https://sander.vonk.one/VITE/new/img/icon/concern-icon.svg");
 });
+function copyToClipboard(text, callback = function () {}) {
+  navigator.clipboard
+    .writeText(text)
+    .then((res) => {
+      new Toast("Copied link code to clipboard", "transparent", 750, "https://sander.vonk.one/VITE/new/img/icon/clipboard-icon.svg");
+      callback();
+    })
+    .catch((err) => {
+      new ErrorToast("Couldn't copy the link, sorry!" + err.toString(), 2000);
+    });
+}
+function getDefaultPageData() {
+  return {
+    title: $("meta[name='og:description']").attr("content")
+      ? $("meta[name='og:description']").attr("content")
+      : "Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!",
+    description: $("meta[name='og:site_name']").attr("content") ? $("meta[name='og:site_name']").attr("content") : document.title,
+
+    url: $("meta[name='og:url']").attr("content") ? $("meta[name='og:url']").attr("content") : window.location.href,
+  };
+}
+function sharePage(callback = function () {}) {
+  navigator
+    .share(getDefaultPageData())
+    .then((res) => {
+      new Toast("Opened share options!", "transparent", 750, "https://sander.vonk.one/VITE/new/img/icon/clipboard-icon.svg");
+      callback();
+    })
+    .catch((err) => {
+      new ErrorToast("Couldn't open share options, sorry!" + err.toString(), 2000);
+    });
+}

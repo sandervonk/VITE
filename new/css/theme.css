@@ -82,6 +82,17 @@
   /**/
   --announcement-link: #53b8f4;
   -webkit-link: #53b8f4;
+  /*contextmenu*/
+  --cm-bg-transparent: #303030aa;
+  --cm-shadow: #0000004b;
+  --cm-bg-hover: #303030aa;
+  --cm-text: #ffffff;
+  --cm-bg: #303030;
+  --cm-border: #242424;
+  --cm-secondary: #545454;
+  --cm-secondary-transparent: #545454aa;
+  --cm-accent: #878787;
+  --cm-accent-transparent: #878787aa;
 }
 .options-toggles:empty,
 .loadcover {

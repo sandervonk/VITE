@@ -19,7 +19,7 @@ $("#answer-input").on("change, input", (e) => {
     $(document.body).removeAttr("avaliable");
   }
 });
-$(document.body).on("keypress", (e) => {
+$(window).on("keypress", (e) => {
   if (e.which == 13 || e.keyCode == 13) {
     e.preventDefault();
     //Submit Question
@@ -67,3 +67,14 @@ $("#vite-q-tense,#vite-q-subject,#vite-q-verb").click((e) => {
     "max-width": document.body.offsetWidth - (e.target.offsetLeft - (document.documentElement.offsetWidth - document.body.offsetWidth) / 2) - 34,
   });
 });
+function getCMOptions() {
+  let added_options = [
+    {
+      icon: "cm-finish",
+      text: "Finish practice",
+      onclick: `$(\`[name="practice-results"]\`).submit();closeContextMenu();`,
+    },
+  ];
+
+  return added_options.length ? added_options : false;
+}

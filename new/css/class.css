@@ -234,5 +234,5 @@ label[for="join-code"] ~ hr {
 #class-preview-pane .class-member:not([title="[You]"]):hover,
 #class-preview-pane .class-member:not([title="[You]"]):active {
   box-shadow: 0px 0px 10px var(--secondary-alt);
-  cursor: pointer;
+  /* cursor: pointer; */
 }

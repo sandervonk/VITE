@@ -136,3 +136,14 @@ $("#reset-button").on("click", (e) => {
     setupApp();
   });
 });
+function getCMOptions() {
+  let added_options = [
+    {
+      icon: "cm-reset",
+      text: "Reset Options",
+      onclick: `$("#reset-button").click();closeContextMenu();`,
+    },
+  ];
+
+  return added_options.length ? added_options : false;
+}
