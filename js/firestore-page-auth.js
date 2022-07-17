@@ -217,7 +217,7 @@ auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("user logged in");
 
-    setPhoto(user.photoURL);
+    setPhoto(user.photoURL.replace("=s96-c", "=s100-c"));
     if (auth.currentUser.isAnonymous) {
       setPhoto("/VITE/img/icon/guest.png");
     }

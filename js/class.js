@@ -155,7 +155,7 @@ function createClass() {
 }
 function setupMember(memberID) {
   memberText = memberID == auth.currentUser.uid ? "[You]" : userNamesJSON[memberID][0] + " (" + userNamesJSON[memberID][1] + ")";
-  memberStyle = userNamesJSON[memberID][2] ? `style='background-image: url(${userNamesJSON[memberID][2]})'` : "";
+  memberStyle = userNamesJSON[memberID][2] ? `style='background-image: url(${userNamesJSON[memberID][2].replace("=s96-c", "=s100-c")})'` : "";
   cm_options =
     memberID == auth.currentUser.uid || studentClass
       ? ""
