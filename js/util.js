@@ -1,8 +1,8 @@
 /** URI SEARCH TERMS **/
 
 var params = new URLSearchParams(window.location.search);
-params.set("home_page", window.location.href.split("/new")[0] + "/new");
 history.replaceState({}, "", window.location.href.substr(0, window.location.href.length - window.location.search.length));
+params.set("home_page", window.location.href.split("/VITE")[0] + "/VITE");
 var lastMousePos = { x: 0, y: 0 };
 touchHandler = function (e) {
   if (e.clientX && e.clientY) {
@@ -21,7 +21,7 @@ touchHandler = function (e) {
 $(window).on("touchdown touchstart touchstop click", function (e) {
   lastMousePos = touchHandler(e);
 });
-/** **/
+/** context menu **/
 $(document).on("contextmenu", function (e) {
   e.preventDefault();
   if ((e.clientX == e.clientY) == 1) {
