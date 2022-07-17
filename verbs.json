@@ -1,147 +1,14 @@
 {
-  "Venir": {
-    "mascot": "Walk",
-    "FS": "viendr",
-    "PS": {
-      "Je": "vin",
-      "Tu": "vins",
-      "Il / Elle / On": "vint",
-      "Nous": "vînmes",
-      "Vous": "v^ntes",
-      "Ils / Elles": "vînrent"
-    },
-    "definition": "to come",
-    "PC": {
-      "helping": "Être",
-      "participle": "venu"
-    },
-    "Je": "viens",
-    "Tu": "viens",
-    "Il / Elle / On": "vient",
-    "Nous": "venons",
-    "Vous": "venez",
-    "Ils / Elles": "viennent"
-  },
-  "Pouvoir": {
-    "mascot": "Default",
-    "FS": "pourr",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to be able to",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "pu"
-    },
-    "Je": "peux",
-    "Tu": "peux",
-    "Il / Elle / On": "peut",
-    "Nous": "pouvons",
-    "Vous": "pouvez",
-    "Ils / Elles": "peuvent"
-  },
-  "Prendre": {
-    "mascot": "Default",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to take",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "pris"
-    },
-    "Je": "prends",
-    "Tu": "prends",
-    "Il / Elle / On": "prend",
-    "Nous": "prenons",
-    "Vous": "prenez",
-    "Ils / Elles": "prennent"
-  },
-  "Connaître": {
-    "mascot": "Waving",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to know (of a person)",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "connu"
-    },
-    "Je": "connais",
-    "Tu": "connais",
-    "Il / Elle / On": "connait",
-    "Nous": "connaissons",
-    "Vous": "connaissez",
-    "Ils / Elles": "connaissent"
-  },
-  "Savoir": {
-    "mascot": "Default",
-    "FS": "saur",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to know (of an idea or thing)",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "su"
-    },
-    "Je": "sais",
-    "Tu": "sais",
-    "Il / Elle / On": "sait",
-    "Nous": "savons",
-    "Vous": "savez",
-    "Ils / Elles": "savent"
-  },
-  "Avoir": {
-    "mascot": "Default",
-    "FS": "aur",
-    "PS": {
-      "Je": "eus",
-      "Tu": "eus",
-      "Il / Elle / On": "eut",
-      "Nous": "eûmes",
-      "Vous": "eûtes",
-      "Ils / Elles": "eurent"
-    },
-    "definition": "to have",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "eu"
-    },
-    "Je": "ai",
-    "Tu": "as",
-    "Il / Elle / On": "a",
-    "Nous": "avons",
-    "Vous": "avez",
-    "Ils / Elles": "ont"
-  },
-  "Être": {
-    "mascot": "Default",
-    "FS": "ser",
-    "PS": {
-      "Je": "fus",
-      "Tu": "fus",
-      "Il / Elle / On": "fut",
-      "Nous": "fûmes",
-      "Vous": "fûtes",
-      "Ils / Elles": "furent"
-    },
-    "definition": "to be",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "été"
-    },
-    "Je": "suis",
-    "Tu": "es",
-    "Il / Elle / On": "est",
-    "Nous": "sommes",
-    "Vous": "êtes",
-    "Ils / Elles": "sont"
-  },
   "Aller": {
-    "mascot": "Default",
+    "mascot": "Walk",
+    "SU": {
+      "Je": "aille",
+      "Tu": "ailles",
+      "Il / Elle / On": "aille",
+      "Nous": "allions",
+      "Vous": "alliez",
+      "Ils / Elles": "aillent"
+    },
     "FS": "ir",
     "PS": {
       "Je": "alle",
@@ -163,183 +30,56 @@
     "Vous": "allez",
     "Ils / Elles": "vont"
   },
-  "Faire": {
+  "Arriver": {
     "mascot": "Default",
-    "FS": "fer",
-    "PS": {
-      "Je": "fis",
-      "Tu": "fis",
-      "Il / Elle / On": "fit",
-      "Nous": "fîmes",
-      "Vous": "fîtes",
-      "Ils / Elles": "firent"
-    },
-    "definition": "to do",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "fait"
-    },
-    "Je": "fais",
-    "Tu": "fais",
-    "Il / Elle / On": "fait",
-    "Nous": "faisons",
-    "Vous": "faites",
-    "Ils / Elles": "font"
-  },
-  "Manger": {
-    "mascot": "Default",
+    "fullsize": "Door",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
     },
-    "definition": "to eat",
+    "definition": "to arrive",
     "PC": {
-      "helping": "Avoir",
-      "participle": "regular"
-    },
-    "Je": "regular",
-    "Tu": "regular",
-    "Il / Elle / On": "regular",
-    "Nous": "mangeons",
-    "Vous": "regular",
-    "Ils / Elles": "regular"
-  },
-  "Finir": {
-    "mascot": "Default",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to finish",
-    "PC": {
-      "helping": "Avoir",
+      "helping": "Être",
       "participle": "regular"
     },
     "All": "regular"
   },
-  "Vouloir": {
-    "mascot": "Default",
-    "FS": "voudr",
-    "PS": {
-      "All": "regular"
+  "Avoir": {
+    "mascot": "Basket",
+    "SU": {
+      "Je": "aie",
+      "Tu": "aies",
+      "Il / Elle / On": "ait",
+      "Nous": "ayons",
+      "Vous": "ayez",
+      "Ils / Elles": "aient"
     },
-    "definition": "to want",
+    "FS": "aur",
+    "PS": {
+      "Je": "eus",
+      "Tu": "eus",
+      "Il / Elle / On": "eut",
+      "Nous": "eûmes",
+      "Vous": "eûtes",
+      "Ils / Elles": "eurent"
+    },
+    "definition": "to have",
     "PC": {
       "helping": "Avoir",
-      "participle": "voulu"
+      "participle": "eu"
     },
-    "Je": "veux",
-    "Tu": "veux",
-    "Il / Elle / On": "veut",
-    "Nous": "voulons",
-    "Vous": "voulez",
-    "Ils / Elles": "veulent"
-  },
-  "Dormir": {
-    "mascot": "Default",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to sleep",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "dormi"
-    },
-    "Je": "dors",
-    "Tu": "dors",
-    "Il / Elle / On": "dort",
-    "Nous": "dormons",
-    "Vous": "dormez",
-    "Ils / Elles": "dorment"
-  },
-  "Devoir": {
-    "mascot": "Default",
-    "FS": "devr",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to have to",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "dû"
-    },
-    "Je": "dois",
-    "Tu": "dois",
-    "Il / Elle / On": "doit",
-    "Nous": "devons",
-    "Vous": "devez",
-    "Ils / Elles": "doivent"
-  },
-  "Suivre": {
-    "mascot": "Default",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to follow (ex. of a course)",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "suivi"
-    },
-    "Je": "suis",
-    "Tu": "suis",
-    "Il / Elle / On": "suit",
-    "Nous": "suivons",
-    "Vous": "suivez",
-    "Ils / Elles": "suivent"
-  },
-  "Voir": {
-    "mascot": "Default",
-    "FS": "verr",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to see",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "vu"
-    },
-    "Je": "vois",
-    "Tu": "vois",
-    "Il / Elle / On": "voit",
-    "Nous": "voyons",
-    "Vous": "voyez",
-    "Ils / Elles": "voient"
-  },
-  "Rendre": {
-    "mascot": "Default",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to give",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "regular"
-    },
-    "All": "regular"
-  },
-  "Mettre": {
-    "mascot": "Default",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to put",
-    "PC": {
-      "helping": "Avoir",
-      "participle": "mis"
-    },
-    "Je": "mets",
-    "Tu": "mets",
-    "Il / Elle / On": "met ",
-    "Nous": "regular",
-    "Vous": "regular",
-    "Ils / Elles": "regular"
+    "Je": "ai",
+    "Tu": "as",
+    "Il / Elle / On": "a",
+    "Nous": "avons",
+    "Vous": "avez",
+    "Ils / Elles": "ont"
   },
   "Conduire": {
     "mascot": "Default",
+    "fullsize": "Driving",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -356,8 +96,68 @@
     "Vous": "conduisez",
     "Ils / Elles": "conduisent"
   },
-  "Dire": {
+  "Connaître": {
+    "mascot": "Know",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to know (of a person)",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "connu"
+    },
+    "Je": "connais",
+    "Tu": "connais",
+    "Il / Elle / On": "connait",
+    "Nous": "connaissons",
+    "Vous": "connaissez",
+    "Ils / Elles": "connaissent"
+  },
+  "Descendre": {
     "mascot": "Default",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to go down",
+    "PC": {
+      "helping": "Être",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Devoir": {
+    "mascot": "Default",
+    "SU": {
+      "Je": "doive",
+      "Tu": "doives",
+      "Il / Elle / On": "doive",
+      "Nous": "devions",
+      "Vous": "deviez",
+      "Ils / Elles": "doivent"
+    },
+    "FS": "devr",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to have to",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "dû"
+    },
+    "Je": "dois",
+    "Tu": "dois",
+    "Il / Elle / On": "doit",
+    "Nous": "devons",
+    "Vous": "devez",
+    "Ils / Elles": "doivent"
+  },
+  "Dire": {
+    "mascot": "Speaking",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "Je": "dis",
@@ -379,35 +179,144 @@
     "Vous": "dites",
     "Ils / Elles": "disent"
   },
-  "Descendre": {
-    "mascot": "Default",
+  "Dormir": {
+    "mascot": "Sleep",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
     },
-    "definition": "to go down",
+    "definition": "to sleep",
     "PC": {
-      "helping": "Être",
+      "helping": "Avoir",
+      "participle": "dormi"
+    },
+    "Je": "dors",
+    "Tu": "dors",
+    "Il / Elle / On": "dort",
+    "Nous": "dormons",
+    "Vous": "dormez",
+    "Ils / Elles": "dorment"
+  },
+  "Être": {
+    "mascot": "Default",
+    "SU": {
+      "Je": "sois",
+      "Tu": "sois",
+      "Il / Elle / On": "soit",
+      "Nous": "soyons",
+      "Vous": "soyez",
+      "Ils / Elles": "soient"
+    },
+    "FS": "ser",
+    "PS": {
+      "Je": "fus",
+      "Tu": "fus",
+      "Il / Elle / On": "fut",
+      "Nous": "fûmes",
+      "Vous": "fûtes",
+      "Ils / Elles": "furent"
+    },
+    "definition": "to be",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "été"
+    },
+    "Je": "suis",
+    "Tu": "es",
+    "Il / Elle / On": "est",
+    "Nous": "sommes",
+    "Vous": "êtes",
+    "Ils / Elles": "sont"
+  },
+  "Faire": {
+    "mascot": "Default",
+    "SU": {
+      "Je": "fasse",
+      "Tu": "fasses",
+      "Il / Elle / On": "fasse",
+      "Nous": "fassions",
+      "Vous": "fassiez",
+      "Ils / Elles": "fassent"
+    },
+    "FS": "fer",
+    "PS": {
+      "Je": "fis",
+      "Tu": "fis",
+      "Il / Elle / On": "fit",
+      "Nous": "fîmes",
+      "Vous": "fîtes",
+      "Ils / Elles": "firent"
+    },
+    "definition": "to do",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "fait"
+    },
+    "Je": "fais",
+    "Tu": "fais",
+    "Il / Elle / On": "fait",
+    "Nous": "faisons",
+    "Vous": "faites",
+    "Ils / Elles": "font"
+  },
+  "Finir": {
+    "mascot": "Done",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to finish",
+    "PC": {
+      "helping": "Avoir",
       "participle": "regular"
     },
     "All": "regular"
   },
-  "Retourner": {
-    "mascot": "Default",
+  "Manger": {
+    "mascot": "Have",
+    "fullsize": "Picnic",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
     },
-    "definition": "to go down",
+    "definition": "to eat",
     "PC": {
-      "helping": "Être",
+      "helping": "Avoir",
       "participle": "regular"
     },
-    "All": "regular"
+    "Je": "regular",
+    "Tu": "regular",
+    "Il / Elle / On": "regular",
+    "Nous": "mangeons",
+    "Vous": "regular",
+    "Ils / Elles": "regular"
+  },
+  "Mettre": {
+    "mascot": "Default",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to put",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "mis"
+    },
+    "Je": "mets",
+    "Tu": "mets",
+    "Il / Elle / On": "met ",
+    "Nous": "regular",
+    "Vous": "regular",
+    "Ils / Elles": "regular"
   },
   "Mourir": {
     "mascot": "Default",
-    "FS": "regular",
+    "SU": "regular",
+    "FS": "mourr",
     "PS": {
       "All": "regular"
     },
@@ -418,47 +327,9 @@
     },
     "All": "regular"
   },
-  "Rentre": {
-    "mascot": "Default",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to go back in",
-    "PC": {
-      "helping": "Être",
-      "participle": "regular"
-    },
-    "All": "regular"
-  },
-  "Sortir": {
-    "mascot": "Default",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to go out",
-    "PC": {
-      "helping": "Être",
-      "participle": "regular"
-    },
-    "All": "regular"
-  },
-  "Arriver": {
-    "mascot": "Default",
-    "FS": "regular",
-    "PS": {
-      "All": "regular"
-    },
-    "definition": "to arrive",
-    "PC": {
-      "helping": "Être",
-      "participle": "regular"
-    },
-    "All": "regular"
-  },
   "Naître": {
     "mascot": "Default",
+    "SU": "regular",
     "FS": "regular",
     "PS": {
       "All": "regular"
@@ -474,5 +345,298 @@
     "Nous": "naissons",
     "Vous": "naissez",
     "Ils / Elles": "naissent"
+  },
+  "Penser": {
+    "mascot": "Think",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to think",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Pleurer": {
+    "mascot": "Teared",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to cry",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Pouvoir": {
+    "mascot": "Default",
+    "SU": {
+      "Je": "puisse",
+      "Tu": "puisses",
+      "Il / Elle / On": "puisse",
+      "Nous": "puissions",
+      "Vous": "puissiez",
+      "Ils / Elles": "puissent"
+    },
+    "FS": "pourr",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to be able to",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "pu"
+    },
+    "Je": "peux",
+    "Tu": "peux",
+    "Il / Elle / On": "peut",
+    "Nous": "pouvons",
+    "Vous": "pouvez",
+    "Ils / Elles": "peuvent"
+  },
+  "Prendre": {
+    "mascot": "Default",
+    "SU": {
+      "Je": "prenne",
+      "Tu": "prennes",
+      "Il / Elle / On": "prenne",
+      "Nous": "prenions",
+      "Vous": "preniez",
+      "Ils / Elles": "prennent"
+    },
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to take",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "pris"
+    },
+    "Je": "prends",
+    "Tu": "prends",
+    "Il / Elle / On": "prend",
+    "Nous": "prenons",
+    "Vous": "prenez",
+    "Ils / Elles": "prennent"
+  },
+  "Rendre": {
+    "mascot": "Default",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to give",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Rentre": {
+    "mascot": "Default",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to go back in",
+    "PC": {
+      "helping": "Être",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Rester": {
+    "mascot": "Sleep",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to rest",
+    "PC": {
+      "helping": "Être",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Retourner": {
+    "mascot": "Default",
+    "fullsize": "Door",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to go down",
+    "PC": {
+      "helping": "Être",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Sauter": {
+    "mascot": "Excited",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to jump",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Savoir": {
+    "mascot": "Default",
+    "SU": {
+      "Je": "sache",
+      "Tu": "saches",
+      "Il / Elle / On": "sache",
+      "Nous": "sachions",
+      "Vous": "sachiez",
+      "Ils / Elles": "sachent"
+    },
+    "FS": "saur",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to know (of an idea or thing)",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "su"
+    },
+    "Je": "sais",
+    "Tu": "sais",
+    "Il / Elle / On": "sait",
+    "Nous": "savons",
+    "Vous": "savez",
+    "Ils / Elles": "savent"
+  },
+  "Sortir": {
+    "mascot": "Default",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to go out",
+    "PC": {
+      "helping": "Être",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
+  "Suivre": {
+    "mascot": "Default",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to follow (ex. of a course)",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "suivi"
+    },
+    "Je": "suis",
+    "Tu": "suis",
+    "Il / Elle / On": "suit",
+    "Nous": "suivons",
+    "Vous": "suivez",
+    "Ils / Elles": "suivent"
+  },
+  "Venir": {
+    "mascot": "Walk",
+    "SU": {
+      "Je": "vienne",
+      "Tu": "viennes",
+      "Il / Elle / On": "vienne",
+      "Nous": "venions",
+      "Vous": "veniez",
+      "Ils / Elles": "viennent"
+    },
+    "FS": "viendr",
+    "PS": {
+      "Je": "vin",
+      "Tu": "vins",
+      "Il / Elle / On": "vint",
+      "Nous": "vînmes",
+      "Vous": "v^ntes",
+      "Ils / Elles": "vînrent"
+    },
+    "definition": "to come",
+    "PC": {
+      "helping": "Être",
+      "participle": "venu"
+    },
+    "Je": "viens",
+    "Tu": "viens",
+    "Il / Elle / On": "vient",
+    "Nous": "venons",
+    "Vous": "venez",
+    "Ils / Elles": "viennent"
+  },
+  "Voir": {
+    "mascot": "Default",
+    "SU": {
+      "Je": "voie",
+      "Tu": "voies",
+      "Il / Elle / On": "voie",
+      "Nous": "voyions",
+      "Vous": "voyiez",
+      "Ils / Elles": "voient"
+    },
+    "FS": "verr",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to see",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "vu"
+    },
+    "Je": "vois",
+    "Tu": "vois",
+    "Il / Elle / On": "voit",
+    "Nous": "voyons",
+    "Vous": "voyez",
+    "Ils / Elles": "voient"
+  },
+  "Vouloir": {
+    "mascot": "Default",
+    "SU": {
+      "Je": "veuille",
+      "Tu": "veuilles",
+      "Il / Elle / On": "veuille",
+      "Nous": "voulions",
+      "Vous": "vouliez",
+      "Ils / Elles": "veuillent"
+    },
+    "FS": "voudr",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to want",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "voulu"
+    },
+    "Je": "veux",
+    "Tu": "veux",
+    "Il / Elle / On": "veut",
+    "Nous": "voulons",
+    "Vous": "voulez",
+    "Ils / Elles": "veulent"
   }
 }

@@ -1,0 +1,29 @@
+/*nunito*/
+@import url("https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;500;600;700;800;900&display=swap");
+/*next*/
+@font-face {
+  font-family: "Next";
+  src: url("/VITE/font/Next-Regular.otf");
+  font-weight: 400;
+}
+@font-face {
+  font-family: "Next";
+  src: url("/VITE/font/Next-Bold.otf");
+  font-weight: 700;
+}
+@font-face {
+  font-family: "Next";
+  src: url("/VITE/font/Next-Light.otf");
+  font-weight: 200;
+}
+@font-face {
+  font-family: "Next";
+  src: url("/VITE/font/Next-Medium.otf");
+  font-weight: 500;
+}
+/*feather*/
+@font-face {
+  font-family: "Feather";
+  src: url("/VITE/font/Feather-Bold.otf");
+  font-weight: bold;
+}

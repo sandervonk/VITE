@@ -1,20 +1,78 @@
 //*Set Question Data
+/*
+
+*/
 var question = {},
-  questionStart = new Date().getTime();
+  questionStart = new Date().getTime(),
+  subjectDefinitions = {
+    je: "I",
+    tu: "You",
+    il: "He",
+    elle: "She",
+    on: "One",
+    nous: "We",
+    vous: "You",
+    ils: "They (masculine)",
+    elles: "They (feminine)",
+  },
+  tenseDefinitions = {
+    pr: "Present tense",
+    pc: "Past tense",
+    pp: "Past perfect tense",
+    ps: "Past tense (literature)",
+    im: "Imperfect past (past state or ongoing action)",
+    fs: "Future tense (intentions, predictions, conditional)",
+    fa: "Future tense (actions previous to another)",
+    co: "Conditional tense",
+    cp: "Past conditional tense (regrets, what would / could have happened)",
+    su: "Subjunctive Tense (opinions, emotions, and possibilities)",
+    sp: "Past of the Subjunctive Tense (opinions, emotions, and possibilities)",
+  };
 function showQuestion(q) {
   question = q;
   questionStart = new Date().getTime();
+  $("#vite-q-verb, #vite-q-tense").addClass("notranslate");
   $("#vite-q-verb").text(q.verb);
-  $("#vite-q-verb").addClass("notranslate");
   $("#vite-q-tense").text(q.tense);
-  $("#vite-q-tense").addClass("notranslate");
+  $("#vite-q-verb").attr("info", q.definition);
+  $("#vite-q-subject").attr("info", subjectDefinitions[q.subject.toLowerCase()]);
+  if (q.tense.includes("Subjonctif") && ["e", "i", "o"].includes(q.subject[0].toLowerCase())) {
+    $("#vite-q-prefix").html("qu'");
+  } else if (q.tense.includes("Subjonctif")) {
+    $("#vite-q-prefix").html("que&nbsp;");
+  } else {
+    $("#vite-q-prefix").html("");
+  }
+  $("#vite-q-tense").attr("info", tenseDefinitions[q.tenseShort]);
   $("#vite-q-subject").text(q.subject);
+  // sizing
+  if ($("#vite-q-prompt").outerHeight() > 28) {
+    $("#vite-q-prompt").css({
+      "margin-bottom": 45 + 28 - $("#vite-q-prompt").outerHeight(),
+    });
+  } else {
+    $("#vite-q-prompt").css({ "margin-bottom": "" });
+  }
   $("#vite-q-subject").addClass("notranslate");
+  if (q.fullsize != undefined) {
+    $("#answer-mascot").attr("mood", "full=" + q.fullsize);
+  } else {
+    $("#answer-mascot").attr("mood", "mood=" + q.mascot);
+  }
 }
-function submitAnswer() {
+function submitAnswer(skipped) {
   if (document.body.hasAttribute("showanswer")) {
     $(document.body).removeAttr("showanswer");
-    showQuestion(new Question());
+    $(document.body).removeAttr("avaliable");
+    $(document.body).removeAttr("result");
+    let amntDone = (scoringData.countAll == "all" ? score.total : score.correct) / scoringData.target;
+    if (scoringData.target != NaN && scoringData.countAll != null && amntDone >= 1) {
+      $("form[name='practice-results']").submit();
+    } else {
+      showQuestion(new Question());
+    }
+
+    $("#answer-input").val("");
   } else {
     $(document.body).attr("showanswer", "");
     //Check answer
@@ -22,29 +80,24 @@ function submitAnswer() {
     if (variations(question.answer.alt).includes(inputAnswer) || variations(question.answer.full).includes(inputAnswer)) {
       //?correct
       changeScore(1);
-
-      $("#answer-status").text("Correct! 😀");
       $("#answer-correction-1").text("");
       $("#answer-correction-2").text("");
-      $("#answer-overlay").attr("class", "correct");
-      $("#answer-input").val("");
+      $(document.body).attr("result", "correct");
     } else {
       //?incorrect
       changeScore(-1);
-      $("#answer-overlay").attr("class", "incorrect");
-      $("#answer-status").text("😕 Study this One!");
+      $(document.body).attr("result", "incorrect");
       $("#answer-correction-1").text(question.answer.alt);
       $("#answer-correction-2").text(question.answer.full);
       $("#answer-correction-1").addClass("notranslate");
       $("#answer-correction-2").addClass("notranslate");
-      $("#answer-input").val("");
+    }
+    if (skipped == true) {
+      $(document.body).attr("result", "skipped");
     }
   }
 }
-//Make the overlay closable
-$("#answer-overlay, #action-next").click(function () {
-  submitAnswer();
-});
+
 //*Answer Handling and Variations
 function variations(answer) {
   return [
@@ -61,10 +114,17 @@ class Question {
   // #tense;
   // #verb;
   // #subject;
-  constructor() {
-    this.tense = this.pickTense();
-    this.subject = this.random(split(localStorage["vite-subjects"]));
-    this.verb = this.random(split(localStorage["vite-verbs"]));
+  constructor(options) {
+    if (options == undefined || options == null) {
+      this.tense = this.pickTense();
+      this.subject = this.random(split("subjects"));
+      this.verb = this.random(split("verbs"));
+    } else {
+      this.tense = options.tense;
+      this.subject = options.subject;
+      this.verb = options.verb;
+    }
+
     this.verb = {
       name: this.verb,
       verb: verbs[this.verb],
@@ -74,57 +134,99 @@ class Question {
   random(input) {
     if (typeof input == "object") {
       return input[parseInt(Math.random() * input.length)];
-    } else if (typeof input == number) {
+    } else if (typeof input == "number") {
       return parseInt(Math.random() * input);
     } else {
       return Math.random();
     }
   }
   pickTense() {
-    let tenses = [],
-      tense;
-    for (tense of ["pr", "pc", "ps", "im", "fs", "fa", "co"]) {
-      if (JSON.parse(localStorage["vite-" + tense])) {
-        tenses.push(tense);
-      }
-    }
-    return this.random(tenses);
+    return this.random(split("tenses"));
   }
   conjugate(t, s, v) {
+    let tOriginal = t;
     if (v.name.includes("Conna")) {
       v.verb = verbs["Connaître"];
     }
     let a = {};
-    if (t == "pr") {
-      a = this.prTense(s, v);
-      t = "Présent";
-    } else if (t == "pc") {
-      a = this.pcTense(s, v);
-      t = "Passé Composé";
-    } else if (t == "ps") {
-      a = this.psTense(s, v);
-      t = "Passé Simple";
-    } else if (t == "im") {
-      a = this.imTense(s, v);
-      t = "Imparfait";
-    } else if (t == "fs") {
-      a = this.fsTense(s, v);
-      t = "Futur Simple";
-    } else if (t == "fa") {
-      a = this.faTense(s, v);
-      t = "Futur Antérieur";
-    } else if (t == "co") {
-      a = this.coTense(s, v);
-      t = "Conditionnel";
+    switch (t) {
+      case "pr":
+        a = this.prTense(s, v);
+        t = "Présent";
+        break;
+      case "pc":
+        a = this.pcTense(s, v);
+        t = "Passé Composé";
+        break;
+      case "ps":
+        a = this.psTense(s, v);
+        t = "Passé Simple";
+        break;
+      case "im":
+        a = this.imTense(s, v);
+        t = "Imparfait";
+        break;
+      case "fs":
+        a = this.fsTense(s, v);
+        t = "Futur Simple";
+        break;
+      case "fa":
+        a = this.faTense(s, v);
+        t = "Futur Antérieur";
+        break;
+      case "co":
+        a = this.coTense(s, v);
+        t = "Conditionnel";
+        break;
+      case "cp":
+        a = this.cpTense(s, v);
+        t = "Conditionnel Passé";
+        break;
+      case "pp":
+        a = this.ppTense(s, v);
+        t = "Plus que Parfait";
+        break;
+      case "su":
+        a = this.suTense(s, v);
+        t = "Subjonctif";
+        break;
+      case "sp":
+        a = this.spTense(s, v);
+        t = "Subjonctif Passé";
+        break;
+      // case "pp":
+      //   a = this.ppTense(s, v);
+      //   t = "Plus que Parfait";
+      //   break;
+      default:
+        console.error(`Could not match requested tense "${t}" to method`);
+        return {
+          subject: a.subject,
+          verb: v.name,
+          tense: "error: could not be matched",
+          tenseShort: "error",
+          answer: {
+            alt: "error",
+            full: "error",
+          },
+          definition: v.verb.definition,
+          mascot: v.verb.mascot,
+          fullsize: v.verb.fullsize,
+        };
     }
+
     return {
       subject: a.subject,
       verb: v.name,
       tense: t,
+      tenseShort: tOriginal,
       answer: {
         alt: a.alt,
         full: a.full,
       },
+      definition: v.verb.definition,
+      mascot: v.verb.mascot,
+      fullsize: v.verb.fullsize,
     };
   }
   compress(t) {
@@ -133,12 +235,12 @@ class Question {
     }
     return t;
   }
-  versions(answer, subjects) {
+  versions(answer, subjects, skipAgreement) {
     let answers = {
-      subject: this.agreement(subjects).subject,
       alt: answer.toLowerCase(),
     };
-    answers.full = this.compress([answers.subject, answers.alt].join(" ").toLowerCase());
+    (answers.subject = skipAgreement == true ? subjects : this.agreement(subjects).subject),
+      (answers.full = this.compress([answers.subject, answers.alt].join(" ").toLowerCase()));
     return answers;
   }
   prTense(s, v) {
@@ -247,12 +349,12 @@ class Question {
       a.answer = [a.helping, a.participle].join(" ").toLowerCase();
     }
     if (arguments[2] == true) {
-      return a.participle;
+      return { participle: a.participle, subject: a.subject };
     } else {
       return this.versions(a.answer, s);
     }
   }
-  imTense(s, v) {
+  imTense(s, v, raw) {
     //Imparfait Conjugator
     let end = {
         Je: "ais",
@@ -269,7 +371,11 @@ class Question {
       a = this.prTense("Nous", v).alt;
       a = a.substr(0, a.length - 3) + end[s];
     }
-    return this.versions(a, s);
+    if (raw == true) {
+      return { a: a, s: s };
+    } else {
+      return this.versions(a, s);
+    }
   }
   fsTense(s, v) {
     //Futur Simple Conjugator
@@ -295,12 +401,12 @@ class Question {
       name: v.verb.PC.helping,
       verb: verbs[v.verb.PC.helping],
     });
-    a.participle = this.pcTense(s, v, true);
+    a.participle = this.pcTense(s, v, true).participle;
     a.full += (" " + a.participle).toLowerCase();
     a.alt += (" " + a.participle).toLowerCase();
     return a;
   }
-  coTense(s, v) {
+  coTense(s, v, raw) {
     //Conditionnel Conjugator
     let end = {
       Je: "ais",
@@ -316,7 +422,61 @@ class Question {
       r = r.substr(0, r.length - 1);
     }
     let a = (r + end[s]).toLowerCase();
-    return this.versions(a, s);
+    if (raw == true) {
+      return { a: a, s: s };
+    } else {
+      return this.versions(a, s);
+    }
+  }
+  cpTense(s, v) {
+    //Conditionnel Passé Conjugator
+    let a = {};
+    a.coHelping = this.coTense(s, { name: v.verb.PC.helping, verb: verbs[v.verb.PC.helping] }, true).a;
+    a.pc = this.pcTense(s, v, true);
+    return this.versions([a.coHelping, a.pc.participle].join(" "), a.pc.subject, true);
+  }
+  ppTense(s, v) {
+    //Plus que Parfait Conjugator
+    let a = {};
+    a.imHelping = this.imTense(s, { name: v.verb.PC.helping, verb: verbs[v.verb.PC.helping] }, true).a;
+    a.pc = this.pcTense(s, v, true);
+    return this.versions([a.imHelping, a.pc.participle].join(" "), a.pc.subject, true);
+  }
+  suTense(s, v, raw) {
+    //Subjonctif Conjugator
+    let end = {
+        Je: "e",
+        Tu: "es",
+        "Il / Elle / On": "e",
+        Nous: "ions",
+        Vous: "iez",
+        "Ils / Elles": "ent",
+      },
+      a,
+      r;
+    if (v.verb.SU == "regular" || v.verb.SU[s] == "regular") {
+      r = this.prTense("Ils / Elles", v).alt;
+      if (r.substr(r.length - 3, 3) == "ent") {
+        r = r.substr(0, r.length - 3);
+        a = r + end[s];
+      } else {
+        window.alert(`ERR: Could not remove -ent ending from présent tense of 'Ils / Elles' conjugation ('${r}'), cannot form Subjonctif`);
+      }
+    } else {
+      a = v.verb.SU[s];
+    }
+    if (raw == true) {
+      return { a: a, s: s };
+    } else {
+      return this.versions(a, s);
+    }
+  }
+  spTense(s, v) {
+    //Subjonctif Passé Conjugator
+    let a = {};
+    a.coHelping = this.suTense(s, { name: v.verb.PC.helping, verb: verbs[v.verb.PC.helping] }, true).a;
+    a.pc = this.pcTense(s, v, true);
+    return this.versions([a.coHelping, a.pc.participle].join(" "), a.pc.subject, true);
   }
   agreement(subjects) {
     let data = {
@@ -346,13 +506,3 @@ function refreshEvents() {
   });
 }
 */
-$(document.body).on("keypress", (e) => {
-  if (e.which == 13) {
-    //Submit Question
-    submitAnswer();
-  }
-});
-$("#answer-submit").click(function () {
-  //Submit Question
-  submitAnswer();
-});

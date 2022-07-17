@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="/VITE/img/icon/app/icon-512x512.png" type="image/png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="shortcut icon" href="/VITE/img/icon/app/icon-512x512.png" type="image/png" />
+    <link rel="stylesheet" href="css/common.css" />
+    <link rel="stylesheet" href="css/theme.css" />
+    <link rel="stylesheet" href="css/onboard.css" />
+    <link rel="stylesheet" href="css/theme-dark.css" media="(prefers-color-scheme: unset) and not(print)" id="theme-dark-stylesheet" />
+    <meta name="theme-color" id="theme-light-color" id="theme-light-color" content="#FFFFFF" />
+    <meta name="theme-color" id="theme-light-color" content="#FFFFFF" />
+    <meta name="apple-mobile-web-app-status-bar" id="theme-dark-color" media="prefers-color-scheme: unset" content="#131F22" />
+    <meta name="theme-color" id="theme-dark-color" media="prefers-color-scheme: unset" content="#131F22" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <title>VITE! - Get Started</title>
+  </head>
+  <body>
+    <header>
+      <button id="back-button" class="progress-button"></button>
+      <div id="progress-bar">
+        <div id="progress-fill">
+          <div id="progress-fill-accent"></div>
+        </div>
+      </div>
+    </header>
+    <form id="level-form" action="./app/" method="get">
+      <input type="text" id="path-input" name="path" style="display: none" />
+      <input type="text" id="tutorial-input" name="showTutorial" style="display: none" value="true" />
+      <input type="text" id="classPanel" name="classPanel" style="display: none" value="false" />
+      <div class="box option" name="beginner">
+        <div class="option-icon">
+          <img src="img/icon/onboard/Egg.svg" alt="Beginner Path" />
+        </div>
+        <div class="option-text">
+          <div class="option-text-title bold">Just Starting French?</div>
+          <div class="option-text-summary secondary">Start here with the présent tense</div>
+        </div>
+      </div>
+      <div class="box option" name="learning">
+        <div class="option-icon">
+          <img src="img/icon/onboard/Book Icon.svg" alt="Learning Path" />
+        </div>
+        <div class="option-text">
+          <div class="option-text-title bold">Learning French?</div>
+          <div class="option-text-summary secondary">Try working with the past tense and more</div>
+        </div>
+      </div>
+      <div class="box option" name="advanced">
+        <div class="option-icon">
+          <img src="img/icon/onboard/Cap.svg" alt="Advanced Path" />
+        </div>
+        <div class="option-text">
+          <div class="option-text-title bold">Doing well already?</div>
+          <div class="option-text-summary secondary">Work on advanced tenses</div>
+        </div>
+      </div>
+      <div class="box option" name="custom">
+        <div class="option-icon">
+          <img src="img/icon/onboard/Pencil.svg" alt="Custom Path" />
+        </div>
+        <div class="option-text">
+          <div class="option-text-title bold">Something else?</div>
+          <div class="option-text-summary secondary">Customize your experience</div>
+        </div>
+      </div>
+    </form>
+  </body>
+  <script src="js/util.js"></script>
+  <script src="js/firestore-page-auth.js"></script>
+  <script>
+    if (params.get("classPanel") == "true") {
+      $("#classPanel").val("true");
+    }
+    if (params.get("showTutorial") == "false") {
+      document.getElementById("tutorial-input").value = "false";
+      document.getElementById("back-button").addEventListener("click", (e) => {
+        window.history.go(-1);
+      });
+    } else {
+      document.getElementById("back-button").addEventListener("click", (e) => {
+        e.preventDefault();
+        auth.signOut();
+      });
+    }
+    for (element of document.getElementsByClassName("box option")) {
+      element.addEventListener("click", function (e) {
+        //setup from template
+        db.collection("templateUsers")
+          .doc(e.target.getAttribute("name"))
+          .get()
+          .then((levelJSON) => {
+            userDoc()
+              .set(levelJSON.data(), { merge: true })
+              .then(() => {
+                document.getElementById("path-input").value = e.target.getAttribute("name");
+                e.target.parentElement.submit();
+              });
+          });
+      });
+    }
+  </script>
+</html>

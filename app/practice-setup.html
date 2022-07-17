@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en" translate="no" class="notranslate">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="shortcut icon" href="/VITE/img/icon/app/icon-512x512.png" type="image/png" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="google" content="notranslate" />
+    <meta name="runsetup" content="true" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="/VITE/css/common.css" />
+    <link rel="stylesheet" href="/VITE/css/theme.css" />
+    <link rel="stylesheet" href="/VITE/css/practice.css" />
+    <link rel="stylesheet" href="/VITE/css/practice-setup.css" />
+    <link rel="stylesheet" href="/VITE/css/theme-dark.css" media="(prefers-color-scheme: unset) and not(print)" id="theme-dark-stylesheet" />
+    <meta name="theme-color" id="theme-light-color" content="#FFFFFF" />
+    <meta name="apple-mobile-web-app-status-bar" id="theme-light-color" content="#FFFFFF" />
+    <meta name="apple-mobile-web-app-status-bar" id="theme-dark-color" media="prefers-color-scheme: unset" content="#131F22" />
+    <meta name="theme-color" id="theme-dark-color" media="prefers-color-scheme: unset" content="#131F22" />
+    <link rel="shortcut icon" href="/VITE/img/icon/app/icon-512x512.png" type="image/x-icon" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+    <title>VITE! - Customize Practice</title>
+  </head>
+  <body>
+    <form action="./practice.html" method="get" name="question-options">
+      <header>
+        <button id="close-button" class="progress-button" type="button" onclick="window.location.href='./'"></button>
+        <div id="progress-bar" style="display: none">
+          <div id="progress-fill">
+            <div id="progress-fill-accent"></div>
+          </div>
+        </div>
+      </header>
+      <div id="page-content">
+        <div class="options-section" id="scoring">
+          <div class="section-title">Scoring</div>
+          <div id="score-toggles" class="box options-toggles">
+            <div class="section-description">Which answers should count towards your goal?</div>
+            <div class="switch-toggle box" id="score-which">
+              <input type="radio" name="count" id="count-correct" class="hidden-radio" value="correct" checked />
+              <label for="count-correct" class="switch-label">Correct</label>
+              <input type="radio" name="count" id="count-all" class="hidden-radio" value="all" />
+              <label for="count-all" class="switch-label">All</label>
+            </div>
+
+            <div class="section-description">Set a Goal (number of questions)</div>
+            <div class="switch-toggle box">
+              <input type="radio" name="numquestions" id="questions-5" class="hidden-radio" value="5" />
+              <label for="questions-5" class="switch-label">5</label>
+              <input type="radio" name="numquestions" id="questions-10" class="hidden-radio" value="10" />
+              <label for="questions-10" class="switch-label">10</label>
+              <input type="radio" name="numquestions" id="questions-20" class="hidden-radio" value="20" />
+              <label for="questions-20" class="switch-label">20</label>
+              <input type="radio" name="numquestions" id="questions-50" class="hidden-radio" value="50" />
+              <label for="questions-50" class="switch-label">50</label>
+              <input type="radio" name="numquestions" id="questions-infinite" class="hidden-radio" value="Infinity" checked />
+              <label for="questions-infinite" class="switch-label">&#8734;</label>
+            </div>
+          </div>
+        </div>
+        <div class="options-section" id="subjects">
+          <div class="section-title">Subjects</div>
+          <div id="subject-toggles" class="box options-toggles"></div>
+        </div>
+        <div class="options-section" id="tenses">
+          <div class="section-title">Tenses</div>
+          <div id="tense-toggles" class="box options-toggles"></div>
+        </div>
+        <div class="options-section" id="verbs">
+          <div class="section-title">Verbs</div>
+          <div id="verb-toggles" class="box options-toggles"></div>
+        </div>
+      </div>
+      <div id="fade-bars">
+        <div class="fade-down"></div>
+        <div class="fade-up tall"></div>
+      </div>
+      <div id="bottom-actions">
+        <div id="reset-button" class="box-button fullborder primary center avaliable">
+          <div id="reload-icon" class="color-mask"></div>
+        </div>
+        <button type="submit" id="next-button" class="box-button primary center avaliable" value="Continue"></button>
+      </div>
+    </form>
+  </body>
+  <script src="/VITE/js/util.js"></script>
+  <script src="/VITE/js/practice-setup.js"></script>
+  <script src="/VITE/js/firestore-page-auth.js"></script>
+</html>
