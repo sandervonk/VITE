@@ -212,7 +212,6 @@ var classDoc = function (idIn) {
   return db.collection("classes").doc(idIn);
 };
 
-//!code
 auth.onAuthStateChanged((user) => {
   if (user) {
     console.log("user logged in");
