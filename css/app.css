@@ -309,7 +309,7 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 }
 #learn-cards > .card {
   border-radius: 14px;
-  background-position: center center;
+  background-position: bottom right;
   background-repeat: no-repeat;
   background-size: cover;
   height: 130px;
@@ -335,6 +335,9 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 }
 #find-card {
   background-image: var(--find-card-bg);
+}
+#educate-card {
+  background-image: var(--educate-card-bg);
 }
 .card-description {
   opacity: 0.8;
@@ -543,6 +546,9 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 }
 #find-card {
   --card-glow: #2da480aa;
+}
+#educate-card {
+  --card-glow: #c93b66aa;
 }
 #header-readouts {
   flex-shrink: 0;
