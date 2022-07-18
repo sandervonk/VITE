@@ -34,7 +34,7 @@
   -webkit-overflow-scrolling: touch !important;
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: unset !important;
-  font-display: swap !important;
+  font-display: auto !important;
 }
 
 html,
