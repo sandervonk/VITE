@@ -47,7 +47,7 @@ $(document).on("contextmenu", function (e) {
         let result = getCMOptions();
         return result ? result : false;
       } catch (err) {
-        console.error("Could not run getCMOptions()", "\n\n", err);
+        console.warn("Could not run getCMOptions()", "\n\n", err);
         return false;
       }
     };
@@ -332,24 +332,6 @@ $(document.body).on("click", ".popup-overlay", function () {
 var loadElement = new LoadCover();
 
 /** THEME **/
-try {
-  if (JSON.parse(localStorage["userData"]).prefs.theme == "dark") {
-    document.getElementById("theme-dark-stylesheet").setAttribute("media", "not print");
-    for (darkColor of document.querySelectorAll("#theme-dark-color")) {
-      darkColor.setAttribute("media", "not print");
-    }
-    for (lightColor of document.querySelectorAll("#theme-light-color")) {
-      lightColor.setAttribute("media", "(prefers-color-scheme: unset) and not(print)");
-    }
-  } else {
-    document;
-    for (lightColor of document.querySelectorAll("#theme-light-color")) {
-      lightColor.setAttribute("media", "not print");
-    }
-  }
-} catch (err) {
-  console.error("Error setting theme: ", err);
-}
 
 //other
 $("[placeholdaction]").click(function () {
@@ -386,4 +368,29 @@ function sharePage(callback = function () {}) {
     .catch((err) => {
       new ErrorToast("Couldn't open share options, sorry!" + err.toString(), 2000);
     });
+}
+function fixPFPResolution(img_url) {
+  try {
+    return img_url.replace("=s96-c", "=s100-c");
+  } catch (err) {
+    return img_url;
+  }
+}
+try {
+  if (JSON.parse(localStorage["userData"]).prefs.theme == "dark") {
+    document.getElementById("theme-dark-stylesheet").setAttribute("media", "not print");
+    for (darkColor of document.querySelectorAll("#theme-dark-color")) {
+      darkColor.setAttribute("media", "not print");
+    }
+    for (lightColor of document.querySelectorAll("#theme-light-color")) {
+      lightColor.setAttribute("media", "(prefers-color-scheme: unset) and not(print)");
+    }
+  } else {
+    document;
+    for (lightColor of document.querySelectorAll("#theme-light-color")) {
+      lightColor.setAttribute("media", "not print");
+    }
+  }
+} catch (err) {
+  console.warn("Error setting theme: ", err);
 }
