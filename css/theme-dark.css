@@ -28,6 +28,7 @@
   --learn-card-bg: url(../img/card/dark/card=learn.svg);
   --create-card-bg: url(../img/card/dark/card=create.svg);
   --find-card-bg: url(../img/card/dark/card=find.svg);
+  --educate-card-bg: url(../img/card/dark/card=educate.svg);
   --card-text: #ffffff;
   /*settings*/
   --switch-bg: var(--box-border);
