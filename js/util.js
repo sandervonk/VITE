@@ -4,8 +4,10 @@ var params = new URLSearchParams(window.location.search);
 history.replaceState({}, "", window.location.href.substr(0, window.location.href.length - window.location.search.length));
 params.set("home_page", window.location.href.split("/VITE")[0] + "/VITE");
 var verbs = {},
-  lastMousePos = { x: 0, y: 0 },
-  touchHandler = function (e) {
+  lastMousePos = { x: 0, y: 0 };
+
+$(window).on("touchdown touchstart touchstop click", function (e) {
+  lastMousePos = function (e) {
     let x, y;
     if (e.clientX && e.clientY) {
       x = e.clientX;
@@ -19,9 +21,6 @@ var verbs = {},
     }
     return { x: x, y: y };
   };
-
-$(window).on("touchdown touchstart touchstop click", function (e) {
-  lastMousePos = touchHandler(e);
 });
 /** context menu **/
 
@@ -207,17 +206,6 @@ class LoadCover {
     try {
       if ($("meta[name=waitforload]").prop("content") && $(".loadcover").length < 1) {
         $(document.body).append(`<div class="loadcover" style="z-index: 1000;"></div>`);
-        // this.timeoutId = setTimeout(() => {
-        //   if ($(document.body).has(".loadcover:not(.hide)")) {
-        //     new Toast(
-        //       "Loading took too long. Please wait a bit and try again.",
-        //       "default",
-        //       5000,
-        //       "/VITE/img/icon/error-icon.svg",
-        //       "/VITE/"
-        //     );
-        //   }
-        // }, 10000);
       }
     } catch (err) {
       console.warn("could not setup loading animation, error:", err);
