@@ -22,7 +22,7 @@ body {
   padding-top: 90px !important;
   height: 100%;
   box-sizing: border-box;
-  transition: padding-top 0.25s ease-out, margin-top 0.25s ease-out;
+  transition: padding-top 0.25s ease-in-out, margin-top 0.25s ease-in-out;
 }
 header {
   background-color: var(--secondary);
@@ -32,55 +32,47 @@ header {
   box-sizing: border-box;
   position: fixed;
   border-radius: 0 0 18px 18px;
-  transition: padding 0.25s ease-out, height 0.25s ease-out;
+  transition: padding 0.25s ease-in-out, height 0.25s ease-in-out;
 }
-/* 
-#tab-container > .tab {
-  padding: 16px;
-  transition: padding-top 0.25s ease-in-out;
-}
-body[header-collapsed] #tab-container > .tab {
-  padding-top: 66px;
-} 
-*/
-
 #tab-container #tab-content {
   margin-top: 0px;
   transition: margin-top 0.25s ease-in-out;
-}
-body[header-collapsed] #tab-container #tab-content {
-  margin-top: 50px;
-}
-body[header-collapsed] #goal-progress {
-  margin: 0 !important;
-  height: 20px;
-}
-body[header-collapsed] header {
-  padding: 10px 10px;
-  height: 40px;
-}
-body[header-collapsed] #page-content {
-  padding-top: 40px !important;
-}
-body[header-collapsed] #goal-text {
-  transform: translateX(-100%) scale(0.5);
-  line-height: 20px;
-  height: 20px;
-  opacity: 0;
 }
 #mascot-slot,
 #profile-picture,
 #header-readouts {
   transform: none;
-  transition: transform 0.25s ease-out, opacity 0.25s ease-out, width 0.25s ease-out;
+  transition: transform 0.25s ease-in-out, opacity 0.25s ease-in-out, width 0.25s ease-in-out;
 }
-body[header-collapsed] #mascot-slot,
-body[header-collapsed] #profile-picture {
-  transform: scale(0);
-  width: 0px !important;
-}
-body[header-collapsed] #header-readouts {
-  padding: 0;
+@media (max-width: 500px) {
+  body[header-collapsed] #tab-container #tab-content {
+    margin-top: 50px;
+  }
+  body[header-collapsed] #goal-progress {
+    margin: 0 !important;
+    height: 20px;
+  }
+  body[header-collapsed] header {
+    padding: 10px 10px;
+    height: 40px;
+  }
+  body[header-collapsed] #page-content {
+    padding-top: 40px !important;
+  }
+  body[header-collapsed] #goal-text {
+    transform: translateX(-100%) scale(0.5);
+    line-height: 20px;
+    height: 20px;
+    opacity: 0;
+  }
+  body[header-collapsed] #mascot-slot,
+  body[header-collapsed] #profile-picture {
+    transform: scale(0);
+    width: 0px !important;
+  }
+  body[header-collapsed] #header-readouts {
+    padding: 0;
+  }
 }
 #footer-fade {
   width: 100%;
@@ -124,12 +116,12 @@ footer {
   flex-grow: 1;
   max-width: 60px;
   padding-top: 35px;
-  transition: transform 0.5s ease-out;
+  transition: transform 0.5s ease-in-out;
   transform-origin: center center;
 }
 .footer-item.active {
   transform: scale(1.1);
-  transition: transform 0.25s ease-out;
+  transition: transform 0.25s ease-in-out;
 }
 .footer-item.active .inactive-img,
 .footer-item .active-img {
@@ -295,7 +287,7 @@ body:not(.tutorial) #tutorial-overlay {
   -webkit-mask-image: url(../img/icon/tutorial/arrow.png);
   -webkit-mask-image: url(../img/icon/tutorial/arrow.svg);
   background-size: contain;
-  transition: transform 0.2s ease-out;
+  transition: transform 0.2s ease-in-out;
 }
 body[activetab="learn"] #tutorial-arrow {
   transform: none;
@@ -337,7 +329,7 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   display: flex;
   flex-flow: row nowrap;
   margin: 10px 0;
-  transition: margin 0.25s ease-out, height 0.25s ease-out, padding 0.25s ease-out;
+  transition: margin 0.25s ease-in-out, height 0.25s ease-in-out, padding 0.25s ease-in-out;
 }
 #goal-text {
   color: var(--bar-text);
@@ -348,7 +340,8 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   padding-left: 10px;
   line-height: 45px;
   transform-origin: center center;
-  transition: opacity 0.25s ease-out, padding 0.25s ease-out, transform 0.25s ease-out, line-height 0.25s ease-out, height 0.25s ease-out;
+  transition: opacity 0.25s ease-in-out, padding 0.25s ease-in-out, transform 0.25s ease-in-out, line-height 0.25s ease-in-out,
+    height 0.25s ease-in-out;
 }
 #goal-text::before {
   content: attr(value);

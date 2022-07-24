@@ -352,27 +352,6 @@ $(document.body).on("click", ".popup-overlay", function () {
 
 var loadElement = new LoadCover();
 
-/** SCROLL **/
-$(function () {
-  var lastScrollTop = 0,
-    delta = 41;
-  $(".tab").scroll(function () {
-    var scrollTop = $(this).scrollTop(),
-      maxScrollTop = $(this)[0].scrollHeight - $(this).outerHeight();
-    if (Math.abs(scrollTop - lastScrollTop) >= delta) {
-      if (scrollTop > lastScrollTop) {
-        $(document.body).attr("header-collapsed", "");
-      } else if (scrollTop < maxScrollTop - 2) {
-        $(document.body).removeAttr("header-collapsed");
-      }
-      lastScrollTop = scrollTop;
-    } else if (scrollTop == 0) {
-      $(document.body).removeAttr("header-collapsed");
-      lastScrollTop = scrollTop;
-    }
-  });
-});
-
 /** THEME **/
 
 //other

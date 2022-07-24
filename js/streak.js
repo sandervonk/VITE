@@ -41,7 +41,7 @@ function getCalendarHTML(date, streakDays, goalNum) {
   outputHTML += `</div></div>`;
   return outputHTML;
 }
-$("[streak='calendar']").click((e) => {
+$(document).on("click", "body:not([header-collapsed]) [streak='calendar']", (e) => {
   $("#streak-overlay").remove();
   $(document.body).append(
     `<div id="streak-overlay" class="center">` +

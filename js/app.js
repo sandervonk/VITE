@@ -96,8 +96,13 @@ function setTab(tabFull, scroll) {
       inline: "start",
     });
   }
-  tabElement.scrollTop(0);
-  $(document.body).removeAttr("header-collapsed");
+  if (tabElement.scrollTop() > 0) {
+    tabElement.animate({ scrollTop: 0 }, 500, function () {
+      $(document.body).removeAttr("header-collapsed");
+    });
+  } else {
+    $(document.body).removeAttr("header-collapsed");
+  }
 }
 $("#tab-container").scroll((e) => {
   let left = Math.round($("#tab-container").scrollLeft() / $("#tab-container").width()),
@@ -113,3 +118,29 @@ try {
     $(e).text(daysSince + (daysSince == 1 ? " day" : " days") + " ago");
   });
 } catch (e) {}
+
+/** SCROLL **/
+$(function () {
+  var lastScrollTop = 0,
+    delta = 40;
+  $(".tab").scroll(function () {
+    var scrollTop = $(this).scrollTop(),
+      maxScrollTop = $(this)[0].scrollHeight - $(this).outerHeight();
+    if (Math.abs(scrollTop - lastScrollTop) >= delta && scrollTop > 50) {
+      if (scrollTop > lastScrollTop) {
+        $(document.body).attr("header-collapsed", "");
+      } else if (scrollTop < maxScrollTop - 2) {
+        $(document.body).removeAttr("header-collapsed");
+      }
+      lastScrollTop = scrollTop;
+    } else if (scrollTop == 0) {
+      $(document.body).removeAttr("header-collapsed");
+      lastScrollTop = scrollTop;
+    }
+  });
+});
+$(document).on("click", "body[header-collapsed]", (e) => {
+  $(".tab").animate({ scrollTop: 0 }, 500, function () {
+    $(document.body).removeAttr("header-collapsed");
+  });
+});
