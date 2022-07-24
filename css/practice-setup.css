@@ -4,7 +4,6 @@
 }
 
 #next-button {
-  --button-border: var(--check-fill-accent);
   flex-grow: 1;
   width: unset;
   flex-shrink: 1;

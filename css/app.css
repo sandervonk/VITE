@@ -22,6 +22,7 @@ body {
   padding-top: 90px !important;
   height: 100%;
   box-sizing: border-box;
+  transition: padding-top 0.25s ease-out;
 }
 header {
   background-color: var(--secondary);
@@ -31,6 +32,39 @@ header {
   box-sizing: border-box;
   position: fixed;
   border-radius: 0 0 18px 18px;
+  transition: padding 0.25s ease-out, height 0.25s ease-out;
+}
+
+body[header-collapsed] #goal-progress {
+  margin: 0 !important;
+  height: 20px;
+}
+body[header-collapsed] header {
+  padding: 10px 10px;
+  height: 40px;
+}
+body[header-collapsed] #page-content {
+  padding-top: 40px !important;
+}
+body[header-collapsed] #goal-text {
+  transform: translateX(-100%) scale(0.5);
+  line-height: 20px;
+  height: 20px;
+  opacity: 0;
+}
+#mascot-slot,
+#profile-picture,
+#header-readouts {
+  transform: none;
+  transition: transform 0.25s ease-out, opacity 0.25s ease-out, width 0.25s ease-out;
+}
+body[header-collapsed] #mascot-slot,
+body[header-collapsed] #profile-picture {
+  transform: scale(0);
+  width: 0px !important;
+}
+body[header-collapsed] #header-readouts {
+  padding: 0;
 }
 #footer-fade {
   width: 100%;
@@ -287,15 +321,18 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   display: flex;
   flex-flow: row nowrap;
   margin: 10px 0;
+  transition: margin 0.25s ease-out, height 0.25s ease-out, padding 0.25s ease-out;
 }
 #goal-text {
   color: var(--bar-text);
   font-size: 19px;
   font-weight: 700;
-  line-height: 40px;
-  margin-top: -6px;
+  margin-top: -11px;
   text-align: left;
   padding-left: 10px;
+  line-height: 45px;
+  transform-origin: center center;
+  transition: opacity 0.25s ease-out, padding 0.25s ease-out, transform 0.25s ease-out, line-height 0.25s ease-out, height 0.25s ease-out;
 }
 #goal-text::before {
   content: attr(value);
@@ -518,10 +555,6 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
     padding: 18px calc(50vw - 250px);
   }
 }
-/* TEMPORARY 
-#goal-progress {
-  display: none;
-}*/
 #learn-card,
 #learn-tab,
 #learn-tab #tab-content,
@@ -580,6 +613,8 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   transition: width 0.5s ease-in-out;
   min-width: fit-content;
   max-width: 100%;
+  overflow: hidden;
+  position: relative;
 }
 #goal-fill-accent {
   background-color: var(--bar-accent);

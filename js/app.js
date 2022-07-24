@@ -96,6 +96,8 @@ function setTab(tabFull, scroll) {
       inline: "start",
     });
   }
+  tabElement.scrollTop(0);
+  $(document.body).removeAttr("header-collapsed");
 }
 $("#tab-container").scroll((e) => {
   let left = Math.round($("#tab-container").scrollLeft() / $("#tab-container").width()),

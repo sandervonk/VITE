@@ -209,7 +209,6 @@ button {
 }
 header {
   position: relative;
-  /*margin-top: 48px;*/
   display: flex;
   flex-flow: row nowrap;
   width: 100%;
