@@ -473,7 +473,7 @@ try {
             e = e.parentNode;
           }
           return a;
-        })(i, "data-long-press-delay", "1500"),
+        })(i, "data-long-press-delay", "750"),
         10
       );
     n = (function (t, n) {
