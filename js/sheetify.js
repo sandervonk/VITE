@@ -1,6 +1,5 @@
 $("#subjects-settings").text("[" + JSON.parse(localStorage.getItem("userData")).subjects.join("], [") + "]");
 $("#verbs-settings").text(JSON.parse(localStorage.getItem("userData")).verbs.join(", "));
-var verbs;
 $.getJSON("/VITE/verbs.json")
   .done(function (response) {
     verbs = response;

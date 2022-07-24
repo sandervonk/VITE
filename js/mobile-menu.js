@@ -57,7 +57,6 @@ function split(storageVar) {
   return arr;
 }
 
-var verbs = {};
 function changeScore(num) {
   if (num == 1) {
     score.correct += 1;

@@ -7,8 +7,7 @@ if (params.has("resolveto")) {
     window.location.href = params.get("resolveto");
   });
 }
-var verbs,
-  tenses = {
+var tenses = {
     pr: "Présent",
     pc: "Passé Composé",
     im: "Imparfait",

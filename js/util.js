@@ -1,22 +1,24 @@
+"use strict";
 /** URI SEARCH TERMS **/
-
 var params = new URLSearchParams(window.location.search);
 history.replaceState({}, "", window.location.href.substr(0, window.location.href.length - window.location.search.length));
 params.set("home_page", window.location.href.split("/VITE")[0] + "/VITE");
-var lastMousePos = { x: 0, y: 0 };
-touchHandler = function (e) {
-  if (e.clientX && e.clientY) {
-    x = e.clientX;
-    y = e.clientY;
-  } else if (e.touches && e.touches[0]) {
-    x = e.touches[0].clientX;
-    y = e.touches[0].clientY;
-  } else if (e.originalEvent && e.originalEvent.changedTouches[0]) {
-    x = e.originalEvent.changedTouches[0].clientX;
-    y = e.originalEvent.changedTouches[0].clientY;
-  }
-  return { x: x, y: y };
-};
+var verbs = {},
+  lastMousePos = { x: 0, y: 0 },
+  touchHandler = function (e) {
+    let x, y;
+    if (e.clientX && e.clientY) {
+      x = e.clientX;
+      y = e.clientY;
+    } else if (e.touches && e.touches[0]) {
+      x = e.touches[0].clientX;
+      y = e.touches[0].clientY;
+    } else if (e.originalEvent && e.originalEvent.changedTouches[0]) {
+      x = e.originalEvent.changedTouches[0].clientX;
+      y = e.originalEvent.changedTouches[0].clientY;
+    }
+    return { x: x, y: y };
+  };
 
 $(window).on("touchdown touchstart touchstop click", function (e) {
   lastMousePos = touchHandler(e);
@@ -399,15 +401,15 @@ function fixPFPResolution(img_url) {
 try {
   if (JSON.parse(localStorage["userData"]).prefs.theme == "dark") {
     document.getElementById("theme-dark-stylesheet").setAttribute("media", "not print");
-    for (darkColor of document.querySelectorAll("#theme-dark-color")) {
+    for (let darkColor of document.querySelectorAll("#theme-dark-color")) {
       darkColor.setAttribute("media", "not print");
     }
-    for (lightColor of document.querySelectorAll("#theme-light-color")) {
+    for (let lightColor of document.querySelectorAll("#theme-light-color")) {
       lightColor.setAttribute("media", "(prefers-color-scheme: unset) and not(print)");
     }
   } else {
     document;
-    for (lightColor of document.querySelectorAll("#theme-light-color")) {
+    for (let lightColor of document.querySelectorAll("#theme-light-color")) {
       lightColor.setAttribute("media", "not print");
     }
   }
