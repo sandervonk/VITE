@@ -34,7 +34,7 @@
   -webkit-overflow-scrolling: touch !important;
   -webkit-tap-highlight-color: transparent;
   -webkit-appearance: unset !important;
-  -webkit-touch-callout: none; /* only applies to safari mobile */
+  -webkit-touch-callout: none !important; /* only applies to safari mobile */
   font-display: swap !important;
 }
 
