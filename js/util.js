@@ -18,7 +18,8 @@ var verbs = {},
       y = e.originalEvent.changedTouches[0].clientY;
     }
     return { x: x, y: y };
-  };
+  },
+  create_context_menu_extras;
 
 $(window).on("touchdown touchstart touchstop click", function (e) {
   lastMousePos = touchHandler(e);
