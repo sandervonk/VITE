@@ -135,6 +135,18 @@ class ContextMenu {
     );
   }
   build(x, y) {
+    if (window.getSelection) {
+      if (window.getSelection().empty) {
+        // Chrome
+        window.getSelection().empty();
+      } else if (window.getSelection().removeAllRanges) {
+        // Firefox
+        window.getSelection().removeAllRanges();
+      }
+    } else if (document.selection) {
+      // IE
+      document.selection.empty();
+    }
     this.menu = $("<div class='context-menu'></div>");
     this.menu.css({
       top: y,
@@ -169,6 +181,8 @@ class ContextMenu {
     this.realign(x, y);
   }
   realign(x, y) {
+    this.menu.focus();
+    this.menu.focusin();
     this.menu.css({
       top: Math.max(this.windowPadding, Math.min(y, $(window).height() - this.menu.outerHeight() - this.windowPadding)),
       left: Math.max(this.windowPadding, Math.min(x, $(window).width() - this.menu.outerWidth() - this.windowPadding)),
