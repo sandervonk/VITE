@@ -1,0 +1,24 @@
+name: Deploy and Minify
+on:
+  release:
+    branch: main
+  workflow_dispatch:
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout from main
+        uses: actions/checkout@v2
+        with:
+          ref: ${{ github.ref }}
+      - name: Minify
+        uses: anthonyftwang/minify-action@v1.0.1
+      - name: Commit to deployment
+        uses: stefanzweifel/git-auto-commit-action@v4
+        with:
+          commit_message: Sync & minify '${{github.ref_name}}' from main
+          branch: deployed
+          skip_checkout: true
+          push_options: "--force"
+          commit_user_name: Sander Vonk
+          commit_user_email: sandervonk@users.noreply.github.com
