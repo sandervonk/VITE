@@ -16,6 +16,7 @@ jobs:
         with:
           find: "[-version-number-]"
           replace: "${{github.ref_name}}"
+          exclude: "**/*.yml"
           regex: false
       - name: Minify
         uses: anthonyftwang/minify-action@v1.0.1
