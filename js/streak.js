@@ -16,11 +16,7 @@ function getCalendarHTML(date, streakDays, goalNum) {
       [0, "empty", ""],
       [0, "empty", ""],
     ];
-  outputHTML += `<div id="streak-calendar-head"> <button class="calendar-button" id="cal-month-prev"></button> <div id="streak-month">${
-    firstOfMonth.toLocaleString("en-us", { month: "long" }) +
-    (firstOfMonth.getFullYear() == new Date().getFullYear() ? "" : " <span class='cal-year'>" + firstOfMonth.getFullYear()) +
-    "</span>"
-  }</div> <button class="calendar-button" id="cal-month-next"></button> </div>`;
+  outputHTML += `<div id="streak-calendar-head"> <button class="calendar-button" id="cal-month-prev"></button> <div id="streak-month">${firstOfMonth.toLocaleString("en-us", { month: "long" }) + (firstOfMonth.getFullYear() == new Date().getFullYear() ? "" : " <span class='cal-year'>" + firstOfMonth.getFullYear()) + "</span>"}</div> <button class="calendar-button" id="cal-month-next"></button> </div>`;
   outputHTML += `<div id="streak-days">`;
   startVal = firstOfMonth.getDay();
   for (let day = startVal; day < lastOfMonth.getDate() + startVal; day++) {
@@ -43,11 +39,7 @@ function getCalendarHTML(date, streakDays, goalNum) {
 }
 $(document).on("click", "body:not([header-collapsed]) [streak='calendar']", (e) => {
   $("#streak-overlay").remove();
-  $(document.body).append(
-    `<div id="streak-overlay" class="center">` +
-      getCalendarHTML(new Date(), JSON.parse(localStorage.getItem("userData")).xphistory, JSON.parse(localStorage.getItem("userData")).goal) +
-      `</div>`
-  );
+  $(document.body).append(`<div id="streak-overlay" class="center">` + getCalendarHTML(new Date(), JSON.parse(localStorage.getItem("userData")).xphistory, JSON.parse(localStorage.getItem("userData")).goal) + `</div>`);
   $("#streak-overlay").addClass("fadein");
   $("#streak-calendar").addClass("fadezoomin");
 });
@@ -67,11 +59,5 @@ $(document.body).on("click", ".calendar-button", (e) => {
   let cal = $("#streak-calendar"),
     newDate = new Date(cal.attr("date")).setMonth(new Date(cal.attr("date")).getMonth() + change);
   cal.attr("date", new Date(newDate).toDateString());
-  cal.html(
-    getCalendarHTML(
-      new Date(cal.attr("date")),
-      JSON.parse(localStorage.getItem("userData")).xphistory,
-      JSON.parse(localStorage.getItem("userData")).goal
-    )
-  );
+  cal.html(getCalendarHTML(new Date(cal.attr("date")), JSON.parse(localStorage.getItem("userData")).xphistory, JSON.parse(localStorage.getItem("userData")).goal));
 });

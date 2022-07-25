@@ -4,7 +4,10 @@ var params = new URLSearchParams(window.location.search);
 history.replaceState({}, "", window.location.href.substr(0, window.location.href.length - window.location.search.length));
 params.set("home_page", window.location.href.split("/VITE")[0] + "/VITE");
 var verbs = {},
-  lastMousePos = { x: 0, y: 0 };
+  lastMousePos = {
+    x: 0,
+    y: 0,
+  };
 
 $(window).on("touchdown touchstart touchstop click", function (e) {
   lastMousePos = function (e) {
@@ -19,51 +22,49 @@ $(window).on("touchdown touchstart touchstop click", function (e) {
       x = e.originalEvent.changedTouches[0].clientX;
       y = e.originalEvent.changedTouches[0].clientY;
     }
-    return { x: x, y: y };
+    return {
+      x: x,
+      y: y,
+    };
   };
 });
 /** context menu **/
 
-$(document).on(
-  `contextmenu${
-    (navigator ? navigator.userAgent.match(/iPhone|iPad|iPod/i) && CSS.supports("-webkit-touch-callout: none") : false) ? " long-press" : ""
-  }`,
-  function (e) {
-    e.preventDefault();
-    if ((e.clientX == e.clientY) == 1) {
-      e.clientX = lastMousePos.x;
-      e.clientY = lastMousePos.y;
-    }
-    e.target = document.elementFromPoint(e.clientX, e.clientY);
-    if (!$(e.target).hasClass("context-overlay") || window.matchMedia("(min-width: 50px)").matches) {
-      $(".context-menu, .context-overlay").remove();
-      e.target = document.elementFromPoint(e.clientX, e.clientY);
-      let menu_items = $("meta[name='cm-options']").attr("content"),
-        target_options = $(e.target).attr("cm-options");
-      menu_items = menu_items != undefined ? menu_items + "," : "";
-      menu_items = target_options ? menu_items + target_options : menu_items;
-      try {
-        menu_items = menu_items != "undefined" ? JSON.parse("[" + menu_items + "]") : menu_items;
-      } catch (err) {
-        console.warn("Something went wrong applying context menu options from the <meta> tag!\n\n", menu_items, "\n\n", err);
-        menu_items = [];
-      }
-      let menu_options = {
-        width: 300,
-        extras_callback: function () {
-          try {
-            let result = getCMOptions();
-            return result ? result : false;
-          } catch (err) {
-            console.warn("Could not run getCMOptions()", "\n\n", err);
-            return false;
-          }
-        },
-      };
-      new ContextMenu(e, this, menu_items, menu_options);
-    }
+$(document).on(`contextmenu${(navigator ? navigator.userAgent.match(/iPhone|iPad|iPod/i) && CSS.supports("-webkit-touch-callout: none") : false) ? " long-press" : ""}`, function (e) {
+  e.preventDefault();
+  if ((e.clientX == e.clientY) == 1) {
+    e.clientX = lastMousePos.x;
+    e.clientY = lastMousePos.y;
   }
-);
+  e.target = document.elementFromPoint(e.clientX, e.clientY);
+  if (!$(e.target).hasClass("context-overlay") || window.matchMedia("(min-width: 50px)").matches) {
+    $(".context-menu, .context-overlay").remove();
+    e.target = document.elementFromPoint(e.clientX, e.clientY);
+    let menu_items = $("meta[name='cm-options']").attr("content"),
+      target_options = $(e.target).attr("cm-options");
+    menu_items = menu_items != undefined ? menu_items + "," : "";
+    menu_items = target_options ? menu_items + target_options : menu_items;
+    try {
+      menu_items = menu_items != "undefined" ? JSON.parse("[" + menu_items + "]") : menu_items;
+    } catch (err) {
+      console.warn("Something went wrong applying context menu options from the <meta> tag!\n\n", menu_items, "\n\n", err);
+      menu_items = [];
+    }
+    let menu_options = {
+      width: 300,
+      extras_callback: function () {
+        try {
+          let result = getCMOptions();
+          return result ? result : false;
+        } catch (err) {
+          console.warn("Could not run getCMOptions()", "\n\n", err);
+          return false;
+        }
+      },
+    };
+    new ContextMenu(e, this, menu_items, menu_options);
+  }
+});
 function closeContextMenu() {
   $(document.body).removeAttr("contextmenu");
   $(".context-menu, .context-overlay").addClass("close");
@@ -81,7 +82,14 @@ $(window).on("keydown blur resize", function (event) {
   }
 });
 class ContextMenu {
-  constructor(e, item_ref, menuItems = [], options = { width: 300 }) {
+  constructor(
+    e,
+    item_ref,
+    menuItems = [],
+    options = {
+      width: 300,
+    }
+  ) {
     this.defaults = [
       {
         icon: "cm-home",
@@ -127,18 +135,10 @@ class ContextMenu {
     this.build(this.x, this.y);
   }
   makeMenuItem(item) {
-    return $(
-      `<div class='cm-item' onclick='${item.onclick ? item.onclick : ""}'><img class='cm-icon' src='/VITE/img/icon/cm/${item.icon}.svg' /><span>${
-        item.text
-      }</span></div>`
-    );
+    return $(`<div class='cm-item' onclick='${item.onclick ? item.onclick : ""}'><img class='cm-icon' src='/VITE/img/icon/cm/${item.icon}.svg' /><span>${item.text}</span></div>`);
   }
   makeMenuButton(item) {
-    return $(
-      `<div class='cm-item cm-button' title='${item.text}' onclick='${
-        item.onclick ? item.onclick : ""
-      }'><img class='cm-icon' src='/VITE/img/icon/cm/${item.icon}.svg'/></div>`
-    );
+    return $(`<div class='cm-item cm-button' title='${item.text}' onclick='${item.onclick ? item.onclick : ""}'><img class='cm-icon' src='/VITE/img/icon/cm/${item.icon}.svg'/></div>`);
   }
   build(x, y) {
     if (window.getSelection) {
@@ -261,7 +261,9 @@ class Toast {
     }
     document.body.appendChild(toast);
     setTimeout(() => {
-      $(toast).css({ animation: "slideOut 0.5s forwards" });
+      $(toast).css({
+        animation: "slideOut 0.5s forwards",
+      });
     }, this.duration);
     setTimeout(() => {
       overlay.remove();
@@ -300,25 +302,22 @@ class Popup {
       toast.classList.add(classData);
     }
     for (let actionInfo of this.action) {
-      buttons += `<button class="popup-button blue-button box-button${actionInfo[2] == undefined ? "" : " " + actionInfo[2]}" onclick="${
-        actionInfo[0]
-      }">${actionInfo[1]}</button>`;
+      buttons += `<button class="popup-button blue-button box-button${actionInfo[2] == undefined ? "" : " " + actionInfo[2]}" onclick="${actionInfo[0]}">${actionInfo[1]}</button>`;
     }
     buttons += "</div>";
-    toast.innerHTML +=
-      (this.icon != "" ? `<div class="popup-top-bar">` : "") +
-      "<div class='popup-text'>" +
-      this.message +
-      `</div>` +
-      (this.icon != "" ? `<img src="${this.icon}" class="popup-icon" alt="Popup Icon"></div>` : "");
+    toast.innerHTML += (this.icon != "" ? `<div class="popup-top-bar">` : "") + "<div class='popup-text'>" + this.message + `</div>` + (this.icon != "" ? `<img src="${this.icon}" class="popup-icon" alt="Popup Icon"></div>` : "");
     toast.innerHTML += buttons;
     if (this.action != "") {
       document.body.appendChild(overlay);
     }
     document.body.appendChild(toast);
     setTimeout(() => {
-      $(toast).css({ animation: "fadeout 0.5s forwards" });
-      $(overlay).css({ animation: "fadeout 0.5s forwards" });
+      $(toast).css({
+        animation: "fadeout 0.5s forwards",
+      });
+      $(overlay).css({
+        animation: "fadeout 0.5s forwards",
+      });
     }, this.duration);
     setTimeout(() => {
       $(toast).remove();
@@ -327,8 +326,12 @@ class Popup {
   }
 }
 function removePopup() {
-  $(".popup").css({ animation: "fadeout 0.5s forwards" });
-  $(".popup-overlay").css({ animation: "fadeout 0.5s forwards" });
+  $(".popup").css({
+    animation: "fadeout 0.5s forwards",
+  });
+  $(".popup-overlay").css({
+    animation: "fadeout 0.5s forwards",
+  });
   setTimeout(() => {
     $(".popup").remove();
     $(".popup-overlay").remove();
@@ -359,9 +362,7 @@ function copyToClipboard(text, callback = function () {}) {
 }
 function getDefaultPageData() {
   return {
-    title: $("meta[name='og:description']").attr("content")
-      ? $("meta[name='og:description']").attr("content")
-      : "Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!",
+    title: $("meta[name='og:description']").attr("content") ? $("meta[name='og:description']").attr("content") : "Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!",
     description: $("meta[name='og:site_name']").attr("content") ? $("meta[name='og:site_name']").attr("content") : document.title,
 
     url: $("meta[name='og:url']").attr("content") ? $("meta[name='og:url']").attr("content") : window.location.href,
@@ -434,7 +435,10 @@ try {
         new CustomEvent("long-press", {
           bubbles: !0,
           cancelable: !0,
-          detail: { clientX: e.clientX, clientY: e.clientY },
+          detail: {
+            clientX: e.clientX,
+            clientY: e.clientY,
+          },
           clientX: e.clientX,
           clientY: e.clientY,
           offsetX: e.offsetX,
@@ -471,16 +475,7 @@ try {
         10
       );
     n = (function (t, n) {
-      if (
-        !(
-          e.requestAnimationFrame ||
-          e.webkitRequestAnimationFrame ||
-          (e.mozRequestAnimationFrame && e.mozCancelRequestAnimationFrame) ||
-          e.oRequestAnimationFrame ||
-          e.msRequestAnimationFrame
-        )
-      )
-        return e.setTimeout(t, n);
+      if (!(e.requestAnimationFrame || e.webkitRequestAnimationFrame || (e.mozRequestAnimationFrame && e.mozCancelRequestAnimationFrame) || e.oRequestAnimationFrame || e.msRequestAnimationFrame)) return e.setTimeout(t, n);
       var a = new Date().getTime(),
         i = {},
         o = function () {
@@ -491,25 +486,15 @@ try {
   }
   function f(t) {
     var a;
-    (a = n) &&
-      (e.cancelAnimationFrame
-        ? e.cancelAnimationFrame(a.value)
-        : e.webkitCancelAnimationFrame
-        ? e.webkitCancelAnimationFrame(a.value)
-        : e.webkitCancelRequestAnimationFrame
-        ? e.webkitCancelRequestAnimationFrame(a.value)
-        : e.mozCancelRequestAnimationFrame
-        ? e.mozCancelRequestAnimationFrame(a.value)
-        : e.oCancelRequestAnimationFrame
-        ? e.oCancelRequestAnimationFrame(a.value)
-        : e.msCancelRequestAnimationFrame
-        ? e.msCancelRequestAnimationFrame(a.value)
-        : clearTimeout(a)),
-      (n = null);
+    (a = n) && (e.cancelAnimationFrame ? e.cancelAnimationFrame(a.value) : e.webkitCancelAnimationFrame ? e.webkitCancelAnimationFrame(a.value) : e.webkitCancelRequestAnimationFrame ? e.webkitCancelRequestAnimationFrame(a.value) : e.mozCancelRequestAnimationFrame ? e.mozCancelRequestAnimationFrame(a.value) : e.oCancelRequestAnimationFrame ? e.oCancelRequestAnimationFrame(a.value) : e.msCancelRequestAnimationFrame ? e.msCancelRequestAnimationFrame(a.value) : clearTimeout(a)), (n = null);
   }
   "function" != typeof e.CustomEvent &&
     ((e.CustomEvent = function (e, n) {
-      n = n || { bubbles: !1, cancelable: !1, detail: void 0 };
+      n = n || {
+        bubbles: !1,
+        cancelable: !1,
+        detail: void 0,
+      };
       var a = t.createEvent("CustomEvent");
       return a.initCustomEvent(e, n.bubbles, n.cancelable, n.detail), a;
     }),
