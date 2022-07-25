@@ -1,0 +1,18 @@
+name: minisauras
+
+on: [push]
+
+jobs:
+  read:
+    runs-on: ubuntu-18.04
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: minisauras
+        uses: TeamTigers/minisauras@v2.0.0
+        env:
+          GITHUB_TOKEN: ${{ secrets.TOKEN }}
+        id: dir
+        with:
+          directory: "./"
