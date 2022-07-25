@@ -8,8 +8,8 @@
     <meta name="runsettings" content="true" />
     <meta name="guestprompt" content="true" />
     <meta name="waitforload" content="true" />
-    <link rel="stylesheet" href="/VITE/css/common.css" />
-    <link async rel="stylesheet" href="/VITE/css/fonts.css" />
+    <link rel="stylesheet" href="/VITE/css/common.css?version=[-version-number-]" />
+    <link async rel="stylesheet" href="/VITE/css/fonts.css?version=[-version-number-]" />
     <link rel="manifest" href="/VITE/manifest.json" />
     <!-- ios support -->
     <meta name="mobile-web-app-capable" content="yes" />
@@ -34,24 +34,15 @@
     <meta name="description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
     <!-- Schema.org for Google -->
     <meta itemprop="name" content="VITE! Mobile" />
-    <meta
-      itemprop="description"
-      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
-    />
+    <meta itemprop="description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
     <!-- Twitter -->
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="VITE! Mobile" />
-    <meta
-      name="twitter:description"
-      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
-    />
+    <meta name="twitter:description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
     <meta name="twitter:image:src" content="/VITE/img/social-img/social-twitter.png" />
     <!-- Open Graph general (Facebook, Pinterest & Google+) -->
     <meta name="og:title" content="VITE! French Practice" />
-    <meta
-      name="og:description"
-      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
-    />
+    <meta name="og:description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
     <meta name="og:image" content="/VITE/img/social-img/social-og.png" />
     <meta name="og:url" content="sander.vonk.one/VITE/" />
     <meta name="og:site_name" content="VITE! French Conjugation Practice" />
@@ -68,10 +59,10 @@
 
       gtag("config", "G-5GF8MRX85G");
     </script>
-    <link rel="stylesheet" href="/VITE/css/theme.css" />
-    <link rel="stylesheet" href="/VITE/css/theme-dark.css" media="(prefers-color-scheme: unset) and not(print)" id="theme-dark-stylesheet" />
-    <link rel="stylesheet" href="/VITE/css/app.css" />
-    <link rel="stylesheet" href="/VITE/css/streak.css" />
+    <link rel="stylesheet" href="/VITE/css/theme.css?version=[-version-number-]" />
+    <link rel="stylesheet" href="/VITE/css/theme-dark.css?version=[-version-number-]" media="(prefers-color-scheme: unset) and not(print)" id="theme-dark-stylesheet" />
+    <link rel="stylesheet" href="/VITE/css/app.css?version=[-version-number-]" />
+    <link rel="stylesheet" href="/VITE/css/streak.css?version=[-version-number-]" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -145,9 +136,7 @@
               <div class="settings-section" id="theme-section">
                 <div class="section-title">Theme</div>
                 <div class="section-content box">
-                  <div class="section-description">
-                    Chose your color theme. By default this will match your device’s system-wide settings if supported
-                  </div>
+                  <div class="section-description">Chose your color theme. By default this will match your device’s system-wide settings if supported</div>
 
                   <div class="switch-toggle box">
                     <input type="radio" name="theme" id="theme-dark" class="hidden-radio" value="dark" />
@@ -160,9 +149,7 @@
               <div class="settings-section" id="pacing-section" placeholdaction>
                 <div class="section-title">Pacing</div>
                 <div class="section-content box">
-                  <div class="section-description">
-                    Should VITE! try to adapt to your progress? If this setting is disabled, you will manually have to enable new tenses and verbs.
-                  </div>
+                  <div class="section-description">Should VITE! try to adapt to your progress? If this setting is disabled, you will manually have to enable new tenses and verbs.</div>
 
                   <div class="switch-toggle box">
                     <input type="radio" name="pacing" id="pacing-yes" class="hidden-radio" value="yes" checked />
@@ -175,9 +162,7 @@
               <div class="settings-section" id="saves-section" placeholdaction>
                 <div class="section-title">Cloud Saves</div>
                 <div class="section-content box">
-                  <div class="section-description">
-                    Should we save your progress to the cloud? Note that this only works when logged in with a Google Account through OAuth 2.
-                  </div>
+                  <div class="section-description">Should we save your progress to the cloud? Note that this only works when logged in with a Google Account through OAuth 2.</div>
 
                   <div class="switch-toggle box">
                     <input type="radio" name="saves" id="saves-yes" class="hidden-radio" value="yes" checked />
@@ -191,26 +176,10 @@
             <div class="settings-section" id="prior-section">
               <div class="section-title">Leveling and Groups</div>
               <div class="section-content box">
-                <div class="section-description">
-                  Re-open the starting prior knowledge panel to chose a new starting level. Create or join a class to keep track of your progress
-                </div>
+                <div class="section-description">Re-open the starting prior knowledge panel to chose a new starting level. Create or join a class to keep track of your progress</div>
                 <div class="flex-row">
-                  <button
-                    class="box-button blue-button"
-                    id="retake-prior-button"
-                    style="flex-grow: 1"
-                    onclick="window.location.href = '../onboarding.html?showTutorial=false' "
-                  >
-                    Open
-                  </button>
-                  <button
-                    class="box-button green-button"
-                    id="class-dashboard-button"
-                    style="margin-left: 10px; flex-grow: 1; color: white"
-                    onclick="window.location.href = '../class/' "
-                  >
-                    Join
-                  </button>
+                  <button class="box-button blue-button" id="retake-prior-button" style="flex-grow: 1" onclick="window.location.href = '../onboarding.html?showTutorial=false' ">Open</button>
+                  <button class="box-button green-button" id="class-dashboard-button" style="margin-left: 10px; flex-grow: 1; color: white" onclick="window.location.href = '../class/' ">Join</button>
                 </div>
               </div>
             </div>
@@ -272,9 +241,7 @@
       <div id="tutorial-box">
         <div id="tutorial-text">
           <div id="tutorial-title">The Learn Tab</div>
-          <div id="tutorial-description">
-            This tab is your go-to place for everything learning. It'll provide you access to different activities at the touch of a tile!
-          </div>
+          <div id="tutorial-description">This tab is your go-to place for everything learning. It'll provide you access to different activities at the touch of a tile!</div>
         </div>
 
         <div id="tutorial-arrow-container">
@@ -303,9 +270,9 @@
       </div>
     </footer>
   </body>
-  <script src="/VITE/js/util.js"></script>
-  <script src="/VITE/js/streak.js"></script>
-  <script src="/VITE/js/app.js"></script>
-  <script src="/VITE/js/firestore-page-auth.js"></script>
-  <script src="/VITE/PWA.js"></script>
+  <script src="/VITE/js/util.js?version=[-version-number-]"></script>
+  <script src="/VITE/js/streak.js?version=[-version-number-]"></script>
+  <script src="/VITE/js/app.js?version=[-version-number-]"></script>
+  <script src="/VITE/js/firestore-page-auth.js?version=[-version-number-]"></script>
+  <script src="/VITE/PWA.js?version=[-version-number-]"></script>
 </html>

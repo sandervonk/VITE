@@ -4,11 +4,11 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width,initial-scale=1" />
-    <link async rel="stylesheet" href="/VITE/css/fonts.css" />
-    <link rel="stylesheet" href="/VITE/css/common.css" />
-    <link rel="stylesheet" href="/VITE/css/theme.css" />
-    <link rel="stylesheet" href="/VITE/css/signon.css" />
-    <link rel="stylesheet" href="/VITE/css/stars.css" />
+    <link async rel="stylesheet" href="/VITE/css/fonts.css?version=[-version-number-]" />
+    <link rel="stylesheet" href="/VITE/css/common.css?version=[-version-number-]" />
+    <link rel="stylesheet" href="/VITE/css/theme.css?version=[-version-number-]" />
+    <link rel="stylesheet" href="/VITE/css/signon.css?version=[-version-number-]" />
+    <link rel="stylesheet" href="/VITE/css/stars.css?version=[-version-number-]" />
     <link rel="apple-touch-icon" href="/VITE/img/icon/app/icon-maskable-72x72.png" />
     <link rel="apple-touch-icon" href="/VITE/img/icon/app/icon-maskable-96x96.png" />
     <link rel="apple-touch-icon" href="/VITE/img/icon/app/icon-maskable-128x128.png" />
@@ -30,22 +30,13 @@
     <link rel="shortcut icon" href="//sander.vonk.one/VITE/img/icon/app/icon-512x512.png" type="image/png" />
     <meta name="description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
     <meta itemprop="name" content="VITE! Mobile" />
-    <meta
-      itemprop="description"
-      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
-    />
+    <meta itemprop="description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:title" content="VITE! Mobile" />
-    <meta
-      name="twitter:description"
-      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
-    />
+    <meta name="twitter:description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
     <meta name="twitter:image:src" content="/VITE/img/social-img/social-twitter.png" />
     <meta name="og:title" content="VITE! Mobile" />
-    <meta
-      name="og:description"
-      content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!"
-    />
+    <meta name="og:description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
     <meta name="og:image" content="/VITE/img/social-img/social-og.png" />
     <meta name="og:url" content="sander.vonk.one/VITE/" />
     <meta name="og:site_name" content="VITE! French Conjugation Practice" />
@@ -70,54 +61,16 @@
     <div id="auth-box">
       <form id="auth-form">
         <div class="box" id="signup-box">
-          <label for="email-input">Email</label><br /><input type="email" autocomplete="email" id="email-input" name="email" /><br /><label
-            for="password-input"
-            >Passcode</label
-          ><br /><input type="password" style="margin-bottom: 0" autocomplete="new-password" id="password-input" name="password" />
-          <p onclick="resetEmail()" class="secondary" style="margin: 0; text-decoration: underline; margin-left: 20px; margin-bottom: 25px">
-            Forgot Passcode
-          </p>
+          <label for="email-input">Email</label><br /><input type="email" autocomplete="email" id="email-input" name="email" /><br /><label for="password-input">Passcode</label><br /><input type="password" style="margin-bottom: 0" autocomplete="new-password" id="password-input" name="password" />
+          <p onclick="resetEmail()" class="secondary" style="margin: 0; text-decoration: underline; margin-left: 20px; margin-bottom: 25px">Forgot Passcode</p>
           <div id="submit-buttons">
             <input class="box-button" id="signup" type="submit" value="Sign Up" style="margin-right: 5px; margin-bottom: 0" />
-            <input
-              class="box-button"
-              id="login"
-              type="submit"
-              value="Log In"
-              style="margin-left: 5px; background-color: var(--button-bg); border-color: var(--button-border)"
-            />
+            <input class="box-button" id="login" type="submit" value="Log In" style="margin-left: 5px; background-color: var(--button-bg); border-color: var(--button-border)" />
           </div>
         </div>
-        <div id="provider-login" class="login-margin">
-          <input id="oauth-login" class="login-skip box box-button fullborder" value="Login with Google" type="submit" formaction="./app/" /><input
-            id="github-login"
-            class="login-skip box box-button fullborder"
-            value=""
-            type="submit"
-            formaction="./app/"
-          /><input id="facebook-login" class="login-skip box box-button fullborder" value="" type="submit" formaction="./app/" /><input
-            id="twitter-login"
-            class="login-skip box box-button fullborder"
-            value=""
-            type="submit"
-            formaction="./app/"
-          />
-        </div>
+        <div id="provider-login" class="login-margin"><input id="oauth-login" class="login-skip box box-button fullborder" value="Login with Google" type="submit" formaction="./app/" /><input id="github-login" class="login-skip box box-button fullborder" value="" type="submit" formaction="./app/" /><input id="facebook-login" class="login-skip box box-button fullborder" value="" type="submit" formaction="./app/" /><input id="twitter-login" class="login-skip box box-button fullborder" value="" type="submit" formaction="./app/" /></div>
         <div id="extended-options" class="login-margin">
-          <input
-            id="guest-login"
-            onclick="auth.signInAnonymously()"
-            class="login-skip box box-button fullborder"
-            value="Continue as Guest"
-            type="button"
-          /><input
-            id="school-login"
-            onclick="eduSignup()"
-            class="login-skip box-button fullborder primary center"
-            value="Student / Teacher"
-            title="Student / Teacher Signup"
-            type="button"
-          />
+          <input id="guest-login" onclick="auth.signInAnonymously()" class="login-skip box box-button fullborder" value="Continue as Guest" type="button" /><input id="school-login" onclick="eduSignup()" class="login-skip box-button fullborder primary center" value="Student / Teacher" title="Student / Teacher Signup" type="button" />
           <div id="group-icon" class="color-mask"></div>
         </div>
         <div id="education-options" style="display: none">
@@ -128,20 +81,12 @@
       </form>
       <div id="verification-box" class="inactive box">
         <div id="verification-email" class="box secondary">email@example.com</div>
-        <div id="submit-buttons">
-          <input id="change-email" type="button" class="box" value="Change" /><input
-            id="send-verification"
-            type="button"
-            class="box-button"
-            value="Send Verification"
-          />
-        </div>
+        <div id="submit-buttons"><input id="change-email" type="button" class="box" value="Change" /><input id="send-verification" type="button" class="box-button" value="Send Verification" /></div>
       </div>
     </div>
     <div id="bg-items">
       <div id="bg-stars"></div>
-      <object alt="Earth Illustration" id="earth-illustration" data="/VITE/img/Earth.svg" type="image/svg+xml"></object
-      ><object alt="Earth Illustration" id="earth-illustration" data="/VITE/img/Earth.png" type="image/png"></object>
+      <object alt="Earth Illustration" id="earth-illustration" data="/VITE/img/Earth.svg" type="image/svg+xml"></object><object alt="Earth Illustration" id="earth-illustration" data="/VITE/img/Earth.png" type="image/png"></object>
     </div>
   </body>
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
@@ -166,8 +111,8 @@
       return db.collection("users").doc(auth.getUid());
     };
   </script>
-  <script src="/VITE/js/util.js"></script>
-  <script src="/VITE/js/auth.js"></script>
+  <script src="/VITE/js/util.js?version=[-version-number-]"></script>
+  <script src="/VITE/js/auth.js?version=[-version-number-]"></script>
   <script>
     //*STARS
     var limit = window.matchMedia("(orientation: landscape)").matches ? 150 : 75, // Max number of stars

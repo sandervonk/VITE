@@ -7,21 +7,21 @@
     <meta name="google" content="notranslate" />
     <meta name="runapp" content="true" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link rel="stylesheet" href="/VITE/css/common.css" />
-    <link async rel="stylesheet" href="/VITE/css/fonts.css" />
-    <link rel="stylesheet" href="/VITE/css/theme.css" />
-    <link rel="stylesheet" href="/VITE/css/practice.css" />
+    <link rel="stylesheet" href="/VITE/css/common.css?version=[-version-number-]" />
+    <link async rel="stylesheet" href="/VITE/css/fonts.css?version=[-version-number-]" />
+    <link rel="stylesheet" href="/VITE/css/theme.css?version=[-version-number-]" />
+    <link rel="stylesheet" href="/VITE/css/practice.css?version=[-version-number-]" />
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
-    <link rel="stylesheet" href="/VITE/css/theme-dark.css" media="(prefers-color-scheme: unset) and not(print)" id="theme-dark-stylesheet" />
+    <link rel="stylesheet" href="/VITE/css/theme-dark.css?version=[-version-number-]" media="(prefers-color-scheme: unset) and not(print)" id="theme-dark-stylesheet" />
     <meta name="theme-color" id="theme-light-color" id="theme-light-color" content="#FFFFFF" />
     <meta name="theme-color" id="theme-light-color" content="#FFFFFF" />
     <meta name="apple-mobile-web-app-status-bar" id="theme-dark-color" media="prefers-color-scheme: unset" content="#131F22" />
     <meta name="theme-color" id="theme-dark-color" media="prefers-color-scheme: unset" content="#131F22" />
     <link rel="shortcut icon" href="//sander.vonk.one/VITE/img/icon/app/icon-512x512.png" type="image/png" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
-    <script src="/VITE/js/mobile-vite.js"></script>
+    <script src="/VITE/js/mobile-vite.js?version=[-version-number-]"></script>
     <title>VITE! - Practice</title>
   </head>
   <body>
@@ -45,13 +45,7 @@
       <div id="content-top">
         <p id="vite-q-prompt" class="primary">Conjugate in the&nbsp;<a id="vite-q-tense" class="primary" info="Tense information"></a></p>
         <div id="question-data">
-          <button
-            id="info-button"
-            onclick="new Popup('Try tapping the underlined terms to see their definitions!', 'default', 10000, '../img/icon/info-icon.svg', [['removePopup()', 'OK']])"
-            class="square-35 box-button"
-          >
-            i
-          </button>
+          <button id="info-button" onclick="new Popup('Try tapping the underlined terms to see their definitions!', 'default', 10000, '../img/icon/info-icon.svg', [['removePopup()', 'OK']])" class="square-35 box-button">i</button>
 
           <div id="vite-q-prefix" class="center bridge-word"></div>
           <div id="vite-q-subject" class="center" info="Subject information">sujet</div>
@@ -61,15 +55,7 @@
       </div>
       <div id="answer-area">
         <img id="answer-mascot" src="/VITE/img/mascot/mood=Default.svg" alt="Verb Action Mascot" />
-        <textarea
-          id="answer-input"
-          enterkeyhint="done"
-          class="box text-secondary"
-          placeholder="Tap to enter your answer"
-          name="answer-input"
-          id=""
-          rows="10"
-        ></textarea>
+        <textarea id="answer-input" enterkeyhint="done" class="box text-secondary" placeholder="Tap to enter your answer" name="answer-input" id="" rows="10"></textarea>
       </div>
     </div>
     <div id="result-container">
@@ -90,8 +76,8 @@
       <div id="next-button" class="box-button primary center" style="margin-left: 10px; margin-right: 10px"></div>
     </div>
   </body>
-  <script src="/VITE/js/firestore-page-auth.js"></script>
-  <script src="/VITE/js/mobile-menu.js"></script>
-  <script src="/VITE/js/util.js"></script>
-  <script src="/VITE/js/practice.js"></script>
+  <script src="/VITE/js/firestore-page-auth.js?version=[-version-number-]"></script>
+  <script src="/VITE/js/mobile-menu.js?version=[-version-number-]"></script>
+  <script src="/VITE/js/util.js?version=[-version-number-]"></script>
+  <script src="/VITE/js/practice.js?version=[-version-number-]"></script>
 </html>
