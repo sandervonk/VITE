@@ -2,6 +2,7 @@ name: Deploy and Minify
 on:
   release:
     branch: main
+    types: [published]
   workflow_dispatch:
 jobs:
   build:
