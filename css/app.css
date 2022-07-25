@@ -38,6 +38,7 @@ header {
   margin-top: 0px;
   transition: margin-top 0.25s ease-in-out;
 }
+
 #mascot-slot,
 #profile-picture,
 #header-readouts {
@@ -340,8 +341,7 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   padding-left: 10px;
   line-height: 45px;
   transform-origin: center center;
-  transition: opacity 0.25s ease-in-out, padding 0.25s ease-in-out, transform 0.25s ease-in-out, line-height 0.25s ease-in-out,
-    height 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, padding 0.25s ease-in-out, transform 0.25s ease-in-out, line-height 0.25s ease-in-out, height 0.25s ease-in-out;
 }
 #goal-text::before {
   content: attr(value);
