@@ -1,9 +1,9 @@
 const staticLinks = "dev-VITE-new-v2";
-const OFFLINE_URL = "offline.html";
+const OFFLINE_URL = "404.html";
 const OFFLINE_IMG = "img/offline/image-offline.svg";
 const assets = [
   "index.html",
-  "offline.html",
+  "404.html",
   "font/Feather-Bold.otf",
   "font/Next-Bold.otf",
   "font/Next-Light.otf",

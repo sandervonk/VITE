@@ -91,27 +91,27 @@
   filter: brightness(0.85) saturate(1.1);
 }
 .orientation-select {
-  background-image: url(../img/template/rotation-icon-dark.svg) !important;
+  background-image: url(/VITE/img/template/rotation-icon-dark.svg) !important;
 }
 .tense-select {
-  background-image: url(../img/template/clocks-icon-dark.svg) !important;
+  background-image: url(/VITE/img/template/clocks-icon-dark.svg) !important;
 }
 .verbs-select {
-  background-image: url(../img/template/verb-icon-dark.svg) !important;
+  background-image: url(/VITE/img/template/verb-icon-dark.svg) !important;
 }
 .options-toggles:empty,
 .loadcover {
-  background-image: url(../img/load/part=loading-1-dark.svg);
+  background-image: url(/VITE/img/load/part=loading-1-dark.svg);
 }
 
 @keyframes load {
   0% {
-    background-image: url(../img/load/part=loading-1-dark.svg);
+    background-image: url(/VITE/img/load/part=loading-1-dark.svg);
   }
   33% {
-    background-image: url(../img/load/part=loading-2-dark.svg);
+    background-image: url(/VITE/img/load/part=loading-2-dark.svg);
   }
   67% {
-    background-image: url(../img/load/part=loading-3-dark.svg);
+    background-image: url(/VITE/img/load/part=loading-3-dark.svg);
   }
 }
