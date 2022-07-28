@@ -236,3 +236,6 @@ label[for="join-code"] ~ hr {
   box-shadow: 0px 0px 10px var(--secondary-alt);
   /* cursor: pointer; */
 }
+#student-join-code {
+  flex-grow: 1;
+}

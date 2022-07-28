@@ -11,20 +11,47 @@ function initChangeListeners() {
       } catch (err) {
         console.warn("could not clear timed updates");
       }
-      loadCookies();
+      loadCookies(snapshot);
+      try {
+        if ($("meta[name=appreloads]").attr("content")) {
+          setupApp();
+        }
+      } catch (err) {
+        console.warn("no page rebuild function");
+      }
     }
   });
 }
 
-function loadCookies() {
+function loadCookies(prefJSON, isLoadRun) {
   //load user data from db
   return new Promise(function (fulfilled, rejected) {
-    userDoc()
-      .get()
-      .then((prefJSON) => {
-        localStorage.setItem("userData", JSON.stringify(prefJSON.data()));
-        fulfilled();
-      });
+    if (!!prefJSON) {
+      localStorage.setItem("userData", JSON.stringify(prefJSON.data()));
+      setupSettings(
+        prefJSON.data().prefs,
+        prefJSON.data().classes && prefJSON.data().classes.length > 0,
+        prefJSON.data().classcode && prefJSON.data().classcode.length > 0
+      );
+      fulfilled();
+    } else if (!isLoadRun) {
+      userDoc()
+        .get()
+        .then((prefJSON) => {
+          loadCookies(prefJSON, true)
+            .then((r) => {
+              fulfilled();
+            })
+            .catch((e) => {
+              console.warn("could not run loadCookies with userData");
+            });
+        })
+        .catch((err) => {
+          rejected(err);
+        });
+    } else {
+      console.warn("second loadCookies() run failed");
+    }
   });
 }
 function stealCookies() {
@@ -58,18 +85,7 @@ function stealCookies() {
       });
   });
 }
-function setupTheme(jsonIn) {
-  if (jsonIn.theme === "dark") {
-    $("#theme-dark-stylesheet, #theme-dark-color").attr("media", "");
-    $("#theme-light-color").attr("media", "(prefers-color-scheme: unset) and not(print)");
-  } else {
-    $("#theme-dark-stylesheet, #theme-dark-color").attr(
-      "media",
-      "(prefers-color-scheme: unset) and not(print)"
-    );
-    $("#theme-light-color").attr("media", "");
-  }
-}
+
 var today = new Date(),
   updateJSON = {};
 var date = [
@@ -94,8 +110,8 @@ function setupGoal(goalNum, goalXp) {
 }
 function setupSettings(jsonIn, ownsClass, inClass) {
   for (let key of Object.keys(jsonIn)) {
-    let switchSel = "[name=" + key + "][value=" + jsonIn[key] + "]";
-    $(switchSel).attr("checked", true);
+    $("[name=" + key + "]").removeAttr("checked");
+    $("[name=" + key + "][value=" + jsonIn[key] + "]").attr("checked", true);
   }
   setupTheme(jsonIn);
   if (ownsClass) {
@@ -142,8 +158,8 @@ function startSettings() {
       setupSettings(
         settings,
         r.data().classes && r.data().classes.length > 0,
-        r.data().classcode
-      ) && r.data().classcode.length > 0;
+        r.data().classcode && r.data().classcode.length > 0
+      );
       if (settings == undefined || r.data().goal == undefined) {
         setDefaultSettings();
       } else if (r.data().xphistory[date] == undefined) {
@@ -292,14 +308,7 @@ auth.onAuthStateChanged((user) => {
           console.warn("Signed in as guest");
         }
       }
-      /*
-      new Toast(
-        "Logged in successfully!",
-        "default",
-        500,
-        "/VITE/img/icon/info-icon.svg"
-      );
-      */ try {
+      try {
         startApp().then((r) => {
           if ($("meta[name=runapp]").prop("content")) {
             showQuestion(new Question());

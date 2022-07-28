@@ -1,7 +1,11 @@
 "use strict";
 /** URI SEARCH TERMS **/
 var params = new URLSearchParams(window.location.search);
-history.replaceState({}, "", window.location.href.substr(0, window.location.href.length - window.location.search.length));
+history.replaceState(
+  {},
+  "",
+  window.location.href.substr(0, window.location.href.length - window.location.search.length)
+);
 params.set("home_page", window.location.href.split("/VITE")[0] + "/VITE");
 var verbs = {},
   lastMousePos = { x: 0, y: 0 };
@@ -26,7 +30,14 @@ $(window).on("touchdown touchstart touchstop click", function (e) {
 
 $(document).on(
   `contextmenu${
-    (navigator ? navigator.userAgent.match(/iPhone|iPad|iPod/i) && CSS.supports("-webkit-touch-callout: none") : false) ? " long-press" : ""
+    (
+      navigator
+        ? navigator.userAgent.match(/iPhone|iPad|iPod/i) &&
+          CSS.supports("-webkit-touch-callout: none")
+        : false
+    )
+      ? " long-press"
+      : ""
   }`,
   function (e) {
     e.preventDefault();
@@ -35,7 +46,10 @@ $(document).on(
       e.clientY = lastMousePos.y;
     }
     e.target = document.elementFromPoint(e.clientX, e.clientY);
-    if (!$(e.target).hasClass("context-overlay") || window.matchMedia("(min-width: 50px)").matches) {
+    if (
+      !$(e.target).hasClass("context-overlay") ||
+      window.matchMedia("(min-width: 50px)").matches
+    ) {
       $(".context-menu, .context-overlay").remove();
       e.target = document.elementFromPoint(e.clientX, e.clientY);
       let menu_items = $("meta[name='cm-options']").attr("content"),
@@ -45,7 +59,12 @@ $(document).on(
       try {
         menu_items = menu_items != "undefined" ? JSON.parse("[" + menu_items + "]") : menu_items;
       } catch (err) {
-        console.warn("Something went wrong applying context menu options from the <meta> tag!\n\n", menu_items, "\n\n", err);
+        console.warn(
+          "Something went wrong applying context menu options from the <meta> tag!\n\n",
+          menu_items,
+          "\n\n",
+          err
+        );
         menu_items = [];
       }
       let menu_options = {
@@ -128,7 +147,9 @@ class ContextMenu {
   }
   makeMenuItem(item) {
     return $(
-      `<div class='cm-item' onclick='${item.onclick ? item.onclick : ""}'><img class='cm-icon' src='/VITE/img/icon/cm/${item.icon}.svg' /><span>${
+      `<div class='cm-item' onclick='${
+        item.onclick ? item.onclick : ""
+      }'><img class='cm-icon' src='/VITE/img/icon/cm/${item.icon}.svg' /><span>${
         item.text
       }</span></div>`
     );
@@ -190,8 +211,14 @@ class ContextMenu {
     this.menu.focus();
     this.menu.focusin();
     this.menu.css({
-      top: Math.max(this.windowPadding, Math.min(y, $(window).height() - this.menu.outerHeight() - this.windowPadding)),
-      left: Math.max(this.windowPadding, Math.min(x, $(window).width() - this.menu.outerWidth() - this.windowPadding)),
+      top: Math.max(
+        this.windowPadding,
+        Math.min(y, $(window).height() - this.menu.outerHeight() - this.windowPadding)
+      ),
+      left: Math.max(
+        this.windowPadding,
+        Math.min(x, $(window).width() - this.menu.outerWidth() - this.windowPadding)
+      ),
     });
     if ($("#cm-page-items:empty").length) {
       $(".context-menu").css("height", "fit-content");
@@ -300,9 +327,9 @@ class Popup {
       toast.classList.add(classData);
     }
     for (let actionInfo of this.action) {
-      buttons += `<button class="popup-button blue-button box-button${actionInfo[2] == undefined ? "" : " " + actionInfo[2]}" onclick="${
-        actionInfo[0]
-      }">${actionInfo[1]}</button>`;
+      buttons += `<button class="popup-button blue-button box-button${
+        actionInfo[2] == undefined ? "" : " " + actionInfo[2]
+      }" onclick="${actionInfo[0]}">${actionInfo[1]}</button>`;
     }
     buttons += "</div>";
     toast.innerHTML +=
@@ -344,13 +371,23 @@ var loadElement = new LoadCover();
 
 //other
 $("[placeholdaction]").click(function () {
-  new Toast("This feature hasn't been implemented yet, sorry! 🤫", "default", 1500, "/VITE/img/icon/concern-icon.svg");
+  new Toast(
+    "This feature hasn't been implemented yet, sorry! 🤫",
+    "default",
+    1500,
+    "/VITE/img/icon/concern-icon.svg"
+  );
 });
 function copyToClipboard(text, callback = function () {}) {
   navigator.clipboard
     .writeText(text)
     .then((res) => {
-      new Toast("Copied link code to clipboard", "transparent", 750, "/VITE/img/icon/clipboard-icon.svg");
+      new Toast(
+        "Copied link code to clipboard",
+        "transparent",
+        750,
+        "/VITE/img/icon/clipboard-icon.svg"
+      );
       callback();
     })
     .catch((err) => {
@@ -362,9 +399,13 @@ function getDefaultPageData() {
     title: $("meta[name='og:description']").attr("content")
       ? $("meta[name='og:description']").attr("content")
       : "Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!",
-    description: $("meta[name='og:site_name']").attr("content") ? $("meta[name='og:site_name']").attr("content") : document.title,
+    description: $("meta[name='og:site_name']").attr("content")
+      ? $("meta[name='og:site_name']").attr("content")
+      : document.title,
 
-    url: $("meta[name='og:url']").attr("content") ? $("meta[name='og:url']").attr("content") : window.location.href,
+    url: $("meta[name='og:url']").attr("content")
+      ? $("meta[name='og:url']").attr("content")
+      : window.location.href,
   };
 }
 function sharePage(callback = function () {}) {
@@ -385,25 +426,29 @@ function fixPFPResolution(img_url) {
     return img_url;
   }
 }
-try {
-  if (JSON.parse(localStorage["userData"]).prefs.theme == "dark") {
-    document.getElementById("theme-dark-stylesheet").setAttribute("media", "not print");
-    for (let darkColor of document.querySelectorAll("#theme-dark-color")) {
-      darkColor.setAttribute("media", "not print");
+function setupTheme(jsonIn) {
+  try {
+    if (
+      (jsonIn && jsonIn.theme == "dark") ||
+      JSON.parse(localStorage["userData"]).prefs.theme == "dark"
+    ) {
+      $("#theme-dark-stylesheet, #theme-dark-color").attr("media", "not print");
+      $("#theme-light-color, #theme-light-stylesheet").attr(
+        "media",
+        "(prefers-color-scheme: unset) and not(print)"
+      );
+    } else {
+      $("#theme-light-stylesheet, #theme-light-color").attr("media", "not print");
+      $("#theme-dark-color, #theme-dark-stylesheet").attr(
+        "media",
+        "(prefers-color-scheme: unset) and not(print)"
+      );
     }
-    for (let lightColor of document.querySelectorAll("#theme-light-color")) {
-      lightColor.setAttribute("media", "(prefers-color-scheme: unset) and not(print)");
-    }
-  } else {
-    document;
-    for (let lightColor of document.querySelectorAll("#theme-light-color")) {
-      lightColor.setAttribute("media", "not print");
-    }
+  } catch (err) {
+    console.warn("Couldn't Set Theme: \n\n", err);
   }
-} catch (err) {
-  console.warn("Error setting theme: ", err);
 }
-
+setupTheme();
 /** LONG PRESS EVENT **/
 /*!
  * long-press-event - v2.4.4

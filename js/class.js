@@ -3,8 +3,11 @@ var userClasses = {},
   studentClassID,
   userNamesJSON;
 $("[classload], [forstudent]").hide();
+$("[memberlist] > .class-member").remove();
 function setupApp() {
   return new Promise(function (fulfilled, rejected) {
+    $("#student-class-name, #student-class-description, .codebox").text("").val("");
+    $("[classload], [forstudent]").hide();
     db.collection("users")
       .doc("names")
       .get()
@@ -126,7 +129,7 @@ function studentJoin(userDocData) {
             classDoc(doc.data().classcode)
               .update({ members: firebase.firestore.FieldValue.arrayUnion(auth.getUid()) })
               .then(() => {
-                window.location.reload();
+                setupApp;
               });
           } else {
             new Toast(
@@ -138,7 +141,12 @@ function studentJoin(userDocData) {
             removeSavedClassCode();
           }
         } else {
-          new Toast("Found saved class code, but did not match any classes, removing", "default", 2000, "/VITE/img/icon/warning-icon.svg");
+          new Toast(
+            "Found saved class code, but did not match any classes, removing",
+            "default",
+            2000,
+            "/VITE/img/icon/warning-icon.svg"
+          );
           removeSavedClassCode();
         }
       })
@@ -151,16 +159,31 @@ function studentJoin(userDocData) {
 }
 //non-action setup functions
 function createClass() {
-  new Toast("Creating a new class", "default", 750, "/VITE/img/icon/info-icon.svg", "./create.html");
+  new Toast(
+    "Creating a new class",
+    "default",
+    750,
+    "/VITE/img/icon/info-icon.svg",
+    "./create.html"
+  );
 }
 function setupMember(memberID) {
-  memberText = memberID == auth.currentUser.uid ? "[You]" : userNamesJSON[memberID][0] + " (" + userNamesJSON[memberID][1] + ")";
-  memberStyle = userNamesJSON[memberID][2] ? `style='background-image: url(${fixPFPResolution(userNamesJSON[memberID][2])})'` : "";
+  memberText =
+    memberID == auth.currentUser.uid
+      ? "[You]"
+      : userNamesJSON[memberID][0] + " (" + userNamesJSON[memberID][1] + ")";
+  memberStyle = userNamesJSON[memberID][2]
+    ? `style='background-image: url("${fixPFPResolution(userNamesJSON[memberID][2])}")'`
+    : "";
   cm_options =
     memberID == auth.currentUser.uid || studentClass
       ? ""
-      : '{ "icon": "cm-remove", "text": "Remove Student", "onclick": "removeStudentPopup(' + ` \`${memberText}\`, \`${memberID}\` ` + ')"}';
-  $("[memberlist]").append(`<li class='class-member' cm-options='${cm_options}' memberid='${memberID}' title='${memberText}' ${memberStyle}></li>`);
+      : '{ "icon": "cm-remove", "text": "Remove Student", "onclick": "removeStudentPopup(' +
+        ` \`${memberText}\`, \`${memberID}\` ` +
+        ')"}';
+  $("[memberlist]").append(
+    `<li class='class-member' cm-options='${cm_options}' memberid='${memberID}' title='${memberText}' ${memberStyle}></li>`
+  );
 }
 function cycleClasses(change) {
   let nextIndex = userClasses.indexOf(currentClass) + change;
@@ -218,7 +241,10 @@ function deleteClass() {
     .delete()
     .then(() => {
       userDoc()
-        .update({ classes: firebase.firestore.FieldValue.arrayRemove(currentClass) }, { merge: true })
+        .update(
+          { classes: firebase.firestore.FieldValue.arrayRemove(currentClass) },
+          { merge: true }
+        )
         .then(() => {
           removePopup();
           window.location.reload();
@@ -246,7 +272,13 @@ function joinClass(attemptedCode) {
             userDoc()
               .update({ classcode: attemptedCode })
               .then(() => {
-                new Toast("Joined class successfully!", "default", 2000, "/VITE/img/icon/success-icon.svg", "./index.html");
+                new Toast(
+                  "Joined class successfully!",
+                  "default",
+                  2000,
+                  "/VITE/img/icon/success-icon.svg",
+                  "./index.html"
+                );
               })
               .catch((err) => {
                 new ErrorToast("Could not save class code to user data", err.code, 2000);
@@ -254,13 +286,24 @@ function joinClass(attemptedCode) {
           })
           .catch((err) => {
             new ErrorToast("Something went wrong adding you to the members list", err.code, 2000);
+            window.location.reload();
           });
       } else {
-        new Toast("Sorry, this class is private, and you haven't been invited yet", "default", 2000, "/VITE/img/icon/warning-icon.svg");
+        new Toast(
+          "Sorry, this class is private, and you haven't been invited yet",
+          "default",
+          2000,
+          "/VITE/img/icon/warning-icon.svg"
+        );
       }
     })
     .catch((classErr) => {
-      new Toast("Could not find a class for this code: ", classErr.toString(), "default", 2000, "/VITE/img/icon/warning-icon.svg");
+      new Toast(
+        "Could not find a class for this code",
+        "default",
+        2000,
+        "/VITE/img/icon/warning-icon.svg"
+      );
     });
 }
 
@@ -272,7 +315,13 @@ function leaveClass() {
       userDoc()
         .update({ classcode: "" })
         .then(() => {
-          new Toast("Left class successfully!", "default", 2000, "/VITE/img/icon/success-icon.svg", "./index.html");
+          new Toast(
+            "Left class successfully!",
+            "default",
+            2000,
+            "/VITE/img/icon/success-icon.svg",
+            "./index.html"
+          );
         })
         .catch((err) => {
           new ErrorToast("Could not remove class code from user data", err.code, 2000);
@@ -299,7 +348,12 @@ function copyJoinCode() {
       .writeText(el.value)
       .then((res) => {
         console.log("Copied to clipboard");
-        new Toast("Copied class code to clipboard", "transparent", 750, "/VITE/img/icon/clipboard-icon.svg");
+        new Toast(
+          "Copied class code to clipboard",
+          "transparent",
+          750,
+          "/VITE/img/icon/clipboard-icon.svg"
+        );
       })
       .catch((err) => {
         new ErrorToast("Error copying class code" + err.toString(), 2000);
@@ -311,17 +365,37 @@ function copyJoinCode() {
 $("#class-code, #student-info-code-row").click(copyJoinCode);
 $("#delete-button").click(function () {
   $(this).addClass("disabled");
-  new Popup("Do you want to delete this class?", "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
-    ["removePopup(); $('#delete-button').removeClass('disabled')", "Cancel", "secondary-action fullborder"],
-    ["deleteClass()", "Yes", "primary-action blue-button delete-document"],
-  ]);
+  new Popup(
+    "Do you want to delete this class?",
+    "box fullborder default",
+    10000,
+    "/VITE/img/icon/info-icon.svg",
+    [
+      [
+        "removePopup(); $('#delete-button').removeClass('disabled')",
+        "Cancel",
+        "secondary-action fullborder",
+      ],
+      ["deleteClass()", "Yes", "primary-action blue-button delete-document"],
+    ]
+  );
 });
 $("#student-leave-button").click(function () {
   $(this).addClass("disabled");
-  new Popup("Are you sure you want to leave this class?", "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
-    ["removePopup(); $('#student-leave-class, #student-leave-class *').removeClass('disabled')", "Cancel", "secondary-action fullborder"],
-    ["leaveClass()", "Yes", "primary-action blue-button delete-document"],
-  ]);
+  new Popup(
+    "Are you sure you want to leave this class?",
+    "box fullborder default",
+    10000,
+    "/VITE/img/icon/info-icon.svg",
+    [
+      [
+        "removePopup(); $('#student-leave-class, #student-leave-class *').removeClass('disabled')",
+        "Cancel",
+        "secondary-action fullborder",
+      ],
+      ["leaveClass()", "Yes", "primary-action blue-button delete-document"],
+    ]
+  );
 });
 
 $("#student-join-button").click(function () {
@@ -336,7 +410,12 @@ function removeStudent(studentID) {
   classDoc(currentClass)
     .update({ members: firebase.firestore.FieldValue.arrayRemove(studentID) })
     .then(() => {
-      new Toast("Removed student successfully!", "default", 2000, "/VITE/img/icon/success-icon.svg");
+      new Toast(
+        "Removed student successfully!",
+        "default",
+        2000,
+        "/VITE/img/icon/success-icon.svg"
+      );
       removePopup();
       $(`.class-member[member-id="${studentID}"]`).remove();
     })
@@ -349,10 +428,16 @@ function removeStudent(studentID) {
 //   removeStudentPopup($(this).attr("title"), $(this).attr("memberid"));
 // });
 function removeStudentPopup(name, id) {
-  new Popup(`Are you sure you want to remove ${name} from this class?`, "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
-    ["removePopup()", "Cancel", "secondary-action fullborder"],
-    [`removeStudent('${id}')`, "Remove", "primary-action blue-button delete-document"],
-  ]);
+  new Popup(
+    `Are you sure you want to remove ${name} from this class?`,
+    "box fullborder default",
+    10000,
+    "/VITE/img/icon/info-icon.svg",
+    [
+      ["removePopup()", "Cancel", "secondary-action fullborder"],
+      [`removeStudent('${id}')`, "Remove", "primary-action blue-button delete-document"],
+    ]
+  );
 }
 function getCMOptions() {
   let added_options = [];
@@ -360,7 +445,9 @@ function getCMOptions() {
     added_options.push({
       icon: "cm-copy",
       text: "Copy class code",
-      onclick: (!studentClass ? `$("#class-code").click();` : `$("#student-info-code-row").click();`) + "closeContextMenu()",
+      onclick:
+        (!studentClass ? `$("#class-code").click();` : `$("#student-info-code-row").click();`) +
+        "closeContextMenu()",
     });
   }
   if (!studentClass) {

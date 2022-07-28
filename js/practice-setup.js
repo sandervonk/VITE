@@ -46,7 +46,9 @@ function setupApp() {
   $(".options-toggles > .option-toggle").remove();
   for (let subject of ["Je", "Tu", "Il / Elle / On", "Nous", "Vous", "Ils / Elles"]) {
     $("#subject-toggles").append(
-      `<button type="button" title="${subjectDefinitions[subject]}" class="option-toggle subject-toggle ${
+      `<button type="button" title="${
+        subjectDefinitions[subject]
+      }" class="option-toggle subject-toggle ${
         JSON.parse(localStorage["userData"]).subjects.includes(subject) ? "active" : ""
       } box">${subject}</button>`
     );
@@ -60,7 +62,9 @@ function setupApp() {
   }
   for (let tense of Object.keys(tenses)) {
     $("#tense-toggles").append(
-      `<button id="${tense}" type="button" title="${tenseDefinitions[tense]}" class="option-toggle tense-toggle ${
+      `<button id="${tense}" type="button" title="${
+        tenseDefinitions[tense]
+      }" class="option-toggle tense-toggle ${
         JSON.parse(localStorage["userData"]).tenses.includes(tense) ? "active" : ""
       } box-button fullborder">${tenses[tense]}</button>`
     );
