@@ -401,7 +401,7 @@ $("#mascot-slot").click(() => {
 });
 try {
   messagechannelBroadcast.onmessage = (event) => {
-    value = event.data.key;
+    let value = event.data.key;
     if (value == "reloadCashe") {
       window.location.reload(true);
     }
@@ -411,9 +411,6 @@ try {
 }
 
 $(document.body).on("click", ".clear-sw", (e) => {
-  // caches.keys().then(function (names) {
-  //   for (let name of names) caches.delete(name);
-  // });
   navigator.serviceWorker.getRegistrations().then(function (registrations) {
     for (let registration of registrations) {
       registration.unregister();
