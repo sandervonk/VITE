@@ -45,7 +45,12 @@ function stealCookies() {
               .set(levelJSON.data(), { merge: true })
               .then(() => {
                 loadCookies().then(() => {
-                  new Toast(`Reset to path settings for "` + path + `"`, "default", 1000, "/VITE/img/icon/info-icon.svg");
+                  new Toast(
+                    `Reset to path settings for "` + path + `"`,
+                    "default",
+                    1000,
+                    "/VITE/img/icon/info-icon.svg"
+                  );
                   fulfilled();
                 });
               });
@@ -58,13 +63,20 @@ function setupTheme(jsonIn) {
     $("#theme-dark-stylesheet, #theme-dark-color").attr("media", "");
     $("#theme-light-color").attr("media", "(prefers-color-scheme: unset) and not(print)");
   } else {
-    $("#theme-dark-stylesheet, #theme-dark-color").attr("media", "(prefers-color-scheme: unset) and not(print)");
+    $("#theme-dark-stylesheet, #theme-dark-color").attr(
+      "media",
+      "(prefers-color-scheme: unset) and not(print)"
+    );
     $("#theme-light-color").attr("media", "");
   }
 }
 var today = new Date(),
   updateJSON = {};
-var date = [String(today.getMonth() + 1).padStart(2, "0"), String(today.getDate()).padStart(2, "0"), today.getFullYear()].join("-");
+var date = [
+  String(today.getMonth() + 1).padStart(2, "0"),
+  String(today.getDate()).padStart(2, "0"),
+  today.getFullYear(),
+].join("-");
 var dateRef = "xphistory." + date;
 function setupGoal(goalNum, goalXp) {
   $("#goal-text").attr({
@@ -127,7 +139,11 @@ function startSettings() {
     .get()
     .then((r) => {
       settings = r.data().prefs;
-      setupSettings(settings, r.data().classes && r.data().classes.length > 0, r.data().classcode) && r.data().classcode.length > 0;
+      setupSettings(
+        settings,
+        r.data().classes && r.data().classes.length > 0,
+        r.data().classcode
+      ) && r.data().classcode.length > 0;
       if (settings == undefined || r.data().goal == undefined) {
         setDefaultSettings();
       } else if (r.data().xphistory[date] == undefined) {
@@ -227,7 +243,10 @@ auth.onAuthStateChanged((user) => {
       .get()
       .then((doc) => {
         let data = doc.data();
-        if ([data.tenses, data.subjects, data.verbs, data.path].includes(undefined) && !window.location.href.includes("onboarding")) {
+        if (
+          [data.tenses, data.subjects, data.verbs, data.path].includes(undefined) &&
+          !window.location.href.includes("onboarding")
+        ) {
           new Toast(
             "Some account data is missing, opening onboarding",
             "default",
@@ -239,7 +258,11 @@ auth.onAuthStateChanged((user) => {
         localStorage.setItem("userData", JSON.stringify(data));
         localStorage.setItem("userId", auth.getUid());
       });
-    if (!auth.currentUser.emailVerified && !auth.currentUser.isAnonymous && !auth.currentUser.email == null) {
+    if (
+      !auth.currentUser.emailVerified &&
+      !auth.currentUser.isAnonymous &&
+      !auth.currentUser.email == null
+    ) {
       new Toast(
         "Please verify your email to use this app!",
         "default",
@@ -250,7 +273,12 @@ auth.onAuthStateChanged((user) => {
     } else {
       if (auth.currentUser.isAnonymous || auth.currentUser.email == null) {
         if ($("meta[name=guestprompt]").prop("content")) {
-          new Toast("Logged in as guest, your progress will not be saved!", "transparent", 1500, "/VITE/img/icon/warning-icon.svg");
+          new Toast(
+            "Logged in as guest, your progress will not be saved!",
+            "transparent",
+            1500,
+            "/VITE/img/icon/warning-icon.svg"
+          );
         } else if ($("meta[name=requireemail]").prop("content")) {
           new Toast(
             "You need to be signed in with a non-anonymous provider that provides an email use this feature, sorry!",
@@ -306,7 +334,9 @@ auth.onAuthStateChanged((user) => {
       "default",
       1000,
       "/VITE/img/icon/info-icon.svg",
-      $("meta[name=noauthenforce]").prop("content") ? "" : window.location.href.split("new/")[0] + "new/"
+      $("meta[name=noauthenforce]").prop("content")
+        ? ""
+        : window.location.href.split("VITE/")[0] + "VITE/"
     );
   }
 });
@@ -330,10 +360,16 @@ function signOut() {
 }
 //! listeners
 $("[auth='logout-button']").click((e) => {
-  new Popup("Are you sure you want to sign out?", "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
-    ["removePopup()", "Cancel", "secondary-action fullborder"],
-    ["signOut(); removePopup()", "Yes", "primary-action"],
-  ]);
+  new Popup(
+    "Are you sure you want to sign out?",
+    "box fullborder default",
+    10000,
+    "/VITE/img/icon/info-icon.svg",
+    [
+      ["removePopup()", "Cancel", "secondary-action fullborder"],
+      ["signOut(); removePopup()", "Yes", "primary-action"],
+    ]
+  );
 });
 $("[auth='menu']").click((e) => {
   $(".auth-menu").toggleClass("collapsed");
@@ -341,7 +377,12 @@ $("[auth='menu']").click((e) => {
 });
 $(document.body).on("click scroll", (e) => {
   let target = $(e.target);
-  if ($(document.body).hasClass("menuexpanded") && target.parent(".auth-menu").length == 0 && !target.attr("auth") && !target.hasClass("auth-menu")) {
+  if (
+    $(document.body).hasClass("menuexpanded") &&
+    target.parent(".auth-menu").length == 0 &&
+    !target.attr("auth") &&
+    !target.hasClass("auth-menu")
+  ) {
     $(".auth-menu").addClass("collapsed");
     $(document.body).removeClass("menuexpanded");
   }
@@ -375,7 +416,12 @@ $(document.body).on("click", ".clear-sw", (e) => {
   setTimeout(function () {
     try {
       messagechannelBroadcast.postMessage({ key: "clearsw" });
-      new Toast("Cleared Service Workers and SW Cashe", "default", 1000, "/VITE/img/icon/info-icon.svg");
+      new Toast(
+        "Cleared Service Workers and SW Cashe",
+        "default",
+        1000,
+        "/VITE/img/icon/info-icon.svg"
+      );
     } catch (err) {
       console.warn("could not send message on BroadcastChannel");
       new Toast(
