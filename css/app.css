@@ -340,8 +340,8 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   padding-left: 10px;
   line-height: 45px;
   transform-origin: center center;
-  transition: opacity 0.25s ease-in-out, padding 0.25s ease-in-out, transform 0.25s ease-in-out, line-height 0.25s ease-in-out,
-    height 0.25s ease-in-out;
+  transition: opacity 0.25s ease-in-out, padding 0.25s ease-in-out, transform 0.25s ease-in-out,
+    line-height 0.25s ease-in-out, height 0.25s ease-in-out;
 }
 #goal-text::before {
   content: attr(value);
@@ -732,4 +732,20 @@ footer {
 .menu-row {
   border: none;
   background-color: var(--bg);
+}
+#version-number-box {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: center;
+  align-items: center;
+  white-space: nowrap;
+  margin-right: 10px;
+  border-radius: 10px;
+  background: var(--secondary);
+  padding: 10px 20px;
+  color: var(--secondary-alt);
+  height: 44px;
+  box-sizing: border-box;
+  user-select: none;
+  pointer-events: none;
 }
