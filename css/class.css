@@ -231,11 +231,51 @@ label[for="join-code"] ~ hr {
   border-radius: 48px;
   border: solid 2px var(--box-border);
 }
+#more-members {
+  background-image: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 15px;
+  height: 20px;
+  width: 20px;
+  cursor: pointer;
+  background-color: var(--bg);
+}
 #class-preview-pane .class-member:not([title="[You]"]):hover,
 #class-preview-pane .class-member:not([title="[You]"]):active {
   box-shadow: 0px 0px 10px var(--secondary-alt);
-  /* cursor: pointer; */
 }
 #student-join-code {
   flex-grow: 1;
+}
+.class-member-wrapper {
+  margin-right: auto;
+  flex-basis: 80%;
+  flex-shrink: 1;
+  flex-grow: 1;
+  box-sizing: border-box;
+  padding: 5px 0;
+}
+.class-member-options {
+  align-items: center;
+  padding-bottom: 2px;
+  flex-grow: 1;
+  width: 20px;
+}
+.class-member-option {
+  margin: 0 5px;
+  flex-grow: 1;
+  max-width: 100px;
+  font-weight: 500;
+  font-size: 18px;
+  font-family: "Next", sans-serif;
+}
+.class-member-info {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  flex-basis: 30px;
+  flex-grow: 1;
+  padding: 0 10px;
 }

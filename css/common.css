@@ -668,7 +668,8 @@ input:checked + .switch-label {
 #prev-icon,
 #save-icon,
 #visibility-icon,
-#lock-icon {
+#lock-icon,
+#list-icon {
   background-color: var(--box-border);
   height: 100%;
   width: 100%;
@@ -709,6 +710,12 @@ input:checked + .switch-label {
   mask-image: url(../img/icon/group-icon.svg);
   -webkit-mask-image: url(../img/icon/group-icon.png);
   -webkit-mask-image: url(../img/icon/group-icon.svg);
+}
+#list-icon {
+  mask-image: url(../img/icon/list-icon.png);
+  mask-image: url(../img/icon/list-icon.svg);
+  -webkit-mask-image: url(../img/icon/list-icon.png);
+  -webkit-mask-image: url(../img/icon/list-icon.svg);
 }
 #visibility-icon {
   mask-image: url(../img/icon/eye-icon.png);

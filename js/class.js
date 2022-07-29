@@ -1,9 +1,10 @@
 var userClasses = {},
   studentClass,
   studentClassID,
-  userNamesJSON;
+  userNamesJSON,
+  studentPreviewDoc;
 $("[classload], [forstudent]").hide();
-$("[memberlist] > .class-member").remove();
+$("[memberlist] > .class-member, .class-member-wrapper").remove();
 function setupApp() {
   return new Promise(function (fulfilled, rejected) {
     $("#student-class-name, #student-class-description, .codebox").text("").val("");
@@ -82,7 +83,7 @@ function studentInClass() {
   if (studentClass.visibility == "private") {
     $("#lock-icon").addClass("alt");
   }
-  $("[memberlist] > .class-member").remove();
+  $("[memberlist] > .class-member, .class-member-wrapper").remove();
   studentClass.members.forEach((memberID) => setupMember(memberID));
   if (studentClass.members.length < 1) {
     $("[memberlist]").append("<li class='class-member'>No members yet</li>");
@@ -174,15 +175,15 @@ function HTMLFromID(id) {
           $("#lock-icon").removeClass("alt");
           $("#invites-list").hide();
         }
-        $("[memberlist] > .class-member").remove();
-        $(".member-list-ui").show();
+        $("[memberlist] > .class-member, .class-member-wrapper").remove();
         doc.members.forEach((memberID) => setupMember(memberID));
-        $("[classload]").show();
+        $("[classload], .member-list-ui").show();
         if (userClasses.length > 1) {
           $("#bottom-actions > *").removeClass("disabled");
         }
         $("#delete-button, #manage-button").removeClass("disabled");
         $("#class-index").text(userClasses.indexOf(id) + 1 + "/" + userClasses.length);
+        $("[memberlist]").append(`<li id="more-members" class='class-member'><div id="list-icon" class="color-mask"></div></li>`);
         fulfilled();
       })
       .catch((error) => {
@@ -311,16 +312,14 @@ function removeStudent(studentID) {
     .then(() => {
       new Toast("Removed student successfully!", "default", 2000, "/VITE/img/icon/success-icon.svg");
       removePopup();
-      $(`.class-member[member-id="${studentID}"]`).remove();
+      $(`class-member-wrapper:has(.class-member[member-id="${studentID}"]), .class-member[member-id="${studentID}"]`).remove();
     })
     .catch((err) => {
       new ErrorToast("Error removing student", err.code, 2000);
       removePopup();
     });
 }
-// $("#class-preview-pane").on("click", ".class-member:not([title='[You]'])", function () {
-//   removeStudentPopup($(this).attr("title"), $(this).attr("memberid"));
-// });
+
 function removeStudentPopup(name, id) {
   new Popup(`Are you sure you want to remove ${name} from this class?`, "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
     ["removePopup()", "Cancel", "secondary-action fullborder"],
@@ -346,3 +345,32 @@ function getCMOptions() {
 
   return added_options.length ? added_options : false;
 }
+$(document.body).on("click", "#more-members", function () {
+  $(this).remove();
+  $("#class-preview-pane .class-member").wrap(`<div class="class-member-wrapper flex-row-nowrap"></div>`);
+  $(".class-member-wrapper").append(function () {
+    let memberName = $(this).children(".class-member").attr("title");
+    let infoButton = memberName != "[You]" ? `<button class="class-member-option member-streak box-button fullborder" memberid="${$(this).children(".class-member").attr("memberid")}" title="View Streak">Streak</button>` : "";
+    return `<div class="class-member-options flex-row-nowrap">
+              <div class="class-member-info">${memberName}</div>
+              ${infoButton}
+            </div> `;
+  });
+});
+$("[memberlist]").on("click", ".class-member-option.member-streak", function () {
+  let memberID = $(this).attr("memberid");
+  console.log(memberID);
+  db.collection("users")
+    .doc(memberID)
+    .get()
+    .then((doc) => {
+      studentPreviewDoc = doc;
+      doc = doc.data();
+      calJSON = doc;
+      $(document.body).append(`<div id="streak-overlay" class="center">` + getCalendarHTML(new Date(), calJSON.xphistory, calJSON.goal) + `</div>`);
+    })
+    .catch((err) => {
+      studentPreviewDoc = {};
+      new ErrorToast("Error getting student info", err.code, 2000);
+    });
+});
