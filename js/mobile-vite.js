@@ -1,3 +1,4 @@
+"use strict";
 //*Set Question Data
 /*
 
@@ -73,14 +74,13 @@ function submitAnswer(skipped) {
 
     $("#answer-input").val("");
   } else {
-    $(document.body).removeAttr("showanswer");
+    $(document.body).attr("showanswer", "");
     //Check answer
     let inputAnswer = $("#answer-input").val().toLowerCase();
     if (variations(question.answer.alt).includes(inputAnswer) || variations(question.answer.full).includes(inputAnswer)) {
       //?correct
       changeScore(1);
-      $("#answer-correction-1").text("");
-      $("#answer-correction-2").text("");
+      $("#answer-correction-1, #answer-correction-2").text("");
       $(document.body).attr("result", "correct");
     } else {
       //?incorrect
@@ -88,8 +88,7 @@ function submitAnswer(skipped) {
       $(document.body).attr("result", "incorrect");
       $("#answer-correction-1").text(question.answer.alt);
       $("#answer-correction-2").text(question.answer.full);
-      $("#answer-correction-1").addClass("notranslate");
-      $("#answer-correction-2").addClass("notranslate");
+      $("#answer-correction-1, #answer-correction-2").addClass("notranslate");
     }
     if (skipped == true) {
       $(document.body).attr("result", "skipped");
@@ -103,9 +102,6 @@ function variations(answer) {
 }
 //*Setup Questions
 class Question {
-  // #tense;
-  // #verb;
-  // #subject;
   constructor(options) {
     if (options == undefined || options == null) {
       this.tense = this.pickTense();

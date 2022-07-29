@@ -1,3 +1,4 @@
+"use strict";
 var scoringData = {
   target: new URLSearchParams(window.location.search).get("numquestions"),
   countAll: new URLSearchParams(window.location.search).get("count"),

@@ -1,3 +1,4 @@
+"use strict";
 var mascot = $("#answer-mascot"),
   observer = new MutationObserver((changes) => {
     changes.forEach((change) => {

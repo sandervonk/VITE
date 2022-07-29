@@ -1,3 +1,4 @@
+"use strict";
 var today = new Date(),
   updateJSON = {};
 var dateRef = "xphistory." + [String(today.getMonth() + 1).padStart(2, "0"), String(today.getDate()).padStart(2, "0"), today.getFullYear()].join("-");
@@ -5,8 +6,8 @@ var dateRef = "xphistory." + [String(today.getMonth() + 1).padStart(2, "0"), Str
 function pad2(n) {
   return (n < 10 ? "0" : "") + n;
 }
-param = new URLSearchParams(window.location.search);
-results = {
+let param = new URLSearchParams(window.location.search);
+let results = {
   correct: param.get("correct"),
   total: param.get("total"),
   duration: parseInt(param.get("duration")),

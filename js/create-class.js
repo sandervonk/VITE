@@ -1,3 +1,4 @@
+"use strict";
 function startApp() {
   return new Promise(function (fulfilled, rejected) {
     setTimeout(function () {
@@ -10,22 +11,12 @@ $("#visibility-icon").click(function () {
   $("#invites").toggle();
   $("#lock-icon").toggleClass("alt");
   $(this).attr("private", $(this).hasClass("alt"));
-  new Toast(
-    `Set class visibility to ${$(this).attr("private") == "true" ? "private" : "public"}`,
-    "transparent",
-    500,
-    `../img/icon/info-${$(this).attr("private") == "true" ? "" : "un"}locked-icon.svg`
-  );
+  new Toast(`Set class visibility to ${$(this).attr("private") == "true" ? "private" : "public"}`, "transparent", 500, `../img/icon/info-${$(this).attr("private") == "true" ? "" : "un"}locked-icon.svg`);
 });
 $("#code-row").click(function () {
-  el = $("#join-code")[0];
+  let el = $("#join-code")[0];
   if (el.value == "") {
-    new Toast(
-      "Make sure you've created the class to get your code, then tap here again to copy it",
-      "default",
-      2000,
-      "/VITE/img/icon/warning-icon.svg"
-    );
+    new Toast("Make sure you've created the class to get your code, then tap here again to copy it", "default", 2000, "/VITE/img/icon/warning-icon.svg");
   } else {
     el.focus();
     el.select();
@@ -68,12 +59,13 @@ $("#invites-list").on("click", "li[email]", function () {
   $(this).remove();
 });
 $("#bottom-actions").on("click", "#create-button:not(.disabled)", function () {
-  let classdata = {};
-  classdata.owner = firebase.auth().currentUser.uid;
-  classdata.members = [classdata.owner];
-  classdata.name = $("#class-name").val();
-  classdata.visibility = $("#lock-icon").hasClass("alt") ? "private" : "public";
-  classdata.description = $("#class-description").text();
+  let classdata = {
+    owner: firebase.auth().currentUser.uid,
+    members: [firebase.auth().currentUser.uid],
+    name: $("#class-name").val(),
+    description: $("#class-description").text(),
+    visibility: $("#lock-icon").hasClass("alt") ? "private" : "public",
+  };
   if ($("#lock-icon").hasClass("alt")) {
     classdata.invited = $("#invites-list > li")
       .map(function () {

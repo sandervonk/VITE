@@ -1,3 +1,4 @@
+"use strict";
 let tutorialTabs = {
   learn: {
     title: "The Learn Tab",
@@ -12,8 +13,6 @@ let tutorialTabs = {
     description: "Learn about new features and find more information about how you can best improve your learning experience here",
   },
 };
-
-var settings;
 
 class tutorialObject {
   constructor() {
@@ -85,7 +84,7 @@ $(".learn-card").click((e) => {
 });
 function setTab(tabFull, scroll) {
   let tab = tabFull.replace("-tab", "");
-  tabElement = $("#" + tabFull);
+  let tabElement = $("#" + tabFull);
   $(".footer-item").removeClass("active");
   $(`.footer-item#${tab}-tab`).addClass("active");
   $("#page-content, body").attr("activetab", tab);

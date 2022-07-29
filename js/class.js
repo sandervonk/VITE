@@ -1,8 +1,10 @@
+"use strict";
 var userClasses = {},
   studentClass,
   studentClassID,
   userNamesJSON,
-  studentPreviewDoc;
+  studentPreviewDoc,
+  currentClass;
 $("[classload], [forstudent]").hide();
 $("[memberlist] > .class-member, .class-member-wrapper").remove();
 function setupApp() {
@@ -98,7 +100,6 @@ function studentNotInClass() {
   new Toast("Looks like you dont have a class yet, lets get you started creating one. Try clicking the 'create class' button below", "default", 2000, "/VITE/img/icon/warning-icon.svg");
 }
 function studentJoin(userDocData) {
-  console.log("setting up student join options");
   $("[forstudent]").show();
   if (userDocData.classcode) {
     classDoc(userDocData.classcode)
@@ -139,9 +140,9 @@ function createClass() {
   new Toast("Creating a new class", "default", 750, "/VITE/img/icon/info-icon.svg", "./create.html");
 }
 function setupMember(memberID) {
-  memberText = memberID == auth.currentUser.uid ? "[You]" : userNamesJSON[memberID][0] + " (" + userNamesJSON[memberID][1] + ")";
-  memberStyle = userNamesJSON[memberID][2] ? `style='background-image: url("${fixPFPResolution(userNamesJSON[memberID][2])}")'` : "";
-  cm_options = memberID == auth.currentUser.uid || studentClass ? "" : '{ "icon": "cm-remove", "text": "Remove Student", "onclick": "removeStudentPopup(' + ` \`${memberText}\`, \`${memberID}\` ` + ')"}';
+  let memberText = memberID == auth.currentUser.uid ? "[You]" : userNamesJSON[memberID][0] + " (" + userNamesJSON[memberID][1] + ")";
+  let memberStyle = userNamesJSON[memberID][2] ? `style='background-image: url("${fixPFPResolution(userNamesJSON[memberID][2])}")'` : "";
+  let cm_options = memberID == auth.currentUser.uid || studentClass ? "" : '{ "icon": "cm-remove", "text": "Remove Student", "onclick": "removeStudentPopup(' + ` \`${memberText}\`, \`${memberID}\` ` + ')"}';
   $("[memberlist]").append(`<li class='class-member' cm-options='${cm_options}' memberid='${memberID}' title='${memberText}' ${memberStyle}></li>`);
 }
 function cycleClasses(change) {
@@ -216,7 +217,7 @@ function joinClass(attemptedCode) {
   classDoc(attemptedCode)
     .get()
     .then((classDocument) => {
-      prospectiveClass = classDocument.data();
+      let prospectiveClass = classDocument.data();
       if (prospectiveClass.visibility == "public" || prospectiveClass.invited.includes(auth.getUid()) || prospectiveClass.invited.includes(auth.currentUser.email)) {
         classDoc(attemptedCode)
           .update({ members: firebase.firestore.FieldValue.arrayUnion(auth.getUid()) })
@@ -224,7 +225,7 @@ function joinClass(attemptedCode) {
             userDoc()
               .update({ classcode: attemptedCode })
               .then(() => {
-                new Toast("Joined class successfully!", "default", 2000, "/VITE/img/icon/success-icon.svg", "./index.html");
+                new Toast("Joined class successfully!", "default", 2000, "/VITE/img/icon/success-icon.svg");
               })
               .catch((err) => {
                 new ErrorToast("Could not save class code to user data", err.code, 2000);
@@ -263,7 +264,7 @@ function leaveClass() {
   removePopup();
 }
 function copyJoinCode() {
-  el = $(this).children(".codebox")[0] ? $(this).children(".codebox")[0] : $(".codebox")[0];
+  let el = $(this).children(".codebox")[0] ? $(this).children(".codebox")[0] : $(".codebox")[0];
   if (el.value == "") {
     new Toast("Make sure you've created a class to get your code, then tap here again to copy it", "default", 2000, "/VITE/img/icon/warning-icon.svg");
   } else {
@@ -359,7 +360,6 @@ $(document.body).on("click", "#more-members", function () {
 });
 $("[memberlist]").on("click", ".class-member-option.member-streak", function () {
   let memberID = $(this).attr("memberid");
-  console.log(memberID);
   db.collection("users")
     .doc(memberID)
     .get()

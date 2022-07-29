@@ -1,4 +1,5 @@
 "use strict";
+var settings;
 /** FIRESTORE **/
 
 //listen for changes
@@ -11,7 +12,7 @@ function initChangeListeners() {
       } catch (err) {
         console.warn("could not clear timed updates");
       }
-      loadCookies(snapshot);
+      loadCookies(snapshot.data());
       try {
         if ($("meta[name=appreloads]").attr("content")) {
           setupApp();
@@ -27,23 +28,20 @@ function loadCookies(prefJSON, isLoadRun) {
   //load user data from db
   return new Promise(function (fulfilled, rejected) {
     if (!!prefJSON) {
-      localStorage.setItem("userData", JSON.stringify(prefJSON.data()));
-      setupSettings(
-        prefJSON.data().prefs,
-        prefJSON.data().classes && prefJSON.data().classes.length > 0,
-        prefJSON.data().classcode && prefJSON.data().classcode.length > 0
-      );
+      localStorage.setItem("userData", JSON.stringify(prefJSON));
+      setupSettings(prefJSON.prefs, prefJSON.classes && prefJSON.classes.length > 0, prefJSON.classcode && prefJSON.classcode.length > 0);
       fulfilled();
     } else if (!isLoadRun) {
       userDoc()
         .get()
         .then((prefJSON) => {
-          loadCookies(prefJSON, true)
+          loadCookies(prefJSON.data(), true)
             .then((r) => {
               fulfilled();
             })
             .catch((e) => {
-              console.warn("could not run loadCookies with userData");
+              console.warn("could not run loadCookies with userData" + e);
+              rejected(e);
             });
         })
         .catch((err) => {
@@ -64,20 +62,24 @@ function stealCookies() {
         if (path == undefined) {
           path = "custom";
         }
+        let doPrefs = !r.data().prefs;
         db.collection("templateUsers")
           .doc(path)
           .get()
           .then((levelJSON) => {
+            levelJSON = levelJSON.data();
+            if (doPrefs) {
+              levelJSON.prefs = {
+                theme: "light",
+                pacing: "no",
+                saves: "yes",
+              };
+            }
             userDoc()
-              .set(levelJSON.data(), { merge: true })
+              .set(levelJSON, { merge: true })
               .then(() => {
                 loadCookies().then(() => {
-                  new Toast(
-                    `Reset to path settings for "` + path + `"`,
-                    "default",
-                    1000,
-                    "/VITE/img/icon/info-icon.svg"
-                  );
+                  new Toast(`Reset to path settings for "` + path + `"`, "default", 1000, "/VITE/img/icon/info-icon.svg");
                   fulfilled();
                 });
               });
@@ -88,11 +90,7 @@ function stealCookies() {
 
 var today = new Date(),
   updateJSON = {};
-var date = [
-  String(today.getMonth() + 1).padStart(2, "0"),
-  String(today.getDate()).padStart(2, "0"),
-  today.getFullYear(),
-].join("-");
+var date = [String(today.getMonth() + 1).padStart(2, "0"), String(today.getDate()).padStart(2, "0"), today.getFullYear()].join("-");
 var dateRef = "xphistory." + date;
 function setupGoal(goalNum, goalXp) {
   $("#goal-text").attr({
@@ -109,9 +107,16 @@ function setupGoal(goalNum, goalXp) {
   }
 }
 function setupSettings(jsonIn, ownsClass, inClass) {
-  for (let key of Object.keys(jsonIn)) {
-    $("[name=" + key + "]").removeAttr("checked");
-    $("[name=" + key + "][value=" + jsonIn[key] + "]").attr("checked", true);
+  try {
+    for (let key of Object.keys(jsonIn)) {
+      $("[name=" + key + "]").removeAttr("checked");
+      $("[name=" + key + "][value=" + jsonIn[key] + "]").attr("checked", true);
+    }
+  } catch (err) {
+    stealCookies().then(() => {
+      window.location.reload();
+    });
+    console.warn("could not set settings");
   }
   setupTheme(jsonIn);
   if (ownsClass) {
@@ -155,11 +160,7 @@ function startSettings() {
     .get()
     .then((r) => {
       settings = r.data().prefs;
-      setupSettings(
-        settings,
-        r.data().classes && r.data().classes.length > 0,
-        r.data().classcode && r.data().classcode.length > 0
-      );
+      setupSettings(settings, r.data().classes && r.data().classes.length > 0, r.data().classcode && r.data().classcode.length > 0);
       if (settings == undefined || r.data().goal == undefined) {
         setDefaultSettings();
       } else if (r.data().xphistory[date] == undefined) {
@@ -259,50 +260,20 @@ auth.onAuthStateChanged((user) => {
       .get()
       .then((doc) => {
         let data = doc.data();
-        if (
-          [data.tenses, data.subjects, data.verbs, data.path].includes(undefined) &&
-          !window.location.href.includes("onboarding")
-        ) {
-          new Toast(
-            "Some account data is missing, opening onboarding",
-            "default",
-            1000,
-            "/VITE/img/icon/error-icon.svg",
-            "/VITE/onboarding.html?showTutorial=false"
-          );
+        if ([data.tenses, data.subjects, data.verbs, data.path].includes(undefined) && !window.location.href.includes("onboarding")) {
+          new Toast("Some account data is missing, opening onboarding", "default", 1000, "/VITE/img/icon/error-icon.svg", "/VITE/onboarding.html?showTutorial=false");
         }
         localStorage.setItem("userData", JSON.stringify(data));
         localStorage.setItem("userId", auth.getUid());
       });
-    if (
-      !auth.currentUser.emailVerified &&
-      !auth.currentUser.isAnonymous &&
-      !auth.currentUser.email == null
-    ) {
-      new Toast(
-        "Please verify your email to use this app!",
-        "default",
-        3000,
-        "/VITE/img/icon/info-icon.svg",
-        $("meta[name=noauthenforce]").prop("content") ? "" : "/VITE/app/"
-      );
+    if (!auth.currentUser.emailVerified && !auth.currentUser.isAnonymous && !auth.currentUser.email == null) {
+      new Toast("Please verify your email to use this app!", "default", 3000, "/VITE/img/icon/info-icon.svg", $("meta[name=noauthenforce]").prop("content") ? "" : "/VITE/app/");
     } else {
       if (auth.currentUser.isAnonymous || auth.currentUser.email == null) {
         if ($("meta[name=guestprompt]").prop("content")) {
-          new Toast(
-            "Logged in as guest, your progress will not be saved!",
-            "transparent",
-            1500,
-            "/VITE/img/icon/warning-icon.svg"
-          );
+          new Toast("Logged in as guest, your progress will not be saved!", "transparent", 1500, "/VITE/img/icon/warning-icon.svg");
         } else if ($("meta[name=requireemail]").prop("content")) {
-          new Toast(
-            "You need to be signed in with a non-anonymous provider that provides an email use this feature, sorry!",
-            "transparent",
-            4000,
-            "/VITE/img/icon/error-icon.svg",
-            "/VITE/app/"
-          );
+          new Toast("You need to be signed in with a non-anonymous provider that provides an email use this feature, sorry!", "transparent", 4000, "/VITE/img/icon/error-icon.svg", "/VITE/app/");
           throw "cannot use this page as a guest";
         } else {
           console.warn("Signed in as guest");
@@ -338,15 +309,7 @@ auth.onAuthStateChanged((user) => {
     console.log("user logged out");
     localStorage.setItem("userData", "");
     localStorage.setItem("userId", "");
-    new Toast(
-      "Please login to use the app!",
-      "default",
-      1000,
-      "/VITE/img/icon/info-icon.svg",
-      $("meta[name=noauthenforce]").prop("content")
-        ? ""
-        : window.location.href.split("VITE/")[0] + "VITE/"
-    );
+    new Toast("Please login to use the app!", "default", 1000, "/VITE/img/icon/info-icon.svg", $("meta[name=noauthenforce]").prop("content") ? "" : window.location.href.split("VITE/")[0] + "VITE/");
   }
 });
 function signOut() {
@@ -369,16 +332,10 @@ function signOut() {
 }
 //! listeners
 $("[auth='logout-button']").click((e) => {
-  new Popup(
-    "Are you sure you want to sign out?",
-    "box fullborder default",
-    10000,
-    "/VITE/img/icon/info-icon.svg",
-    [
-      ["removePopup()", "Cancel", "secondary-action fullborder"],
-      ["signOut(); removePopup()", "Yes", "primary-action"],
-    ]
-  );
+  new Popup("Are you sure you want to sign out?", "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
+    ["removePopup()", "Cancel", "secondary-action fullborder"],
+    ["signOut(); removePopup()", "Yes", "primary-action"],
+  ]);
 });
 $("[auth='menu']").click((e) => {
   $(".auth-menu").toggleClass("collapsed");
@@ -386,12 +343,7 @@ $("[auth='menu']").click((e) => {
 });
 $(document.body).on("click scroll", (e) => {
   let target = $(e.target);
-  if (
-    $(document.body).hasClass("menuexpanded") &&
-    target.parent(".auth-menu").length == 0 &&
-    !target.attr("auth") &&
-    !target.hasClass("auth-menu")
-  ) {
+  if ($(document.body).hasClass("menuexpanded") && target.parent(".auth-menu").length == 0 && !target.attr("auth") && !target.hasClass("auth-menu")) {
     $(".auth-menu").addClass("collapsed");
     $(document.body).removeClass("menuexpanded");
   }
@@ -421,20 +373,10 @@ $(document.body).on("click", ".clear-sw", (e) => {
   setTimeout(function () {
     try {
       messagechannelBroadcast.postMessage({ key: "clearsw" });
-      new Toast(
-        "Cleared Service Workers and SW Cashe",
-        "default",
-        1000,
-        "/VITE/img/icon/info-icon.svg"
-      );
+      new Toast("Cleared Service Workers and SW Cashe", "default", 1000, "/VITE/img/icon/info-icon.svg", ".");
     } catch (err) {
       console.warn("could not send message on BroadcastChannel");
-      new Toast(
-        "Could not send message on BroadcastChannel, may not be supported on Safari or Chrome on iOS browsers < v14.5",
-        "default",
-        1000,
-        "/VITE/img/icon/error-icon.svg"
-      );
+      new Toast("Could not send message on BroadcastChannel, may not be supported on Safari or Chrome on iOS browsers < v14.5", "default", 1000, "/VITE/img/icon/error-icon.svg");
     }
   }, 1500);
 });
@@ -452,14 +394,8 @@ function deleteUser() {
     });
 }
 $(document.body).on("click", "#delete-acc-button, #account-delete", (e) => {
-  new Popup(
-    "Are you sure you want to delete your account? <span class='delete-text'>THIS ACTION CANNOT BE REVERSED</span>",
-    "box fullborder default",
-    10000,
-    "/VITE/img/icon/info-icon.svg",
-    [
-      ["removePopup()", "Cancel", "secondary-action fullborder"],
-      ["deleteUser(); removePopup()", "Yes", "primary-action blue-button delete-user"],
-    ]
-  );
+  new Popup("Are you sure you want to delete your account? <span class='delete-text'>THIS ACTION CANNOT BE REVERSED</span>", "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
+    ["removePopup()", "Cancel", "secondary-action fullborder"],
+    ["deleteUser(); removePopup()", "Yes", "primary-action blue-button delete-user"],
+  ]);
 });

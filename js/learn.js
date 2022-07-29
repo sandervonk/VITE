@@ -1,3 +1,5 @@
+"use strict";
+
 let tenseDefinitions = {
   pr: "Present tense",
   pc: "Past tense",
@@ -31,9 +33,7 @@ $(".tree-item").click((e) => {
   target.attr("info", true);
   $(document.body).addClass("showpopup");
   $("#learn-popup-container").append(
-    `<div id="learn-popup" tenseshort="${target.attr("tenseshort")}" class="expand-down box center" style="top:${offset.top}px; left:${
-      offset.left
-    }px;">
+    `<div id="learn-popup" tenseshort="${target.attr("tenseshort")}" class="expand-down box center" style="top:${offset.top}px; left:${offset.left}px;">
         <div id="tense-name" class="primary">
             ${target.attr("tense")}
         </div>
@@ -41,15 +41,7 @@ $(".tree-item").click((e) => {
             Learn the ${tenseDefinitions[target.attr("tenseshort")].toLowerCase()}
         </div>
         <button id="learn-popup-action" class="box-button blue-button">PRACTICE</button>
-        ${
-          target[0].hasAttribute("badged")
-            ? "<div id='learn-popup-message-separator'></div><div id='learn-popup-message' style='--badge-color:" +
-              target.css("--badge-color") +
-              "'>" +
-              (target.attr("message") != undefined ? target.attr("message") : "[message]") +
-              "</div>"
-            : ""
-        }
+        ${target[0].hasAttribute("badged") ? "<div id='learn-popup-message-separator'></div><div id='learn-popup-message' style='--badge-color:" + target.css("--badge-color") + "'>" + (target.attr("message") != undefined ? target.attr("message") : "[message]") + "</div>" : ""}
      </div>`
   );
 });
