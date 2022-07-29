@@ -139,7 +139,7 @@ $(function () {
     }
   });
 });
-$(document).on("click", "body[header-collapsed]", (e) => {
+$(document).on("click", "body[header-collapsed] header", (e) => {
   $(".tab").animate({ scrollTop: 0 }, 500, function () {
     $(document.body).removeAttr("header-collapsed");
   });

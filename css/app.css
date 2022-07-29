@@ -140,6 +140,7 @@ footer {
   background-position: center left;
   background-repeat: no-repeat;
   background-size: contain;
+  flex-shrink: 0;
 }
 
 .footer-tab-img {
@@ -592,7 +593,8 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   --card-glow: #c93b66aa;
 }
 #header-readouts {
-  flex-shrink: 0;
+  flex-shrink: 1;
+  flex-basis: 30px;
   flex-grow: 1;
   display: flex;
   flex-flow: row nowrap;
@@ -601,8 +603,8 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   padding: 0 20px;
 }
 #goal-progress {
-  flex-basis: 200px;
-  width: 200px;
+  flex-basis: 50px;
+  width: 50px;
   max-width: 700px;
   flex-shrink: 0;
   flex-grow: 1;
@@ -752,18 +754,22 @@ footer {
   flex-wrap: wrap;
   max-width: 100%;
 }
-#update-box * {
-  flex-basis: 200px;
+#update-box > * {
+  flex-basis: 100px;
   flex-shrink: 1;
   flex-grow: 1;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
-@media (max-width: 290px) {
+@media (max-width: 300px) {
+  #update-box > * {
+    flex-basis: 90%;
+  }
   #version-number-box {
     margin-right: 0px;
     margin-bottom: 10px;
+    text-align: left;
   }
   #goal-progress {
     width: 50px;
