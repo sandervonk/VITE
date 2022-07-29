@@ -592,6 +592,7 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 #educate-card {
   --card-glow: #c93b66aa;
 }
+
 #header-readouts {
   flex-shrink: 1;
   flex-basis: 30px;
