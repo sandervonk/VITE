@@ -10,6 +10,7 @@ if (params.has("resolveto")) {
 var tenses = {
     pr: "Présent",
     pc: "Passé Composé",
+    pp: "Plus que Parfait",
     im: "Imparfait",
     co: "Conditionnel",
     ps: "Passé Simple",
@@ -45,29 +46,13 @@ updatedJSON = {};
 function setupApp() {
   $(".options-toggles > .option-toggle").remove();
   for (let subject of ["Je", "Tu", "Il / Elle / On", "Nous", "Vous", "Ils / Elles"]) {
-    $("#subject-toggles").append(
-      `<button type="button" title="${
-        subjectDefinitions[subject]
-      }" class="option-toggle subject-toggle ${
-        JSON.parse(localStorage["userData"]).subjects.includes(subject) ? "active" : ""
-      } box">${subject}</button>`
-    );
+    $("#subject-toggles").append(`<button type="button" title="${subjectDefinitions[subject]}" class="option-toggle subject-toggle ${JSON.parse(localStorage["userData"]).subjects.includes(subject) ? "active" : ""} box">${subject}</button>`);
   }
   for (let verb of Object.keys(verbs)) {
-    $("#verb-toggles").append(
-      `<button type="button" title="${verbs[verb].definition}" class="option-toggle verb-toggle ${
-        JSON.parse(localStorage["userData"]).verbs.includes(verb) ? "active" : ""
-      } box">${verb}</button>`
-    );
+    $("#verb-toggles").append(`<button type="button" title="${verbs[verb].definition}" class="option-toggle verb-toggle ${JSON.parse(localStorage["userData"]).verbs.includes(verb) ? "active" : ""} box">${verb}</button>`);
   }
   for (let tense of Object.keys(tenses)) {
-    $("#tense-toggles").append(
-      `<button id="${tense}" type="button" title="${
-        tenseDefinitions[tense]
-      }" class="option-toggle tense-toggle ${
-        JSON.parse(localStorage["userData"]).tenses.includes(tense) ? "active" : ""
-      } box-button fullborder">${tenses[tense]}</button>`
-    );
+    $("#tense-toggles").append(`<button id="${tense}" type="button" title="${tenseDefinitions[tense]}" class="option-toggle tense-toggle ${JSON.parse(localStorage["userData"]).tenses.includes(tense) ? "active" : ""} box-button fullborder">${tenses[tense]}</button>`);
   }
 }
 
