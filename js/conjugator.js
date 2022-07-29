@@ -1,7 +1,8 @@
+"use strict";
 function setupVerbDropdown(verbsJSON) {
   return new Promise((resolved, rejected) => {
     try {
-      for (verb of Object.keys(verbsJSON)) {
+      for (let verb of Object.keys(verbsJSON)) {
         $("#conjugator-verb").append(`<option value="${verb}">${verb}</option>`);
       }
       resolved();
@@ -18,7 +19,7 @@ function fillConjugations() {
     $(".conjugate-verb").each(function (i, el) {
       el = $(el);
       let options = { tense: conjugation_tense, verb: conjugation_verb, subject: el.attr("subject") };
-      conjugation = new Question(options);
+      let conjugation = new Question(options);
       el.text(conjugation.answer.alt);
     });
   }
@@ -40,7 +41,6 @@ function setupApp() {
           let verbNames = Object.keys(verbs);
 
           return function () {
-            let index = verbNames.indexOf($("#conjugator-verb").val());
             let nextIndex = verbNames.indexOf($("#conjugator-verb").val()) + change;
             if (nextIndex < 0) {
               nextIndex = verbNames.length - 1;
@@ -73,11 +73,9 @@ $("#explanation-button").click(() => {
   newStorage.tense = [$("#conjugator-tense").val()];
   newStorage.subjects = ["Je", "Tu", "Il / Elle / On", "Nous", "Vous", "Ils / Elles"];
   localStorage.setItem("userData", JSON.stringify(newStorage));
-  new Toast(
-    "Creating a worksheet!",
-    "default",
-    1000,
-    "/VITE/img/icon/info-icon.svg",
-    "./sheetify.html?right=true&template=VITE!%20Classic&tense=" + $("#conjugator-tense").val()
-  );
+  new Toast("Creating a worksheet!", "default", 1000, "/VITE/img/icon/info-icon.svg", "./sheetify.html?right=true&template=VITE!%20Classic&tense=" + $("#conjugator-tense").val());
+});
+
+$("#wordreference-button").click(() => {
+  window.open(`//www.wordreference.com/conj/frverbs.aspx?v=${encodeURIComponent($("#conjugator-verb").val())}`, "_newtab");
 });

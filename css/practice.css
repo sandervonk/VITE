@@ -323,3 +323,14 @@ body[showanswer] #skip-button,
 body[avaliable] #skip-button {
   display: none;
 }
+body:not([showanswer]) #wordreference-button,
+body[showanswer][result="correct"] #wordreference-button {
+  display: none;
+}
+#next-button-row {
+  display: flex;
+  flex-flow: row nowrap;
+}
+body[showanswer]:not([result="correct"]) #next-button {
+  width: calc(100% - 20px - (40px + 10px));
+}

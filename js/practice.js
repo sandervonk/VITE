@@ -46,8 +46,8 @@ $(document.body).on("click", "#skip-button", function () {
   //Submit Question
   submitAnswer(true);
   $(document.body).attr("info", null);
-
   $("#next-button").removeClass("avaliable");
+  $(document.body).removeAttr("avaliable");
 });
 $(document.body).click((e) => {
   if (e.target.id != "vite-q-tense" && e.target.id != "vite-q-verb" && e.target.id != "vite-q-subject" && e.target.id != "info-popup") {
@@ -78,3 +78,6 @@ function getCMOptions() {
 
   return added_options.length ? added_options : false;
 }
+$("#wordreference-button").click(() => {
+  window.open(`//www.wordreference.com/conj/frverbs.aspx?v=${encodeURIComponent($("#vite-q-verb").text())}`, "_newtab");
+});

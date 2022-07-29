@@ -416,7 +416,6 @@ $(document.body).on("click", ".clear-sw", (e) => {
       registration.unregister();
     }
   });
-  console.log("Cleared ServiceWorkers");
   localStorage.setItem("clearCashe", true);
 
   setTimeout(function () {

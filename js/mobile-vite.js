@@ -62,9 +62,8 @@ function showQuestion(q) {
 }
 function submitAnswer(skipped) {
   if (document.body.hasAttribute("showanswer")) {
-    $(document.body).removeAttr("showanswer");
-    $(document.body).removeAttr("avaliable");
-    $(document.body).removeAttr("result");
+    $(document.body).removeAttr("showanswer avaliable result");
+    $("#next-button").removeClass("avaliable");
     let amntDone = (scoringData.countAll == "all" ? score.total : score.correct) / scoringData.target;
     if (scoringData.target != NaN && scoringData.countAll != null && amntDone >= 1) {
       $("form[name='practice-results']").submit();
@@ -74,7 +73,7 @@ function submitAnswer(skipped) {
 
     $("#answer-input").val("");
   } else {
-    $(document.body).attr("showanswer", "");
+    $(document.body).removeAttr("showanswer");
     //Check answer
     let inputAnswer = $("#answer-input").val().toLowerCase();
     if (variations(question.answer.alt).includes(inputAnswer) || variations(question.answer.full).includes(inputAnswer)) {
@@ -100,14 +99,7 @@ function submitAnswer(skipped) {
 
 //*Answer Handling and Variations
 function variations(answer) {
-  return [
-    answer.replace("(e)", ""),
-    answer.replace("(s)", ""),
-    answer.replace("(e)", "").replace("(s)", ""),
-    answer.replace("(e)", "e"),
-    answer.replace("(s)", "s"),
-    answer.replace("(e)", "e").replace("(s)", "s"),
-  ];
+  return [answer.replace("(e)", ""), answer.replace("(s)", ""), answer.replace("(e)", "").replace("(s)", ""), answer.replace("(e)", "e"), answer.replace("(s)", "s"), answer.replace("(e)", "e").replace("(s)", "s")];
 }
 //*Setup Questions
 class Question {
@@ -239,8 +231,7 @@ class Question {
     let answers = {
       alt: answer.toLowerCase(),
     };
-    (answers.subject = skipAgreement == true ? subjects : this.agreement(subjects).subject),
-      (answers.full = this.compress([answers.subject, answers.alt].join(" ").toLowerCase()));
+    (answers.subject = skipAgreement == true ? subjects : this.agreement(subjects).subject), (answers.full = this.compress([answers.subject, answers.alt].join(" ").toLowerCase()));
     return answers;
   }
   prTense(s, v) {
@@ -497,12 +488,3 @@ class Question {
     return data;
   }
 }
-//*Buttons & Actions
-/*
-function refreshEvents() {
-  $(".subject-button, .tense-button, .verb-button").click(function () {
-    //New Question
-    showQuestion(new Question());
-  });
-}
-*/

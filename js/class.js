@@ -94,12 +94,7 @@ function studentNotInClass() {
   $("#add-button").text("CREATE CLASS");
   $("#student-leave-class, #student-leave-class *").addClass("disabled");
   $("#student-join-class, #student-join-class *").removeClass("disabled");
-  new Toast(
-    "Looks like you dont have a class yet, lets get you started creating one. Try clicking the 'create class' button below",
-    "default",
-    2000,
-    "/VITE/img/icon/warning-icon.svg"
-  );
+  new Toast("Looks like you dont have a class yet, lets get you started creating one. Try clicking the 'create class' button below", "default", 2000, "/VITE/img/icon/warning-icon.svg");
 }
 function studentJoin(userDocData) {
   console.log("setting up student join options");
@@ -115,38 +110,19 @@ function studentJoin(userDocData) {
         } else if (classDocument.exists) {
           studentClass = classDocument.data();
           studentClassID = userDocData.classcode;
-          if (
-            studentClass.visibility == "public" ||
-            studentClass.invited.includes(auth.getUid()) ||
-            studentClass.invited.includes(auth.currentUser.email)
-          ) {
-            new Toast(
-              "Looks like you're in a class, but not its member's list, adding you now...",
-              "default",
-              2000,
-              "/VITE/img/icon/warning-icon.svg"
-            );
+          if (studentClass.visibility == "public" || studentClass.invited.includes(auth.getUid()) || studentClass.invited.includes(auth.currentUser.email)) {
+            new Toast("Looks like you're in a class, but not its member's list, adding you now...", "default", 2000, "/VITE/img/icon/warning-icon.svg");
             classDoc(doc.data().classcode)
               .update({ members: firebase.firestore.FieldValue.arrayUnion(auth.getUid()) })
               .then(() => {
                 setupApp;
               });
           } else {
-            new Toast(
-              "You're a saved member of a class, but it looks like it's private and you weren't invited, removing saved value",
-              "default",
-              2000,
-              "/VITE/img/icon/warning-icon.svg"
-            );
+            new Toast("You're a saved member of a class, but it looks like it's private and you weren't invited, removing saved value", "default", 2000, "/VITE/img/icon/warning-icon.svg");
             removeSavedClassCode();
           }
         } else {
-          new Toast(
-            "Found saved class code, but did not match any classes, removing",
-            "default",
-            2000,
-            "/VITE/img/icon/warning-icon.svg"
-          );
+          new Toast("Found saved class code, but did not match any classes, removing", "default", 2000, "/VITE/img/icon/warning-icon.svg");
           removeSavedClassCode();
         }
       })
@@ -159,31 +135,13 @@ function studentJoin(userDocData) {
 }
 //non-action setup functions
 function createClass() {
-  new Toast(
-    "Creating a new class",
-    "default",
-    750,
-    "/VITE/img/icon/info-icon.svg",
-    "./create.html"
-  );
+  new Toast("Creating a new class", "default", 750, "/VITE/img/icon/info-icon.svg", "./create.html");
 }
 function setupMember(memberID) {
-  memberText =
-    memberID == auth.currentUser.uid
-      ? "[You]"
-      : userNamesJSON[memberID][0] + " (" + userNamesJSON[memberID][1] + ")";
-  memberStyle = userNamesJSON[memberID][2]
-    ? `style='background-image: url("${fixPFPResolution(userNamesJSON[memberID][2])}")'`
-    : "";
-  cm_options =
-    memberID == auth.currentUser.uid || studentClass
-      ? ""
-      : '{ "icon": "cm-remove", "text": "Remove Student", "onclick": "removeStudentPopup(' +
-        ` \`${memberText}\`, \`${memberID}\` ` +
-        ')"}';
-  $("[memberlist]").append(
-    `<li class='class-member' cm-options='${cm_options}' memberid='${memberID}' title='${memberText}' ${memberStyle}></li>`
-  );
+  memberText = memberID == auth.currentUser.uid ? "[You]" : userNamesJSON[memberID][0] + " (" + userNamesJSON[memberID][1] + ")";
+  memberStyle = userNamesJSON[memberID][2] ? `style='background-image: url("${fixPFPResolution(userNamesJSON[memberID][2])}")'` : "";
+  cm_options = memberID == auth.currentUser.uid || studentClass ? "" : '{ "icon": "cm-remove", "text": "Remove Student", "onclick": "removeStudentPopup(' + ` \`${memberText}\`, \`${memberID}\` ` + ')"}';
+  $("[memberlist]").append(`<li class='class-member' cm-options='${cm_options}' memberid='${memberID}' title='${memberText}' ${memberStyle}></li>`);
 }
 function cycleClasses(change) {
   let nextIndex = userClasses.indexOf(currentClass) + change;
@@ -241,10 +199,7 @@ function deleteClass() {
     .delete()
     .then(() => {
       userDoc()
-        .update(
-          { classes: firebase.firestore.FieldValue.arrayRemove(currentClass) },
-          { merge: true }
-        )
+        .update({ classes: firebase.firestore.FieldValue.arrayRemove(currentClass) }, { merge: true })
         .then(() => {
           removePopup();
           window.location.reload();
@@ -261,24 +216,14 @@ function joinClass(attemptedCode) {
     .get()
     .then((classDocument) => {
       prospectiveClass = classDocument.data();
-      if (
-        prospectiveClass.visibility == "public" ||
-        prospectiveClass.invited.includes(auth.getUid()) ||
-        prospectiveClass.invited.includes(auth.currentUser.email)
-      ) {
+      if (prospectiveClass.visibility == "public" || prospectiveClass.invited.includes(auth.getUid()) || prospectiveClass.invited.includes(auth.currentUser.email)) {
         classDoc(attemptedCode)
           .update({ members: firebase.firestore.FieldValue.arrayUnion(auth.getUid()) })
           .then(() => {
             userDoc()
               .update({ classcode: attemptedCode })
               .then(() => {
-                new Toast(
-                  "Joined class successfully!",
-                  "default",
-                  2000,
-                  "/VITE/img/icon/success-icon.svg",
-                  "./index.html"
-                );
+                new Toast("Joined class successfully!", "default", 2000, "/VITE/img/icon/success-icon.svg", "./index.html");
               })
               .catch((err) => {
                 new ErrorToast("Could not save class code to user data", err.code, 2000);
@@ -289,21 +234,11 @@ function joinClass(attemptedCode) {
             window.location.reload();
           });
       } else {
-        new Toast(
-          "Sorry, this class is private, and you haven't been invited yet",
-          "default",
-          2000,
-          "/VITE/img/icon/warning-icon.svg"
-        );
+        new Toast("Sorry, this class is private, and you haven't been invited yet", "default", 2000, "/VITE/img/icon/warning-icon.svg");
       }
     })
     .catch((classErr) => {
-      new Toast(
-        "Could not find a class for this code",
-        "default",
-        2000,
-        "/VITE/img/icon/warning-icon.svg"
-      );
+      new Toast("Could not find a class for this code", "default", 2000, "/VITE/img/icon/warning-icon.svg");
     });
 }
 
@@ -315,13 +250,7 @@ function leaveClass() {
       userDoc()
         .update({ classcode: "" })
         .then(() => {
-          new Toast(
-            "Left class successfully!",
-            "default",
-            2000,
-            "/VITE/img/icon/success-icon.svg",
-            "./index.html"
-          );
+          new Toast("Left class successfully!", "default", 2000, "/VITE/img/icon/success-icon.svg", "./index.html");
         })
         .catch((err) => {
           new ErrorToast("Could not remove class code from user data", err.code, 2000);
@@ -335,12 +264,7 @@ function leaveClass() {
 function copyJoinCode() {
   el = $(this).children(".codebox")[0] ? $(this).children(".codebox")[0] : $(".codebox")[0];
   if (el.value == "") {
-    new Toast(
-      "Make sure you've created a class to get your code, then tap here again to copy it",
-      "default",
-      2000,
-      "/VITE/img/icon/warning-icon.svg"
-    );
+    new Toast("Make sure you've created a class to get your code, then tap here again to copy it", "default", 2000, "/VITE/img/icon/warning-icon.svg");
   } else {
     el.focus();
     el.select();
@@ -348,12 +272,7 @@ function copyJoinCode() {
       .writeText(el.value)
       .then((res) => {
         console.log("Copied to clipboard");
-        new Toast(
-          "Copied class code to clipboard",
-          "transparent",
-          750,
-          "/VITE/img/icon/clipboard-icon.svg"
-        );
+        new Toast("Copied class code to clipboard", "transparent", 750, "/VITE/img/icon/clipboard-icon.svg");
       })
       .catch((err) => {
         new ErrorToast("Error copying class code" + err.toString(), 2000);
@@ -365,37 +284,17 @@ function copyJoinCode() {
 $("#class-code, #student-info-code-row").click(copyJoinCode);
 $("#delete-button").click(function () {
   $(this).addClass("disabled");
-  new Popup(
-    "Do you want to delete this class?",
-    "box fullborder default",
-    10000,
-    "/VITE/img/icon/info-icon.svg",
-    [
-      [
-        "removePopup(); $('#delete-button').removeClass('disabled')",
-        "Cancel",
-        "secondary-action fullborder",
-      ],
-      ["deleteClass()", "Yes", "primary-action blue-button delete-document"],
-    ]
-  );
+  new Popup("Do you want to delete this class?", "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
+    ["removePopup(); $('#delete-button').removeClass('disabled')", "Cancel", "secondary-action fullborder"],
+    ["deleteClass()", "Yes", "primary-action blue-button delete-document"],
+  ]);
 });
 $("#student-leave-button").click(function () {
   $(this).addClass("disabled");
-  new Popup(
-    "Are you sure you want to leave this class?",
-    "box fullborder default",
-    10000,
-    "/VITE/img/icon/info-icon.svg",
-    [
-      [
-        "removePopup(); $('#student-leave-class, #student-leave-class *').removeClass('disabled')",
-        "Cancel",
-        "secondary-action fullborder",
-      ],
-      ["leaveClass()", "Yes", "primary-action blue-button delete-document"],
-    ]
-  );
+  new Popup("Are you sure you want to leave this class?", "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
+    ["removePopup(); $('#student-leave-class, #student-leave-class *').removeClass('disabled')", "Cancel", "secondary-action fullborder"],
+    ["leaveClass()", "Yes", "primary-action blue-button delete-document"],
+  ]);
 });
 
 $("#student-join-button").click(function () {
@@ -410,12 +309,7 @@ function removeStudent(studentID) {
   classDoc(currentClass)
     .update({ members: firebase.firestore.FieldValue.arrayRemove(studentID) })
     .then(() => {
-      new Toast(
-        "Removed student successfully!",
-        "default",
-        2000,
-        "/VITE/img/icon/success-icon.svg"
-      );
+      new Toast("Removed student successfully!", "default", 2000, "/VITE/img/icon/success-icon.svg");
       removePopup();
       $(`.class-member[member-id="${studentID}"]`).remove();
     })
@@ -428,16 +322,10 @@ function removeStudent(studentID) {
 //   removeStudentPopup($(this).attr("title"), $(this).attr("memberid"));
 // });
 function removeStudentPopup(name, id) {
-  new Popup(
-    `Are you sure you want to remove ${name} from this class?`,
-    "box fullborder default",
-    10000,
-    "/VITE/img/icon/info-icon.svg",
-    [
-      ["removePopup()", "Cancel", "secondary-action fullborder"],
-      [`removeStudent('${id}')`, "Remove", "primary-action blue-button delete-document"],
-    ]
-  );
+  new Popup(`Are you sure you want to remove ${name} from this class?`, "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
+    ["removePopup()", "Cancel", "secondary-action fullborder"],
+    [`removeStudent('${id}')`, "Remove", "primary-action blue-button delete-document"],
+  ]);
 }
 function getCMOptions() {
   let added_options = [];
@@ -445,9 +333,7 @@ function getCMOptions() {
     added_options.push({
       icon: "cm-copy",
       text: "Copy class code",
-      onclick:
-        (!studentClass ? `$("#class-code").click();` : `$("#student-info-code-row").click();`) +
-        "closeContextMenu()",
+      onclick: (!studentClass ? `$("#class-code").click();` : `$("#student-info-code-row").click();`) + "closeContextMenu()",
     });
   }
   if (!studentClass) {

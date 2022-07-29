@@ -997,3 +997,17 @@ input:checked + .switch-label {
 .cm-button > .cm-icon {
   margin: 0 !important;
 }
+#wordreference-button {
+  background-image: url(../img/icon/wordreference.webp);
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: 30px;
+  background-color: #ffffff;
+  --button-border: #5e58c6;
+  margin-right: 10px;
+  flex-shrink: 0;
+  width: 42px;
+}
+#wordreference-button.disabled {
+  opacity: 0.5;
+}
