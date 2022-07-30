@@ -319,12 +319,18 @@ header.infinite #back-button {
   user-select: none;
   cursor: pointer;
 }
+#conjugator-button,
+#wordreference-button {
+  width: 42px;
+}
 body[showanswer] #skip-button,
 body[avaliable] #skip-button {
   display: none;
 }
 body:not([showanswer]) #wordreference-button,
-body[showanswer][result="correct"] #wordreference-button {
+body:not([showanswer]) #conjugator-button,
+body[showanswer][result="correct"] #wordreference-button,
+body[showanswer][result="correct"] #conjugator-button {
   display: none;
 }
 #next-button-row {
@@ -332,5 +338,6 @@ body[showanswer][result="correct"] #wordreference-button {
   flex-flow: row nowrap;
 }
 body[showanswer]:not([result="correct"]) #next-button {
-  width: calc(100% - 20px - (40px + 10px));
+  width: calc(100% - 10px - (42px * 2 + 10px));
+  margin-left: 0px !important;
 }

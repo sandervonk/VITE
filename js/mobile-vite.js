@@ -35,6 +35,7 @@ function showQuestion(q) {
   $("#vite-q-verb, #vite-q-tense").addClass("notranslate");
   $("#vite-q-verb").text(q.verb);
   $("#vite-q-tense").text(q.tense);
+  $("#vite-q-tense").attr("tenseshort", q.tenseShort);
   $("#vite-q-verb").attr("info", q.definition);
   $("#vite-q-subject").attr("info", subjectDefinitions[q.subject.toLowerCase()]);
   if (q.tense.includes("Subjonctif") && ["e", "i", "o"].includes(q.subject[0].toLowerCase())) {
@@ -182,10 +183,6 @@ class Question {
         a = this.spTense(s, v);
         t = "Subjonctif Passé";
         break;
-      // case "pp":
-      //   a = this.ppTense(s, v);
-      //   t = "Plus que Parfait";
-      //   break;
       default:
         console.error(`Could not match requested tense "${t}" to method`);
         return {

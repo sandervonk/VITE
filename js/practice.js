@@ -82,3 +82,6 @@ function getCMOptions() {
 $("#wordreference-button").click(() => {
   window.open(`//www.wordreference.com/conj/frverbs.aspx?v=${encodeURIComponent($("#vite-q-verb").text())}`, "_newtab");
 });
+$("#conjugator-button").click(() => {
+  window.open(`/VITE/app/conjugator.html?verb=${encodeURIComponent($("#vite-q-verb").text())}&tense=${$("#vite-q-tense").attr("tenseshort")}`, "_newtab");
+});

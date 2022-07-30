@@ -30,6 +30,11 @@ function loadCookies(prefJSON, isLoadRun) {
     if (!!prefJSON) {
       localStorage.setItem("userData", JSON.stringify(prefJSON));
       setupSettings(prefJSON.prefs, prefJSON.classes && prefJSON.classes.length > 0, prefJSON.classcode && prefJSON.classcode.length > 0);
+      if (prefJSON.xphistory[date]) {
+        setupGoal(prefJSON.goal, prefJSON.xphistory[date]);
+      } else {
+        setupDailyXP(prefJSON.goal);
+      }
       fulfilled();
     } else if (!isLoadRun) {
       userDoc()
@@ -129,7 +134,7 @@ function setupSettings(jsonIn, ownsClass, inClass) {
   }
 }
 function setupDailyXP(prevGoal) {
-  let updatedJSON = {};
+  updateJSON = {};
   updateJSON[dateRef] = 0;
   return new Promise(function (fulfilled, rejected) {
     userDoc()

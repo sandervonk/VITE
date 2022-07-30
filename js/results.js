@@ -6,11 +6,10 @@ var dateRef = "xphistory." + [String(today.getMonth() + 1).padStart(2, "0"), Str
 function pad2(n) {
   return (n < 10 ? "0" : "") + n;
 }
-let param = new URLSearchParams(window.location.search);
 let results = {
-  correct: param.get("correct"),
-  total: param.get("total"),
-  duration: parseInt(param.get("duration")),
+  correct: params.get("correct"),
+  total: params.get("total"),
+  duration: parseInt(params.get("duration")),
 };
 if (Object.values(results).includes(null)) {
   window.location.href = "./";
@@ -23,12 +22,12 @@ percentage_correct = percentage_correct.toString() == "NaN" ? "-" : percentage_c
 $("#correct .result-number").text(percentage_correct + "%");
 $("#time .result-number").text(Math.floor((results.duration / 1000 / 60) << 0) + ":" + pad2(Math.floor((results.duration / 1000) % 60)));
 $("#xp .result-number").text(results.correct);
-function startApp() {
+function setupApp() {
   return new Promise(function (fulfilled, rejected) {
     if (parseInt(results.correct) != 0 && parseInt(results.correct) / 1 == parseInt(results.correct)) {
       console.log("adding to goals");
       let incrementFn = firebase.firestore.FieldValue.increment(parseInt(results.correct));
-      let updatedJSON = {
+      let updateJSON = {
         xp: incrementFn,
       };
       updateJSON[dateRef] = incrementFn;

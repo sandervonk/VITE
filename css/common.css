@@ -78,7 +78,7 @@ button.box,
   margin-top: 0;
   border-width: 2px 2px 4px 2px;
   cursor: pointer;
-  transition: border-bottom-width 0.05s ease-in-out, height 0.05s ease-in-out, margin 0.05s ease-in-out;
+  transition: border-bottom-width 0.05s ease-in-out, height 0.05s ease-in-out, margin-bottom 0.05s ease-in-out;
 }
 button.box.tall,
 .box-button.tall {
@@ -669,7 +669,8 @@ input:checked + .switch-label {
 #save-icon,
 #visibility-icon,
 #lock-icon,
-#list-icon {
+#list-icon,
+#search-icon {
   background-color: var(--box-border);
   height: 100%;
   width: 100%;
@@ -716,6 +717,12 @@ input:checked + .switch-label {
   mask-image: url(../img/icon/list-icon.svg);
   -webkit-mask-image: url(../img/icon/list-icon.png);
   -webkit-mask-image: url(../img/icon/list-icon.svg);
+}
+#search-icon {
+  mask-image: url(../img/icon/search-icon.png);
+  mask-image: url(../img/icon/search-icon.svg);
+  -webkit-mask-image: url(../img/icon/search-icon.png);
+  -webkit-mask-image: url(../img/icon/search-icon.svg);
 }
 #visibility-icon {
   mask-image: url(../img/icon/eye-icon.png);
