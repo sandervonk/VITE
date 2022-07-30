@@ -85,8 +85,6 @@ header {
   pointer-events: none;
 }
 footer {
-  height: 76px;
-  padding: 18px 0px;
   margin: 10px;
   position: fixed;
   bottom: 0;
@@ -94,13 +92,18 @@ footer {
   box-sizing: border-box;
   width: calc(100vw - 20px);
   background-color: var(--secondary);
+  border-radius: 28px;
+  z-index: 1024;
+  box-shadow: 0 0 10px 10px var(--bg);
+}
+footer,
+#footer {
+  height: 76px;
+  padding: 18px 0px;
   display: flex;
   flex-flow: row nowrap;
   justify-content: space-evenly;
   align-items: center;
-  border-radius: 28px;
-  z-index: 1024;
-  box-shadow: 0 0 10px 10px var(--bg);
 }
 #tutorial-text {
   max-width: 400px;
@@ -782,5 +785,16 @@ footer {
     width: 100% !important;
     text-align: center;
     box-sizing: border-box;
+  }
+}
+#tab-container::-webkit-scrollbar {
+  display: none;
+}
+@media (min-width: 700px) {
+  #footer-fade {
+    display: none;
+  }
+  footer {
+    top: 0;
   }
 }

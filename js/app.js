@@ -20,7 +20,7 @@ class tutorialObject {
   }
   start() {
     $("#page-content, body").addClass("tutorial");
-    $(document.body).on("click", "#page-content.tutorial .footer-item", (e) => {
+    $(document.body).on("click", "#body.tutorial .footer-item", (e) => {
       this.setText(e.target.id.replace("-tab", ""));
     });
     $("#tutorial-overlay-zone").click(function () {
@@ -59,7 +59,7 @@ if (showTutorial == "true") {
 } else if (params.get("classPanel") == "true") {
   new Toast("Opening the class panel", "default", 750, "/VITE/img/icon/group-info-icon.svg", "/VITE/class/");
 }
-$(".footer-item").click((e) => {
+$(document.body).on("click", ".footer-item", (e) => {
   setTab(e.target.id, true);
   try {
     tutorialClass.setText(e.target.id.replace("-tab", ""));
@@ -83,8 +83,8 @@ $(".learn-card").click((e) => {
   window.location.href = $(e.target).closest(".learn-card").attr("page") + "?type=" + $(e.target).closest(".learn-card").attr("name");
 });
 function setTab(tabFull, scroll) {
-  let tab = tabFull.replace("-tab", "");
-  let tabElement = $("#" + tabFull);
+  let tab = tabFull.replace("-tab", ""),
+    tabElement = $("#" + tabFull);
   $(".footer-item").removeClass("active");
   $(`.footer-item#${tab}-tab`).addClass("active");
   $("#page-content, body").attr("activetab", tab);
