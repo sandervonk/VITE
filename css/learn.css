@@ -185,3 +185,10 @@
     display: none;
   }
 }
+@media (min-width: 1000px) {
+  header {
+    width: 100vw;
+    padding: 20px !important;
+    box-sizing: border-box;
+  }
+}

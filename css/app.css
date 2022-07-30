@@ -80,7 +80,7 @@ header {
   bottom: 0;
   height: 120px;
   background: linear-gradient(0deg, var(--bg) 0%, var(--bg) 70%, rgba(255, 255, 255, 0) 100%);
-  /*border-radius: 35px 35px 0 0;*/
+  /* border-radius: 35px 35px 0 0; */
   z-index: 1022;
   pointer-events: none;
 }
@@ -151,14 +151,14 @@ footer,
   pointer-events: none;
   flex-shrink: 0;
 }
-@media (orientation: landscape), (min-width: 500px) {
+@media (min-width: 500px) {
   footer {
     max-width: 370px;
     left: 50%;
     transform: translateX(-50%) translateX(-10px);
   }
 }
-@media (orientation: landscape), (min-width: 1000px) {
+@media (min-width: 1000px) {
   footer {
     width: 100vw;
     transform: none;
@@ -168,6 +168,9 @@ footer,
     border-radius: 0;
     border-top: 3px solid var(--secondary-alt);
     background-color: var(--bg);
+  }
+  #footer-fade {
+    display: none;
   }
 }
 #page-content {
@@ -559,7 +562,7 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
   height: 50px;
   border-radius: 25px;
 }
-@media (orientation: landscape), (min-width: 1000px) {
+@media (min-width: 1000px) {
   footer {
     max-width: 500px;
     box-sizing: content-box;
@@ -790,11 +793,28 @@ footer {
 #tab-container::-webkit-scrollbar {
   display: none;
 }
-@media (min-width: 700px) {
+@media (min-width: 1000px) {
   #footer-fade {
     display: none;
   }
   footer {
-    /* top: 0; */
+    top: 0;
+    width: 50vw;
+    transition: width 0.5s ease-in-out;
+    max-width: 50vw;
+    box-sizing: border-box;
+    height: 90px;
+    border-top: none;
+    border-right: 3px solid var(--secondary-alt);
+    background-color: var(--secondary);
+    border-right: var();
+    padding: 18px calc(25vw - 250px);
+    border-bottom-left-radius: 18px;
+  }
+  header {
+    width: 100vw;
+    padding-left: calc(50vw + 23px);
+    box-sizing: border-box;
+    transition: height 0.25s ease-in-out;
   }
 }
