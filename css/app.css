@@ -795,6 +795,6 @@ footer {
     display: none;
   }
   footer {
-    top: 0;
+    /* top: 0; */
   }
 }
