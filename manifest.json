@@ -1,8 +1,8 @@
 {
   "name": "VITE! French Practice",
   "short_name": "VITE!",
-  "start_url": "https://sander.vonk.one/VITE/app/",
-  "scope": "https://sander.vonk.one/VITE/",
+  "start_url": "//sander.vonk.one/VITE/app/",
+  "scope": "//sander.vonk.one/VITE/",
   "display": "standalone",
   "background_color": "#131f22",
   "theme_color": "#3CADC6",
