@@ -69,7 +69,10 @@ $(document.body).on("click", ".footer-item", (e) => {
 function saveSettings(form) {
   let object = {};
   new FormData(form).forEach(function (value, key) {
-    object[key] = value;
+    console.log(key);
+    if (["theme"].includes(key)) {
+      object[key] = value;
+    }
   });
   setupTheme(object);
   let settingsJSON = JSON.stringify(object);

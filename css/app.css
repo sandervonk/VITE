@@ -746,7 +746,6 @@ footer {
   flex-flow: row nowrap;
   justify-content: center;
   align-items: center;
-  white-space: nowrap;
   margin-right: 10px;
   border-radius: 10px;
   background: var(--secondary);
@@ -756,6 +755,14 @@ footer {
   box-sizing: border-box;
   user-select: none;
   pointer-events: none;
+}
+#version-number-box span {
+  flex-grow: 0;
+  max-width: 100%;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  text-align: center;
 }
 #update-box {
   flex-wrap: wrap;
@@ -793,14 +800,65 @@ footer {
 #tab-container::-webkit-scrollbar {
   display: none;
 }
+@media (min-width: 800px) {
+  #page-content {
+    max-width: 1000px;
+  }
+  /*learn*/
+  #learn-cards {
+    display: flex;
+    flex-flow: row wrap;
+  }
+  #learn-cards > .card.learn-card {
+    flex-grow: 1;
+    margin: 10px;
+    width: 350px;
+    min-height: 130px;
+    height: auto;
+    aspect-ratio: 35 / 13;
+  }
+  #learn-cards > :last-of-type.card.learn-card {
+    background-color: var(--educate-card-bg-color);
+    aspect-ratio: 70 / 13;
+    background-size: contain;
+  }
+  /*settings (& announcements)*/
+  #settings-form,
+  #tab-container > #announcements-tab {
+    display: flex;
+    flex-flow: row wrap;
+    align-items: stretch;
+    justify-content: stretch;
+  }
+  .settings-section,
+  #announcements-tab > .announcement-card,
+  #announcements-tab > #announce-filler {
+    margin: 15px;
+    flex-basis: calc(50% - 60px);
+    flex-grow: 0;
+  }
+  .settings-section,
+  .section-content.box {
+    display: flex;
+    flex-flow: column;
+  }
+  .section-content.box,
+  .settings-section .section-description {
+    flex-grow: 1;
+  }
+  #announce-filler {
+    height: unset;
+  }
+}
 @media (min-width: 1000px) {
-  #footer-fade {
+  #footer-fade,
+  .footer-space {
     display: none;
   }
   footer {
     top: 0;
     width: 50vw;
-    transition: width 0.5s ease-in-out;
+    transition: none;
     max-width: 50vw;
     box-sizing: border-box;
     height: 90px;
@@ -816,5 +874,19 @@ footer {
     padding-left: calc(50vw + 23px);
     box-sizing: border-box;
     transition: height 0.25s ease-in-out;
+  }
+  .card-title {
+    font-size: calc(12px + 1.2vw);
+  }
+  .card-description {
+    font-size: calc(8px + 0.9vw); /* was 16px */
+  }
+}
+@media (min-width: 1400px) {
+  .card-title {
+    font-size: 28.8px;
+  }
+  .card-description {
+    font-size: 20.6px;
   }
 }
