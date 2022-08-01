@@ -131,6 +131,7 @@ $(function () {
     if (Math.abs(scrollTop - lastScrollTop) >= delta && scrollTop > 50) {
       if (scrollTop > lastScrollTop) {
         $(document.body).attr("header-collapsed", "");
+        $("#account-menu").addClass("collapsed");
       } else if (scrollTop < maxScrollTop - 2) {
         $(document.body).removeAttr("header-collapsed");
       }
