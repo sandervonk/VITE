@@ -77,7 +77,7 @@ $.getJSON("/VITE/verbs.json")
   .done(function (response) {
     verbs = response;
     //temporarily removed custom verbs
-    showQuestion(new Question());
+    showQuestion(new Conjugate());
   })
   .fail(function (err) {
     console.error("Could not load verbs.json :(", err);

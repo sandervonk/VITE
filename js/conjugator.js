@@ -19,7 +19,7 @@ function fillConjugations() {
     $(".conjugate-verb").each(function (i, el) {
       el = $(el);
       let options = { tense: conjugation_tense, verb: conjugation_verb, subject: el.attr("subject") };
-      let conjugation = new Question(options);
+      let conjugation = new Conjugate(options);
       el.text(conjugation.answer.alt);
     });
   }

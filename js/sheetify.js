@@ -66,9 +66,7 @@ function setupTemplates(templateArr) {
   $("#results-grid > img").remove();
   $("#results-header").text(`${templateArr.length} Template${templateArr.length == 1 ? "" : "s"} Avaliable`);
   for (templateObj of templateArr) {
-    $("#results-grid").append(
-      `<img src="/VITE/img/template/${templateObj.img}" title="${templateObj.name} | ${templateObj.author}" alt="${templateObj.name} by ${templateObj.author}" name="${templateObj.name}" class="template-img" />`
-    );
+    $("#results-grid").append(`<img src="/VITE/img/template/${templateObj.img}" title="${templateObj.name} | ${templateObj.author}" alt="${templateObj.name} by ${templateObj.author}" name="${templateObj.name}" class="template-img" />`);
   }
 }
 setupTemplates(templates);
@@ -118,11 +116,8 @@ function makePrint(name) {
       subject: random(JSON.parse(localStorage.getItem("userData")).subjects),
       tense: selectedTense,
     };
-    let questionData = new Question(options);
-    templateContent += template.html.content
-      .replace("%q-subject%", questionData.subject)
-      .replace("%q-verb%", questionData.verb.toLowerCase())
-      .replace("%q-answer%", questionData.answer.alt);
+    let questionData = new Conjugate(options);
+    templateContent += template.html.content.replace("%q-subject%", questionData.subject).replace("%q-verb%", questionData.verb.toLowerCase()).replace("%q-answer%", questionData.answer.alt);
   }
   let templateHTML = template.html.head + templateContent + template.html.foot;
   templateHTML = templateHTML.replace("%title%", title).replace("%numQuestions%", numQuestions);

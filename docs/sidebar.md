@@ -1,9 +1,9 @@
-- [HOME](./)
+- [HOME]()
 
-- [Conjugator](./conjugator/index)
+- [Conjugator](conjugator/index)
 
-  - [Tenses](./conjugator/tenses/index)
+  - [Options](conjugator/options)
 
-- [About](./about/index)
+- [About](about/index)
 
-- [Schools & Education](./edu/index)
+- [Schools & Education](edu/index)

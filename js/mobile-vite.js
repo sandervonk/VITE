@@ -62,7 +62,7 @@ function showQuestion(q) {
     $("#answer-mascot").attr("mood", "mood=" + q.mascot);
   }
 }
-function submitAnswer(skipped) {
+function submitAnswer(skipped = false) {
   if (document.body.hasAttribute("showanswer")) {
     $(document.body).removeAttr("showanswer avaliable result");
     $("#next-button").removeClass("avaliable");
@@ -70,7 +70,7 @@ function submitAnswer(skipped) {
     if (scoringData.target != NaN && scoringData.countAll != null && amntDone >= 1) {
       $("form[name='practice-results']").submit();
     } else {
-      showQuestion(new Question());
+      showQuestion(new Conjugate());
     }
 
     $("#answer-input").val("");
@@ -91,7 +91,7 @@ function submitAnswer(skipped) {
       $("#answer-correction-2").text(question.answer.full);
       $("#answer-correction-1, #answer-correction-2").addClass("notranslate");
     }
-    if (skipped == true) {
+    if (skipped) {
       $(document.body).attr("result", "skipped");
     }
   }
@@ -102,22 +102,11 @@ function variations(answer) {
   return [answer.replace("(e)", ""), answer.replace("(s)", ""), answer.replace("(e)", "").replace("(s)", ""), answer.replace("(e)", "e"), answer.replace("(s)", "s"), answer.replace("(e)", "e").replace("(s)", "s")];
 }
 //*Setup Questions
-class Question {
-  constructor(options) {
-    if (options == undefined || options == null) {
-      this.tense = this.pickTense();
-      this.subject = this.random(split("subjects"));
-      this.verb = this.random(split("verbs"));
-    } else {
-      this.tense = options.tense;
-      this.subject = options.subject;
-      this.verb = options.verb;
-    }
-
-    this.verb = {
-      name: this.verb,
-      verb: verbs[this.verb],
-    };
+class Conjugate {
+  constructor(options = { tense: this.random(split("tenses")), subject: this.random(split("subjects")), verb: this.random(split("verbs")) }) {
+    this.tense = options.tense;
+    this.subject = options.subject;
+    this.verb = { name: options.verb, verb: verbs[options.verb] };
     return this.conjugate(this.tense, this.subject, this.verb);
   }
   random(input) {
@@ -128,9 +117,6 @@ class Question {
     } else {
       return Math.random();
     }
-  }
-  pickTense() {
-    return this.random(split("tenses"));
   }
   conjugate(t, s, v) {
     let tOriginal = t;
@@ -220,11 +206,11 @@ class Question {
     }
     return t;
   }
-  versions(answer, subjects, skipAgreement) {
+  versions(answer, subjects, skip_agreement = false) {
     let answers = {
       alt: answer.toLowerCase(),
     };
-    (answers.subject = skipAgreement == true ? subjects : this.agreement(subjects).subject), (answers.full = this.compress([answers.subject, answers.alt].join(" ").toLowerCase()));
+    (answers.subject = skip_agreement ? subjects : this.agreement(subjects).subject), (answers.full = this.compress([answers.subject, answers.alt].join(" ").toLowerCase()));
     return answers;
   }
   prTense(s, v) {

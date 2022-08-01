@@ -287,7 +287,7 @@ auth.onAuthStateChanged((user) => {
       try {
         startApp().then((r) => {
           if ($("meta[name=runapp]").prop("content")) {
-            showQuestion(new Question());
+            showQuestion(new Conjugate());
           } else if ($("meta[name=runsetup]").prop("content")) {
             setupApp();
           } else if ($("meta[name=runsettings]").prop("content")) {
