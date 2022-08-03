@@ -78,7 +78,7 @@ button.box,
   margin-top: 0;
   border-width: 2px 2px 4px 2px;
   cursor: pointer;
-  transition: border-bottom-width 0.05s ease-in-out, height 0.05s ease-in-out, margin-bottom 0.05s ease-in-out;
+  transition: border-bottom-width 0.05s ease-in-out, height 0.05s ease-in-out, margin-top 0.05s ease-in-out;
 }
 button.box.tall,
 .box-button.tall {
