@@ -286,16 +286,22 @@ function copyJoinCode() {
 $("#class-code, #student-info-code-row").click(copyJoinCode);
 $("#delete-button").click(function () {
   $(this).addClass("disabled");
-  new Popup("Do you want to delete this class?", "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
+  setTimeout(() => {
+    $(this).removeClass("disabled");
+  }, 10000);
+  new Popup("Do you want to delete this class?", "default delete-container", 10000, "/VITE/img/icon/info-icon.svg", [
     ["removePopup(); $('#delete-button').removeClass('disabled')", "Cancel", "secondary-action fullborder"],
-    ["deleteClass()", "Yes", "primary-action blue-button delete-document"],
+    ["deleteClass()", "Delete", "primary-action blue-button delete-color"],
   ]);
 });
 $("#student-leave-button").click(function () {
   $(this).addClass("disabled");
-  new Popup("Are you sure you want to leave this class?", "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
+  setTimeout(() => {
+    $(this).removeClass("disabled");
+  }, 10000);
+  new Popup("Are you sure you want to leave this class?", "default delete-container", 10000, "/VITE/img/icon/info-icon.svg", [
     ["removePopup(); $('#student-leave-class, #student-leave-class *').removeClass('disabled')", "Cancel", "secondary-action fullborder"],
-    ["leaveClass()", "Yes", "primary-action blue-button delete-document"],
+    ["leaveClass()", "Leave", "primary-action blue-button delete-color"],
   ]);
 });
 
@@ -322,9 +328,9 @@ function removeStudent(studentID) {
 }
 
 function removeStudentPopup(name, id) {
-  new Popup(`Are you sure you want to remove ${name} from this class?`, "box fullborder default", 10000, "/VITE/img/icon/info-icon.svg", [
+  new Popup(`Are you sure you want to remove ${name} from this class?`, "default delete-container", 10000, "/VITE/img/icon/info-icon.svg", [
     ["removePopup()", "Cancel", "secondary-action fullborder"],
-    [`removeStudent('${id}')`, "Remove", "primary-action blue-button delete-document"],
+    [`removeStudent('${id}')`, "Remove", "primary-action blue-button delete-color"],
   ]);
 }
 function getCMOptions() {

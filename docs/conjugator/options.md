@@ -1,5 +1,7 @@
 # Conjugator Options
 
+<hr />
+
 > Conjugate.constructor([options])
 
 #### inputs:
@@ -31,6 +33,8 @@
   - {options}**.verb**
     - string of a verb (should match a key in `verbs.json`)
 
+<hr />
+
 > Conjugate.agreement(subjects)
 
 Used for adding agreement to needed conjugations. Only called when they should be added
@@ -59,6 +63,8 @@ Used for adding agreement to needed conjugations. Only called when they should b
       - "(s)"
       - "s"
 
+<hr />
+
 > Conjugate.conjugate(tense, subject, verb)
 
 Calls conjugator `__Tense(s, v)` on subject and verb based on tense input and returns the answers, plus some other data for building the practice page
@@ -81,6 +87,8 @@ Calls conjugator `__Tense(s, v)` on subject and verb based on tense input and re
   - {verb}**.verb**
     - object with information about the verb from `verbs.json`[name]
 
+<hr />
+
 > Conjugate.random(input)
 
 #### input
@@ -89,6 +97,8 @@ Calls conjugator `__Tense(s, v)` on subject and verb based on tense input and re
 
 - If an array: return a random value therein
 - If a number `n`: return a random number from 0 thru `n - 1`
+
+<hr />
 
 > Conjugate.versions(answer, subjects [,skip_agreement])
 
@@ -105,6 +115,8 @@ Calls conjugator `__Tense(s, v)` on subject and verb based on tense input and re
 #### [output]
 
 - Array of strings
+
+<hr />
 
 > Conjugate.compress(str)
 

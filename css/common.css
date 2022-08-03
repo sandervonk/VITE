@@ -404,7 +404,7 @@ input:checked + .switch-label {
 }
 .toast-overlay,
 .popup-overlay {
-  z-index: 10000000;
+  z-index: 262142;
   position: fixed;
   top: 0;
   left: 0;
@@ -447,22 +447,19 @@ input:checked + .switch-label {
 /** POPUP **/
 .popup {
   width: calc(100% - 40px);
+  z-index: 262143;
   border-radius: 20px;
-  z-index: 100000000;
   margin: 20px;
   padding: 10px;
   box-sizing: border-box;
-  background-color: var(--toast-bg);
-  color: var(--toast-text);
-  border-color: var(--toast-border) !important;
-  --check-button-blank: var(--toast-secondary);
-  --check-button-blank-accent: var(--toast-border);
+  background-color: var(--popup-bg);
+  color: var(--on-popup-bg);
   position: fixed;
   display: flex;
   flex-flow: column;
   top: 50%;
   left: 50%;
-  max-width: 460px;
+  max-width: 360px;
   transform: translateX(-20px) translateX(-50%) translateY(-50%);
 }
 @keyframes fadeout {
@@ -507,16 +504,43 @@ input:checked + .switch-label {
   --button-accent: var(--check-button-blank-accent) !important;
   --button-border: var(--check-button-blank-accent) !important;
 }
+#popup-buttons {
+  display: flex;
+  flex-flow: row nowrap;
+  justify-content: space-between;
+  width: 100%;
+  font-weight: 700 !important;
+}
+#popup-buttons button {
+  flex-grow: 0;
+  margin: 5px;
+  flex-basis: 25%;
+}
 .popup-button {
   font-size: 20px;
   display: flex;
   justify-content: center;
   align-items: center;
+  height: 40px;
+  border-radius: 40px;
+  border: solid 1.5px rgba(255, 255, 255, 0);
+  padding: 10px 20px;
+}
+.popup-button.delete-color {
+  background-color: var(--popup-red);
+  color: var(--popup-bg);
+}
+.primary-action {
+  background-color: var(--primary);
+  color: var(--popup-bg);
 }
 .secondary-action {
-  --button-bg: var(--check-button-blank);
-  --button-border: var(--check-button-blank-accent);
-  --button-accent: var(--check-button-blank-accent);
+  border-color: var(--primary);
+  background-color: var(--popup-bg);
+  color: var(--on-popup-bg);
+}
+.delete-container .secondary-action {
+  border-color: var(--on-popup-bg);
 }
 .popup-text {
   margin-bottom: 10px;
@@ -540,23 +564,7 @@ input:checked + .switch-label {
   width: 100%;
   justify-content: space-between;
 }
-#popup-buttons {
-  display: flex;
-  flex-flow: row nowrap;
-  width: 100%;
-  font-weight: 700 !important;
-}
-#popup-buttons button {
-  flex-grow: 1;
-  margin: 5px;
-  flex-basis: 25%;
-}
 
-.popup-button:active {
-  margin-top: 9px !important;
-  margin-bottom: 0px !important;
-  height: 40px;
-}
 .flex-row-nowrap {
   display: flex;
   flex-flow: row nowrap;

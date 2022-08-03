@@ -4,6 +4,4 @@
 
   - [Options](conjugator/options)
 
-- [About](about/index)
-
 - [Schools & Education](edu/index)

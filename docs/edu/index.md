@@ -1,3 +1,5 @@
 # Schools & Education
 
-Documentation Coming Soon
+### Getting Started
+
+<hr />

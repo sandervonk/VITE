@@ -54,11 +54,19 @@
   --result-correct-bg: #1f3136;
   --result-incorrect-bg: #1f3136;
   /*toast*/
-  --toast-bg: #303030;
+  --toast-bg: #191c1d;
   --toast-bg-transparent: #303030aa;
   --toast-text: #ffffff;
   --toast-border: #242424;
   --toast-secondary: #3b3b3b;
+  /*popup*/
+  --primary: #6bd5ef;
+  --primary-container: #004e5c;
+  --on-primary: #003640;
+  --on-primary-container: #abedff;
+  --popup-bg: #191c1d;
+  --on-popup-bg: #e1e3e3;
+  --popup-red: #de3730;
   /*items*/
   --dropdown-border: #37464f;
   --dropdown-items: #37464f;

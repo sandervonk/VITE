@@ -60,8 +60,16 @@
   --toast-text: #181c1e;
   --toast-border: #c8c8c8;
   --toast-secondary: #e5e5e5;
+  /*popup*/
+  --primary: #00687a;
+  --primary-container: #abedff;
+  --on-primary: #ffffff;
+  --on-primary-container: #001f26;
+  --popup-bg: #fbfcfd;
+  --on-popup-bg: #191c1d;
+  --popup-red: #ff4b4b;
   /*login*/
-  --error-border: #ff4b4c;
+  --error-border: #de3730;
   --error-bg: #ffdfe0;
   /*items*/
   --dropdown-border: #aeaeae;
