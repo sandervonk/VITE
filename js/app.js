@@ -2,15 +2,15 @@
 let tutorialTabs = {
   learn: {
     title: "The Learn Tab",
-    description: "This tab is your go-to place for everything learning. It'll provide you access to different activities at the touch of a tile!",
+    description: "This tab is your go-to place for everything learning. It'll provide you access to different activities at the click or tap of a tile!",
   },
   settings: {
     title: "The Settings Tab",
-    description: "Customize your learning experience here, with theme toggles, pace re-adjustments, and more!",
+    description: "Customize your learning experience here, with theme toggles, level adjustment, and more!",
   },
   announcements: {
     title: "The Announcements Tab",
-    description: "Learn about new features and find more information about how you can best improve your learning experience here",
+    description: "Learn about new features and find more information about how you can best improve your learning experience here!",
   },
 };
 
@@ -48,19 +48,20 @@ class tutorialObject {
     $("#tutorial-description").text(tutorialTabs[tabName].description);
   }
 }
-let path = params.get("path"),
-  showTutorial = params.get("showTutorial");
+let path = params.get("path");
 var tutorialClass;
 if (path != null) {
   localStorage["learningPath"] = path;
 }
-if (showTutorial == "true") {
+if (params.get("showTutorial") == "true") {
   tutorialClass = new tutorialObject();
 } else if (params.get("classPanel") == "true") {
   new Toast("Opening the class panel", "default", 750, "/VITE/img/icon/group-info-icon.svg", "/VITE/class/");
+} else if (["settings", "learn", "announcements"].includes(params.get("tab"))) {
+  setTab(params.get("tab") + "-tab", true, true);
 }
 $(document.body).on("click", ".footer-item", (e) => {
-  setTab(e.target.id, true);
+  setTab(e.target.id, true, false);
   try {
     tutorialClass.setText(e.target.id.replace("-tab", ""));
   } catch (err) {}
@@ -85,7 +86,7 @@ $("#settings-tab .switch-toggle").click((e) => {
 $(".learn-card").click((e) => {
   window.location.href = $(e.target).closest(".learn-card").attr("page") + "?type=" + $(e.target).closest(".learn-card").attr("name");
 });
-function setTab(tabFull, scroll) {
+function setTab(tabFull, scroll = false, skip_href = false) {
   let tab = tabFull.replace("-tab", ""),
     tabElement = $("#" + tabFull);
   $(".footer-item").removeClass("active");
@@ -104,6 +105,11 @@ function setTab(tabFull, scroll) {
     });
   } else {
     $(document.body).removeAttr("header-collapsed");
+  }
+  if (window.history && !skip_href) {
+    let currentUrl = new URL(window.location.href);
+    currentUrl.searchParams.set("tab", tab);
+    window.history.pushState({}, "", currentUrl.href);
   }
 }
 $("#tab-container").scroll((e) => {

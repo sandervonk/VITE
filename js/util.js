@@ -1,7 +1,9 @@
 "use strict";
 /** URI SEARCH TERMS **/
 var params = new URLSearchParams(window.location.search);
-history.replaceState({}, "", window.location.href.substr(0, window.location.href.length - window.location.search.length));
+if (window.history) {
+  history.replaceState({}, "", window.location.href.substr(0, window.location.href.length - window.location.search.length));
+}
 params.set("home_page", window.location.href.split("/VITE")[0] + "/VITE");
 var verbs = {},
   lastMousePos = { x: 0, y: 0 };

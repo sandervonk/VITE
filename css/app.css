@@ -837,6 +837,9 @@ footer {
     flex-basis: calc(50% - 60px);
     flex-grow: 0;
   }
+  #other-section {
+    margin: 15px !important;
+  }
   .settings-section,
   .section-content.box {
     display: flex;
@@ -851,11 +854,11 @@ footer {
   }
 }
 @media (min-width: 1000px) {
-  #footer-fade,
-  .footer-space {
+  body:not(.tutorial) #footer-fade,
+  body:not(.tutorial) .footer-space {
     display: none;
   }
-  footer {
+  body:not(.tutorial) footer {
     top: 0;
     width: 50vw;
     transition: none;
@@ -869,7 +872,7 @@ footer {
     padding: 18px calc(25vw - 250px);
     border-bottom-left-radius: 18px;
   }
-  header {
+  body:not(.tutorial) header {
     width: 100vw;
     padding-left: calc(50vw + 23px);
     box-sizing: border-box;
