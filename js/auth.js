@@ -1,6 +1,6 @@
 "use strict";
 const DEFAULT_PFP = "http://sander.vonk.one/VITE/img/icon/pfp.png";
-var verificationInterval, authPromise;
+var verificationInterval;
 //control pages of auth (for verification)
 function firstPage() {
   $("#auth-box").removeClass("second");
@@ -22,8 +22,7 @@ $(document.body).on("click", "#send-verification.ready", function () {
 });
 //redirects
 function openOnboard() {
-  window.location.href =
-    "./onboarding.html" + (params.get("classPanel") == "true" ? "?classPanel=true" : "");
+  window.location.href = "./onboarding.html" + (params.get("classPanel") == "true" ? "?classPanel=true" : "");
 }
 function openApp() {
   window.location.href = "./app/" + (params.get("classPanel") == "true" ? "?classPanel=true" : "");
@@ -76,13 +75,7 @@ function verifyButton(userObj) {
             "border-color": "#35BB13",
           });
           $("#send-verification").addClass("ready");
-          new Toast(
-            "Email Verified... Logging in",
-            "default",
-            2000,
-            "img/icon/success-icon.png",
-            "./"
-          );
+          new Toast("Email Verified... Logging in", "default", 2000, "img/icon/success-icon.png", "./");
         }
       }, 1000);
     }
@@ -95,9 +88,7 @@ function verifyButton(userObj) {
         $("#send-verification").css({ opacity: 0.5 });
       },
       function (error) {
-        alert(
-          `Something went wrong sending your verification email, try again later! \n\n` + error
-        );
+        alert(`Something went wrong sending your verification email, try again later! \n\n` + error);
       }
     );
   });
@@ -107,21 +98,9 @@ function addDisplayName() {
     displayUserID = auth.currentUser.uid;
   return db.runTransaction((transaction) => {
     return transaction.get(nameDocRef).then((nameDoc) => {
-      if (
-        !Object.keys(nameDoc.data()).includes(displayUserID) ||
-        nameDoc.data()[displayUserID] !=
-          [
-            auth.currentUser.displayName,
-            auth.currentUser.email,
-            auth.currentUser.photoURL ? auth.currentUser.photoURL : DEFAULT_PFP,
-          ]
-      ) {
+      if (!Object.keys(nameDoc.data()).includes(displayUserID) || nameDoc.data()[displayUserID] != [auth.currentUser.displayName, auth.currentUser.email, auth.currentUser.photoURL ? auth.currentUser.photoURL : DEFAULT_PFP]) {
         let userJSON = {};
-        userJSON[displayUserID] = [
-          auth.currentUser.displayName,
-          auth.currentUser.email,
-          auth.currentUser.photoURL ? auth.currentUser.photoURL : DEFAULT_PFP,
-        ];
+        userJSON[displayUserID] = [auth.currentUser.displayName, auth.currentUser.email, auth.currentUser.photoURL ? auth.currentUser.photoURL : DEFAULT_PFP];
         transaction.update(nameDocRef, userJSON, { merge: true });
       }
     });
@@ -142,14 +121,7 @@ auth.onAuthStateChanged((user) => {
         localStorage.setItem("userData", JSON.stringify(data));
         localStorage.setItem("userId", auth.getUid());
       });
-    if (
-      auth.currentUser.emailVerified ||
-      auth.currentUser.email == null ||
-      (auth.currentUser.providerData &&
-        (auth.currentUser.providerData[0].providerId == "github.com" ||
-          auth.currentUser.providerData[0].providerId == "facebook.com" ||
-          auth.currentUser.providerData[0].providerId == "twitter.com"))
-    ) {
+    if (auth.currentUser.emailVerified || auth.currentUser.email == null || (auth.currentUser.providerData && (auth.currentUser.providerData[0].providerId == "github.com" || auth.currentUser.providerData[0].providerId == "facebook.com" || auth.currentUser.providerData[0].providerId == "twitter.com"))) {
       if (authData.creationTime === authData.lastSignInTime) {
         let userJSON = {};
         userJSON[auth.getUid] = auth.currentUser.displayName;
@@ -163,13 +135,7 @@ auth.onAuthStateChanged((user) => {
             openOnboard();
           });
       } else if (doOnboard) {
-        new Toast(
-          "Some account data is missing, opening onboarding",
-          "default",
-          1000,
-          "/VITE/img/icon/error-icon.svg",
-          "./onboarding.html?showTutorial=false"
-        );
+        new Toast("Some account data is missing, opening onboarding", "default", 1000, "/VITE/img/icon/error-icon.svg", "./onboarding.html?showTutorial=false");
       } else {
         addDisplayName()
           .then(() => {
@@ -181,13 +147,7 @@ auth.onAuthStateChanged((user) => {
           });
       }
     } else if (auth.currentUser.isAnonymous) {
-      new Toast(
-        "Logged in as guest, your progress will not be saved!",
-        "default",
-        1000,
-        "/VITE/img/icon/info-icon.svg",
-        "./onboarding.html"
-      );
+      new Toast("Logged in as guest, your progress will not be saved!", "default", 1000, "/VITE/img/icon/info-icon.svg", "./onboarding.html");
     } else {
       secondPage();
       verifyButton(user);
@@ -206,10 +166,10 @@ authForm.on("submit", (e) => {
   e.preventDefault();
   const email = authForm[0]["email-input"].value;
   const password = authForm[0]["password-input"].value;
-  if (document.activeElement.id == "signup") {
+  if (e.originalEvent && e.originalEvent.submitter.id == "signup") {
     // signup
-    authPromise = auth.createUserWithEmailAndPassword(email, password);
-    authPromise
+    auth
+      .createUserWithEmailAndPassword(email, password)
       .then((user) => {
         $("#password-input, #email-input").removeClass("error");
         //switch to verification page
@@ -275,12 +235,7 @@ $("#twitter-login").click((e) => {
 function eduSignup() {
   $("#extended-options").hide();
   params.set("classPanel", true);
-  new Toast(
-    "You'll be redirected to the class dashboard after completing the tutorial!",
-    "default",
-    5000,
-    "img/icon/group-info-icon.svg"
-  );
+  new Toast("You'll be redirected to the class dashboard after completing the tutorial!", "default", 5000, "img/icon/group-info-icon.svg");
 }
 if (params.get("classPanel") == "true") {
   eduSignup();
