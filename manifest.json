@@ -8,7 +8,7 @@
       "url": "//sander.vonk.one/VITE/app/conjugator.html",
       "icons": [
         {
-          "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/conjugator.png",
+          "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/conjugator-themed.png",
           "sizes": "192x192"
         }
       ]
@@ -20,7 +20,7 @@
       "url": "//sander.vonk.one/VITE/app/sheetify.html",
       "icons": [
         {
-          "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/sheetify.png",
+          "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/sheetify-themed.png",
           "sizes": "192x192"
         }
       ]
@@ -32,7 +32,7 @@
       "url": "//sander.vonk.one/VITE/class/index.html",
       "icons": [
         {
-          "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/class.png",
+          "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/class-themed.png",
           "sizes": "192x192"
         }
       ]
