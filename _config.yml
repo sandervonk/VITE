@@ -1,0 +1,1 @@
+include: [.well-known, app/.well-known, app/.well-known/assetlinks.json, assetlinks.json, .well-known/assetlinks.json]
