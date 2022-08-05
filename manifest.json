@@ -122,6 +122,54 @@
       "sizes": "512x512"
     },
     {
+      "src": "img/icon/app/icon-monochrome-72x72.png",
+      "type": "image/png",
+      "sizes": "72x72",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "img/icon/app/icon-monochrome-96x96.png",
+      "type": "image/png",
+      "sizes": "96x96",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "img/icon/app/icon-monochrome-128x128.png",
+      "type": "image/png",
+      "sizes": "128x128",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "img/icon/app/icon-monochrome-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "img/icon/app/icon-monochrome-152x152.png",
+      "type": "image/png",
+      "sizes": "152x152",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "img/icon/app/icon-monochrome-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "img/icon/app/icon-monochrome-384x384.png",
+      "type": "image/png",
+      "sizes": "384x384",
+      "purpose": "monochrome"
+    },
+    {
+      "src": "img/icon/app/icon-monochrome-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512",
+      "purpose": "monochrome"
+    },
+    {
       "src": "img/icon/app/icon-maskable-72x72.png",
       "type": "image/png",
       "sizes": "72x72",
