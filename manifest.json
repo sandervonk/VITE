@@ -1,4 +1,77 @@
 {
+  "description": "Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!",
+  "shortcuts": [
+    {
+      "name": "Conjugate a Verb",
+      "short_name": "Conjugator",
+      "description": "Check verb conjugations across all tenses and subjects.",
+      "url": "/app/conjugator.html",
+      "icons": [
+        {
+          "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/conjugator.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Create a Worksheet",
+      "short_name": "Sheetify",
+      "description": "Create a custom worksheet with your own verbs, subjects, and tenses.",
+      "url": "/app/sheetify.html",
+      "icons": [
+        {
+          "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/sheetify.png",
+          "sizes": "192x192"
+        }
+      ]
+    },
+    {
+      "name": "Manage Classes",
+      "short_name": "Classes",
+      "description": "Manage, create, and join classes!",
+      "url": "/class/index.html",
+      "icons": [
+        {
+          "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/class.png",
+          "sizes": "192x192"
+        }
+      ]
+    }
+  ],
+  "screenshots": [
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/app-index-narrow.jpg",
+      "sizes": "390x844",
+      "platform": "narrow",
+      "type": "image/jpeg",
+      "description": "App Index Screen | Mobile",
+      "label": "App Index Screen | Mobile"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/login-narrow.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "narrow",
+      "description": "VITE! Login Screen | Mobile",
+      "label": "VITE! Login Screen | Mobile"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/app-index-wide.jpg",
+      "sizes": "1280x720",
+      "platform": "wide",
+      "type": "image/jpeg",
+      "description": "App Index Screen | Desktop",
+      "label": "App Index Screen | Desktop"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/login-wide.jpg",
+      "sizes": "1280x720",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "description": "VITE! Login Screen | Desktop",
+      "label": "VITE! Login Screen | Desktop"
+    }
+  ],
   "name": "VITE! French Practice",
   "short_name": "VITE!",
   "start_url": "//sander.vonk.one/VITE/app/",
@@ -11,50 +84,90 @@
     {
       "src": "img/icon/app/icon-maskable-72x72.png",
       "type": "image/png",
+      "sizes": "72x72"
+    },
+    {
+      "src": "img/icon/app/icon-maskable-96x96.png",
+      "type": "image/png",
+      "sizes": "96x96"
+    },
+    {
+      "src": "img/icon/app/icon-maskable-128x128.png",
+      "type": "image/png",
+      "sizes": "128x128"
+    },
+    {
+      "src": "img/icon/app/icon-maskable-144x144.png",
+      "type": "image/png",
+      "sizes": "144x144"
+    },
+    {
+      "src": "img/icon/app/icon-maskable-152x152.png",
+      "type": "image/png",
+      "sizes": "152x152"
+    },
+    {
+      "src": "img/icon/app/icon-maskable-192x192.png",
+      "type": "image/png",
+      "sizes": "192x192"
+    },
+    {
+      "src": "img/icon/app/icon-maskable-384x384.png",
+      "type": "image/png",
+      "sizes": "384x384"
+    },
+    {
+      "src": "img/icon/app/icon-maskable-512x512.png",
+      "type": "image/png",
+      "sizes": "512x512"
+    },
+    {
+      "src": "img/icon/app/icon-maskable-72x72.png",
+      "type": "image/png",
       "sizes": "72x72",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     },
     {
       "src": "img/icon/app/icon-maskable-96x96.png",
       "type": "image/png",
       "sizes": "96x96",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     },
     {
       "src": "img/icon/app/icon-maskable-128x128.png",
       "type": "image/png",
       "sizes": "128x128",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     },
     {
       "src": "img/icon/app/icon-maskable-144x144.png",
       "type": "image/png",
       "sizes": "144x144",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     },
     {
       "src": "img/icon/app/icon-maskable-152x152.png",
       "type": "image/png",
       "sizes": "152x152",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     },
     {
       "src": "img/icon/app/icon-maskable-192x192.png",
       "type": "image/png",
       "sizes": "192x192",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     },
     {
       "src": "img/icon/app/icon-maskable-384x384.png",
       "type": "image/png",
       "sizes": "384x384",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     },
     {
       "src": "img/icon/app/icon-maskable-512x512.png",
       "type": "image/png",
       "sizes": "512x512",
-      "purpose": "any maskable"
+      "purpose": "maskable"
     }
   ]
 }
