@@ -5,7 +5,7 @@
       "name": "Conjugate a Verb",
       "short_name": "Conjugator",
       "description": "Check verb conjugations across all tenses and subjects.",
-      "url": "/app/conjugator.html",
+      "url": "//sander.vonk.one/VITE/app/conjugator.html",
       "icons": [
         {
           "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/conjugator.png",
@@ -17,7 +17,7 @@
       "name": "Create a Worksheet",
       "short_name": "Sheetify",
       "description": "Create a custom worksheet with your own verbs, subjects, and tenses.",
-      "url": "/app/sheetify.html",
+      "url": "//sander.vonk.one/VITE/app/sheetify.html",
       "icons": [
         {
           "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/sheetify.png",
@@ -29,7 +29,7 @@
       "name": "Manage Classes",
       "short_name": "Classes",
       "description": "Manage, create, and join classes!",
-      "url": "/class/index.html",
+      "url": "//sander.vonk.one/VITE/class/index.html",
       "icons": [
         {
           "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/class.png",

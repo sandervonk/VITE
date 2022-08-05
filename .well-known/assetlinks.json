@@ -1,6 +1,0 @@
-[{
-        "relation": ["delegate_permission/common.handle_all_urls"],
-        "target" : { "namespace": "android_app", "package_name": "vite.practice.twa",
-                     "sha256_cert_fingerprints": ["97:E0:4E:EB:5A:A4:7C:55:A7:B0:38:CB:4E:E3:C1:5D:D4:2B:57:E6:73:E9:95:DD:27:34:A1:9D:F4:77:F1:72"] }
-      }
-]
