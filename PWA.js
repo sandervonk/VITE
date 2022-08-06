@@ -1,5 +1,4 @@
-// const IS_TESTING = location.hostname === "localhost" || location.hostname === "127.0.0.1";
-const IS_TESTING = false;
+const IS_TESTING = location.hostname === "localhost" || location.hostname === "127.0.0.1";
 if ("serviceWorker" in navigator && !IS_TESTING) {
   navigator.serviceWorker
     .register("service-worker.js")
