@@ -261,6 +261,8 @@ messaging
   })
   .then((token) => {
     // console.log("Token Is : " + token);
+    $("#enable-notif-button").text("Enabled");
+    $("#enable-notif-button").addClass("disabled");
   })
   .catch((err) => {
     console.warn("No permission to send push", err);
@@ -423,4 +425,18 @@ $(document.body).on("click", "#delete-acc-button, #account-delete", (e) => {
     ["removePopup()", "Cancel", "secondary-action fullborder"],
     ["deleteUser(); removePopup()", "Delete", "primary-action delete-color"],
   ]);
+});
+$("#enable-notif-button").click((e) => {
+  e.preventDefault();
+  if (Notification.permission == "granted") {
+    new Toast("Notifications are already enabled", "default", 1000, "/VITE/img/icon/info-icon.svg");
+  } else {
+    Notification.requestPermission().then((permission) => {
+      if (permission == "granted") {
+        new Toast("Notifications enabled!", "default", 1000, "/VITE/img/icon/info-icon.svg", ".");
+      } else {
+        new Toast("Notifications could not be enabled; Please check your browser settings", "default", 1000, "/VITE/img/icon/error-icon.svg");
+      }
+    });
+  }
 });

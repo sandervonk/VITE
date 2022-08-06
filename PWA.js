@@ -1,7 +1,7 @@
 const IS_TESTING = location.hostname === "localhost" || location.hostname === "127.0.0.1";
 if ("serviceWorker" in navigator && !IS_TESTING) {
   navigator.serviceWorker
-    .register("service-worker.js")
+    .register("/VITE/service-worker.js")
     .then((res) => {
       console.log("service worker registered:", res);
     })
