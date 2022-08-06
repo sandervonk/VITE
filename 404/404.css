@@ -1,0 +1,124 @@
+:root {
+  --bg: #1d55a8;
+  --secondary-bg: #141f23;
+  --menu-accent: #52656d;
+  --box-border: #37464f;
+  --box-bg: #141f23;
+  --button-bg: #141f23;
+  --secondary: #1f3136;
+  --secondary-alt: #37464f;
+}
+body {
+  background-color: var(--bg);
+}
+#top-content {
+  height: calc(50vh + 40px);
+  margin-bottom: -40px;
+  position: relative;
+}
+#mascot {
+  position: absolute;
+  width: 20vh;
+  height: 30vh;
+  bottom: 40px;
+  left: 25vw;
+  min-width: 100px;
+  min-height: 150px;
+  z-index: 1001 !important;
+}
+@media (max-width: 700px) {
+  #mascot {
+    left: calc(20vh - 12.5vw - 100px);
+  }
+}
+@keyframes earth-corona {
+  0% {
+    box-shadow: 0 0 0 0vw #1d4f9b00, 0 0 0 0vw #23529900, 0 0 0 0vw #3076e000;
+  }
+  100% {
+    box-shadow: 0 0 0 calc(5 * var(--base-unit)) #1d4f9b70, 0 0 0 calc(10 * var(--base-unit)) #23529950, 0 0 0 calc(15 * var(--base-unit)) #3076e015;
+  }
+}
+#earth-illustration {
+  --base-unit: calc(0.76vh + 0.4vw);
+  overflow: hidden;
+  border-radius: 50vh;
+  width: 50vh;
+  height: 50vh;
+  bottom: -15vh;
+  right: -10vh;
+  position: absolute;
+  animation: earth-corona 1s forwards ease-out;
+}
+@media (max-width: 500px) {
+  #earth-illustration {
+    width: 70vw;
+    height: 70vw;
+    top: -35vw;
+    right: -10vw;
+  }
+}
+#mascot > img {
+  height: 100%;
+  width: auto;
+}
+#earth-illustration > img {
+  width: 100%;
+  height: 100%;
+  position: absolute;
+}
+#lower-box {
+  position: absolute;
+  z-index: 1000;
+  bottom: 0;
+  width: 100%;
+  height: fit-content;
+}
+#lower-box {
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+}
+#lower-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: var(--secondary-bg);
+  min-height: 100px;
+  height: 50vh;
+}
+#top-content * {
+  pointer-events: none;
+  z-index: 1;
+}
+#bg-stars {
+  user-select: none;
+  position: absolute;
+  z-index: 0;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  opacity: 0.75;
+}
+html,
+body {
+  margin: 0;
+  padding: 0;
+  background-color: var(--bg);
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+  box-sizing: border-box;
+  font-family: "Next", sans-serif;
+}
+@media (orientation: landscape), (min-width: 700px) {
+  .star {
+    width: 5px;
+    height: 5px;
+    background: #f6f6f6cc;
+  }
+}
