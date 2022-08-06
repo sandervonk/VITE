@@ -269,7 +269,7 @@ messaging
   });
 messaging.onMessage((payload) => {
   console.log("Message received. ", payload);
-  new Toast(`<div class="push-notification-text"><div style="padding-bottom:.25em; font-weight: bold;">${payload.notification.title}</div><span style="font-size: .9em">${payload.notification.body}</span></div>`, "default", 4000000 + payload.notification.body.length * 20, "/VITE/img/icon/concern-icon.svg");
+  new Toast(`<div class="push-notification-text"><div style="padding-bottom:.25em; font-weight: bold;">${payload.notification.title}</div><span style="font-size: .9em">${payload.notification.body}</span></div>`, "default", 5000 + payload.notification.body.length * 20, "/VITE/img/icon/concern-icon.svg");
 });
 // auth
 
