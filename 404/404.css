@@ -198,6 +198,9 @@ body {
   #error-text {
     z-index: 1 !important;
   }
+  #offline-img {
+    display: none;
+  }
 }
 @keyframes scroll-bg {
   0% {
@@ -215,7 +218,7 @@ body {
   transform: scale(1.1);
   transform-origin: center;
   background-image: url(/VITE/img/earth-clouds.png);
-  background-size: 1em;
+  background-size: contain;
   background-repeat: repeat-x;
   animation: scroll-bg 30s linear infinite;
 }
@@ -233,7 +236,7 @@ body {
 #offline-img {
   background-image: url(/VITE/img/offline/image-offline.svg);
   background-size: contain;
-  background-repeat: none;
+  background-repeat: no-repeat;
   background-position: center center;
 }
 #action-btns {
@@ -241,12 +244,16 @@ body {
   flex-flow: column;
   align-items: center;
   justify-content: space-evenly;
-  padding: 40px 0;
+  padding: 40px;
   box-sizing: border-box;
 }
-#action-btns > * {
+#action-btns > a {
   flex-grow: 0;
+  width: 100%;
+  max-width: 500px;
   height: 70px;
+  padding: 20px;
+  box-sizing: border-box;
   flex-shrink: 1;
   border-radius: 20px;
   display: flex;
@@ -259,8 +266,20 @@ body {
   font-size: 30px;
   color: #415f66 !important;
   text-decoration: none !important;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
-#action-btns > * > * {
+#action-btns > a > * {
   pointer-events: none;
   user-select: none;
+  height: fit-content;
+  flex-grow: 1;
+  text-align: center;
+}
+#action-btns > a > .shortcut-icon {
+  flex-grow: 0;
+  width: 30px;
+  height: 30px;
+  margin-right: 20px;
 }
