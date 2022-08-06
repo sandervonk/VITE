@@ -84,6 +84,7 @@ body {
 }
 #top-content * {
   pointer-events: none;
+  user-select: none;
   z-index: 1;
 }
 #bg-stars {
@@ -217,4 +218,49 @@ body {
   background-size: 1em;
   background-repeat: repeat-x;
   animation: scroll-bg 30s linear infinite;
+}
+#lower-content {
+  display: flex;
+  flex-flow: row nowrap;
+}
+#lower-content * {
+  flex-grow: 1;
+  width: 50%;
+  align-items: stretch;
+  height: 100%;
+  justify-content: stretch;
+}
+#offline-img {
+  background-image: url(/VITE/img/offline/image-offline.svg);
+  background-size: contain;
+  background-repeat: none;
+  background-position: center center;
+}
+#action-btns {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: space-evenly;
+  padding: 40px 0;
+  box-sizing: border-box;
+}
+#action-btns > * {
+  flex-grow: 0;
+  height: 70px;
+  flex-shrink: 1;
+  border-radius: 20px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  background-color: #1f3136;
+  margin: 10px;
+  cursor: pointer;
+  font-size: 30px;
+  color: #415f66 !important;
+  text-decoration: none !important;
+}
+#action-btns > * > * {
+  pointer-events: none;
+  user-select: none;
 }
