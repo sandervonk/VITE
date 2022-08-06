@@ -192,6 +192,7 @@ self.addEventListener("notificationclick", function (event) {
   event.notification.close();
   event.waitUntil(self.clients.openWindow(event.notification.data));
 });
+
 try {
   messagechannelBroadcast.onmessage = (event) => {
     value = event.data.key;
@@ -205,5 +206,3 @@ try {
 } catch (err) {
   console.warn("could not setup BroadcastChannel listeners");
 }
-
-//importScripts("firebase-messaging-sw.js");

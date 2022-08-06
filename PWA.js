@@ -1,10 +1,10 @@
-if ("serviceWorker" in navigator && !(location.hostname === "localhost" || location.hostname === "127.0.0.1")) {
-  window.addEventListener("load", function () {
-    navigator.serviceWorker
-      .register("/VITE/serviceWorker.js")
-      .then((res) => {
-        console.log("service worker registered");
-      })
-      .catch((err) => console.warn("Service worker not registered w/ error:", err));
-  });
+// const IS_TESTING = location.hostname === "localhost" || location.hostname === "127.0.0.1";
+const IS_TESTING = false;
+if ("serviceWorker" in navigator && !IS_TESTING) {
+  navigator.serviceWorker
+    .register("service-worker.js")
+    .then((res) => {
+      console.log("service worker registered:", res);
+    })
+    .catch((err) => console.warn("Service worker not registered w/ error:", err));
 }

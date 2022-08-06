@@ -99,6 +99,7 @@
   <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
   <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
   <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
   <script>
     const config = {
       apiKey: "AIzaSyCZelR1HSbmcPf70rTI5Ig02yasL8RSdPw",
@@ -111,11 +112,29 @@
     };
     firebase.initializeApp(config);
     const auth = firebase.auth(),
-      db = firebase.firestore();
+      db = firebase.firestore(),
+      messaging = firebase.messaging();
+    // database
     db.settings({ timestampsInSnapshots: !0, merge: true });
     var userDoc = function () {
       return db.collection("users").doc(auth.getUid());
     };
+    // messaging
+    messaging
+      .requestPermission()
+      .then(() => {
+        return messaging.getToken();
+      })
+      .then((token) => {
+        // console.log("Token Is : " + token);
+      })
+      .catch((err) => {
+        console.warn("No permission to send push", err);
+      });
+    messaging.onMessage((payload) => {
+      console.log("Message received. ", payload);
+      new Toast(`<div class="push-notification-text"><div style="padding-bottom:.25em; font-weight: bold;">${payload.notification.title}</div><span style="font-size: .9em">${payload.notification.body}</span></div>`, "default", 4000000 + payload.notification.body.length * 20, "/VITE/img/icon/concern-icon.svg");
+    });
   </script>
   <script src="/VITE/js/auth.js?version=[-version-number-]"></script>
   <script>

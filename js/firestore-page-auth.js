@@ -225,7 +225,7 @@ function setPhoto(url) {
     $(".auth-picture").attr("src", url);
   }
 }
-//!setup
+//setup
 const config = {
   apiKey: "AIzaSyCZelR1HSbmcPf70rTI5Ig02yasL8RSdPw",
   authDomain: "vite-practice.firebaseapp.com",
@@ -238,11 +238,13 @@ const config = {
 
 // Initialize Firebase
 firebase.initializeApp(config);
-// make auth and firestore references
+
+// make refs
 const auth = firebase.auth();
 const db = firebase.firestore();
-//const messaging = firebase.messaging();
-// update firestore settings
+const messaging = firebase.messaging();
+
+// database
 db.settings({ timestampsInSnapshots: true, merge: true });
 var userDoc = function () {
   return db.collection("users").doc(auth.getUid());
@@ -250,6 +252,24 @@ var userDoc = function () {
 var classDoc = function (idIn) {
   return db.collection("classes").doc(idIn);
 };
+
+// messaging
+messaging
+  .requestPermission()
+  .then(() => {
+    return messaging.getToken();
+  })
+  .then((token) => {
+    // console.log("Token Is : " + token);
+  })
+  .catch((err) => {
+    console.warn("No permission to send push", err);
+  });
+messaging.onMessage((payload) => {
+  console.log("Message received. ", payload);
+  new Toast(`<div class="push-notification-text"><div style="padding-bottom:.25em; font-weight: bold;">${payload.notification.title}</div><span style="font-size: .9em">${payload.notification.body}</span></div>`, "default", 4000000 + payload.notification.body.length * 20, "/VITE/img/icon/concern-icon.svg");
+});
+// auth
 
 auth.onAuthStateChanged((user) => {
   if (user) {
