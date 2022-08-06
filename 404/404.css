@@ -21,16 +21,14 @@ body {
   width: 20vh;
   height: 30vh;
   bottom: 40px;
-  left: 25vw;
+  left: 20vw;
   min-width: 100px;
   min-height: 150px;
+  max-height: 325px;
   z-index: 1001 !important;
+  filter: brightness(0.9);
 }
-@media (max-width: 700px) {
-  #mascot {
-    left: calc(20vh - 12.5vw - 100px);
-  }
-}
+
 @keyframes earth-corona {
   0% {
     box-shadow: 0 0 0 0vw #1d4f9b00, 0 0 0 0vw #23529900, 0 0 0 0vw #3076e000;
@@ -45,24 +43,18 @@ body {
   border-radius: 50vh;
   width: 50vh;
   height: 50vh;
+  font-size: 50vw;
   bottom: -15vh;
   right: -10vh;
   position: absolute;
   animation: earth-corona 1s forwards ease-out;
 }
-@media (max-width: 500px) {
-  #earth-illustration {
-    width: 70vw;
-    height: 70vw;
-    top: -35vw;
-    right: -10vw;
-  }
-}
+
 #mascot > img {
   height: 100%;
   width: auto;
 }
-#earth-illustration > img {
+#earth-illustration > * {
   width: 100%;
   height: 100%;
   position: absolute;
@@ -121,4 +113,108 @@ body {
     height: 5px;
     background: #f6f6f6cc;
   }
+}
+#error-text {
+  z-index: 1002 !important;
+  position: absolute !important;
+  left: calc(20vw + 20vh);
+  bottom: 15vw;
+  height: fit-content;
+}
+#number-text {
+  background: url(/VITE/img/moon-bg.svg);
+  background-size: cover;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  text-fill-color: transparent;
+  font-size: 200px;
+  font-weight: 800;
+  width: 100%;
+  text-align: center;
+}
+#error-box-container {
+  display: flex;
+  flex-flow: row nowrap;
+  width: 100%;
+  align-items: center;
+  height: 100px;
+  margin-top: -5vh;
+}
+#error-box-extras {
+  height: 20px;
+  width: 15px;
+  margin-left: -10px;
+  margin-right: -5px;
+  background-color: #878f97;
+  border-radius: 20px 0 0 20px;
+  border: solid 5px #79828b;
+  border-right: none;
+  z-index: 1002;
+}
+#error-box {
+  border: solid 5px #79828b;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+  width: 350px;
+  height: 100px;
+  box-sizing: border-box;
+  border-radius: 20px;
+  background-color: #878f97;
+  text-align: center;
+  color: #575e64;
+  font-size: 30px;
+}
+@media (max-width: 700px) {
+  #mascot {
+    left: calc(20vh - 12.5vw - 100px);
+  }
+  #error-text {
+    left: calc(50vw - 175px);
+    top: calc(25vh - 150px);
+  }
+}
+@media (max-height: 100vw) {
+  #error-text {
+    top: calc(25vh - 150px);
+  }
+}
+@media (max-width: 500px) {
+  #earth-illustration {
+    width: 70vw;
+    height: 70vw;
+    top: -35vw;
+    right: -10vw;
+    font-size: 70vw;
+  }
+  #mascot {
+    width: 100px;
+    height: 150px;
+  }
+  #error-text {
+    z-index: 1 !important;
+  }
+}
+@keyframes scroll-bg {
+  0% {
+    background-position: 0 0;
+  }
+  100% {
+    background-position: 1em 0;
+  }
+}
+#earth-clouds-img {
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  transform: scale(1.1);
+  transform-origin: center;
+  background-image: url(/VITE/img/earth-clouds.png);
+  background-size: 1em;
+  background-repeat: repeat-x;
+  animation: scroll-bg 30s linear infinite;
 }
