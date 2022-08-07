@@ -1,3 +1,4 @@
+"use strict";
 try {
   $(params.get("hide")).hide();
 } catch (err) {}
@@ -41,7 +42,7 @@ var tenses = {
     su: "Subjunctive Tense (opinions, emotions, and possibilities)",
     sp: "Past of the Subjunctive Tense (opinions, emotions, and possibilities)",
   };
-updatedJSON = {};
+var updatedJSON = {};
 
 function setupApp() {
   $(".options-toggles > .option-toggle").remove();

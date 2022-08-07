@@ -1,3 +1,4 @@
+"use strict";
 $("#subjects-settings").text("[" + JSON.parse(localStorage.getItem("userData")).subjects.join("], [") + "]");
 $("#verbs-settings").text(JSON.parse(localStorage.getItem("userData")).verbs.join(", "));
 $.getJSON("/VITE/verbs.json")
@@ -47,7 +48,7 @@ var templates = [
 ];
 //listeners
 $("#reset-filters").click(() => {
-  for (filter of $("select.options-item")) {
+  for (let filter of $("select.options-item")) {
     $(filter).children("option").removeAttr("selected");
     $(filter).children("option[disabled]").attr("selected");
     $(filter).val("");
@@ -65,7 +66,7 @@ $("#options-overlay").click(() => {
 function setupTemplates(templateArr) {
   $("#results-grid > img").remove();
   $("#results-header").text(`${templateArr.length} Template${templateArr.length == 1 ? "" : "s"} Avaliable`);
-  for (templateObj of templateArr) {
+  for (let templateObj of templateArr) {
     $("#results-grid").append(`<img src="/VITE/img/template/${templateObj.img}" title="${templateObj.name} | ${templateObj.author}" alt="${templateObj.name} by ${templateObj.author}" name="${templateObj.name}" class="template-img" />`);
   }
 }
@@ -85,7 +86,7 @@ $("#filters-from").on("change input", () => {
       filterText.push($(`#filters-from option[value='${e.val()}']`).text());
     }
   });
-  for (filter of filters) {
+  for (let filter of filters) {
     matchings = $.grep(matchings, function (n, i) {
       return n.filters[filter.property].test(filter.value);
     });

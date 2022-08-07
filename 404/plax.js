@@ -1,3 +1,4 @@
+"use strict";
 /* Plax version 1.4.1 */
 
 /*
@@ -207,8 +208,8 @@
   //
   // Returns an object literal with x and y as options.
   function valuesFromMotion(e) {
-    x = e.gamma;
-    y = e.beta;
+    let x = e.gamma;
+    let y = e.beta;
 
     // Swap x and y in Landscape orientation
     if (Math.abs(window.orientation) === 90) {
@@ -256,7 +257,7 @@
         ignoreMoveable = true;
         return;
       }
-      values = valuesFromMotion(e);
+      let values = valuesFromMotion(e);
 
       // Admittedly fuzzy measurements
       x = values.x / motionDegrees;
@@ -277,13 +278,13 @@
     for (i = layers.length; i--; ) {
       layer = layers[i];
       if (options.useTransform && !layer.background) {
-        newX = layer.transformStartX + layer.inversionFactor * (layer.xRange * hRatio);
-        newY = layer.transformStartY + layer.inversionFactor * (layer.yRange * vRatio);
-        newZ = layer.transformStartZ;
+        let newX = layer.transformStartX + layer.inversionFactor * (layer.xRange * hRatio);
+        let newY = layer.transformStartY + layer.inversionFactor * (layer.yRange * vRatio);
+        let newZ = layer.transformStartZ;
         layer.obj.css({ transform: "translate3d(" + newX + "px," + newY + "px," + newZ + "px)" });
       } else {
-        newX = layer.startX + layer.inversionFactor * (layer.xRange * hRatio);
-        newY = layer.startY + layer.inversionFactor * (layer.yRange * vRatio);
+        let newX = layer.startX + layer.inversionFactor * (layer.xRange * hRatio);
+        let newY = layer.startY + layer.inversionFactor * (layer.yRange * vRatio);
         if (layer.background) {
           layer.obj.css("background-position", newX + "px " + newY + "px");
         } else {
@@ -342,7 +343,7 @@
       window.ondeviceorientation = undefined;
       if (opts && typeof opts.restorePositions === "boolean" && opts.restorePositions) {
         for (var i = layers.length; i--; ) {
-          layer = layers[i];
+          let layer = layers[i];
           if (options.useTransform && !layer.background) {
             layer.obj.css("transform", "translate3d(" + layer.transformOriginX + "px," + layer.transformOriginY + "px," + layer.transformOriginZ + "px)").css("top", layer.originY);
           } else {

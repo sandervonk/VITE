@@ -30,7 +30,7 @@ function loadCookies(prefJSON, isLoadRun) {
     if (!!prefJSON) {
       localStorage.setItem("userData", JSON.stringify(prefJSON));
       setupSettings(prefJSON.prefs, prefJSON.classes && prefJSON.classes.length > 0, prefJSON.classcode && prefJSON.classcode.length > 0);
-      if (prefJSON.xphistory[date]) {
+      if (prefJSON.xphistory && prefJSON.xphistory[date]) {
         setupGoal(prefJSON.goal, prefJSON.xphistory[date]);
       } else {
         setupDailyXP(prefJSON.goal);

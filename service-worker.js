@@ -1,6 +1,7 @@
-const staticLinks = "dev-VITE-new-v2";
+"use strict";
+const staticLinks = "cashe-VITE-[-version-number-]";
 const OFFLINE_URL = "404.html";
-const OFFLINE_IMG = "img/offline/image-offline.svg";
+const OFFLINE_IMG = "/VITE/img/offline/image-offline.svg";
 const assets = [
   "index.html",
   "404.html",
@@ -195,7 +196,7 @@ self.addEventListener("notificationclick", function (event) {
 
 try {
   messagechannelBroadcast.onmessage = (event) => {
-    value = event.data.key;
+    let value = event.data.key;
     if (value == "clearsw") {
       caches.keys().then(function (names) {
         for (let name of names) caches.delete(name);

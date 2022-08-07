@@ -1,3 +1,4 @@
+"use strict";
 const IS_TESTING = location.hostname === "localhost" || location.hostname === "127.0.0.1";
 if ("serviceWorker" in navigator && !IS_TESTING) {
   navigator.serviceWorker
