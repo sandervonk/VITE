@@ -31,7 +31,7 @@ function loadCookies(prefJSON, isLoadRun) {
       localStorage.setItem("userData", JSON.stringify(prefJSON));
       setupSettings(prefJSON.prefs, prefJSON.classes && prefJSON.classes.length > 0, prefJSON.classcode && prefJSON.classcode.length > 0);
       if (prefJSON.xphistory && prefJSON.xphistory[date]) {
-        setupGoal(prefJSON.goal, prefJSON.xphistory[date]);
+        setupGoal(prefJSON.goal, prefJSON.xphistory[date], prefJSON.xphistory);
       } else {
         setupDailyXP(prefJSON.goal);
       }
@@ -98,6 +98,7 @@ var today = new Date(),
 var date = [String(today.getMonth() + 1).padStart(2, "0"), String(today.getDate()).padStart(2, "0"), today.getFullYear()].join("-");
 var dateRef = "xphistory." + date;
 function setupGoal(goalNum, goalXp) {
+  $("#total-xp").text(JSON.parse(localStorage.getItem("userData")).xp ? JSON.parse(localStorage.getItem("userData")).xp : 0);
   $("#goal-text").attr({
     value: goalXp,
     goal: goalNum + " xp",
