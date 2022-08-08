@@ -507,15 +507,18 @@ body.tutorial[activeTab="announcements"] #tutorial-action {
 }
 .announcement-card {
   overflow: hidden;
-  min-height: fit-content;
   flex-shrink: 0;
+  flex-grow: 0;
   margin-bottom: 16px;
   border: solid 2px var(--box-border);
   border-radius: 14px;
+  height: auto;
 }
 .announcement-card .card-lower,
 .announcement-card {
   background-color: var(--bg);
+  display: flex;
+  flex-flow: column;
 }
 .announcement-card .card-upper {
   margin-bottom: -28px;
@@ -830,8 +833,12 @@ footer {
   #tab-container > #announcements-tab {
     display: flex;
     flex-flow: row wrap;
-    align-items: stretch;
-    justify-content: stretch;
+    /* align-items: stretch;
+    justify-content: stretch; */
+    height: fit-content;
+  }
+  .card-lower-text {
+    flex-grow: 1;
   }
   .settings-section,
   #announcements-tab > .announcement-card,
