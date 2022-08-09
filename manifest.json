@@ -7,7 +7,7 @@
       "name": "Conjugate a Verb",
       "short_name": "Conjugator",
       "description": "Check verb conjugations across all tenses and subjects.",
-      "url": "//sander.vonk.one/VITE/app/conjugator.html",
+      "url": "https://sander.vonk.one/VITE/app/conjugator.html",
       "icons": [
         {
           "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/conjugator-themed.png",
@@ -19,7 +19,7 @@
       "name": "Create a Worksheet",
       "short_name": "Sheetify",
       "description": "Create a custom worksheet with your own verbs, subjects, and tenses.",
-      "url": "//sander.vonk.one/VITE/app/sheetify.html",
+      "url": "https://sander.vonk.one/VITE/app/sheetify.html",
       "icons": [
         {
           "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/sheetify-themed.png",
@@ -31,7 +31,7 @@
       "name": "Manage Classes",
       "short_name": "Classes",
       "description": "Manage, create, and join classes!",
-      "url": "//sander.vonk.one/VITE/class/index.html",
+      "url": "https://sander.vonk.one/VITE/class/index.html",
       "icons": [
         {
           "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/class-themed.png",
@@ -42,14 +42,6 @@
   ],
   "screenshots": [
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/app-index-narrow.jpg",
-      "sizes": "390x844",
-      "platform": "narrow",
-      "type": "image/jpeg",
-      "description": "App Index Screen | Mobile",
-      "label": "App Index Screen | Mobile"
-    },
-    {
       "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/login-narrow.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
@@ -58,20 +50,108 @@
       "label": "VITE! Login Screen | Mobile"
     },
     {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/app-index-narrow.jpg",
+      "sizes": "390x844",
+      "platform": "narrow",
+      "type": "image/jpeg",
+      "description": "App Index Screen | Mobile",
+      "label": "App Index Screen | Mobile"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/practice-narrow.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "narrow",
+      "description": "Practice | Mobile",
+      "label": "Practice | Mobile"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/classes-narrow.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "narrow",
+      "description": "Class Management | Mobile",
+      "label": "Class Management | Mobile"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/practice-setup-narrow.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "narrow",
+      "description": "Customize Practice | Mobile",
+      "label": "Customize Practice | Mobile"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/sheetify-1-narrow.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "narrow",
+      "description": "Sheetify Template Selection | Mobile",
+      "label": "Sheetify Template Selection | Mobile"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/sheetify-2-narrow.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "narrow",
+      "description": "Sheetify Worksheet Print | Mobile",
+      "label": "Sheetify Worksheet Print | Mobile"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/login-wide.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "description": "VITE! Login Screen | Desktop",
+      "label": "VITE! Login Screen | Desktop"
+    },
+    {
       "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/app-index-wide.jpg",
-      "sizes": "1280x720",
+      "sizes": "390x844",
       "platform": "wide",
       "type": "image/jpeg",
       "description": "App Index Screen | Desktop",
       "label": "App Index Screen | Desktop"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/login-wide.jpg",
-      "sizes": "1280x720",
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/practice-wide.jpg",
+      "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "wide",
-      "description": "VITE! Login Screen | Desktop",
-      "label": "VITE! Login Screen | Desktop"
+      "description": "Practice | Desktop",
+      "label": "Practice | Desktop"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/classes-wide.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "description": "Class Management | Desktop",
+      "label": "Class Management | Desktop"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/practice-setup-wide.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "description": "Customize Practice | Desktop",
+      "label": "Customize Practice | Desktop"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/sheetify-1-wide.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "description": "Sheetify Template Selection | Desktop",
+      "label": "Sheetify Template Selection | Desktop"
+    },
+    {
+      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/sheetify-2-wide.jpg",
+      "sizes": "390x844",
+      "type": "image/jpeg",
+      "platform": "wide",
+      "description": "Sheetify Worksheet Print | Desktop",
+      "label": "Sheetify Worksheet Print | Desktop"
     }
   ],
   "name": "VITE! French Practice",
