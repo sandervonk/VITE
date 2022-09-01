@@ -119,8 +119,7 @@ class ContextMenu {
         this.menuItems = this.menuItems.concat(result);
       }
     }
-    this.x = e.clientX;
-    this.y = e.clientY;
+    [this.x, this.y] = [e.clientX, e.clientY];
     this.build(this.x, this.y);
   }
   makeMenuItem(item) {
@@ -181,6 +180,7 @@ class ContextMenu {
     this.menu.css({
       top: Math.max(this.windowPadding, Math.min(y, $(window).height() - this.menu.outerHeight() - this.windowPadding)),
       left: Math.max(this.windowPadding, Math.min(x, $(window).width() - this.menu.outerWidth() - this.windowPadding)),
+      "transform-origin": `${this.x - Math.max(this.windowPadding, Math.min(x, $(window).width() - this.menu.outerWidth() - this.windowPadding))}px ${this.y - Math.max(this.windowPadding, Math.min(y, $(window).height() - this.menu.outerHeight() - this.windowPadding))}px`,
     });
     if ($("#cm-page-items:empty").length) {
       $(".context-menu").css("height", "fit-content");
