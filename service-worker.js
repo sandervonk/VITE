@@ -1,6 +1,7 @@
 "use strict";
 const staticLinks = "cashe-VITE-[-version-number-]";
 const OFFLINE_URL = "404.html";
+const offlineFallbackPage = "404.html";
 const OFFLINE_IMG = "/VITE/img/offline/image-offline.svg";
 const assets = [
   "index.html",
