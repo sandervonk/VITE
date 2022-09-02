@@ -5,7 +5,6 @@
     <link rel="shortcut icon" href="//sander.vonk.one/VITE/img/icon/app/icon-512x512.png" type="image/png" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="google" content="notranslate" />
-    <meta name="waitforload" content="true" />
     <meta name="runsetup" content="true" />
     <meta name="noauthenforce" content="true" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -58,6 +57,23 @@
     <meta name="og:url" content="/VITE/app/conjugator.html" />
     <meta name="og:site_name" content="VITE! French Conjugation" />
     <meta name="og:type" content="website" />
+    <!-- search results searchbox support -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@type": "WebSite",
+        "name": "VITE! French Practice - Conjugator",
+        "url": "https://sander.vonk.one/VITE/",
+        "potentialAction": {
+          "@type": "SearchAction",
+          "target": {
+            "@type": "EntryPoint",
+            "urlTemplate": "https://sander.vonk.one/VITE/app/conjugator.html?verb={search_term_string}&tense=present"
+          },
+          "query-input": "required name=search_term_string"
+        }
+      }
+    </script>
     <!-- Analytics!! -->
     <!-- Global site tag (gtag.js) - Google Analytics -->
     <script async src="//www.googletagmanager.com/gtag/js?id=G-5GF8MRX85G"></script>

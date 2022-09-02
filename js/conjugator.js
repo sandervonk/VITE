@@ -25,13 +25,16 @@ function fillConjugations() {
   }
 }
 $("#search-options").on("change", fillConjugations);
-
-function setupApp() {
-  return new Promise((resolved, rejected) => {
+$.getJSON("/VITE/verbs.json")
+  .done(function (response) {
+    verbs = response;
     setupVerbDropdown(verbs)
       .then(() => {
-        if (params && params.get("verb") && $("#conjugator-verb").has(`option[value="${params.get("verb")}"]`)) {
-          $("#conjugator-verb").val(params.get("verb"));
+        function capitalizeFirstLetter(string) {
+          return string.charAt(0).toUpperCase() + string.slice(1);
+        }
+        if (params && params.get("verb") && $("#conjugator-verb").has(`option[value="${capitalizeFirstLetter(params.get("verb"))}"]`)) {
+          $("#conjugator-verb").val(capitalizeFirstLetter(params.get("verb")));
         }
         if (params && params.get("tense") && $("#conjugator-tense").has(`option[value="${params.get("tense")}"]`)) {
           $("#conjugator-tense").val(params.get("tense"));
@@ -54,14 +57,15 @@ function setupApp() {
 
         $("#prev-button").click(changeVerb(-1));
         $("#next-button").click(changeVerb(1));
-
-        resolved();
       })
       .catch((err) => {
-        rejected(err);
+        console.error(err);
       });
+  })
+  .fail(function (err) {
+    console.error("Could not load verbs.json :(", err);
   });
-}
+
 $("#explanation-button").click(() => {
   let newStorage;
   try {
