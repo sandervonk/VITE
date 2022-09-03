@@ -1,4 +1,18 @@
 {
+  "Acheter": {
+    "mascot": "Default",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to buy",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "regular"
+    },
+    "All": "regular"
+  },
   "Aller": {
     "mascot": "Walk",
     "SU": {
@@ -345,6 +359,20 @@
     "Nous": "naissons",
     "Vous": "naissez",
     "Ils / Elles": "naissent"
+  },
+  "Nettoyer": {
+    "mascot": "Default",
+    "SU": "regular",
+    "FS": "regular",
+    "PS": {
+      "All": "regular"
+    },
+    "definition": "to clean",
+    "PC": {
+      "helping": "Avoir",
+      "participle": "regular"
+    },
+    "All": "regular"
   },
   "Penser": {
     "mascot": "Think",

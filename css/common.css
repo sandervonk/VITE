@@ -933,7 +933,7 @@ input:checked + .switch-label {
     border-radius: 30px;
     background-color: var(--cm-bg);
     justify-content: flex-end;
-    transform-origin: center center;
+    transform-origin: center center !important;
     box-shadow: 0 0 15px var(--cm-shadow);
     animation: scaleMenuInCenter 0.3s cubic-bezier(0, 0, 0.05, 1.48) forwards;
     padding: 13px 15px 0px 15px;
@@ -991,7 +991,7 @@ input:checked + .switch-label {
   }
   .context-menu.close {
     animation: menuOut 0.15s ease-in forwards;
-    transform-origin: center;
+    transform-origin: center !important;
     pointer-events: none;
   }
   .context-menu hr.cm-separator {

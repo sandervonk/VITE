@@ -28,7 +28,8 @@ var question = {},
     cp: "Past conditional tense (regrets, what would / could have happened)",
     su: "Subjunctive Tense (opinions, emotions, and possibilities)",
     sp: "Past of the Subjunctive Tense (opinions, emotions, and possibilities)",
-  };
+  },
+  vowels = ["a", "e", "i", "o", "u", "y"];
 function showQuestion(q) {
   question = q;
   questionStart = new Date().getTime();
@@ -78,6 +79,9 @@ function submitAnswer(skipped = false) {
     $(document.body).attr("showanswer", "");
     //Check answer
     let inputAnswer = $("#answer-input").val().toLowerCase();
+    while (inputAnswer.charAt(inputAnswer.length - 1) == " ") {
+      inputAnswer = inputAnswer.slice(0, -1);
+    }
     if (variations(question.answer.alt).includes(inputAnswer) || variations(question.answer.full).includes(inputAnswer)) {
       //?correct
       changeScore(1);
@@ -201,8 +205,8 @@ class Conjugate {
     };
   }
   compress(t) {
-    for (let v of ["a", "e", "i", "o", "u", "y"]) {
-      t = t.replace("je " + v, "j'" + v);
+    for (let v of vowels) {
+      t = t.replace("je " + v, "j'" + v).replace("je h" + v, "j'h" + v);
     }
     return t;
   }
@@ -245,11 +249,25 @@ class Conjugate {
 
     a = v.verb[s];
 
-    if (a == "regular" || v.verb.All == "regular") {
+    if (a == "regular" || v.verb.All == "regular" || v.verb.regular == true) {
       //regular verb conjugations
       let b = v.name.substr(0, v.name.length - 2),
         e = v.name.substr(-2);
       if (Object.keys(end).includes(e)) {
+        if (e == "er") {
+          // -yer but not -ayer for the time being
+          if (b.substr(-1) == "y" && b.substr(-2) != "ay") {
+            b = b.substr(0, b.length - 1) + "i";
+          }
+          // -eter or -eler
+          else if (b.substr(-2, 1) == "e" && ["l", "t"].includes(b.substr(-1)) && v.name != "Acheter") {
+            b = b + b.substr(-1);
+          }
+          // -e_er or -é_er
+          else if (["e", "é"].includes(b.substr(-2, 1)) && !vowels.includes(b.substr(-1)) && !["Nous", "Vous"].includes(s)) {
+            b = b.substr(0, b.length - 2) + "è" + b.substr(-1);
+          }
+        }
         a = b + end[e][s];
       } else {
         window.alert("ERR: Cannot find regular ending for verb with non-ir/er/re ending marked as regular");
