@@ -25,7 +25,11 @@ function openOnboard() {
   window.location.href = "./onboarding.html" + (params.get("classPanel") == "true" ? "?classPanel=true" : "");
 }
 function openApp() {
-  window.location.href = "./app/" + (params.get("classPanel") == "true" ? "?classPanel=true" : "");
+  if (params && params.get("redirect")) {
+    new Toast("Redirecting...", "default", 2000, "img/icon/success-icon.svg", params.get("redirect"));
+  } else {
+    window.location.href = "./app/" + (params.get("classPanel") == "true" ? "?classPanel=true" : "");
+  }
 }
 //catch errors
 function authError(error) {

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="theme-color" id="theme-light-color" id="theme-light-color" content="#1D55A8" />
+    <meta name="theme-color" id="theme-light-color" content="#1D55A8" />
+    <title>VITE - Task Embed</title>
+    <link async rel="stylesheet" href="/VITE/css/fonts.css?version=[-version-number-]" />
+    <link rel="stylesheet" href="/VITE/css/common.css?version=[-version-number-]" />
+    <link rel="stylesheet" href="/VITE/css/theme.css?version=[-version-number-]" />
+    <link rel="stylesheet" href="/VITE/css/stars.css?version=[-version-number-]" />
+    <link rel="stylesheet" href="/VITE/embed/css/task.css?version=[-version-number-]" />
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <link rel="shortcut icon" href="//sander.vonk.one/VITE/img/icon/app/icon-512x512.png" type="image/png" />
+    <meta name="description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
+    <meta itemprop="name" content="VITE! Mobile" />
+    <meta itemprop="description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:title" content="VITE! Mobile" />
+    <meta name="twitter:description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
+    <meta name="twitter:image:src" content="/VITE/img/social-img/social-twitter.png" />
+    <meta name="og:title" content="VITE! Mobile" />
+    <meta name="og:description" content="Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!" />
+    <meta name="og:image" content="/VITE/img/social-img/social-og.png" />
+    <meta name="og:url" content="sander.vonk.one/VITE/" />
+    <meta name="og:site_name" content="VITE! French Conjugation Practice" />
+    <meta name="og:type" content="website" />
+    <script src="/VITE/js/util.js?version=[-version-number-]"></script>
+    <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+    <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+    <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  </head>
+  <body>
+    <!-- signin overlay -->
+    <div id="signin-overlay" data-role="authwall">
+      <!-- <div id="signin-overlay-title">Sign in to VITE to view this task.</div> -->
+      <div id="signin-overlay-button" class="box-button fullborder">Sign in to VITE!</div>
+    </div>
+    <!-- embed content -->
+    <div id="embed-content" data-role="authcontent" style="display: none"></div>
+    <!-- decor -->
+    <div id="bg-stars"></div>
+    <!-- spinning earth graphic loaded as object with img backup -->
+    <div id="earth-illustration">
+      <object alt="Earth Illustration" class="earth-illustration-img" data="/VITE/img/earth-new.svg" type="image/svg+xml">
+        <img alt="Earth Illustration" class="earth-illustration-img" src="/VITE/img/earth-new.png" />
+      </object>
+      <div id="earth-clouds" class="earth-illustration-img"></div>
+    </div>
+  </body>
+  <script src="/VITE/embed/js/task.js?version=[-version-number-]"></script>
+</html>

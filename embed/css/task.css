@@ -1,0 +1,133 @@
+:root {
+  --bg: #1d55a8;
+  --bg-half: #1d55a84d;
+  --box-bg: #1d55a8;
+  --button-bg: #1d55a8;
+  --button-border: #14386e;
+  --on-bg: #ffffff;
+  --progress-bar-bg: #2e8cc0;
+  --progress-back: #2e8cc0;
+  --progress-fill: #54c02e;
+  --progress-fill-accent: #35bb13;
+  --input: #9d9d9d;
+}
+.star {
+  width: 5px !important;
+  height: 5px !important;
+}
+#bg-stars {
+  opacity: 0.5;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+body,
+html {
+  padding: 0;
+  margin: 0;
+}
+body {
+  display: flex;
+  justify-content: stretch;
+  align-items: stretch;
+}
+#embed-content,
+#signin-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10;
+  display: flex;
+  padding: 10px;
+  box-sizing: border-box;
+}
+#signin-overlay {
+  flex-flow: column;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  background-color: var(--bg-quarter);
+}
+#signin-overlay-button {
+  padding-left: 20px;
+  padding-right: 20px;
+  transform: scale(1.25);
+  cursor: pointer;
+  pointer-events: all;
+}
+#embed-content {
+  flex-flow: row nowrap;
+  align-items: stretch;
+  justify-content: stretch;
+  cursor: pointer;
+}
+@keyframes earthIn {
+  0% {
+    transform: translateX(100%) translateY(100%) scale(0.25);
+  }
+  100% {
+    transform: translateX(30%) translateY(45%);
+  }
+}
+
+@keyframes earth-corona {
+  0% {
+    box-shadow: 0 0 0 0vw #1d4f9b00, 0 0 0 0vw #23529900, 0 0 0 0vw #3076e000;
+  }
+  100% {
+    box-shadow: 0 0 0 calc(5 * var(--base-unit)) #1d4f9b70, 0 0 0 calc(10 * var(--base-unit)) #23529950, 0 0 0 calc(15 * var(--base-unit)) #3076e015;
+  }
+}
+#earth-illustration {
+  animation: earth-corona 1s forwards ease-out, 1s ease-out 0s 1 forwards earthIn;
+  position: fixed;
+  width: 150px;
+  height: 150px;
+  max-width: 700px;
+  max-height: 700px;
+  bottom: 0;
+  right: 0;
+  overflow: hidden;
+  border-radius: 50%;
+  z-index: 4;
+  --base-unit: calc(0.9vh + 0.5vw);
+  z-index: 0;
+  pointer-events: none;
+  user-select: none;
+}
+.earth-illustration-img {
+  width: 100%;
+  height: 100%;
+  margin-bottom: -100%;
+  position: absolute;
+}
+.earth-illustration-img:last-child {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 20;
+}
+#earth-clouds {
+  background-image: url(../../img/earth-clouds.svg);
+  opacity: 0.95;
+  background-size: contain;
+  animation: cloud-shift 6s -5s forwards linear, cloud-shift 20s 1s forwards linear infinite !important;
+  width: 200%;
+  background-repeat: repeat-x;
+}
+@keyframes cloud-shift {
+  0% {
+    transform: translateX(-50%);
+  }
+  100% {
+    transform: translateX(0%);
+  }
+}
