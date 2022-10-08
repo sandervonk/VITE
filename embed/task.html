@@ -28,6 +28,9 @@
     <meta name="og:url" content="sander.vonk.one/VITE/" />
     <meta name="og:site_name" content="VITE! French Conjugation Practice" />
     <meta name="og:type" content="website" />
+    <!-- preload 2 images for bg -->
+    <link rel="preload" href="/VITE/img/earth-new-small.png" as="image" />
+    <link rel="preload" href="/VITE/img/earth-new.svg" as="image" />
     <script src="/VITE/js/util.js?version=[-version-number-]"></script>
     <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -69,7 +72,7 @@
     <!-- spinning earth graphic loaded as object with img backup -->
     <div id="earth-illustration">
       <object alt="Earth Illustration" class="earth-illustration-img" data="/VITE/img/earth-new.svg" type="image/svg+xml">
-        <img alt="Earth Illustration" class="earth-illustration-img" src="/VITE/img/earth-new.png" />
+        <img alt="Earth Illustration" class="earth-illustration-img" src="/VITE/img/earth-new-small.png" />
       </object>
       <div id="earth-clouds" class="earth-illustration-img"></div>
     </div>
