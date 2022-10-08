@@ -2,6 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <meta name="docontextmenu" content="false" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="theme-color" id="theme-light-color" id="theme-light-color" content="#1D55A8" />
@@ -42,14 +43,26 @@
     <div id="embed-content" data-role="authcontent" style="display: none">
       <!-- user image & xp bar -->
       <div id="top-bar">
-        <img id="user-image" />
+        <object id="user-image" data="" type="image/png">
+          <img src="/VITE/img/icon/pfp.png" />
+        </object>
         <div id="user-name">Name</div>
+        <div id="total-xp-display">
+          <object id="total-xp-icon" data="/VITE/img/icon/xp-icon.svg" type="image/svg+xml">
+            <img src="/VITE/img/icon/xp-icon.png" />
+          </object>
+          <div id="total-xp">0 xp</div>
+        </div>
       </div>
       <div id="user-xp-bar">
         <div id="user-xp-bar-fill">
           <div id="user-xp-bar-fill-accent"></div>
+          <div id="user-xp-bar-fill-text" data-value="0" data-goal="0 xp">/</div>
         </div>
       </div>
+    </div>
+    <div id="embed-context-menu" style="display: none">
+      <button class="box-button fullborder" id="auth-signout">Sign Out</button>
     </div>
     <!-- decor -->
     <div id="bg-stars"></div>

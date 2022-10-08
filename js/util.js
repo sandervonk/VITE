@@ -25,42 +25,44 @@ $(window).on("touchdown touchstart touchstop click", function (e) {
   };
 });
 /** context menu **/
-
-$(document).on(`contextmenu${(navigator ? navigator.userAgent.match(/iPhone|iPad|iPod/i) && CSS.supports("-webkit-touch-callout: none") : false) ? " long-press" : ""}`, function (e) {
-  e.preventDefault();
-  if ((e.clientX == e.clientY) == 1) {
-    e.clientX = lastMousePos.x;
-    e.clientY = lastMousePos.y;
-  }
-  e.target = document.elementFromPoint(e.clientX, e.clientY);
-  if (!$(e.target).hasClass("context-overlay") || window.matchMedia("(min-width: 50px)").matches) {
-    $(".context-menu, .context-overlay").remove();
-    e.target = document.elementFromPoint(e.clientX, e.clientY);
-    let menu_items = $("meta[name='cm-options']").attr("content"),
-      target_options = $(e.target).attr("cm-options");
-    menu_items = menu_items != undefined ? menu_items + "," : "";
-    menu_items = target_options ? menu_items + target_options : menu_items;
-    try {
-      menu_items = menu_items != "undefined" ? JSON.parse("[" + menu_items + "]") : menu_items;
-    } catch (err) {
-      console.warn("Something went wrong applying context menu options from the <meta> tag!\n\n", menu_items, "\n\n", err);
-      menu_items = [];
+// disable context menu if meta tag exists
+if ($("meta[name='docontextmenu']").attr("content") != "false") {
+  $(document).on(`contextmenu${(navigator ? navigator.userAgent.match(/iPhone|iPad|iPod/i) && CSS.supports("-webkit-touch-callout: none") : false) ? " long-press" : ""}`, function (e) {
+    e.preventDefault();
+    if ((e.clientX == e.clientY) == 1) {
+      e.clientX = lastMousePos.x;
+      e.clientY = lastMousePos.y;
     }
-    let menu_options = {
-      width: 300,
-      extras_callback: function () {
-        try {
-          let result = getCMOptions();
-          return result ? result : false;
-        } catch (err) {
-          console.warn("Could not run getCMOptions()", "\n\n", err);
-          return false;
-        }
-      },
-    };
-    new ContextMenu(e, this, menu_items, menu_options);
-  }
-});
+    e.target = document.elementFromPoint(e.clientX, e.clientY);
+    if (!$(e.target).hasClass("context-overlay") || window.matchMedia("(min-width: 50px)").matches) {
+      $(".context-menu, .context-overlay").remove();
+      e.target = document.elementFromPoint(e.clientX, e.clientY);
+      let menu_items = $("meta[name='cm-options']").attr("content"),
+        target_options = $(e.target).attr("cm-options");
+      menu_items = menu_items != undefined ? menu_items + "," : "";
+      menu_items = target_options ? menu_items + target_options : menu_items;
+      try {
+        menu_items = menu_items != "undefined" ? JSON.parse("[" + menu_items + "]") : menu_items;
+      } catch (err) {
+        console.warn("Something went wrong applying context menu options from the <meta> tag!\n\n", menu_items, "\n\n", err);
+        menu_items = [];
+      }
+      let menu_options = {
+        width: 300,
+        extras_callback: function () {
+          try {
+            let result = getCMOptions();
+            return result ? result : false;
+          } catch (err) {
+            console.warn("Could not run getCMOptions()", "\n\n", err);
+            return false;
+          }
+        },
+      };
+      new ContextMenu(e, this, menu_items, menu_options);
+    }
+  });
+}
 function closeContextMenu() {
   $(document.body).removeAttr("contextmenu");
   $(".context-menu, .context-overlay").addClass("close");

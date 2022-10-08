@@ -1,6 +1,7 @@
 :root {
   --bg: #1d55a8;
-  --bg-half: #1d55a84d;
+  --bg-half: #1d55a880;
+  --bg-quarter: #1d55a84d;
   --box-bg: #1d55a8;
   --button-bg: #1d55a8;
   --button-border: #14386e;
@@ -146,7 +147,14 @@ body {
 }
 #user-image {
   height: 45px;
-  width: auto;
+  width: 45px;
+  border-radius: 50%;
+  overflow: hidden;
+}
+#user-image > * {
+  height: 100%;
+  width: 100%;
+  border-radius: 50%;
 }
 #user-name {
   color: var(--on-bg);
@@ -158,25 +166,98 @@ body {
 #user-xp-bar {
   background-color: var(--progress-bar-bg);
   border-radius: 12px;
-  height: 30px;
+  height: 35px;
   width: 100%;
 }
 #user-xp-bar-fill {
   background-color: var(--progress-fill);
   border-radius: 10px;
-  height: 30px;
+  height: 35px;
   width: 0%;
-  min-width: 50px;
+  min-width: fit-content;
   box-sizing: border-box;
   display: flex;
-  flex-flow: row nowrap;
-  align-items: start;
+  flex-flow: column nowrap;
+  align-items: stretch;
   justify-content: stretch;
+  transition: width 0.5s ease-out;
 }
 #user-xp-bar-fill-accent {
   background-color: var(--progress-fill-accent);
   height: 6px;
   margin: 5px 16px 0 9px;
   border-radius: 5px;
-  flex-grow: 1;
+  flex-shrink: 0;
+}
+#user-xp-bar-fill-text {
+  color: var(--on-bg);
+  font-size: 16px;
+  font-weight: bold;
+  padding: 0 15px;
+  height: 35px;
+  margin-top: -11px;
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: center;
+  white-space: nowrap;
+  margin-right: auto;
+}
+#user-xp-bar-fill-text::before {
+  content: attr(data-value);
+}
+#user-xp-bar-fill-text::after {
+  content: attr(data-goal);
+}
+#total-xp-display {
+  display: flex;
+  flex-flow: row nowrap;
+  align-items: center;
+  justify-content: end;
+  margin-left: auto;
+  /* margin-right: auto; */
+}
+#total-xp {
+  color: var(--on-bg);
+  font-size: 20px;
+  filter: drop-shadow(0 0 2px var(--bg));
+}
+#total-xp-icon {
+  height: 25px;
+  width: 25px;
+}
+#total-xp-icon > * {
+  height: 100%;
+  width: 100%;
+}
+@keyframes blur-bg {
+  0% {
+    backdrop-filter: blur(0px);
+  }
+  100% {
+    backdrop-filter: blur(3px);
+  }
+}
+#embed-context-menu {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1000;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  pointer-events: all;
+  background: var(--bg-half);
+  animation: blur-bg 0.15s forwards ease-out;
+}
+#auth-signout {
+  padding-left: 20px;
+  padding-right: 20px;
+  transform: scale(1.25);
+  cursor: pointer;
+  pointer-events: all;
+  font-weight: bold;
 }

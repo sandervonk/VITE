@@ -7,6 +7,8 @@ $("#embed-content").click(function () {
   console.log("click");
   window.open("/VITE/app/", "_parent");
 });
+var today = new Date();
+var date = [String(today.getMonth() + 1).padStart(2, "0"), String(today.getDate()).padStart(2, "0"), today.getFullYear()].join("-");
 const config = {
   apiKey: "AIzaSyCZelR1HSbmcPf70rTI5Ig02yasL8RSdPw",
   authDomain: "vite-practice.firebaseapp.com",
@@ -27,25 +29,34 @@ var userDoc = function () {
 // check auth and hide authwall if completed
 auth.onAuthStateChanged(function (user) {
   console.log("auth state changed");
+  $("#embed-context-menu").hide();
   if (user) {
     $("[data-role='authwall']").hide();
     setupContent();
+    userDoc().onSnapshot(function (doc) {
+      console.log("user doc changed");
+      setupContent();
+    });
   } else {
     $("[data-role='authwall']").show();
     $("[data-role='authcontent']").hide();
   }
 });
+
 // setup content from userdoc
 function setupContent() {
-  $("#user-image").attr("src", auth.currentUser.photoURL);
+  $("#user-image").attr("data", auth.currentUser.photoURL);
   $("#user-name").text(auth.currentUser.displayName);
   userDoc()
     .get()
     .then(function (doc) {
       let data = doc.data();
       if (data) {
-        console.log(data);
+        let todayXP = data.xphistory[date] ? data.xphistory[date] : 0;
         $("[data-role='authcontent']").show();
+        $("#user-xp-bar-fill-text").attr({ "data-value": todayXP, "data-goal": data.goal + " xp" });
+        $("#user-xp-bar-fill").css("width", (todayXP / data.goal) * 100 + "%");
+        $("#total-xp").text(data.xp + " xp");
       } else {
         window.location.reload();
       }
@@ -79,3 +90,12 @@ try {
   };
   loop.start();
 } catch (err) {}
+$(document.body).on("contextmenu", function (e) {
+  e.preventDefault();
+  $("#embed-context-menu").toggle();
+  //   window.open("/VITE/app/", "_blank");
+  console.log("contextmenu");
+});
+$("#auth-signout").click(function () {
+  auth.signOut();
+});
