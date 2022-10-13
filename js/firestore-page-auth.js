@@ -360,7 +360,7 @@ function signOut() {
 }
 //! listeners
 $("[auth='logout-button']").click((e) => {
-  new Popup("Are you sure you want to sign out?", "default", 10000, "/VITE/img/icon/info-icon.svg", [
+  new Popup(["Sign Out", "Are you sure you want to sign out?"], "default", 10000, "", [
     ["removePopup()", "Cancel", "secondary-action fullborder"],
     ["signOut(); removePopup()", "Yes", "primary-action"],
   ]);
@@ -422,7 +422,7 @@ function deleteUser() {
     });
 }
 $(document.body).on("click", "#delete-acc-button, #account-delete", (e) => {
-  new Popup("Are you sure you want to delete your account?", "default delete-container", 10000, "/VITE/img/icon/info-icon.svg", [
+  new Popup(["Delete Account", "Are you sure you want to delete your account?"], "default delete-container", 10000, "", [
     ["removePopup()", "Cancel", "secondary-action fullborder"],
     ["deleteUser(); removePopup()", "Delete", "primary-action delete-color"],
   ]);

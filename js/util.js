@@ -33,7 +33,11 @@ if ($("meta[name='docontextmenu']").attr("content") != "false") {
       e.clientX = lastMousePos.x;
       e.clientY = lastMousePos.y;
     }
-    e.target = document.elementFromPoint(e.clientX, e.clientY);
+    try {
+      e.target = document.elementFromPoint(e.clientX, e.clientY);
+    } catch (err) {
+      console.warn("could not get elementFromPoint", err);
+    }
     if (!$(e.target).hasClass("context-overlay") || window.matchMedia("(min-width: 50px)").matches) {
       $(".context-menu, .context-overlay").remove();
       e.target = document.elementFromPoint(e.clientX, e.clientY);
@@ -273,7 +277,12 @@ class ErrorToast extends Toast {
 
 class Popup {
   constructor(message, type, duration, iconPath = "", action = "") {
-    this.message = message;
+    if (typeof message == "object") {
+      this.title = message[0];
+      this.message = message[1];
+    } else {
+      this.message = message;
+    }
     this.type = type;
     this.duration = duration;
     this.icon = iconPath;
@@ -282,36 +291,38 @@ class Popup {
   }
   showPopup() {
     $(".popup, .popup-overlay").remove();
-    let overlay = document.createElement("div"),
-      toast = document.createElement("div"),
-      buttons = "<div id='popup-buttons'>";
-    toast.classList.add("popup");
-    overlay.classList.add("popup-overlay");
-    for (let classData of this.type.split(" ")) {
-      toast.classList.add(classData);
-    }
+    let overlay = $("<div></div>", { class: "popup-overlay " + this.type }),
+      toast = $("<div></div>", { class: "popup" }),
+      buttons = $("<div></div>", { id: "popup-buttons" });
+
     for (let actionInfo of this.action) {
-      buttons += `<button class="popup-button ${actionInfo[2] == undefined ? "" : " " + actionInfo[2]}" onclick="${actionInfo[0]}">${actionInfo[1]}</button>`;
+      $("<button></button>", { class: "popup-button " + (actionInfo[2] ? actionInfo[2] : ""), onclick: actionInfo[0], text: actionInfo[1] }).appendTo(buttons);
     }
-    buttons += "</div>";
-    toast.innerHTML += (this.icon != "" ? `<div class="popup-top-bar">` : "") + "<div class='popup-text'>" + this.message + `</div>` + (this.icon != "" ? `<img src="${this.icon}" class="popup-icon" alt="Popup Icon"></div>` : "");
-    toast.innerHTML += buttons;
-    if (this.action != "") {
-      document.body.appendChild(overlay);
+    if (this.icon) {
+      $("<img alt='icon'>", { src: this.icon, class: "popup-icon", alt: "Popup Icon" }).appendTo(toast);
     }
-    document.body.appendChild(toast);
+    if (this.title) {
+      $("<div></div>", { text: this.title, class: "popup-title" }).appendTo(toast);
+    }
+    $("<div></div>", { text: this.message, class: "popup-text" }).appendTo(toast);
+    buttons.appendTo(toast);
+
+    if (this.action) {
+      overlay.appendTo(document.body);
+    }
+    toast.appendTo(document.body);
     setTimeout(() => {
-      $(toast).css({ animation: "fadeout 0.5s forwards" });
+      $(toast).css({ animation: "popupout 0.25s forwards" });
       $(overlay).css({ animation: "fadeout 0.5s forwards" });
     }, this.duration);
     setTimeout(() => {
-      $(toast).remove();
-      $(overlay).remove();
+      toast.remove();
+      overlay.remove();
     }, this.duration + 500);
   }
 }
 function removePopup() {
-  $(".popup").css({ animation: "fadeout 0.5s forwards" });
+  $(".popup").css({ animation: "popupout 0.25s forwards" });
   $(".popup-overlay").css({ animation: "fadeout 0.5s forwards" });
   setTimeout(() => {
     $(".popup").remove();

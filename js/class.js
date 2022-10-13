@@ -289,9 +289,9 @@ $("#delete-button").click(function () {
   setTimeout(() => {
     $(this).removeClass("disabled");
   }, 10000);
-  new Popup("Do you want to delete this class?", "default delete-container", 10000, "/VITE/img/icon/info-icon.svg", [
+  new Popup(["Delete class", "Are you sure you want to delete this class?"], "default delete-container", 10000, "", [
     ["removePopup(); $('#delete-button').removeClass('disabled')", "Cancel", "secondary-action fullborder"],
-    ["deleteClass()", "Delete", "primary-action blue-button delete-color"],
+    ["deleteClass()", "Delete", "primary-action blue-button"],
   ]);
 });
 $("#student-leave-button").click(function () {
@@ -299,7 +299,7 @@ $("#student-leave-button").click(function () {
   setTimeout(() => {
     $(this).removeClass("disabled");
   }, 10000);
-  new Popup("Are you sure you want to leave this class?", "default delete-container", 10000, "/VITE/img/icon/info-icon.svg", [
+  new Popup(["Leave class", "Are you sure you want to leave this class?"], "default delete-container", 10000, "", [
     ["removePopup(); $('#student-leave-class, #student-leave-class *').removeClass('disabled')", "Cancel", "secondary-action fullborder"],
     ["leaveClass()", "Leave", "primary-action blue-button delete-color"],
   ]);
@@ -328,7 +328,7 @@ function removeStudent(studentID) {
 }
 
 function removeStudentPopup(name, id) {
-  new Popup(`Are you sure you want to remove ${name} from this class?`, "default delete-container", 10000, "/VITE/img/icon/info-icon.svg", [
+  new Popup(["Remove Student", `Are you sure you want to remove ${name} from this class?`], "default delete-container", 10000, "", [
     ["removePopup()", "Cancel", "secondary-action fullborder"],
     [`removeStudent('${id}')`, "Remove", "primary-action blue-button delete-color"],
   ]);
