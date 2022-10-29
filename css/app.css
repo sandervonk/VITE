@@ -226,6 +226,7 @@ footer,
   overflow: hidden;
   overflow-x: auto;
   scroll-snap-type: x mandatory;
+  scroll-snap-stop: always;
 }
 #tab-container > .tab {
   width: 100%;
@@ -237,6 +238,7 @@ footer,
   top: 0;
   position: relative;
   scroll-snap-align: start;
+  scroll-snap-stop: always;
 }
 #tab-content {
   height: fit-content;
