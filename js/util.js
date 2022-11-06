@@ -73,6 +73,7 @@ function closeContextMenu() {
   setTimeout(function () {
     $(".context-menu, .context-overlay").remove();
   }, 200);
+  $(document.body).children("[tabindex]").removeAttr("tabindex");
 }
 
 $(window).on("click", "body[contextmenu] > *:not(.context-menu)", closeContextMenu);
@@ -81,6 +82,37 @@ $(window).on("keydown blur resize", function (event) {
   if (event.key === "Escape" || !event.key) {
     event.preventDefault();
     closeContextMenu();
+  }
+});
+$(window).on("keydown", function (e) {
+  //if focus outside of the context menu (by tabbing) list it in the console
+  if ($(".context-menu").length) {
+    if (e.key === "Enter" && $(".context-menu .cm-item:focus").length) {
+      e.preventDefault();
+      $(".context-menu .cm-item:focus").click();
+    } else if (e.key.includes("Arrow") && $(".context-menu .cm-item:focus").length) {
+      e.preventDefault();
+      let focused = $(".context-menu .cm-item:focus"),
+        key = e.key.replace("Arrow", "");
+      let next = $(`.context-menu .cm-item[tabindex="${parseInt(focused.attr("tabindex")) + 1}"]`),
+        prev = $(`.context-menu .cm-item[tabindex="${parseInt(focused.attr("tabindex")) - 1}"]`),
+        chosen = {};
+      if (key == "Up" && prev.length && !focused.parent().is(prev.parent())) {
+        // if the previous and current items are in the same section, continue to the ArrowLeft logic, otherwise, pick the first item of the previous section
+        chosen = prev.parent().children().first();
+      } else if (key == "Down" && next.length && next.parent().attr("id") == "cm-buttons") {
+        // if the next and current items are in the same section, continue to the ArrowRight logic, otherwise, pick the first item of the next section
+        chosen = $("#cm-scrollable").children().first().children().first();
+      } else if (key == "Down" || key == "Right") {
+        chosen = next;
+      } else if (key == "Up" || key == "Left") {
+        chosen = prev;
+      }
+      if (chosen.length) chosen.focus();
+    } else if (e.key === "Tab" && $(".context-menu").length && ($("*:focus").closest(".context-menu").length == 0 || $(".context-menu > #cm-scrollable > #cm-default-items > :last-child:focus").length)) {
+      e.preventDefault();
+      $(".context-menu .cm-item").first().focus();
+    }
   }
 });
 class ContextMenu {
@@ -179,6 +211,11 @@ class ContextMenu {
     $(document.body).append(`<div class='context-overlay'></div>`, this.menu);
     $(document.body).attr("contextmenu", "");
     this.realign(x, y);
+    // for each menu item, add a increasing tabindex to make them accessible by keyboard
+    $(".context-menu .cm-item").each(function (i) {
+      $(this).attr("tabindex", i + 1);
+    });
+    $(".context-menu .cm-item").first().focus();
   }
   realign(x, y) {
     this.menu.focus();

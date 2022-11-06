@@ -921,7 +921,10 @@ input:checked + .switch-label {
   transition: background-color 0.1s ease-out;
   overflow: hidden;
 }
-.context-menu .cm-item:hover {
+.context-menu .cm-item:hover,
+.context-menu .cm-item:active,
+.context-menu .cm-item:focus,
+.context-menu .cm-item:focus-within {
   background: var(--cm-bg-hover);
 }
 .context-menu .cm-item > img {
@@ -1096,3 +1099,6 @@ input:checked + .switch-label {
 #wordreference-button.disabled {
   opacity: 0.5;
 }
+/* [tabindex] {
+  outline: none !important;
+} */

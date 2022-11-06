@@ -110,3 +110,25 @@ form {
 body {
   padding: 0 !important;
 }
+@media (min-width: 500px) {
+  ::-webkit-scrollbar-track {
+    opacity: 0 !important;
+    background: var(--bg);
+    display: none !important;
+    width: 16px;
+    height: 16px;
+  }
+  ::-webkit-scrollbar-thumb {
+    border-radius: 16px;
+    background: var(--secondary-alt);
+    border: solid 4px var(--bg);
+  }
+  ::-webkit-scrollbar {
+    width: 16px !important;
+    height: 16px !important;
+  }
+  ::-webkit-scrollbar-corner {
+    opacity: 0;
+    background: transparent;
+  }
+}
