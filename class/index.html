@@ -2,7 +2,11 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="//sander.vonk.one/VITE/img/icon/app/icon-512x512.png" type="image/png" />
+    <link
+      rel="shortcut icon"
+      href="//svonk.me/VITE/img/icon/app/icon-512x512.png"
+      type="image/png"
+    />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="runsetup" content="true" />
@@ -14,11 +18,26 @@
     <link async rel="stylesheet" href="/VITE/css/fonts.css?version=[-version-number-]" />
     <link rel="stylesheet" href="/VITE/css/class.css?version=[-version-number-]" />
     <link rel="stylesheet" href="/VITE/css/streak.css?version=[-version-number-]" />
-    <link rel="stylesheet" href="/VITE/css/theme-dark.css?version=[-version-number-]" media="(prefers-color-scheme: unset) and not(print)" id="theme-dark-stylesheet" />
+    <link
+      rel="stylesheet"
+      href="/VITE/css/theme-dark.css?version=[-version-number-]"
+      media="(prefers-color-scheme: unset) and not(print)"
+      id="theme-dark-stylesheet"
+    />
     <meta name="theme-color" id="theme-light-color" content="#FFFFFF" />
     <meta name="apple-mobile-web-app-status-bar" id="theme-light-color" content="#FFFFFF" />
-    <meta name="apple-mobile-web-app-status-bar" id="theme-dark-color" media="prefers-color-scheme: unset" content="#131F22" />
-    <meta name="theme-color" id="theme-dark-color" media="prefers-color-scheme: unset" content="#131F22" />
+    <meta
+      name="apple-mobile-web-app-status-bar"
+      id="theme-dark-color"
+      media="prefers-color-scheme: unset"
+      content="#131F22"
+    />
+    <meta
+      name="theme-color"
+      id="theme-dark-color"
+      media="prefers-color-scheme: unset"
+      content="#131F22"
+    />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
     <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
@@ -51,12 +70,21 @@
         animation: 1s ease-out 0s 1 forwards expandBar;
       }
     </style>
-    <link rel="shortcut icon" href="//sander.vonk.one/VITE/img/icon/app/icon-512x512.png" type="image/png" />
+    <link
+      rel="shortcut icon"
+      href="//svonk.me/VITE/img/icon/app/icon-512x512.png"
+      type="image/png"
+    />
     <title>VITE! - Class Management</title>
   </head>
   <body>
     <header>
-      <button id="close-button" class="progress-button" type="button" onclick="window.location.href='../app/'"></button>
+      <button
+        id="close-button"
+        class="progress-button"
+        type="button"
+        onclick="window.location.href='../app/'"
+      ></button>
       <div id="progress-bar" style="display: none">
         <div id="progress-fill">
           <div id="progress-fill-accent"></div>
@@ -86,8 +114,23 @@
         <input type="text" class="codebox" disabled id="join-code" placeholder="—" />
       </div>
       <div id="actions-row" class="flex-row">
-        <div id="delete-button" style="flex-grow: 1" class="box-button blue-button disabled delete-document" classload>DELETE</div>
-        <div id="manage-button" placeholdaction style="flex-grow: 1; margin-left: 10px" class="box-button blue-button disabled" classload>MANAGE</div>
+        <div
+          id="delete-button"
+          style="flex-grow: 1"
+          class="box-button blue-button disabled delete-document"
+          classload
+        >
+          DELETE
+        </div>
+        <div
+          id="manage-button"
+          placeholdaction
+          style="flex-grow: 1; margin-left: 10px"
+          class="box-button blue-button disabled"
+          classload
+        >
+          MANAGE
+        </div>
       </div>
       <div id="student-join-options" forstudent>
         <div class="section-title secondary">Join a class:</div>
@@ -102,10 +145,22 @@
               <div id="student-info-code-row" class="input-row box codebox-row">
                 <label for="student-class-code">Class Code</label>
                 <hr />
-                <input type="text" disabled id="student-class-code" class="codebox" placeholder="—" />
+                <input
+                  type="text"
+                  disabled
+                  id="student-class-code"
+                  class="codebox"
+                  placeholder="—"
+                />
               </div>
               <div class="fade-down member-list-ui" style="display: none" forstudent></div>
-              <div id="members-list" class="member-list-ui" memberlist style="display: none" forstudent>
+              <div
+                id="members-list"
+                class="member-list-ui"
+                memberlist
+                style="display: none"
+                forstudent
+              >
                 <hr />
               </div>
               <div class="fade-up member-list-ui" style="display: none" forstudent></div>
@@ -125,11 +180,26 @@
       </div>
     </div>
     <div id="bottom-actions">
-      <div id="prev-button" class="box-button fullborder primary center disabled" onclick="HTMLFromID(cycleClasses(-1))">
+      <div
+        id="prev-button"
+        class="box-button fullborder primary center disabled"
+        onclick="HTMLFromID(cycleClasses(-1))"
+      >
         <div id="prev-icon" class="color-mask"></div>
       </div>
-      <div id="add-button" style="margin-left: 10px; margin-right: 10px; flex-grow: 1" class="box-button blue-button" onclick="createClass()">ADD</div>
-      <div id="next-button" class="box-button fullborder primary center disabled" onclick="HTMLFromID(cycleClasses(1))">
+      <div
+        id="add-button"
+        style="margin-left: 10px; margin-right: 10px; flex-grow: 1"
+        class="box-button blue-button"
+        onclick="createClass()"
+      >
+        ADD
+      </div>
+      <div
+        id="next-button"
+        class="box-button fullborder primary center disabled"
+        onclick="HTMLFromID(cycleClasses(1))"
+      >
         <div id="next-icon" class="color-mask"></div>
       </div>
     </div>

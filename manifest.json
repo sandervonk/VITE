@@ -1,13 +1,22 @@
 {
   "name": "VITE! French Practice",
   "short_name": "VITE!",
-  "start_url": "//sander.vonk.one/VITE/app/",
-  "scope": "//sander.vonk.one/VITE/",
+  "start_url": "//svonk.me/VITE/app/",
+  "scope": "//svonk.me/VITE/",
   "display": "standalone",
   "background_color": "#131f22",
   "theme_color": "#3CADC6",
   "orientation": "portrait",
-  "categories": ["education", "french", "learning", "schools", "classes", "conjugation", "conjugator", "tools"],
+  "categories": [
+    "education",
+    "french",
+    "learning",
+    "schools",
+    "classes",
+    "conjugation",
+    "conjugator",
+    "tools"
+  ],
   "description": "Conjugate French verbs, learn new tenses, or practice existing ones, all 100% free with VITE! French tools!",
   "iarc_rating_id": "aff1d1df-b214-4a28-88d8-5b450b31dc1c",
   "related_applications": [],
@@ -16,10 +25,10 @@
       "name": "Conjugate a Verb",
       "short_name": "Conjugator",
       "description": "Check verb conjugations across all tenses and subjects.",
-      "url": "https://sander.vonk.one/VITE/app/conjugator.html",
+      "url": "https://svonk.me/VITE/app/conjugator.html",
       "icons": [
         {
-          "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/conjugator-themed.png",
+          "src": "https://sandervonk.github.io/VITE/img/pwa/shortcuts/conjugator-themed.png",
           "sizes": "192x192"
         }
       ]
@@ -28,10 +37,10 @@
       "name": "Create a Worksheet",
       "short_name": "Sheetify",
       "description": "Create a custom worksheet with your own verbs, subjects, and tenses.",
-      "url": "https://sander.vonk.one/VITE/app/sheetify.html",
+      "url": "https://svonk.me/VITE/app/sheetify.html",
       "icons": [
         {
-          "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/sheetify-themed.png",
+          "src": "https://sandervonk.github.io/VITE/img/pwa/shortcuts/sheetify-themed.png",
           "sizes": "192x192"
         }
       ]
@@ -40,10 +49,10 @@
       "name": "Manage Classes",
       "short_name": "Classes",
       "description": "Manage, create, and join classes!",
-      "url": "https://sander.vonk.one/VITE/class/index.html",
+      "url": "https://svonk.me/VITE/class/index.html",
       "icons": [
         {
-          "src": "https://sander.vonk.one/VITE/img/pwa/shortcuts/class-themed.png",
+          "src": "https://sandervonk.github.io/VITE/img/pwa/shortcuts/class-themed.png",
           "sizes": "192x192"
         }
       ]
@@ -51,7 +60,7 @@
   ],
   "screenshots": [
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/login-narrow.jpg",
+      "src": "https://sandervonk.github.io/VITE/img/pwa/screenshots/login-narrow.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "narrow",
@@ -59,7 +68,7 @@
       "label": "VITE! Login Screen | Mobile"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/app-index-narrow.jpg",
+      "src": "https://sandervonk.github.io/VITE/img/pwa/screenshots/app-index-narrow.jpg",
       "sizes": "390x844",
       "platform": "narrow",
       "type": "image/jpeg",
@@ -67,7 +76,7 @@
       "label": "App Index Screen | Mobile"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/practice-narrow.jpg",
+      "src": "https://sandervonk.github.io/VITE/img/pwa/screenshots/practice-narrow.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "narrow",
@@ -75,7 +84,7 @@
       "label": "Practice | Mobile"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/classes-narrow.jpg",
+      "src": "https://sandervonk.github.io/VITE/img/pwa/screenshots/classes-narrow.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "narrow",
@@ -83,7 +92,7 @@
       "label": "Class Management | Mobile"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/practice-setup-narrow.jpg",
+      "src": "https://sandervonk.github.io/VITE/img/pwa/screenshots/practice-setup-narrow.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "narrow",
@@ -91,7 +100,7 @@
       "label": "Customize Practice | Mobile"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/sheetify-1-narrow.jpg",
+      "src": "https://sandervonk.github.io/VITE/img/pwa/screenshots/sheetify-1-narrow.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "narrow",
@@ -99,7 +108,7 @@
       "label": "Sheetify Template Selection | Mobile"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/sheetify-2-narrow.jpg",
+      "src": "https://sandervonk.github.ioub.ioub.io/VITE/img/pwa/screenshots/sheetify-2-narrow.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "narrow",
@@ -107,7 +116,7 @@
       "label": "Sheetify Worksheet Print | Mobile"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/login-wide.jpg",
+      "src": "https://sandervonk.github.io/VITE/img/pwa/screenshots/login-wide.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "wide",
@@ -115,7 +124,7 @@
       "label": "VITE! Login Screen | Desktop"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/app-index-wide.jpg",
+      "src": "https://sandervonk.github.io/VITE/img/pwa/screenshots/app-index-wide.jpg",
       "sizes": "390x844",
       "platform": "wide",
       "type": "image/jpeg",
@@ -123,7 +132,7 @@
       "label": "App Index Screen | Desktop"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/practice-wide.jpg",
+      "src": "https://sandervonk.github.io/VITE/img/pwa/screenshots/practice-wide.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "wide",
@@ -131,7 +140,7 @@
       "label": "Practice | Desktop"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/classes-wide.jpg",
+      "src": "https://sandervonk.github.io/VITE/img/pwa/screenshots/classes-wide.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "wide",
@@ -139,7 +148,7 @@
       "label": "Class Management | Desktop"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/practice-setup-wide.jpg",
+      "src": "https://sandervonk.github.io/VITE/img/pwa/screenshots/practice-setup-wide.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "wide",
@@ -147,7 +156,7 @@
       "label": "Customize Practice | Desktop"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/sheetify-1-wide.jpg",
+      "src": "https://sandervonk.github.ioub.io/VITE/img/pwa/screenshots/sheetify-1-wide.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "wide",
@@ -155,7 +164,7 @@
       "label": "Sheetify Template Selection | Desktop"
     },
     {
-      "src": "https://sander.vonk.one/VITE/img/pwa/screenshots/sheetify-2-wide.jpg",
+      "src": "https://sandervonk.github.io/VITE/img/pwa/screenshots/sheetify-2-wide.jpg",
       "sizes": "390x844",
       "type": "image/jpeg",
       "platform": "wide",

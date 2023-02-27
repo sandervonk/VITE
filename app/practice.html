@@ -2,7 +2,11 @@
 <html lang="en" translate="no" class="notranslate">
   <head>
     <meta charset="UTF-8" />
-    <link rel="shortcut icon" href="//sander.vonk.one/VITE/img/icon/app/icon-512x512.png" type="image/png" />
+    <link
+      rel="shortcut icon"
+      href="//svonk.me/VITE/img/icon/app/icon-512x512.png"
+      type="image/png"
+    />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="google" content="notranslate" />
     <meta name="runapp" content="true" />
@@ -15,18 +19,39 @@
     <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
     <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
     <script src="//www.gstatic.com/firebasejs/8.10.0/firebase-messaging.js"></script>
-    <link rel="stylesheet" href="/VITE/css/theme-dark.css?version=[-version-number-]" media="(prefers-color-scheme: unset) and not(print)" id="theme-dark-stylesheet" />
+    <link
+      rel="stylesheet"
+      href="/VITE/css/theme-dark.css?version=[-version-number-]"
+      media="(prefers-color-scheme: unset) and not(print)"
+      id="theme-dark-stylesheet"
+    />
     <meta name="theme-color" id="theme-light-color" id="theme-light-color" content="#FFFFFF" />
     <meta name="theme-color" id="theme-light-color" content="#FFFFFF" />
-    <meta name="apple-mobile-web-app-status-bar" id="theme-dark-color" media="prefers-color-scheme: unset" content="#131F22" />
-    <meta name="theme-color" id="theme-dark-color" media="prefers-color-scheme: unset" content="#131F22" />
-    <link rel="shortcut icon" href="//sander.vonk.one/VITE/img/icon/app/icon-512x512.png" type="image/png" />
+    <meta
+      name="apple-mobile-web-app-status-bar"
+      id="theme-dark-color"
+      media="prefers-color-scheme: unset"
+      content="#131F22"
+    />
+    <meta
+      name="theme-color"
+      id="theme-dark-color"
+      media="prefers-color-scheme: unset"
+      content="#131F22"
+    />
+    <link
+      rel="shortcut icon"
+      href="//svonk.me/VITE/img/icon/app/icon-512x512.png"
+      type="image/png"
+    />
     <script src="//ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
     <script src="/VITE/js/mobile-vite.js?version=[-version-number-]"></script>
     <title>VITE! - Practice</title>
   </head>
   <body>
-    <div id="info-popup" class="box">Info goes here and hopefully doesent overflow onto the side despite the size</div>
+    <div id="info-popup" class="box">
+      Info goes here and hopefully doesent overflow onto the side despite the size
+    </div>
     <header>
       <button id="close-button" class="progress-button" onclick="window.history.go(-1)"></button>
       <div id="progress-bar">
@@ -44,9 +69,17 @@
     </header>
     <div id="question-content">
       <div id="content-top">
-        <p id="vite-q-prompt" class="primary">Conjugate in the&nbsp;<a id="vite-q-tense" class="primary" info="Tense information"></a></p>
+        <p id="vite-q-prompt" class="primary">
+          Conjugate in the&nbsp;<a id="vite-q-tense" class="primary" info="Tense information"></a>
+        </p>
         <div id="question-data">
-          <button id="info-button" onclick="new Popup('Try tapping the underlined terms to see their definitions!', 'default', 10000, '', [['removePopup()', 'OK']])" class="square-35 box-button">i</button>
+          <button
+            id="info-button"
+            onclick="new Popup('Try tapping the underlined terms to see their definitions!', 'default', 10000, '', [['removePopup()', 'OK']])"
+            class="square-35 box-button"
+          >
+            i
+          </button>
 
           <div id="vite-q-prefix" class="center bridge-word"></div>
           <div id="vite-q-subject" class="center" info="Subject information">sujet</div>
@@ -56,7 +89,15 @@
       </div>
       <div id="answer-area">
         <img id="answer-mascot" src="/VITE/img/mascot/mood=Default.svg" alt="Verb Action Mascot" />
-        <textarea id="answer-input" enterkeyhint="done" class="box text-secondary" placeholder="Tap to enter your answer" name="answer-input" id="" rows="10"></textarea>
+        <textarea
+          id="answer-input"
+          enterkeyhint="done"
+          class="box text-secondary"
+          placeholder="Tap to enter your answer"
+          name="answer-input"
+          id=""
+          rows="10"
+        ></textarea>
       </div>
     </div>
     <div id="result-container">
@@ -75,7 +116,11 @@
       <div id="skip-button" class="center">Skip</div>
       <div id="next-button-spacer"></div>
       <div id="next-button-row">
-        <div id="next-button" class="box-button primary center" style="margin-left: 10px; margin-right: 10px"></div>
+        <div
+          id="next-button"
+          class="box-button primary center"
+          style="margin-left: 10px; margin-right: 10px"
+        ></div>
         <button id="wordreference-button" class="box-button fullborder"></button>
         <button id="conjugator-button" class="box-button fullborder">
           <div id="search-icon"></div>
